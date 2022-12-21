@@ -9,6 +9,9 @@ import lombok.Data;
 @Builder
 public class UserDTO {
 
+    @JsonProperty("DNI")
+    private int dni;
+
     //Desde el font-end viene como "Nombre" y aquí se lo mapea y se lo trabaja como firstName
     @JsonProperty("Nombre")
     private String firstName;
@@ -16,11 +19,11 @@ public class UserDTO {
     @JsonProperty("Apellido")
     private String lastName;
 
-    @JsonProperty("Usuario")
-    private String username;
-
     @JsonProperty("Email")
     private String email;
+
+    @JsonProperty("Número de teléfono móvil")
+    private int numberPhone;
 
     @JsonProperty("Contraseña")
     private String password;

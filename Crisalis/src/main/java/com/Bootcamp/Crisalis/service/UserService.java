@@ -29,16 +29,16 @@ public class UserService {
     }
 
     //Necesario el chech de userDTO
-    public UserDTO loginUserWithCredentials(String username, String password) {
+    public UserDTO loginUserWithCredentials(String email, String password) {
         if (
                 this.checkUserDTO(UserDTO
                                 .builder()
-                                .username(username)
+                                .email(email)
                                 .password(password)
                                 .build()
                         ,Boolean.TRUE)
         ) {
-            return this.userRepository.findByUsernameAndPassword(username, password)
+            return this.userRepository.findByUsernameAndPassword(email, password)
                     .orElseThrow(
                             //Es como hacer un método y llamarlo directamente
                             () -> new UnauthorizedException("Invalid credentials")
@@ -73,7 +73,7 @@ public class UserService {
                 throw new EmptyElementException("Role is empty");
             }
         }
-        if(StringUtils.isEmpty(userDTO.getUsername())) {
+        if(StringUtils.isEmpty(userDTO.getEmail())) {
             throw new EmptyElementException("Username is empty");
         }
         if(StringUtils.isEmpty(userDTO.getPassword())) {

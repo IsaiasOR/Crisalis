@@ -12,30 +12,32 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name= "Usuario")
+@Table(name= "Users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id_Usuario")
+    @Column(name = "Id_User")
     private Integer id;
 
-    @Column(name = "Nombre")
+    @Column(name = "DNI")
+    private int dni;
+
+    @Column(name = "Firstname")
     private String firstName;
 
-    @Column(name = "Apellido")
+    @Column(name = "LastName")
     private String lastName;
-
-    @Column(name = "Usuario")
-    private String username;
 
     @Column(name = "Email")
     private String email;
 
-    @Column(name = "Contraseña")
+    @Column(name = "Mobile_number_phone")
+    private int numberPhone;
+
+    @Column(name = "Pass")
     private String password;
 
-    @Column(name = "Role")
     private UserRole userRole;
 
     /*
@@ -45,10 +47,11 @@ public class User {
     2. Utilizar builder en vez de @NoArgsConstructor
      */
     public User(UserDTO userDTO) {
+        this.dni = userDTO.getDni();
         this.firstName = userDTO.getFirstName();
         this.lastName = userDTO.getLastName();
-        this.username = userDTO.getUsername();
         this.email = userDTO.getEmail();
+        this.numberPhone = userDTO.getNumberPhone();
         this.password = userDTO.getPassword();
         this.userRole = userDTO.getUserRole();
     }
@@ -57,10 +60,11 @@ public class User {
         return
                 UserDTO
                         .builder()
+                        .dni(this.dni)
                         .firstName(this.firstName)
                         .lastName(this.lastName)
-                        .username(this.username)
                         .email(this.email)
+                        .numberPhone(this.numberPhone)
                         .password(this.password)
                         .build();
     }
