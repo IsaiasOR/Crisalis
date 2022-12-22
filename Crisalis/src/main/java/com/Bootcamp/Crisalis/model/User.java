@@ -21,7 +21,7 @@ public class User {
     private Integer id;
 
     @Column(name = "DNI")
-    private int dni;
+    private Integer dni;
 
     @Column(name = "Firstname")
     private String firstName;
@@ -32,12 +32,13 @@ public class User {
     @Column(name = "Email")
     private String email;
 
-    @Column(name = "Mobile_number_phone")
-    private int numberPhone;
+    @Column(name = "MobileNumberPhone")
+    private Integer numberPhone;
 
     @Column(name = "Pass")
     private String password;
 
+    @Column(name = "UserRole")
     private UserRole userRole;
 
     /*
@@ -66,6 +67,7 @@ public class User {
                         .email(this.email)
                         .numberPhone(this.numberPhone)
                         .password(this.password)
+                        .userRole(this.userRole)
                         .build();
     }
 }

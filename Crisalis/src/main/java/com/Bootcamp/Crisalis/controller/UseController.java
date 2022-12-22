@@ -29,8 +29,8 @@ public class UseController {
 
     //Recibirá a los parámetros dentro de la dirección
     @GetMapping(value = "login", produces = MediaType.APPLICATION_JSON_VALUE)
-    public UserDTO loginUser(@RequestParam String username, @RequestParam String password) {
-        return this.userService.loginUserWithCredentials(username, password);
+    public UserDTO loginUser(@RequestParam String email, @RequestParam String password) {
+        return this.userService.loginUserWithCredentials(email, password);
     }
 
     @GetMapping(value = "list", produces = MediaType.APPLICATION_JSON_VALUE)

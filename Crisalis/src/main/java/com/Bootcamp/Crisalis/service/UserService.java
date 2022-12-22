@@ -38,7 +38,7 @@ public class UserService {
                                 .build()
                         ,Boolean.TRUE)
         ) {
-            return this.userRepository.findByUsernameAndPassword(email, password)
+            return this.userRepository.findByEmailAndPassword(email, password)
                     .orElseThrow(
                             //Es como hacer un método y llamarlo directamente
                             () -> new UnauthorizedException("Invalid credentials")
@@ -58,10 +58,13 @@ public class UserService {
 
     //Colocar lo necesario para logear
     public Boolean checkUserDTO(UserDTO userDTO, Boolean isForLogin) {
-        //Si es para logear, es decir, es true entonces no controlará lo de adentro
+        //Si es para logear, es decir es true, entonces no controlará lo de adentro
         if(!isForLogin) {
             if(StringUtils.isEmpty(userDTO.getEmail())) {
                 throw new EmptyElementException("Email is empty");
+            }
+            if(StringUtils.isEmpty(userDTO.getPassword())) {
+                throw new EmptyElementException("Password is empty");
             }
             if(StringUtils.isEmpty(userDTO.getFirstName())) {
                 throw new EmptyElementException("First name is empty");
@@ -69,12 +72,18 @@ public class UserService {
             if(StringUtils.isEmpty(userDTO.getLastName())) {
                 throw new EmptyElementException("Last name is empty");
             }
+            if(userDTO.getDni() == null) {
+                throw new EmptyElementException("DNI is empty");
+            }
+            if(userDTO.getNumberPhone() == null) {
+                throw new EmptyElementException("Mobile number phone is empty");
+            }
             if(userDTO.getUserRole() == null) {
                 throw new EmptyElementException("Role is empty");
             }
         }
         if(StringUtils.isEmpty(userDTO.getEmail())) {
-            throw new EmptyElementException("Username is empty");
+            throw new EmptyElementException("Email is empty");
         }
         if(StringUtils.isEmpty(userDTO.getPassword())) {
             throw new EmptyElementException("Password is empty");

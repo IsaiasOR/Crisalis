@@ -10,13 +10,11 @@ formulario.addEventListener('submit', function(e){
         mobileNumber: datosForm.get('mobileNumber'),
         dni: datosForm.get('dni'),
         password: datosForm.get('password'),
-        confirmPassword: datosForm.get('confirmPassword')
     }
 
-    fetch('jdbc:sqlserver://localhost:1433/Users', {
+    fetch('jdbc:sqlserver://localhost:1433/User', {
         method: "POST",
         body: JSON.stringify(datos),
-        headers: {"Content-type": "application/json; charset=UTF-8"}
     })
         .then(response => response.json()) 
         .then(json => console.log(json))
