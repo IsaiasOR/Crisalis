@@ -13,21 +13,21 @@ public class UserDTO {
     private Integer dni;
 
     //Desde el font-end viene como "Nombre" y aquí se lo mapea y se lo trabaja como firstName
-    @JsonProperty("Nombre")
+    @JsonProperty("Firstname")
     private String firstName;
 
-    @JsonProperty("Apellido")
+    @JsonProperty("LastName")
     private String lastName;
 
     @JsonProperty("Email")
     private String email;
 
-    @JsonProperty("Número de teléfono móvil")
-    private Integer numberPhone;
+    @JsonProperty("PhoneNumber")
+    private Integer phoneNumber;
 
-    @JsonProperty("Contraseña")
+    @JsonProperty("Password")
     private String password;
 
-    @JsonProperty("Rol")
+    @JsonProperty("Role")
     private UserRole userRole;
 }

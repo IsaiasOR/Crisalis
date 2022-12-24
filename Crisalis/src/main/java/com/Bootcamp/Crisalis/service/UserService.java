@@ -6,22 +6,47 @@ import com.Bootcamp.Crisalis.exception.custom.UnauthorizedException;
 import com.Bootcamp.Crisalis.model.User;
 import com.Bootcamp.Crisalis.model.dto.UserDTO;
 import com.Bootcamp.Crisalis.repository.UserRepository;
+import com.Bootcamp.Crisalis.security.EmailValidator;
+import lombok.AllArgsConstructor;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
+    private final EmailValidator emailValidator;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public Optional<User> getByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 
     public User saveUser(UserDTO userDTO) {
+        //Varificación de email
+        boolean isValidEmail = emailValidator.test(userDTO.getEmail());
+        if(!isValidEmail) {
+          throw new IllegalStateException("Email not valid");
+        }
+
+        //Verificación de si existe el usuario
+        boolean userExists = userRepository.findByEmail(userDTO.getEmail()).isPresent();
+        if (userExists) {
+            throw new IllegalStateException("Email already taken");
+        }
+
+        //Codificación de la contraseña
+        String encodedPassword = bCryptPasswordEncoder.encode(userDTO.getPassword());
+        userDTO.setPassword(encodedPassword);
+
+        //Check User
         if(checkUserDTO(userDTO, Boolean.FALSE)) {
            return this.userRepository.save(new User((userDTO)));
         }
@@ -72,13 +97,13 @@ public class UserService {
             if(StringUtils.isEmpty(userDTO.getLastName())) {
                 throw new EmptyElementException("Last name is empty");
             }
-            if(userDTO.getDni() == null) {
+            if(ObjectUtils.isEmpty(userDTO.getDni())) {
                 throw new EmptyElementException("DNI is empty");
             }
-            if(userDTO.getNumberPhone() == null) {
+            if(ObjectUtils.isEmpty(userDTO.getPhoneNumber())) {
                 throw new EmptyElementException("Mobile number phone is empty");
             }
-            if(userDTO.getUserRole() == null) {
+            if(ObjectUtils.isEmpty(userDTO.getUserRole())) {
                 throw new EmptyElementException("Role is empty");
             }
         }
@@ -90,4 +115,18 @@ public class UserService {
         }
         return Boolean.TRUE;
     }
+
+    /*
+    public User deleteUser(String email, String password) {
+        if (checkUserDTO(UserDTO
+                .builder()
+                .email(email)
+                .password(password)
+                .build(), Boolean.TRUE)) {
+            this.userRepository.findByEmailAndPassword(email, password);
+            return this.userRepository.delete();
+        }
+        throw new NotEliminatedException("Error in deleting user");
+    }
+    */
 }

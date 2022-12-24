@@ -5,15 +5,20 @@ import com.Bootcamp.Crisalis.model.dto.UserDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.Collections;
 
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name= "Users")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,14 +37,18 @@ public class User {
     @Column(name = "Email")
     private String email;
 
-    @Column(name = "MobileNumberPhone")
-    private Integer numberPhone;
+    @Column(name = "PhoneNumber")
+    private Integer phoneNumber;
 
     @Column(name = "Pass")
     private String password;
 
-    @Column(name = "UserRole")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "Role")
     private UserRole userRole;
+
+    private Boolean locked = false;
+    private Boolean enabled = false;
 
     /*
     Otra opción para esto es:
@@ -52,7 +61,7 @@ public class User {
         this.firstName = userDTO.getFirstName();
         this.lastName = userDTO.getLastName();
         this.email = userDTO.getEmail();
-        this.numberPhone = userDTO.getNumberPhone();
+        this.phoneNumber = userDTO.getPhoneNumber();
         this.password = userDTO.getPassword();
         this.userRole = userDTO.getUserRole();
     }
@@ -65,9 +74,40 @@ public class User {
                         .firstName(this.firstName)
                         .lastName(this.lastName)
                         .email(this.email)
-                        .numberPhone(this.numberPhone)
+                        .phoneNumber(this.phoneNumber)
                         .password(this.password)
                         .userRole(this.userRole)
                         .build();
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(userRole.returnRole());
+        return Collections.singletonList(authority);
+    }
+
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return !this.locked;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return this.enabled;
     }
 }
