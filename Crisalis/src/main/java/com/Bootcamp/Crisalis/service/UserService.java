@@ -1,8 +1,6 @@
 package com.Bootcamp.Crisalis.service;
 
-import com.Bootcamp.Crisalis.exception.custom.EmptyElementException;
-import com.Bootcamp.Crisalis.exception.custom.NotCreatedException;
-import com.Bootcamp.Crisalis.exception.custom.UnauthorizedException;
+import com.Bootcamp.Crisalis.exception.custom.*;
 import com.Bootcamp.Crisalis.model.User;
 import com.Bootcamp.Crisalis.model.dto.UserDTO;
 import com.Bootcamp.Crisalis.repository.UserRepository;
@@ -14,7 +12,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,10 +21,6 @@ public class UserService {
     private final UserRepository userRepository;
     private final EmailValidator emailValidator;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    public Optional<User> getByEmail(String email) {
-        return userRepository.findByEmail(email);
-    }
 
     public User saveUser(UserDTO userDTO) {
         //Varificación de email
@@ -50,7 +43,7 @@ public class UserService {
         if(checkUserDTO(userDTO, Boolean.FALSE)) {
            return this.userRepository.save(new User((userDTO)));
         }
-        throw new NotCreatedException("Error in save new User");
+        throw new NotCreatedException("Error in save new user");
     }
 
     //Necesario el chech de userDTO
@@ -65,7 +58,6 @@ public class UserService {
         ) {
             return this.userRepository.findByEmailAndPassword(email, password)
                     .orElseThrow(
-                            //Es como hacer un método y llamarlo directamente
                             () -> new UnauthorizedException("Invalid credentials")
                     ).toDTO();
         }
@@ -100,7 +92,7 @@ public class UserService {
             if(ObjectUtils.isEmpty(userDTO.getDni())) {
                 throw new EmptyElementException("DNI is empty");
             }
-            if(ObjectUtils.isEmpty(userDTO.getPhoneNumber())) {
+            if(StringUtils.isEmpty(userDTO.getPhoneNumber())) {
                 throw new EmptyElementException("Mobile number phone is empty");
             }
             if(ObjectUtils.isEmpty(userDTO.getUserRole())) {
@@ -116,17 +108,31 @@ public class UserService {
         return Boolean.TRUE;
     }
 
-    /*
     public User deleteUser(String email, String password) {
         if (checkUserDTO(UserDTO
                 .builder()
                 .email(email)
                 .password(password)
                 .build(), Boolean.TRUE)) {
-            this.userRepository.findByEmailAndPassword(email, password);
-            return this.userRepository.delete();
+            return this.userRepository
+                    .delete(this.userRepository.findByEmailAndPassword(email, password));
         }
         throw new NotEliminatedException("Error in deleting user");
     }
-    */
+
+    public UserDTO findByDni(Integer dni) {
+        if (
+                this.checkUserDTO(UserDTO
+                                .builder()
+                                .dni(dni)
+                                .build()
+                        ,Boolean.FALSE)
+        ) {
+            return this.userRepository.findByDni(dni)
+                    .orElseThrow(
+                            () -> new UnauthorizedException("Invalid credentials")
+                    ).toDTO();
+        }
+        throw new UnauthorizedException("Invalid credentials");
+    }
 }

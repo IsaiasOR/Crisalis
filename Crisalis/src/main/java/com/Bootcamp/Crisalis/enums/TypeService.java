@@ -1,12 +1,12 @@
 package com.Bootcamp.Crisalis.enums;
 
-public enum ActiveService {
-    YES("Yes"),
-    NO("No");
+public enum TypeService {
+    COMMON("Common"),
+    SPECIAL("Special");
 
     private final String service;
 
-    private ActiveService(String service) {
+    private TypeService(String service) {
         this.service = service;
     }
 

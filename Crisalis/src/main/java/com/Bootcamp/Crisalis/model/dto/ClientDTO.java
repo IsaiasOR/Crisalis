@@ -2,13 +2,20 @@ package com.Bootcamp.Crisalis.model.dto;
 
 import com.Bootcamp.Crisalis.enums.ActiveService;
 import com.Bootcamp.Crisalis.model.Business;
+import com.Bootcamp.Crisalis.model.Order;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class CustomerDTO {
+public class ClientDTO {
 
     @JsonProperty("ActiveService")
     private ActiveService activeService;
@@ -25,12 +32,9 @@ public class CustomerDTO {
     @JsonProperty("Email")
     private String email;
 
-    @JsonProperty("PhoneNumber")
-    private Integer phoneNumber;
+    @JsonProperty("Business list")
+    private ArrayList<Business> businessList;
 
-    @JsonProperty("Address")
-    private String address;
-
-    //@JsonProperty("Id_Business")
-    //private Business idBusiness;
+    @JsonProperty("Orders")
+    private ArrayList<Order> orders;
 }

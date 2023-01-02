@@ -12,7 +12,7 @@
     <body>
         <div class="register">
             <h1>Registración</h1>
-            <form name="form_reg">
+            <form name="form_reg" id="form_reg">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputFirstname">Nombre</label>
@@ -29,17 +29,17 @@
                         <input type="number" class="form-control" id="inputDNI" placeholder="Ingresar D.N.I.">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="inputNumberPhone">Número de celular</label>
-                        <input type="number" class="form-control" id="inputNumberPhone" placeholder="Ingresar número de celular">
+                        <label for="inputPhoneNumber">Número de celular</label>
+                        <input type="number" class="form-control" id="inputPhoneNumber" placeholder="Ingresar número de celular">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputRole">Rol</label>
                         <select id="inputRole" class="form-control">
-                        <option selected>Seleccionar</option>
-                        <option>Administrador</option>
-                        <option>Super administrador</option>
+                            <option selected>Seleccionar</option>
+                            <option value="ADMIN">Administrador</option>
+                            <option value="SUPER_ADMIN">Super administrador</option>
                         </select>
                     </div>
                     <div class="form-group col-md-6">
@@ -47,12 +47,8 @@
                         <input type="email" class="form-control" id="inputEmail" placeholder="Ingresar correo electrónico">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="inputPassword4">Contraseña</label>
+                        <label for="inputPassword">Contraseña</label>
                         <input type="password" class="form-control" id="inputPassword" placeholder="Ingresar contraseña">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="inputPassword4">Confirmar contraseña</label>
-                        <input type="password" class="form-control" id="inputPassword2" placeholder="Ingresar contraseña">
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Registrar</button>

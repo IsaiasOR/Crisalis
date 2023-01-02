@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -29,10 +31,14 @@ public class Business {
     @Column(name = "CUIT")
     private Integer cuit;
 
+    @ManyToMany(mappedBy = "businessList")
+    private List<Client> clients = new ArrayList<>();
+
     public Business(BusinessDTO businessDTO) {
         this.businessName = businessDTO.getBusinessName();
         this.actStartDate = businessDTO.getActStartDate();
         this.cuit = businessDTO.getCuit();
+        this.clients = businessDTO.getClients();
     }
 
     public BusinessDTO toDTO() {
@@ -41,6 +47,7 @@ public class Business {
                 .businessName(this.businessName)
                 .actStartDate(this.actStartDate)
                 .cuit(this.cuit)
+                .clients((ArrayList<Client>) this.clients)
                 .build();
     }
 }

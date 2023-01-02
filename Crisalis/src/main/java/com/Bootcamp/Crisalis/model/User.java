@@ -10,8 +10,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @Data
 @Entity
@@ -31,14 +33,14 @@ public class User implements UserDetails {
     @Column(name = "Firstname")
     private String firstName;
 
-    @Column(name = "LastName")
+    @Column(name = "Lastname")
     private String lastName;
 
     @Column(name = "Email")
     private String email;
 
-    @Column(name = "PhoneNumber")
-    private Integer phoneNumber;
+    @Column(name = "Phonenumber")
+    private String phoneNumber;
 
     @Column(name = "Pass")
     private String password;
@@ -47,8 +49,13 @@ public class User implements UserDetails {
     @Column(name = "Role")
     private UserRole userRole;
 
-    private Boolean locked = false;
-    private Boolean enabled = false;
+    @Transient
+    private Boolean enabled = Boolean.FALSE;
+    @Transient
+    private Boolean locked = Boolean.FALSE;
+
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders = new ArrayList<>();
 
     /*
     Otra opción para esto es:
@@ -64,6 +71,7 @@ public class User implements UserDetails {
         this.phoneNumber = userDTO.getPhoneNumber();
         this.password = userDTO.getPassword();
         this.userRole = userDTO.getUserRole();
+        this.orders = userDTO.getOrders();
     }
 
     public UserDTO toDTO() {
@@ -77,6 +85,7 @@ public class User implements UserDetails {
                         .phoneNumber(this.phoneNumber)
                         .password(this.password)
                         .userRole(this.userRole)
+                        .orders((ArrayList<Order>) this.orders)
                         .build();
     }
 
@@ -88,7 +97,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.email;
+        return email;
     }
 
     @Override
@@ -98,7 +107,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return !this.locked;
+        return !locked;
     }
 
     @Override
@@ -108,6 +117,6 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return this.enabled;
+        return enabled;
     }
 }
