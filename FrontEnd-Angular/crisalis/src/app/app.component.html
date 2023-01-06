@@ -1,6 +1,15 @@
 <nav class="navbar navbar-expand navbar-light bg-light">
     <div class="nav navbar-nav">
         <a class="nav-item nav-link active" href="#" aria-current="page">Sistema <span class="visually-hidden">(current)</span></a>
-        <a class="nav-item nav-link" href="#">Listar empleados</a>
+        <a class="nav-item nav-link" routerLink="client-registration">Agregar cliente</a>
+        <a class="nav-item nav-link" routerLink="client-list">Listar clientes</a>
+        <a class="nav-item nav-link" routerLink="client-unsubscribe">Eliminar cliente</a>
+        <a class="nav-item nav-link" routerLink="" >Modificar datos del cliente</a>
     </div>
 </nav>
+<div class="container">
+    Contenido
+    <router-outlet>
+        
+    </router-outlet>
+</div>
