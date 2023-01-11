@@ -1,17 +1,39 @@
-<nav class="navbar navbar-expand navbar-light bg-light">
-    <div class="nav navbar-nav">
-        <a class="nav-item nav-link active" href="#" aria-current="page">Finnegans <span class="visually-hidden">(current)</span></a>
-        <a class="nav-item nav-link" routerLink="order-home">Pedidos</a>
-        <a class="nav-item nav-link" routerLink="client-home">Clientes</a>
-        <a class="nav-item nav-link" routerLink="business-home">Empresas</a>
-        <a class="nav-item nav-link" routerLink="product-home">Productos</a>
-        <a class="nav-item nav-link" routerLink="service-home">Servicios</a>
-        <a class="nav-item nav-link" routerLink="tax-home">Impuestos</a>
-        <a class="nav-item nav-link" routerLink="user-home">Usuarios</a>
-    </div>
-</nav>
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-md navbar-light bg-light border-4 border-bottom border-primary">
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand">Finnegans</a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#MenuNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="MenuNav" class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-3">
+                    <li class="nav-item"><a class="nav-link" href="#">Pedidos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Productos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Servicios</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Clientes</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Personas</a></li>
+                            <li><a class="dropdown-item" href="#">Empresas</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Usuarios</a> 
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-3">
+                    <li class="nav-item">
+                        <a class="nav-link text-nowrap" routerLink="login">Iniciar sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+
 <div class="container">
-    Contenido
+    ...
     <router-outlet>
         
     </router-outlet>
