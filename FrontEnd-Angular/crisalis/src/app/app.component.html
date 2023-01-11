@@ -8,22 +8,22 @@
             <div id="MenuNav" class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-3">
                     <li class="nav-item"><a class="nav-link" href="#">Pedidos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Productos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" routerLink="product">Productos</a></li>
+                    <li class="nav-item"><a class="nav-link" routerLink="service">Servicios</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Clientes</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Personas</a></li>
-                            <li><a class="dropdown-item" href="#">Empresas</a></li>
+                            <li><a class="dropdown-item" routerLink="person">Personas</a></li>
+                            <li><a class="dropdown-item" routerLink="business">Empresas</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Usuarios</a> 
+                        <a class="nav-link" routerLink="user">Usuarios</a> 
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-3">
                     <li class="nav-item">
-                        <a class="nav-link text-nowrap" routerLink="login">Iniciar sesión</a>
+                        <a class="nav-link text-nowrap" routerLink="login">Cerrar sesión</a>
                     </li>
                 </ul>
             </div>
@@ -33,7 +33,6 @@
 
 
 <div class="container">
-    ...
     <router-outlet>
         
     </router-outlet>

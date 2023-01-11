@@ -3,49 +3,54 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ClientComponent } from './components/client/client.component';
 import { ServiceComponent } from './components/service/service.component';
 import { ProductComponent } from './components/product/product.component';
 import { UserComponent } from './components/user/user.component';
 import { OrderComponent } from './components/order/order.component';
 import { BusinessComponent } from './components/business/business.component';
-import { NeedComponent } from './components/need/need.component';
-import { ClientListComponent } from './components/client/client-list/client-list.component';
-import { ClientModifyDataComponent } from './components/client/client-modify-data/client-modify-data.component';
-import { ClientRegisterComponent } from './components/client/client-register/client-register.component';
 import { BusinessAddComponent } from './components/business/business-add/business-add.component';
-import { BusinessListComponent } from './components/business/business-list/business-list.component';
 import { BusinessModifyDataComponent } from './components/business/business-modify-data/business-modify-data.component';
 import { UserRegisterComponent } from './components/user/user-register/user-register.component';
-import { UserListComponent } from './components/user/user-list/user-list.component';
 import { UserModifyDataComponent } from './components/user/user-modify-data/user-modify-data.component';
 import { LoginComponent } from './components/login/login.component';
+import { PersonComponent } from './components/person/person.component';
+import { PersonAddComponent } from './components/person/person-add/person-add.component';
+import { PersonEdityComponent } from './components/person/person-edity/person-edity.component';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ProductAddComponent } from './components/product/product-add/product-add.component';
+import { ProductEdityComponent } from './components/product/product-edity/product-edity.component';
+import { ServiceAddComponent } from './components/service/service-add/service-add.component';
+import { ServiceEdityComponent } from './components/service/service-edity/service-edity.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ClientComponent,
     ServiceComponent,
     ProductComponent,
     UserComponent,
     OrderComponent,
     BusinessComponent,
-    NeedComponent,
-    ClientRegisterComponent,
-    ClientListComponent,
-    ClientModifyDataComponent,
-    ClientRegisterComponent,
     BusinessAddComponent,
-    BusinessListComponent,
     BusinessModifyDataComponent,
     UserRegisterComponent,
-    UserListComponent,
     UserModifyDataComponent,
-    LoginComponent
+    LoginComponent,
+    PersonComponent,
+    PersonAddComponent,
+    PersonEdityComponent,
+    ProductAddComponent,
+    ProductEdityComponent,
+    ServiceAddComponent,
+    ServiceEdityComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

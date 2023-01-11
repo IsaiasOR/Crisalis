@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ClientRegisterComponent } from './client-register.component';
+import { ServiceEdityComponent } from './service-edity.component';
 
-describe('ClientRegisterComponent', () => {
-  let component: ClientRegisterComponent;
-  let fixture: ComponentFixture<ClientRegisterComponent>;
+describe('ServiceEdityComponent', () => {
+  let component: ServiceEdityComponent;
+  let fixture: ComponentFixture<ServiceEdityComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ClientRegisterComponent ]
+      declarations: [ ServiceEdityComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ClientRegisterComponent);
+    fixture = TestBed.createComponent(ServiceEdityComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
