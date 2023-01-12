@@ -1,0 +1,10 @@
+export class Person {
+    id!: BigInteger;
+    firstname!: String;
+    lastname!: String;
+    dni!:BigInteger;
+    email!:String;
+    phoneNumber!:String;
+    direction!:String;
+    cuit!:String;
+}
