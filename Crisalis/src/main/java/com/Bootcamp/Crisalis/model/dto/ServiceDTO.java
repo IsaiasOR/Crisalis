@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import java.math.BigDecimal;
+
 @SuperBuilder
 @Data
 @NoArgsConstructor
@@ -16,10 +18,10 @@ import lombok.experimental.SuperBuilder;
 public class ServiceDTO extends NeedDTO {
 
     @JsonProperty("MonthlyCost")
-    private Double monthlyCost;
+    private BigDecimal monthlyCost;
 
     @JsonProperty("SupportChange")
-    private Double supportChange;
+    private BigDecimal supportChange;
 
     @JsonProperty("Need")
     private Need need;

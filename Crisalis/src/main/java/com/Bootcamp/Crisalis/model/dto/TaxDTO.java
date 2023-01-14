@@ -7,7 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 @Data
 @NoArgsConstructor
@@ -16,11 +16,11 @@ import java.util.ArrayList;
 public class TaxDTO {
 
     @JsonProperty("NameTax")
-    private String nameTax;
+    private String name;
 
     @JsonProperty("Amount")
     private Double amount;
 
     @JsonProperty("Needs")
-    private ArrayList<Need> needs;
+    private HashSet<Need> needs;
 }

@@ -9,7 +9,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 @Data
 @NoArgsConstructor
@@ -33,8 +33,8 @@ public class ClientDTO {
     private String email;
 
     @JsonProperty("Business list")
-    private ArrayList<Business> businessList;
+    private HashSet<Business> businessSet;
 
     @JsonProperty("Orders")
-    private ArrayList<Order> orders;
+    private HashSet<Order> orders;
 }

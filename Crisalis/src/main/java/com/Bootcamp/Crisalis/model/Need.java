@@ -1,34 +1,44 @@
 package com.Bootcamp.Crisalis.model;
 
 import com.Bootcamp.Crisalis.model.dto.NeedDTO;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
-@SuperBuilder
-@Data
-@Entity
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name= "Need")
+@SuperBuilder
+@Entity
+@Table(name= "need")
 @Inheritance(strategy=InheritanceType.JOINED)
 public class Need {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id_Need")
+    @SequenceGenerator(
+            name = "need_sequence",
+            sequenceName = "need_sequence",
+            allocationSize = 1,
+            initialValue = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "need_sequence"
+    )
+    @Column(name = "id_need")
     private Integer id;
 
-    @Column(name = "NameNeed")
+    @Column(name = "nameNeed", nullable = false, length = 50)
     private String name;
 
-    @Column(name = "BaseAmount")
-    private Double baseAmount;
+    @Column(name = "baseAmount")
+    private BigDecimal baseAmount;
 
     @OneToOne
     @JoinColumn(name = "fk_product")
@@ -39,15 +49,17 @@ public class Need {
     private Service service;
 
     @JoinTable(
-            name = "NeedTax",
-            joinColumns = @JoinColumn(name = "fk_need", nullable = false),
-            inverseJoinColumns = @JoinColumn(name="fk_tax", nullable = false)
+            name = "needTax",
+            joinColumns = @JoinColumn(name = "fk_need"),
+            inverseJoinColumns = @JoinColumn(name="fk_tax")
     )
     @ManyToMany(cascade = CascadeType.ALL)
-    private List<Tax> taxes = new ArrayList<>();
+    @ToString.Exclude
+    private Set<Tax> taxes = new HashSet<>();
 
-    @ManyToOne()
-    @JoinColumn(name = "Id_Order")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_order")
+    @ToString.Exclude
     private Order order;
 
     public Need(NeedDTO needDTO) {
@@ -66,7 +78,7 @@ public class Need {
                 .baseAmount(this.baseAmount)
                 .product(this.product)
                 .service(this.service)
-                .taxes((ArrayList<Tax>) this.taxes)
+                .taxes((HashSet<Tax>) this.taxes)
                 .order(this.order)
                 .build();
     }

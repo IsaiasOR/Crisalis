@@ -8,7 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 @Data
 @NoArgsConstructor
@@ -38,5 +38,5 @@ public class UserDTO {
     private UserRole userRole;
 
     @JsonProperty("Orders")
-    private ArrayList<Order> orders;
+    private HashSet<Order> orders;
 }

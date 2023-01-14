@@ -1,28 +1,37 @@
 package com.Bootcamp.Crisalis.model;
 
 import com.Bootcamp.Crisalis.model.dto.ProductDTO;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 
 @SuperBuilder
-@Data
+@Getter
+@Setter
+@ToString
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name= "Product")
-@PrimaryKeyJoinColumn(name="Id_Need")
+@Table(name= "product")
+@PrimaryKeyJoinColumn(name="id_need")
 public class Product extends Need {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id_Product")
+    @SequenceGenerator(
+            name = "product_sequence",
+            sequenceName = "product_sequence",
+            allocationSize = 1,
+            initialValue = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "product_sequence"
+    )
+    @Column(name = "id_product")
     private Integer id;
 
-    @Column(name = "Guarantee")
+    @Column(name = "guarantee")
     private Integer guarantee;
 
     @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)

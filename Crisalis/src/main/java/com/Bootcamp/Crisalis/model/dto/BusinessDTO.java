@@ -7,8 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.time.LocalDate;
+import java.util.HashSet;
 
 @Data
 @NoArgsConstructor
@@ -20,11 +20,11 @@ public class BusinessDTO {
     private String businessName;
 
     @JsonProperty("ActStartDate")
-    private LocalDateTime actStartDate;
+    private LocalDate actStartDate;
 
     @JsonProperty("CUIT")
     private Integer cuit;
 
     @JsonProperty("Client")
-    private ArrayList<Client> clients;
+    private HashSet<Client> clients;
 }

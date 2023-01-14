@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("user")
+@RequestMapping("/user")
 @CrossOrigin(origins = {"localhost:8080", "localhost"})
 public class UserController {
 
@@ -34,9 +34,9 @@ public class UserController {
         return this.userService.getListAllUsersInBD();
     }
 
-    @DeleteMapping(value = "/delete", produces = MediaType.APPLICATION_JSON_VALUE)
-    public void deleteUser(@RequestParam String email, String password) {
-        this.userService.deleteUser(email, password);
+    @DeleteMapping(value = "/deleteByDni", produces = MediaType.APPLICATION_JSON_VALUE)
+    public User deleteUser(@RequestParam Integer dni) {
+        return this.userService.deleteUserByDni(dni);
     }
 
     @GetMapping(value = "/findUser", produces = MediaType.APPLICATION_JSON_VALUE)

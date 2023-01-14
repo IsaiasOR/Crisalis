@@ -1,38 +1,52 @@
 package com.Bootcamp.Crisalis.model;
 
 import com.Bootcamp.Crisalis.model.dto.BusinessDTO;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
-@Data
-@Entity
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Business")
+@Entity
+@Table(name = "business")
 public class Business {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id_Business")
+    @SequenceGenerator(
+            name = "business_sequence",
+            sequenceName = "business_sequence",
+            allocationSize = 1,
+            initialValue = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "business_sequence"
+    )
+    @Column(name = "id_business")
     private Integer id;
 
-    @Column(name = "BusinessName")
+    @Column(name = "businessName", nullable = false, length = 50)
     private String businessName;
 
-    @Column(name = "ActStartDate")
-    private LocalDateTime actStartDate;
+    @Column(name = "actStartDate", nullable = false)
+    private LocalDate actStartDate;
 
-    @Column(name = "CUIT")
+    @Column(name = "cuit", nullable = false)
     private Integer cuit;
 
-    @ManyToMany(mappedBy = "businessList")
-    private List<Client> clients = new ArrayList<>();
+    @ManyToMany(
+            mappedBy = "businessSet",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    @ToString.Exclude
+    private Set<Client> clients = new HashSet<>();
 
     public Business(BusinessDTO businessDTO) {
         this.businessName = businessDTO.getBusinessName();
@@ -47,7 +61,7 @@ public class Business {
                 .businessName(this.businessName)
                 .actStartDate(this.actStartDate)
                 .cuit(this.cuit)
-                .clients((ArrayList<Client>) this.clients)
+                .clients((HashSet<Client>) this.clients)
                 .build();
     }
 }

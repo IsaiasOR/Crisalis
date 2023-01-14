@@ -17,5 +17,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     Optional<User> findByDni(Integer dni);
 
-    User delete(Optional<User> byEmailAndPassword);
+    User deleteByDni(Integer dni);
 }

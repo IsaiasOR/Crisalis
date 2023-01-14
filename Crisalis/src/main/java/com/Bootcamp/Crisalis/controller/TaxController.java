@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("tax")
+@RequestMapping("/tax")
 @CrossOrigin(origins = {"localhost:8080", "localhost"})
 public class TaxController {
 
@@ -29,12 +29,12 @@ public class TaxController {
         return this.taxService.getListAllTaxesInBD();
     }
 
-    @DeleteMapping(value = "/delete/name", produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/deleteByName", produces = MediaType.APPLICATION_JSON_VALUE)
     public Tax deleteTaxByName(@RequestParam String name) {
         return this.taxService.deleteTaxByName(name);
     }
 
-    @DeleteMapping(value = "/delete/id", produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/deleteById", produces = MediaType.APPLICATION_JSON_VALUE)
     public void deleteTaxById(@RequestParam Integer id) {
         this.taxService.deleteTaxById(id);
     }

@@ -1,33 +1,42 @@
 package com.Bootcamp.Crisalis.model;
 
-import com.Bootcamp.Crisalis.model.dto.NeedDTO;
 import com.Bootcamp.Crisalis.model.dto.ServiceDTO;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
-@SuperBuilder
-@Data
-@Entity
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name= "Service")
-@PrimaryKeyJoinColumn(name="Id_Need")
+@SuperBuilder
+@Entity
+@Table(name= "service")
+@PrimaryKeyJoinColumn(name="id_need")
 public class Service extends Need {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id_Service")
+    @SequenceGenerator(
+            name = "service_sequence",
+            sequenceName = "service_sequence",
+            allocationSize = 1,
+            initialValue = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "service_sequence"
+    )
+    @Column(name = "id_service")
     private Integer id;
 
-    @Column(name = "MonthlyCost")
-    private Double monthlyCost;
+    @Column(name = "monthlyCost")
+    private BigDecimal monthlyCost;
 
-    @Column(name = "SupportChange")
-    private Double supportChange;
+    @Column(name = "supportChange")
+    private BigDecimal supportChange;
 
     @OneToOne(mappedBy = "service", cascade = CascadeType.ALL)
     private Need need;

@@ -2,51 +2,60 @@ package com.Bootcamp.Crisalis.model;
 
 import com.Bootcamp.Crisalis.enums.UserRole;
 import com.Bootcamp.Crisalis.model.dto.UserDTO;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-@Data
-@Entity
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name= "Users")
+@Entity
+@Table(name= "users")
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id_User")
+    @SequenceGenerator(
+            name = "user_sequence",
+            sequenceName = "user_sequence",
+            allocationSize = 1,
+            initialValue = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "user_sequence"
+    )
+    @Column(name = "id_user")
     private Integer id;
 
-    @Column(name = "DNI")
+    @Column(name = "dni", nullable = false)
     private Integer dni;
 
-    @Column(name = "Firstname")
+    @Column(name = "firstname", nullable = false, length = 25)
     private String firstName;
 
-    @Column(name = "Lastname")
+    @Column(name = "lastname", nullable = false, length = 25)
     private String lastName;
 
-    @Column(name = "Email")
+    @Column(name = "email", nullable = false, length = 50)
     private String email;
 
-    @Column(name = "Phonenumber")
+    @Column(name = "phoneNumber", length = 25)
     private String phoneNumber;
 
-    @Column(name = "Pass")
+    @Column(name = "pass", nullable = false, length = 25)
     private String password;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "Role")
+    @Column(name = "role", nullable = false)
     private UserRole userRole;
 
     @Transient
@@ -54,8 +63,9 @@ public class User implements UserDetails {
     @Transient
     private Boolean locked = Boolean.FALSE;
 
-    @OneToMany(mappedBy = "user")
-    private List<Order> orders = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private Set<Order> orders = new HashSet<>();
 
     /*
     Otra opción para esto es:
@@ -85,7 +95,7 @@ public class User implements UserDetails {
                         .phoneNumber(this.phoneNumber)
                         .password(this.password)
                         .userRole(this.userRole)
-                        .orders((ArrayList<Order>) this.orders)
+                        .orders((HashSet<Order>) this.orders)
                         .build();
     }
 

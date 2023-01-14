@@ -2,56 +2,67 @@ package com.Bootcamp.Crisalis.model;
 
 import com.Bootcamp.Crisalis.enums.ActiveService;
 import com.Bootcamp.Crisalis.model.dto.ClientDTO;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-@Data
-@Entity
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 @Table(name= "Client")
 public class Client {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id_Client")
+    @SequenceGenerator(
+            name = "client_sequence",
+            sequenceName = "client_sequence",
+            allocationSize = 1,
+            initialValue = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "client_sequence"
+    )
+    @Column(name = "id_client")
     private Integer id;
 
-    @Column(name = "Firstname")
+    @Column(name = "firstname", nullable = false, length = 25)
     private String firstname;
 
-    @Column(name = "Lastname")
+    @Column(name = "lastname", nullable = false, length = 25)
     private String lastname;
 
-    @Column(name = "DNI")
+    @Column(name = "dni", nullable = false)
     private Integer dni;
 
-    @Column(name = "Email")
+    @Column(name = "email", nullable = false, length = 30)
     private String email;
 
-    @Column(name = "PhoneNumber")
+    @Column(name = "phoneNumber", length = 25)
     private String phoneNumber;
 
-    @Column(name = "Address")
+    @Column(name = "address", length = 50)
     private String address;
 
-    @Column(name = "ActiveService")
+    @Column(name = "activeService", nullable = false)
     private ActiveService activeService;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinTable(
-            name = "ClientBusiness",
+            name = "clientBusiness",
             joinColumns = @JoinColumn(name = "fk_client"),
             inverseJoinColumns = @JoinColumn(name = "fk_business"))
-    private List<Business> businessList = new ArrayList<>();
+    @ToString.Exclude
+    private Set<Business> businessSet = new HashSet<>();
 
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Order> orders = new ArrayList<>();
+    @ToString.Exclude
+    private Set<Order> orders = new HashSet<>();
 
     public Client(ClientDTO clientDTO) {
         this.firstname = clientDTO.getFirstname();
@@ -59,7 +70,7 @@ public class Client {
         this.dni = clientDTO.getDni();
         this.email = clientDTO.getEmail();
         this.activeService = clientDTO.getActiveService();
-        this.businessList = clientDTO.getBusinessList();
+        this.businessSet = clientDTO.getBusinessSet();
         this.orders = clientDTO.getOrders();
     }
 
@@ -71,8 +82,8 @@ public class Client {
                 .dni(this.dni)
                 .email(this.email)
                 .activeService(this.activeService)
-                .businessList((ArrayList<Business>) this.businessList)
-                .orders((ArrayList<Order>) this.orders)
+                .businessSet((HashSet<Business>) this.businessSet)
+                .orders((HashSet<Order>) this.orders)
                 .build();
     }
 }

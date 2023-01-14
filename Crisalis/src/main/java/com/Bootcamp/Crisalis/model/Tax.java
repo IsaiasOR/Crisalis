@@ -1,37 +1,47 @@
 package com.Bootcamp.Crisalis.model;
 
 import com.Bootcamp.Crisalis.model.dto.TaxDTO;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-@Data
-@Entity
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name= "Tax")
+@Entity
+@Table(name= "tax")
 public class Tax {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id_Tax")
+    @SequenceGenerator(
+            name = "tax_sequence",
+            sequenceName = "tax_sequence",
+            allocationSize = 1,
+            initialValue = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "tax_sequence"
+    )
+    @Column(name = "id_tax")
     private Integer id;
 
-    @Column(name = "NameTax")
-    private String nameTax;
+    @Column(name = "nameTax", nullable = false, length = 50)
+    private String name;
 
-    @Column(name = "Amount")
+    @Column(name = "amount")
     private Double amount;
 
-    @ManyToMany(mappedBy = "taxes")
-    private List<Need> needs = new ArrayList<>();
+    @ManyToMany(mappedBy = "taxes", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private Set<Need> needs = new HashSet<>();
 
     public Tax(TaxDTO taxDTO) {
-        this.nameTax = taxDTO.getNameTax();
+        this.name = taxDTO.getName();
         this.amount = taxDTO.getAmount();
         this.needs = taxDTO.getNeeds();
     }
@@ -39,9 +49,9 @@ public class Tax {
     public TaxDTO toDTO() {
         return TaxDTO
                 .builder()
-                .nameTax(this.nameTax)
+                .name(this.name)
                 .amount(this.amount)
-                .needs((ArrayList<Need>) this.needs)
+                .needs((HashSet<Need>) this.needs)
                 .build();
     }
 }

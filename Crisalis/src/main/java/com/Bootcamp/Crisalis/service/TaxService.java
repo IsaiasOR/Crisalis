@@ -29,7 +29,7 @@ public class TaxService {
     }
 
     public Boolean checkTaxDTO(TaxDTO taxDTO) {
-        if (StringUtils.isEmpty(taxDTO.getNameTax())) {
+        if (StringUtils.isEmpty(taxDTO.getName())) {
             throw new EmptyElementException("Name tax is empty");
         }
         if (ObjectUtils.isEmpty(taxDTO.getAmount())) {
@@ -38,15 +38,17 @@ public class TaxService {
         return Boolean.TRUE;
     }
 
+
     public Tax deleteTaxByName(String name) {
         if (checkTaxDTO(TaxDTO
                 .builder()
-                .nameTax(name)
+                .name(name)
                 .build())) {
             return this.taxRepository.deleteByName(name);
         }
         throw new NotEliminatedException("Error in deleting tax");
     }
+
 
     public void deleteTaxById(Integer id) {
         this.taxRepository.deleteById(id);
@@ -55,7 +57,7 @@ public class TaxService {
     public TaxDTO findByName(String name) {
         if (this.checkTaxDTO(TaxDTO
                         .builder()
-                        .nameTax(name)
+                        .name(name)
                         .build())) {
             return this.taxRepository.findByName(name)
                     .orElseThrow(

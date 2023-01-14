@@ -108,14 +108,12 @@ public class UserService {
         return Boolean.TRUE;
     }
 
-    public User deleteUser(String email, String password) {
+    public User deleteUserByDni(Integer dni) {
         if (checkUserDTO(UserDTO
                 .builder()
-                .email(email)
-                .password(password)
+                .dni(dni)
                 .build(), Boolean.TRUE)) {
-            return this.userRepository
-                    .delete(this.userRepository.findByEmailAndPassword(email, password));
+            return this.userRepository.deleteByDni(dni);
         }
         throw new NotEliminatedException("Error in deleting user");
     }

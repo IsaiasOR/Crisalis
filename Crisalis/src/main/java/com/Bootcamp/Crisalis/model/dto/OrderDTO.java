@@ -9,8 +9,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.HashSet;
 
 @Data
 @NoArgsConstructor
@@ -19,16 +20,19 @@ import java.util.ArrayList;
 public class OrderDTO {
 
     @JsonProperty("DateOrder")
-    private LocalDateTime dateOrder;
+    private Date dateCreated;
 
     @JsonProperty("Amount")
-    private Double amount;
+    private BigDecimal amount;
+
+    @JsonProperty("Description")
+    private String description;
 
     @JsonProperty("Id_User")
     private User user;
 
     @JsonProperty("Need")
-    private ArrayList<Need> needs;
+    private HashSet<Need> needs;
 
     @JsonProperty("Id_Client")
     private Client client;

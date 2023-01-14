@@ -11,7 +11,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-import java.util.ArrayList;
+import java.math.BigDecimal;
+import java.util.HashSet;
 
 @SuperBuilder
 @Data
@@ -24,7 +25,7 @@ public class NeedDTO {
     private String name;
 
     @JsonProperty("BaseAmount")
-    private Double baseAmount;
+    private BigDecimal baseAmount;
 
     @JsonProperty("Product")
     private Product product;
@@ -33,7 +34,7 @@ public class NeedDTO {
     private Service service;
 
     @JsonProperty("Service")
-    private ArrayList<Tax> taxes;
+    private HashSet<Tax> taxes;
 
     @JsonProperty("Order")
     private Order order;
