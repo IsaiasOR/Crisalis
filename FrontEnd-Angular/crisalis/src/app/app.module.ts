@@ -12,10 +12,11 @@ import { BusinessAddComponent } from './components/business/business-add/busines
 import { BusinessModifyDataComponent } from './components/business/business-modify-data/business-modify-data.component';
 import { UserRegisterComponent } from './components/user/user-register/user-register.component';
 import { UserModifyDataComponent } from './components/user/user-modify-data/user-modify-data.component';
-import { LoginComponent } from './components/login/login.component';
 import { PersonComponent } from './components/person/person.component';
 import { PersonAddComponent } from './components/person/person-add/person-add.component';
 import { PersonEdityComponent } from './components/person/person-edity/person-edity.component';
+import { LoginComponent } from './components/login/login.component';
+
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -40,7 +41,6 @@ import { TaxEdityComponent } from './components/tax/tax-edity/tax-edity.componen
     BusinessModifyDataComponent,
     UserRegisterComponent,
     UserModifyDataComponent,
-    LoginComponent,
     PersonComponent,
     PersonAddComponent,
     PersonEdityComponent,
@@ -51,7 +51,8 @@ import { TaxEdityComponent } from './components/tax/tax-edity/tax-edity.componen
     HomeComponent,
     TaxComponent,
     TaxAddComponent,
-    TaxEdityComponent
+    TaxEdityComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
