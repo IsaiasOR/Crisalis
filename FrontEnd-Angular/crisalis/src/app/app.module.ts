@@ -23,6 +23,10 @@ import { ProductAddComponent } from './components/product/product-add/product-ad
 import { ProductEdityComponent } from './components/product/product-edity/product-edity.component';
 import { ServiceAddComponent } from './components/service/service-add/service-add.component';
 import { ServiceEdityComponent } from './components/service/service-edity/service-edity.component';
+import { HomeComponent } from './components/home/home.component';
+import { TaxComponent } from './components/tax/tax.component';
+import { TaxAddComponent } from './components/tax/tax-add/tax-add.component';
+import { TaxEdityComponent } from './components/tax/tax-edity/tax-edity.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +47,11 @@ import { ServiceEdityComponent } from './components/service/service-edity/servic
     ProductAddComponent,
     ProductEdityComponent,
     ServiceAddComponent,
-    ServiceEdityComponent
+    ServiceEdityComponent,
+    HomeComponent,
+    TaxComponent,
+    TaxAddComponent,
+    TaxEdityComponent
   ],
   imports: [
     BrowserModule,

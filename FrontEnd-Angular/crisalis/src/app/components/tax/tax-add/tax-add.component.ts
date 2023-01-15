@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, EmailValidator } from '@angular/forms';
-import { CrudService } from 'src/app/services/person/crud.service';
+import { CrudService } from 'src/app/services/tax/crud.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-person-add',
-  templateUrl: './person-add.component.html',
-  styleUrls: ['./person-add.component.css']
+  selector: 'app-tax-add',
+  templateUrl: './tax-add.component.html',
+  styleUrls: ['./tax-add.component.css']
 })
-export class PersonAddComponent {
+export class TaxAddComponent {
   formGroup: FormGroup;
 
   constructor(
@@ -18,13 +18,8 @@ export class PersonAddComponent {
     ) {
 
     this.formGroup=this.form.group({
-      firstname:[''],
-      lastname:[''],
-      dni:[''],
-      email:[''],
-      phoneNumber:[''],
-      direction:[''],
-      cuit:['']
+      name:[''],
+      amount:['']
     });
   }
 
@@ -32,8 +27,8 @@ export class PersonAddComponent {
     console.log("Me presionaste");
     console.log(this.formGroup.value);
     
-    this.crudService.addPerson(this.formGroup.value).subscribe();
+    this.crudService.addTax(this.formGroup.value).subscribe();
   
-    this.router.navigateByUrl('/person');
+    this.router.navigateByUrl('/tax');
   }
 }

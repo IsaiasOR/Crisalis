@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CrudService } from 'src/app/service/person/crud.service';
+import { CrudService } from 'src/app/services/person/crud.service';
 
 @Component({
   selector: 'app-person',

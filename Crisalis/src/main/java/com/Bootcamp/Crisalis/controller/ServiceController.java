@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/service")
-@CrossOrigin(origins = {"localhost:8080", "localhost"})
+@RequestMapping("/api/service")
+@CrossOrigin(origins = {"localhost:8080", "localhost", "http://localhost:4200"})
 public class ServiceController {
 
     private final ServiceService service;

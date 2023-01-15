@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, EmailValidator } from '@angular/forms';
-import { CrudService } from 'src/app/service/service/crud.service';
+import { CrudService } from 'src/app/services/service/crud.service';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-service-add',
   templateUrl: './service-add.component.html',

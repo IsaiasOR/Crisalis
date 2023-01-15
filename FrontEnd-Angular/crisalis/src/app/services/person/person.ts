@@ -6,5 +6,7 @@ export class Person {
     email!:String;
     phoneNumber!:String;
     direction!:String;
+    activeService!:Boolean;
     cuit!:String;
+    order!:BigInteger;
 }

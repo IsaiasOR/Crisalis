@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { BusinessComponent} from './components/business/business.component';
-import { LoginComponent } from './components/login/login.component';
 import { PersonComponent } from './components/person/person.component';
 import { PersonAddComponent } from './components/person/person-add/person-add.component';
 import { PersonEdityComponent } from './components/person/person-edity/person-edity.component';
@@ -17,14 +16,19 @@ import { BusinessModifyDataComponent } from './components/business/business-modi
 import { UserComponent } from './components/user/user.component';
 import { UserRegisterComponent } from './components/user/user-register/user-register.component';
 import { UserModifyDataComponent } from './components/user/user-modify-data/user-modify-data.component';
+import { TaxComponent } from './components/tax/tax.component';
+import { TaxAddComponent } from './components/tax/tax-add/tax-add.component';
+import { TaxEdityComponent } from './components/tax/tax-edity/tax-edity.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
 
   {path: '', pathMatch:'full', redirectTo:'home'},
+  {path: 'home', component:HomeComponent},
   {path: 'user', component:UserComponent},
   {path: 'user-register', component:UserRegisterComponent},
   {path: 'user-edity', component:UserModifyDataComponent},
-  {path: 'login', component:LoginComponent},
   {path: 'person', component:PersonComponent},
   {path: 'person-add', component:PersonAddComponent},
   {path: 'person-edity', component:PersonEdityComponent},
@@ -37,6 +41,10 @@ const routes: Routes = [
   {path: 'service', component:ServiceComponent},
   {path: 'service-add', component:ServiceAddComponent},
   {path: 'service-edity', component:ServiceEdityComponent},
+  {path: 'tax', component:TaxComponent},
+  {path: 'tax-add', component:TaxAddComponent},
+  {path: 'tax-edity', component:TaxEdityComponent},
+  {path: 'login', component:LoginComponent}
 
 ];
 

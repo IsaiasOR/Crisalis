@@ -8,15 +8,15 @@ import { Product } from './product';
   providedIn: 'root'
 })
 export class CrudService {
-  API: string='http://localhost8080/product/new'
+  //API: string='http://localhost:8080/product'
 
   constructor(private clientHttp:HttpClient) { }
 
   addProduct(dataProduct:Product):Observable<any>{
-    return this.clientHttp.post(this.API+"?insert=1",dataProduct);
+    return this.clientHttp.post("/product/new",dataProduct);
   }
 
   getProduct(){
-    return this.clientHttp.get(this.API);
+    return this.clientHttp.get("/product/list");
   }
 }

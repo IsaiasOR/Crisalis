@@ -8,15 +8,15 @@ import { Business } from './business';
   providedIn: 'root'
 })
 export class CrudService {
-  API: string='http://localhost8080/business/new'
+  //API: string='http://localhost:8080'
 
   constructor(private clientHttp:HttpClient) { }
 
   addBusiness(dataBusiness:Business):Observable<any>{
-    return this.clientHttp.post(this.API+"?insert=1",dataBusiness);
+    return this.clientHttp.post("/business/new",dataBusiness);
   }
 
   getBusiness(){
-    return this.clientHttp.get(this.API);
+    return this.clientHttp.get("/business/list");
   }
 }

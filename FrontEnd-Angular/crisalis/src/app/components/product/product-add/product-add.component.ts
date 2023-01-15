@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, EmailValidator } from '@angular/forms';
-import { CrudService } from 'src/app/service/product/crud.service';
+import { CrudService } from 'src/app/services/product/crud.service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-product-add',

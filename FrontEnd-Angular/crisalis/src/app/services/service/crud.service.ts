@@ -8,15 +8,15 @@ import { Service } from './service';
   providedIn: 'root'
 })
 export class CrudService {
-  API: string='http://localhost8080/service/new'
+  //API: string='http://localhost:8080/service'
 
   constructor(private clientHttp:HttpClient) { }
 
   addService(dataService:Service):Observable<any>{
-    return this.clientHttp.post(this.API+"?insert=1",dataService);
+    return this.clientHttp.post("/service/new",dataService);
   }
 
   getService(){
-    return this.clientHttp.get(this.API);
+    return this.clientHttp.get("/service/list");
   } 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, EmailValidator } from '@angular/forms';
-import { CrudService } from 'src/app/service/business/crud.service';
+import { CrudService } from 'src/app/services/business/crud.service';
 import { Router } from '@angular/router';
 
 @Component({
