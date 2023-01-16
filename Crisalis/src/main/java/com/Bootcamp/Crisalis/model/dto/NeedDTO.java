@@ -33,7 +33,7 @@ public class NeedDTO {
     @JsonProperty("Service")
     private Service service;
 
-    @JsonProperty("Service")
+    @JsonProperty("Taxes")
     private HashSet<Tax> taxes;
 
     @JsonProperty("Order")

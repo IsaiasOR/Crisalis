@@ -13,10 +13,10 @@ export class CrudService {
   constructor(private clientHttp:HttpClient) { }
 
   addTax(dataTax:Tax):Observable<any>{
-    return this.clientHttp.post("/tax/new",dataTax);
+    return this.clientHttp.post("/api/tax/new",dataTax);
   }
 
   getTax(){
-    return this.clientHttp.get("/tax/list");
+    return this.clientHttp.get("/api/tax/list");
   } 
 }

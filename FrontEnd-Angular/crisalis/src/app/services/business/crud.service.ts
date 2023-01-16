@@ -13,10 +13,10 @@ export class CrudService {
   constructor(private clientHttp:HttpClient) { }
 
   addBusiness(dataBusiness:Business):Observable<any>{
-    return this.clientHttp.post("/business/new",dataBusiness);
+    return this.clientHttp.post("/api/business/new",dataBusiness);
   }
 
   getBusiness(){
-    return this.clientHttp.get("/business/list");
+    return this.clientHttp.get("/api/business/list");
   }
 }

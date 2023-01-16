@@ -13,11 +13,11 @@ export class CrudService {
   constructor(private clientHttp:HttpClient) { }
 
   addPerson(dataPerson:Person):Observable<any>{
-    return this.clientHttp.post("/client/new",dataPerson);
+    return this.clientHttp.post("/api/client/new",dataPerson);
   }
 
   getPerson(){
-    return this.clientHttp.get("/client/list");
+    return this.clientHttp.get("/api/client/list");
   }
 
 }
