@@ -2,27 +2,25 @@ package com.Bootcamp.Crisalis.model;
 
 import com.Bootcamp.Crisalis.model.dto.ProductDTO;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 
-@SuperBuilder
 @Getter
 @Setter
 @ToString
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name= "product")
-@PrimaryKeyJoinColumn(name="id_need")
+@Entity
+//@Table(name= "product")
+//@PrimaryKeyJoinColumn(name="id_need")
+@DiscriminatorValue("Product")
 public class Product extends Need {
 
-    @Id
-    @SequenceGenerator(
+    //@Id
+    /*@SequenceGenerator(
             name = "product_sequence",
             sequenceName = "product_sequence",
-            allocationSize = 1,
-            initialValue = 1
+            allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
@@ -30,24 +28,42 @@ public class Product extends Need {
     )
     @Column(name = "id_product")
     private Integer id;
-
+*/
     @Column(name = "guarantee")
     private Integer guarantee;
 
-    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
-    private Need need;
+   /* @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_order")
+    @ToString.Exclude
+    private Order order;*/
+
+/*    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
+    private Need need;*/
+
+  /*  @JoinTable(
+            name = "productTax",
+            joinColumns = @JoinColumn(name = "fk_product"),
+            inverseJoinColumns = @JoinColumn(name="fk_tax")
+    )
+    @ManyToMany(cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private Set<Tax> taxes = new HashSet<>();*/
 
 
     public Product(ProductDTO productDTO) {
         this.guarantee = productDTO.getGuarantee();
-        this.need = productDTO.getNeed();
+        /*this.order = productDTO.getOrder();
+        this.taxes = productDTO.getTaxes();*/
+        //this.need = productDTO.getNeed();
     }
 
     public ProductDTO toDTO() {
         return ProductDTO
                 .builder()
                 .guarantee(this.guarantee)
-                .need(this.need)
+                /*.order(this.order)
+                .taxes((HashSet<Tax>) this.taxes)*/
+                //.need(this.need)
                 .build();
     }
 

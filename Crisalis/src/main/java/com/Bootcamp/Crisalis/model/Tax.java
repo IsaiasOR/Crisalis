@@ -33,25 +33,33 @@ public class Tax {
     @Column(name = "nameTax", nullable = false, length = 50)
     private String name;
 
-    @Column(name = "amount")
-    private Double amount;
+    @Column(name = "percentage")
+    private Double percentage;
 
     @ManyToMany(mappedBy = "taxes", cascade = CascadeType.ALL)
     @ToString.Exclude
-    private Set<Need> needs = new HashSet<>();
+    private Set<Service> services = new HashSet<>();
+
+    @ManyToMany(mappedBy = "taxes", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private Set<Product> products = new HashSet<>();
 
     public Tax(TaxDTO taxDTO) {
         this.name = taxDTO.getName();
-        this.amount = taxDTO.getAmount();
-        this.needs = taxDTO.getNeeds();
+        this.percentage = taxDTO.getPercentage();
+        //this.needs = taxDTO.getNeeds();
+        this.services = taxDTO.getServices();
+        this.products = taxDTO.getProducts();
     }
 
     public TaxDTO toDTO() {
         return TaxDTO
                 .builder()
                 .name(this.name)
-                .amount(this.amount)
-                .needs((HashSet<Need>) this.needs)
+                .percentage(this.percentage)
+                //.needs((HashSet<Need>) this.needs)
+                .services((HashSet<Service>) this.services)
+                .products((HashSet<Product>) this.products)
                 .build();
     }
 }

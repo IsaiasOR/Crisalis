@@ -1,14 +1,11 @@
 package com.Bootcamp.Crisalis.model.dto;
 
-import com.Bootcamp.Crisalis.model.Need;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 @SuperBuilder
+@EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,6 +15,12 @@ public class ProductDTO extends NeedDTO {
     @JsonProperty("Guarantee")
     private Integer guarantee;
 
-    @JsonProperty("Need")
-    private Need need;
+   /* @JsonProperty("Order")
+    private Order order;
+
+    @JsonProperty("Taxes")
+    private HashSet<Tax> taxes;
+*/
+/*    @JsonProperty("Need")
+    private Need need;*/
 }

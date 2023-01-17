@@ -1,8 +1,6 @@
 package com.Bootcamp.Crisalis.model.dto;
 
-import com.Bootcamp.Crisalis.model.Client;
-import com.Bootcamp.Crisalis.model.Need;
-import com.Bootcamp.Crisalis.model.User;
+import com.Bootcamp.Crisalis.model.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,8 +29,11 @@ public class OrderDTO {
     @JsonProperty("Id_User")
     private User user;
 
+    @JsonProperty("Product")
+    private HashSet<Product> products;
+
     @JsonProperty("Need")
-    private HashSet<Need> needs;
+    private HashSet<Service> services;
 
     @JsonProperty("Id_Client")
     private Client client;

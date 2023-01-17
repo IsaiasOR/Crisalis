@@ -2,9 +2,7 @@ package com.Bootcamp.Crisalis.service;
 
 import com.Bootcamp.Crisalis.exception.custom.EmptyElementException;
 import com.Bootcamp.Crisalis.exception.custom.NotCreatedException;
-import com.Bootcamp.Crisalis.exception.custom.NotEliminatedException;
 import com.Bootcamp.Crisalis.exception.custom.UnauthorizedException;
-import com.Bootcamp.Crisalis.model.Need;
 import com.Bootcamp.Crisalis.model.Service;
 import com.Bootcamp.Crisalis.model.dto.ServiceDTO;
 import com.Bootcamp.Crisalis.repository.ServiceRepository;
@@ -38,40 +36,24 @@ public class ServiceService {
         if (ObjectUtils.isEmpty(serviceDTO.getMonthlyCost())) {
             throw new EmptyElementException("Monthly cost is empty");
         }
-        if (ObjectUtils.isEmpty(serviceDTO.getNeed())) {
+/*        if (ObjectUtils.isEmpty(serviceDTO.getNeed())) {
             throw new EmptyElementException("Need is empty");
-        }
-        if (ObjectUtils.isEmpty(serviceDTO.getSupportChange())) {
+        }*/
+        /*if (ObjectUtils.isEmpty(serviceDTO.getSupportChange())) {
             throw new EmptyElementException("Support change is empty");
-        }
+        }*/
         return Boolean.TRUE;
-    }
-
-    public Service deleteServiceByNeed(Need need) {
-        if (checkServiceDTO(ServiceDTO
-                .builder()
-                .need(need)
-                .build())) {
-            return this.serviceRepository.deleteByNeed(need);
-        }
-        throw new NotEliminatedException("Error in deleting product");
     }
 
     public void deleteServiceById(Integer id) {
          this.serviceRepository.deleteById(id);
     }
 
-    public ServiceDTO findServiceByNeed(Need need) {
-        if (checkServiceDTO(ServiceDTO
-                .builder()
-                .need(need)
-                .build())) {
-            return this.serviceRepository.findByNeed(need)
+    public ServiceDTO findServiceById(Integer id) {
+            return this.serviceRepository.findById(id)
                     .orElseThrow(
                             () -> new UnauthorizedException("Service doesn't exist")
                     ).toDTO();
-        }
-        throw new UnauthorizedException("Invalid credentials");
     }
 
     public List<ServiceDTO> getListAllServicesInBD() {

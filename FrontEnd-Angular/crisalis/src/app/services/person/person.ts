@@ -8,5 +8,5 @@ export class Person {
     direction!:String;
     activeService!:Boolean;
     cuit!:String;
-    order!:BigInteger;
+    // order!:BigInteger;
 }

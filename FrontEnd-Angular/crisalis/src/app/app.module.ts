@@ -28,6 +28,8 @@ import { HomeComponent } from './components/home/home.component';
 import { TaxComponent } from './components/tax/tax.component';
 import { TaxAddComponent } from './components/tax/tax-add/tax-add.component';
 import { TaxEdityComponent } from './components/tax/tax-edity/tax-edity.component';
+import { OrderAddComponent } from './components/order/order-add/order-add.component';
+import { OrderEdityComponent } from './components/order/order-edity/order-edity.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { TaxEdityComponent } from './components/tax/tax-edity/tax-edity.componen
     TaxComponent,
     TaxAddComponent,
     TaxEdityComponent,
-    LoginComponent
+    LoginComponent,
+    OrderAddComponent,
+    OrderEdityComponent
   ],
   imports: [
     BrowserModule,

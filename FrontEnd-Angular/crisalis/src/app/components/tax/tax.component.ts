@@ -16,6 +16,7 @@ export class TaxComponent implements OnInit{
   ngOnInit(): void {
     this.crudService.getTax().subscribe(response => {
       console.log(response);
+      this.Taxes=response;
     });
   }
 }

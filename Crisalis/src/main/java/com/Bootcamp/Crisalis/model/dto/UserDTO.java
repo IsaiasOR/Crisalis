@@ -19,7 +19,7 @@ public class UserDTO {
     @JsonProperty("DNI")
     private Integer dni;
 
-    @JsonProperty("Firstname")
+    @JsonProperty("FirstName")
     private String firstName;
 
     @JsonProperty("LastName")

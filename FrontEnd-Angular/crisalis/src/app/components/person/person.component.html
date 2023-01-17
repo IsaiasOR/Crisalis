@@ -1,6 +1,5 @@
-
+<br>
 <a href="person-add">Registrar cliente</a>
-
 
 <div class="card">
     <div class="card-header">
@@ -14,17 +13,29 @@
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
+                        <th>D.N.I.</th>
                         <th>Correo electrónico</th>
+                        <th>Número de teléfono</th>
+                        <th>Dirección</th>
+                        <th>Servicio activo</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Isa</td>
-                        <td>Reniero</td>
-                        <td>isa@gmail.com</td>
-                        <td> <a href="/person-edity">Editar</a> | Borrar</td>
+                    <tr *ngFor="let person of Persons; let iControl=index">
+                        <td>{{ person.id }}</td>
+                        <td>{{ person.firstname }}</td>
+                        <td>{{ person.lastname}}</td>
+                        <td>{{ person.dni }}</td>
+                        <td>{{ person.email }}</td>
+                        <td>{{ person.phoneNumber }}</td>
+                        <td>{{ person.direction }}</td>
+                        <td>{{ person.activeService }}</td>
+                        <td>{{ person.cuit }}</td>
+                        <td> 
+                            <a class="btn btn-info" href="/person-edity/{{ person.id }}">Editar</a> | 
+                            <a class="btn btn-danger" role="button">Borrar</a>
+                        </td>
                     </tr>
                 </tbody>
             </table>

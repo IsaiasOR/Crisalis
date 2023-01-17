@@ -31,45 +31,27 @@ public class ProductService {
 
     private Boolean checkProductDTO(ProductDTO productDTO) {
         if (StringUtils.isEmpty(productDTO.getName())) {
-            throw new EmptyElementException("Name is empty");
+            throw new EmptyElementException("Name product is empty");
         }
         if (ObjectUtils.isEmpty(productDTO.getBaseAmount())) {
             throw new EmptyElementException("Base amount is empty");
         }
-        if (ObjectUtils.isEmpty(productDTO.getGuarantee())) {
-            throw new EmptyElementException("Guarantee is empty");
-        }
-        if (ObjectUtils.isEmpty(productDTO.getNeed())) {
+/*        if (ObjectUtils.isEmpty(productDTO.getNeed())) {
             throw new EmptyElementException("Need is empty");
-        }
+        }*/
         return Boolean.TRUE;
     }
 
-    public Product deleteProductByNeed(Need need) {
-        if (checkProductDTO(ProductDTO
-                .builder()
-                .need(need)
-                .build())) {
-            return this.productRepository.deleteByNeed(need);
-        }
-        throw new NotEliminatedException("Error in deleting product");
-    }
 
     public void deleteProductById(Integer id) {
         this.productRepository.deleteById(id);
     }
 
-    public ProductDTO findProductByNeed(Need need) {
-        if (checkProductDTO(ProductDTO
-                .builder()
-                .need(need)
-                .build())) {
-            return this.productRepository.findByNeed(need)
+    public ProductDTO findProductById(Integer id) {
+        return this.productRepository.findById(id)
                     .orElseThrow(
                             () -> new UnauthorizedException("Product doesn't exist")
                     ).toDTO();
-        }
-        throw new UnauthorizedException("Invalid credentials");
     }
 
     public List<ProductDTO> getListAllProductsInBD() {

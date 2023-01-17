@@ -1,6 +1,5 @@
 package com.Bootcamp.Crisalis.controller;
 
-import com.Bootcamp.Crisalis.model.Need;
 import com.Bootcamp.Crisalis.model.Product;
 import com.Bootcamp.Crisalis.model.dto.ProductDTO;
 import com.Bootcamp.Crisalis.service.ProductService;
@@ -25,12 +24,7 @@ public class ProductController {
         return this.productService.saveProduct(productDTO);
     }
 
-    @DeleteMapping(value = "/delete/need", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Product deleteProductByNeed(@RequestParam Need need) {
-        return this.productService.deleteProductByNeed(need);
-    }
-
-    @DeleteMapping(value = "/delete/id", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/deleteById", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void deleteProductById(@RequestParam Integer id) {
         this.productService.deleteProductById(id);
     }
@@ -40,8 +34,8 @@ public class ProductController {
         return this.productService.getListAllProductsInBD();
     }
 
-    @GetMapping(value = "/findNeed", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ProductDTO findProductByNeed(@RequestBody Need need) {
-        return this.productService.findProductByNeed(need);
+    @GetMapping(value = "/findProduct", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ProductDTO findProductByNeed(@RequestBody Integer id) {
+        return this.productService.findProductById(id);
     }
 }

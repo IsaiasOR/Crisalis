@@ -1,3 +1,4 @@
+<br>
 <a href="tax-add">Registrar nuevos impuestos</a>
 
 <div class="card">
@@ -11,15 +12,18 @@
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
-                        <th>Monto</th>
+                        <th>Porcentage</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>IVA</td>
-                        <td>650</td>
-                        <td><a href="/tax-edity">Editar</a> | Borrar</td>
+                    <tr *ngFor="let tax of Taxes; let iControl=index">
+                        <td>{{ tax.id }}</td>
+                        <td>{{ tax.name }}</td>
+                        <td>{{ tax.percentage}}</td>
+                        <td> 
+                            <a class="btn btn-info" href="/tax-edity/{{ tax.id }}">Editar</a> | 
+                            <a class="btn btn-danger" role="button">Borrar</a>
+                        </td>
                     </tr>
                 </tbody>
             </table>

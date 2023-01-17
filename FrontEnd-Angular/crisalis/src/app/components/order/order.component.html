@@ -1,1 +1,38 @@
-<p>order works!</p>
+<br>
+<a href="">Registrar empresa</a>
+
+<div class="card">
+    <div class="card-header">
+        Pedidos
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let order of Orders; let iControl=index">
+                        <td>{{ order.id }}</td>
+                        <td>{{ order. }}</td>
+                        <td>{{ order. }}</td>
+                        <td>{{ order. }}</td>
+                        <td>{{ order. }}</td>
+                        <td> 
+                            <a class="btn btn-info" href="">Editar</a> | 
+                            <a class="btn btn-danger" role="button">Borrar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</div>

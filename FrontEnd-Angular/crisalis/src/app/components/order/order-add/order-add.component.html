@@ -1,0 +1,51 @@
+<div class="card">
+    <div class="card-header">
+        Registrar pedido
+    </div>
+    <div class="card-body">
+        <form [formGroup]="formGroup" (ngSubmit)="sendData()">
+            <div class="mb-3">
+                <label for="" class="form-label">Fecha</label>
+                <input type="date"
+                class="form-control" name="" formControlName="dateCreated" id="" aria-describedby="helpId" placeholder="Ingresar fecha del pedido">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Monto total</label>
+                <input type="number"
+                class="form-control" name="" formControlName="amount" id="" aria-describedby="helpId" placeholder="Ingresar monto">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Descripción</label>
+                <input type="text"
+                class="form-control" name="" formControlName="description" id="" aria-describedby="helpId" placeholder="Descripción del pedido">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Asociar producto</label>
+                <input type="number"
+                class="form-control" name="" formControlName="products" id="" aria-describedby="helpId" placeholder="Ingresar ID del producto">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Asociar servicio</label>
+                <input type="number"
+                class="form-control" name="" formControlName="services" id="" aria-describedby="helpId" placeholder="Ingresar ID del servicio">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Asociar cliente</label>
+                <input type="number"
+                class="form-control" name="" formControlName="client" id="" aria-describedby="helpId" placeholder="Ingresar D.N.I. del cliente">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Asociar usuario</label>
+                <input type="number"
+                class="form-control" name="" formControlName="user" id="" aria-describedby="helpId" placeholder="Ingresar ID del usuario">
+            </div>
+            
+
+            
+            <div class="btn-group" role="group" aria-label="">
+                <button type="submit" class="btn btn-primary">Registrar</button>
+                <button type="button" class="btn btn-danger">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>

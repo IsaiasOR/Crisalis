@@ -32,7 +32,7 @@ public class TaxService {
         if (StringUtils.isEmpty(taxDTO.getName())) {
             throw new EmptyElementException("Name tax is empty");
         }
-        if (ObjectUtils.isEmpty(taxDTO.getAmount())) {
+        if (ObjectUtils.isEmpty(taxDTO.getPercentage())) {
             throw new EmptyElementException("Amount is empty");
         }
         return Boolean.TRUE;

@@ -24,12 +24,12 @@ public class NeedController {
         return this.needService.saveNeed(needDTO);
     }
 
-    @DeleteMapping(value = "/delete/name", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/deleteByName", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Need deleteNeedByName(@RequestParam String name) {
         return this.needService.deleteNeedByName(name);
     }
 
-    @DeleteMapping(value = "/delete/id", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/deleteById", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void deleteNeedById(@RequestParam Integer id) {
         this.needService.deleteNeedById(id);
     }

@@ -39,8 +39,12 @@ public class OrderService {
         if (ObjectUtils.isEmpty(orderDTO.getUser())) {
             throw new EmptyElementException("User is empty");
         }
-        if (ObjectUtils.isEmpty(orderDTO.getNeeds())) {
+/*        if (ObjectUtils.isEmpty(orderDTO.getNeeds())) {
             throw new EmptyElementException("Needs is empty");
+        }*/
+        if (ObjectUtils.isEmpty(orderDTO.getServices()) &&
+                ObjectUtils.isEmpty(orderDTO.getProducts())) {
+            throw new EmptyElementException("Services and products are empty");
         }
         if (ObjectUtils.isEmpty(orderDTO.getClient())) {
             throw new EmptyElementException("Client is empty");

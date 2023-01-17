@@ -1,6 +1,5 @@
 package com.Bootcamp.Crisalis.controller;
 
-import com.Bootcamp.Crisalis.model.Need;
 import com.Bootcamp.Crisalis.model.Service;
 import com.Bootcamp.Crisalis.model.dto.ServiceDTO;
 import com.Bootcamp.Crisalis.service.ServiceService;
@@ -25,12 +24,7 @@ public class ServiceController {
         return this.service.saveService(serviceDTO);
     }
 
-    @DeleteMapping(value = "/delete/need", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Service deleteServiceByNeed(@RequestParam Need need) {
-        return this.service.deleteServiceByNeed(need);
-    }
-
-    @DeleteMapping(value = "/delete/id", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/deleteById", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void deleteServiceById(@RequestParam Integer id) {
         this.service.deleteServiceById(id);
     }
@@ -40,8 +34,8 @@ public class ServiceController {
         return this.service.getListAllServicesInBD();
     }
 
-    @GetMapping(value = "/findNeed", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ServiceDTO findServiceByNeed(@RequestBody Need need) {
-        return this.service.findServiceByNeed(need);
+    @GetMapping(value = "/findService", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ServiceDTO findServiceById(@RequestBody Integer id) {
+        return this.service.findServiceById(id);
     }
 }

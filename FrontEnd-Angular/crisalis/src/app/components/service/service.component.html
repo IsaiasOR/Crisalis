@@ -1,3 +1,4 @@
+<br>
 <a href="service-add">Registrar servicio</a>
 
 <div class="card">
@@ -15,11 +16,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Internet</td>
-                        <td>650</td>
-                        <td><a href="/service-edity">Editar</a> | Borrar</td>
+                    <tr *ngFor="let service of Services; let iControl=index">
+                        <td>{{ service.id }}</td>
+                        <td>{{ service.name }}</td>
+                        <td>{{ service.baseAmount}}</td>
+                        <td> 
+                            <a class="btn btn-info" href="/service-edity/{{ service.id }}">Editar</a> | 
+                            <a class="btn btn-danger" role="button">Borrar</a>
+                        </td>
                     </tr>
                 </tbody>
             </table>

@@ -25,12 +25,12 @@ public class ClientController {
     }
 
 
-    @DeleteMapping(value = "/delete/dni", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/deleteByDni", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Client deleteClientByDni(@RequestParam Integer dni) {
         return this.clientService.deleteClientByDni(dni);
     }
 
-    @DeleteMapping(value = "/delete/id", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/deleteById", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void deleteClientById(@RequestParam Integer id) {
         this.clientService.deleteClientById(id);
     }

@@ -1,6 +1,5 @@
-
+<br>
 <a href="business-add">Registrar empresa</a>
-
 
 <div class="card">
     <div class="card-header">
@@ -20,13 +19,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Amazon</td>
-                        <td>12/04/34</td>
-                        <td>435357743444</td>
-                        <td>Isa</td>
-                        <td> <a href="/business-edity">Editar</a> | Borrar</td>
+                    <tr *ngFor="let business of Business; let iControl=index">
+                        <td>{{ business.id }}</td>
+                        <td>{{ business.businessName }}</td>
+                        <td>{{ business.actStartDate}}</td>
+                        <td>{{ business.cuit }}</td>
+                        <td>{{ business.dni }}</td>
+                        <td> 
+                            <a class="btn btn-info" href="/business-edity/{{ business.id }}">Editar</a> | 
+                            <a class="btn btn-danger" role="button">Borrar</a>
+                        </td>
                     </tr>
                 </tbody>
             </table>

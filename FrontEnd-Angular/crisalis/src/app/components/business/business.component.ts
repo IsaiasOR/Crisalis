@@ -16,6 +16,7 @@ export class BusinessComponent implements OnInit{
   ngOnInit(): void {
     this.crudService.getBusiness().subscribe(response => {
       console.log(response);
+      this.Business=response;
     });
   }
 }

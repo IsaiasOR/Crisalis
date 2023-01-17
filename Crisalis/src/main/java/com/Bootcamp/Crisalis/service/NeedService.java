@@ -35,10 +35,6 @@ public class NeedService {
         if (ObjectUtils.isEmpty(needDTO.getBaseAmount())) {
             throw new EmptyElementException("Base amount is empty");
         }
-        if (ObjectUtils.isEmpty(needDTO.getProduct())
-            && ObjectUtils.isEmpty(needDTO.getService())) {
-            throw new EmptyElementException("Product and service are empty");
-        }
         return Boolean.TRUE;
     }
 

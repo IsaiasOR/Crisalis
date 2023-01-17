@@ -7,7 +7,7 @@ import { CrudService } from 'src/app/services/service/crud.service';
   styleUrls: ['./service.component.css']
 })
 export class ServiceComponent implements OnInit{
-  Persons:any;
+  Services:any;
 
   constructor(
     private crudService:CrudService
@@ -16,6 +16,7 @@ export class ServiceComponent implements OnInit{
   ngOnInit(): void {
     this.crudService.getService().subscribe(response => {
       console.log(response);
+      this.Services=response;
     });
   }
 }

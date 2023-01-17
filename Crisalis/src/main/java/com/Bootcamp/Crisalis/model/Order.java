@@ -56,7 +56,15 @@ public class Order {
             cascade = CascadeType.ALL
     )
     @ToString.Exclude
-    private Set<Need> needs = new HashSet<>();
+    private Set<Product> products = new HashSet<>();
+
+    @OneToMany(
+            fetch = FetchType.EAGER,
+            mappedBy = "order",
+            cascade = CascadeType.ALL
+    )
+    @ToString.Exclude
+    private Set<Service> services = new HashSet<>();
 
     @ManyToOne(
             fetch = FetchType.EAGER,
@@ -77,7 +85,9 @@ public class Order {
         this.dateCreated = orderDTO.getDateCreated();
         this.amount = orderDTO.getAmount();
         this.user = orderDTO.getUser();
-        this.needs = orderDTO.getNeeds();
+        //this.needs = orderDTO.getNeeds();
+        this.products = orderDTO.getProducts();
+        this.services = orderDTO.getServices();
         this.client = orderDTO.getClient();
     }
 
@@ -87,7 +97,9 @@ public class Order {
                 .dateCreated(this.dateCreated)
                 .amount(this.amount)
                 .user(this.user)
-                .needs((HashSet<Need>) this.needs)
+                //.needs((HashSet<Need>) this.needs)
+                .products((HashSet<Product>) this.products)
+                .services((HashSet<Service>) this.services)
                 .client(this.client)
                 .build();
     }

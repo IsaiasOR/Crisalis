@@ -1,5 +1,5 @@
+<br>
 <a href="product-add">Registrar producto</a>
-
 
 <div class="card">
     <div class="card-header">
@@ -16,11 +16,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>PC</td>
-                        <td>400</td>
-                        <td> <a href="/product-edity">Editar</a> | Borrar</td>
+                    <tr *ngFor="let product of Products; let iControl=index">
+                        <td>{{ product.id }}</td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.baseAmount}}</td>
+                        <td> 
+                            <a class="btn btn-info" href="/product-edity/{{ product.id }}">Editar</a> | 
+                            <a class="btn btn-danger" role="button">Borrar</a>
+                        </td>
                     </tr>
                 </tbody>
             </table>

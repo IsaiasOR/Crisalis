@@ -2,35 +2,35 @@ package com.Bootcamp.Crisalis.model;
 
 import com.Bootcamp.Crisalis.model.dto.ServiceDTO;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@SuperBuilder
 @Entity
-@Table(name= "service")
-@PrimaryKeyJoinColumn(name="id_need")
+//@Table(name= "service")
+//@PrimaryKeyJoinColumn(name="id_need")
+@DiscriminatorValue("Service")
 public class Service extends Need {
 
-    @Id
-    @SequenceGenerator(
+    //@Id
+    /*@SequenceGenerator(
             name = "service_sequence",
             sequenceName = "service_sequence",
-            allocationSize = 1,
-            initialValue = 1
+            allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
             generator = "service_sequence"
     )
     @Column(name = "id_service")
-    private Integer id;
+    private Integer id;*/
 
     @Column(name = "monthlyCost")
     private BigDecimal monthlyCost;
@@ -38,13 +38,29 @@ public class Service extends Need {
     @Column(name = "supportChange")
     private BigDecimal supportChange;
 
-    @OneToOne(mappedBy = "service", cascade = CascadeType.ALL)
-    private Need need;
+   /* @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_order")
+    @ToString.Exclude
+    private Order order;*/
+
+/*    @OneToOne(mappedBy = "service", cascade = CascadeType.ALL)
+    private Need need;*/
+
+   /* @JoinTable(
+            name = "serviceTax",
+            joinColumns = @JoinColumn(name = "fk_service"),
+            inverseJoinColumns = @JoinColumn(name="fk_tax")
+    )
+    @ManyToMany(cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private Set<Tax> taxes = new HashSet<>();*/
 
     public Service(ServiceDTO serviceDTO) {
         this.monthlyCost = serviceDTO.getMonthlyCost();
         this.supportChange = serviceDTO.getSupportChange();
-        this.need = serviceDTO.getNeed();
+        /*this.order = serviceDTO.getOrder();
+        this.taxes = serviceDTO.getTaxes();*/
+        //this.need = serviceDTO.getNeed();
     }
 
     public ServiceDTO toDTO() {
@@ -52,7 +68,9 @@ public class Service extends Need {
                 .builder()
                 .monthlyCost(this.monthlyCost)
                 .supportChange(this.supportChange)
-                .need(this.need)
+                /*.order(this.order)
+                .taxes((HashSet<Tax>) this.taxes)*/
+                //.need(this.need)
                 .build();
     }
 

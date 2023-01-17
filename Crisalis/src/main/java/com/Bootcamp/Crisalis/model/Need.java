@@ -2,7 +2,6 @@ package com.Bootcamp.Crisalis.model;
 
 import com.Bootcamp.Crisalis.model.dto.NeedDTO;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -14,18 +13,19 @@ import java.util.Set;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@SuperBuilder
 @Entity
 @Table(name= "need")
-@Inheritance(strategy=InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="need_type",
+        discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorValue("not null")
 public class Need {
 
     @Id
     @SequenceGenerator(
             name = "need_sequence",
             sequenceName = "need_sequence",
-            allocationSize = 1,
-            initialValue = 1
+            allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
@@ -34,19 +34,16 @@ public class Need {
     @Column(name = "id_need")
     private Integer id;
 
-    @Column(name = "nameNeed", nullable = false, length = 50)
+    @Column(name = "name", nullable = false, length = 100)
     private String name;
 
-    @Column(name = "baseAmount")
+    @Column(name = "baseAmount", nullable = false)
     private BigDecimal baseAmount;
 
-    @OneToOne
-    @JoinColumn(name = "fk_product")
-    private Product product;
-
-    @OneToOne
-    @JoinColumn(name = "fk_service")
-    private Service service;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_order")
+    @ToString.Exclude
+    private Order order;
 
     @JoinTable(
             name = "needTax",
@@ -57,16 +54,19 @@ public class Need {
     @ToString.Exclude
     private Set<Tax> taxes = new HashSet<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_order")
-    @ToString.Exclude
-    private Order order;
+/*    @OneToOne
+    @JoinColumn(name = "fk_product")
+    private Product product;
+
+    @OneToOne
+    @JoinColumn(name = "fk_service")
+    private Service service;*/
 
     public Need(NeedDTO needDTO) {
         this.name = needDTO.getName();
         this.baseAmount = needDTO.getBaseAmount();
-        this.product = needDTO.getProduct();
-        this.service = needDTO.getService();
+/*        this.product = needDTO.getProduct();
+        this.service = needDTO.getService();*/
         this.taxes = needDTO.getTaxes();
         this.order = needDTO.getOrder();
     }
@@ -76,8 +76,8 @@ public class Need {
                 .builder()
                 .name(this.name)
                 .baseAmount(this.baseAmount)
-                .product(this.product)
-                .service(this.service)
+/*                .product(this.product)
+                .service(this.service)*/
                 .taxes((HashSet<Tax>) this.taxes)
                 .order(this.order)
                 .build();
