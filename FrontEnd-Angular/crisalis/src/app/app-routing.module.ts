@@ -24,7 +24,7 @@ import { LoginComponent } from './components/login/login.component';
 import { OrderComponent } from './components/order/order.component';
 import { OrderAddComponent } from './components/order/order-add/order-add.component';
 import { OrderEdityComponent } from './components/order/order-edity/order-edity.component';
-import { Order } from './services/order/order';
+import { Order } from './models/order';
 
 const routes: Routes = [
 

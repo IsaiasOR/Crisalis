@@ -2,21 +2,21 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Order } from './order';
+import { Tax } from '../../models/tax';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CrudService {
-  //API: string='http://localhost:8080'
+  //API: string='http://localhost:8080/tax'
 
   constructor(private clientHttp:HttpClient) { }
 
-  addOrder(dataOrder:Order):Observable<any>{
-    return this.clientHttp.post("/api/order/new",dataOrder);
+  addTax(dataTax:Tax):Observable<any>{
+    return this.clientHttp.post("/api/tax/new",dataTax);
   }
 
-  getOrder(){
-    return this.clientHttp.get("/api/order/list");
-  }
+  getTax(){
+    return this.clientHttp.get("/api/tax/list");
+  } 
 }

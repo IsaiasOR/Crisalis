@@ -30,6 +30,7 @@ import { TaxAddComponent } from './components/tax/tax-add/tax-add.component';
 import { TaxEdityComponent } from './components/tax/tax-edity/tax-edity.component';
 import { OrderAddComponent } from './components/order/order-add/order-add.component';
 import { OrderEdityComponent } from './components/order/order-edity/order-edity.component';
+import { RegisterComponent } from './components/login/register/register.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { OrderEdityComponent } from './components/order/order-edity/order-edity.
     TaxEdityComponent,
     LoginComponent,
     OrderAddComponent,
-    OrderEdityComponent
+    OrderEdityComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
