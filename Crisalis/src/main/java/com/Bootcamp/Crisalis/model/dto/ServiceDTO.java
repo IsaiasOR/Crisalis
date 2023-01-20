@@ -14,18 +14,16 @@ import java.math.BigDecimal;
 @Builder
 public class ServiceDTO extends NeedDTO {
 
+    @JsonProperty("Name")
+    private String name;
+
+    @JsonProperty("BaseAmount")
+    private BigDecimal baseAmount;
+
     @JsonProperty("MonthlyCost")
     private BigDecimal monthlyCost;
 
     @JsonProperty("SupportChange")
     private BigDecimal supportChange;
 
-    /*@JsonProperty("Order")
-    private Order order;
-
-    @JsonProperty("Taxes")
-    private HashSet<Tax> taxes;*/
-
-/*    @JsonProperty("Need")
-    private Need need;*/
 }

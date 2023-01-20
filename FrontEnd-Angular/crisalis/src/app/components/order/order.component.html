@@ -1,5 +1,5 @@
 <br>
-<a href="">Registrar empresa</a>
+<a href="">Registrar pedido</a>
 
 <div class="card">
     <div class="card-header">
@@ -11,20 +11,27 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                        <th>Fecha</th>
+                        <th>Monto total</th>
+                        <th>Descripción</th>
+                        <th>Productos</th>
+                        <th>Servicios</th>
+                        <th>Cliente</th>
+                        <th>Impuestos</th>
+                        <th>Usuario</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let order of Orders; let iControl=index">
                         <td>{{ order.id }}</td>
-                        <td>{{ order. }}</td>
-                        <td>{{ order. }}</td>
-                        <td>{{ order. }}</td>
-                        <td>{{ order. }}</td>
+                        <td>{{ order.dateCreated }}</td>
+                        <td>{{ order.amount }}</td>
+                        <td>{{ order.description }}</td>
+                        <td>{{ order.products }}</td>
+                        <td>{{ order.services }}</td>
+                        <td>{{ order.client }}</td>
+                        <td>{{ order.taxes }}</td>
+                        <td>{{ order.user }}</td>
                         <td> 
                             <a class="btn btn-info" href="">Editar</a> | 
                             <a class="btn btn-danger" role="button">Borrar</a>

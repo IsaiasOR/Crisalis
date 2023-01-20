@@ -2,7 +2,6 @@ package com.Bootcamp.Crisalis.service;
 
 import com.Bootcamp.Crisalis.exception.custom.EmptyElementException;
 import com.Bootcamp.Crisalis.exception.custom.NotCreatedException;
-import com.Bootcamp.Crisalis.exception.custom.NotEliminatedException;
 import com.Bootcamp.Crisalis.exception.custom.UnauthorizedException;
 import com.Bootcamp.Crisalis.model.Need;
 import com.Bootcamp.Crisalis.model.dto.NeedDTO;
@@ -13,12 +12,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class NeedService {
-
+/*
     private final NeedRepository needRepository;
 
     public Need saveNeed(NeedDTO needDTO) {
@@ -36,9 +36,9 @@ public class NeedService {
             throw new EmptyElementException("Base amount is empty");
         }
         return Boolean.TRUE;
-    }
+    }*/
 
-    public Need deleteNeedByName(String name) {
+/*    public Need deleteNeedByName(String name) {
         if (checkNeedDTO(NeedDTO
                 .builder()
                 .name(name)
@@ -46,13 +46,17 @@ public class NeedService {
             return this.needRepository.deleteByName(name);
         }
         throw new NotEliminatedException("Error in deleting need");
-    }
+    }*/
 
-    public void deleteNeedById(Integer id) {
+/*    public void deleteNeedById(Integer id) {
         this.needRepository.deleteById(id);
     }
 
-    public NeedDTO findNeedByName(String name) {
+    public Optional<Need> findNeedById(Integer id) {
+        return this.needRepository.findById(id);
+    }*/
+
+/*    public NeedDTO findNeedByName(String name) {
         if (checkNeedDTO(NeedDTO
                 .builder()
                 .name(name)
@@ -63,13 +67,13 @@ public class NeedService {
                     ).toDTO();
         }
         throw new UnauthorizedException("Invalid credentials");
-    }
+    }*/
 
-    public List<NeedDTO> getListAllNeedsInBD() {
+   /* public List<NeedDTO> getListAllNeedsInBD() {
         return this.needRepository
                 .findAll()
                 .stream()
                 .map(Need::toDTO)
                 .collect(Collectors.toList());
-    }
+    }*/
 }

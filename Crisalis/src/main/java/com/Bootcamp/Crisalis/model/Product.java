@@ -51,6 +51,9 @@ public class Product extends Need {
 
 
     public Product(ProductDTO productDTO) {
+        super(productDTO);
+        /*this.setBaseAmount(productDTO.getBaseAmount());
+        this.setName(productDTO.getName());*/
         this.guarantee = productDTO.getGuarantee();
         /*this.order = productDTO.getOrder();
         this.taxes = productDTO.getTaxes();*/

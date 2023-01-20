@@ -27,7 +27,7 @@
                         <td>{{ business.dni }}</td>
                         <td> 
                             <a class="btn btn-info" href="/business-edity/{{ business.id }}">Editar</a> | 
-                            <a class="btn btn-danger" role="button">Borrar</a>
+                            <a class="btn btn-danger" (click)="deleteRegister(business.id,iControl)" role="button">Borrar</a>
                         </td>
                     </tr>
                 </tbody>

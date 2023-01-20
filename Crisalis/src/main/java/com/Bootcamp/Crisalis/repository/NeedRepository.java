@@ -11,7 +11,9 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public interface NeedRepository extends JpaRepository<Need, Integer> {
 
-    Optional<Need> findByName(String name);
+    /*Optional<Need> findByName(String name);
 
-    Need deleteByName(String name);
+    Need deleteByName(String name);*/
+
+    /*Optional<Need> findById(Integer id);*/
 }

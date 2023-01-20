@@ -10,4 +10,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
+    Product deleteProductById(Integer id);
 }

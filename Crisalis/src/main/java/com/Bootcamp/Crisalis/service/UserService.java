@@ -46,7 +46,6 @@ public class UserService {
         throw new NotCreatedException("Error in save new user");
     }
 
-    //Necesario el chech de userDTO
     public UserDTO loginUserWithCredentials(String email, String password) {
         if (
                 this.checkUserDTO(UserDTO
@@ -64,7 +63,6 @@ public class UserService {
         throw new UnauthorizedException("Invalid credentials");
     }
 
-    //Mapeo de todo a DTO
     public List<UserDTO> getListAllUsersInBD() {
         return this.userRepository
                 .findAll()
@@ -73,7 +71,6 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    //Colocar lo necesario para logear
     public Boolean checkUserDTO(UserDTO userDTO, Boolean isForLogin) {
         //Si es para logear, es decir es true, entonces no controlará lo de adentro
         if(!isForLogin) {
@@ -112,7 +109,7 @@ public class UserService {
         if (checkUserDTO(UserDTO
                 .builder()
                 .dni(dni)
-                .build(), Boolean.TRUE)) {
+                .build(), Boolean.FALSE)) {
             return this.userRepository.deleteByDni(dni);
         }
         throw new NotEliminatedException("Error in deleting user");
@@ -128,9 +125,77 @@ public class UserService {
         ) {
             return this.userRepository.findByDni(dni)
                     .orElseThrow(
-                            () -> new UnauthorizedException("Invalid credentials")
+                            () -> new UnauthorizedException("User doesn't exist")
                     ).toDTO();
         }
         throw new UnauthorizedException("Invalid credentials");
+    }
+
+    public User deleteUserById(Integer id) {
+        if (this.userRepository.existsById(id)) {
+            return this.userRepository.deleteUserById(id);
+        }
+        throw new NotEliminatedException("Error in deleting user");
+    }
+
+    public UserDTO findById(Integer id) {
+        if (this.userRepository.existsById(id)) {
+            return this.userRepository.findUserById(id);
+        }
+        throw new UnauthorizedException("User doesn't exist");
+    }
+
+    public User updateUser(UserDTO userDTO, Integer id) {
+        if (this.userRepository.existsById(id)) {
+            if (this.checkUserDTO(UserDTO
+                    .builder()
+                    .dni(userDTO.getDni())
+                    .build(), Boolean.FALSE)) {
+                this.userRepository.getReferenceById(id).setDni(userDTO.getDni());
+            }
+            if (this.checkUserDTO(UserDTO
+                    .builder()
+                    .firstName(userDTO.getFirstName())
+                    .build(), Boolean.FALSE)) {
+                this.userRepository.getReferenceById(id).setFirstName(userDTO.getFirstName());
+            }
+            if (this.checkUserDTO(UserDTO
+                    .builder()
+                    .lastName(userDTO.getLastName())
+                    .build(), Boolean.FALSE)) {
+                this.userRepository.getReferenceById(id).setLastName(userDTO.getLastName());
+            }
+            if (this.checkUserDTO(UserDTO
+                    .builder()
+                    .email(userDTO.getEmail())
+                    .build(), Boolean.FALSE)) {
+                this.userRepository.getReferenceById(id).setEmail(userDTO.getEmail());
+            }
+            if (this.checkUserDTO(UserDTO
+                    .builder()
+                    .phoneNumber(userDTO.getPhoneNumber())
+                    .build(), Boolean.FALSE)) {
+                this.userRepository.getReferenceById(id).setPhoneNumber(userDTO.getPhoneNumber());
+            }
+            if (this.checkUserDTO(UserDTO
+                    .builder()
+                    .password(userDTO.getPassword())
+                    .build(), Boolean.FALSE)) {
+                this.userRepository.getReferenceById(id).setPassword(userDTO.getPassword());
+            }
+            if (this.checkUserDTO(UserDTO
+                    .builder()
+                    .userRole(userDTO.getUserRole())
+                    .build(), Boolean.FALSE)) {
+                this.userRepository.getReferenceById(id).setUserRole(userDTO.getUserRole());
+            }
+            if (this.checkUserDTO(UserDTO
+                    .builder()
+                    .orders(userDTO.getOrders())
+                    .build(), Boolean.FALSE)) {
+                this.userRepository.getReferenceById(id).setOrders(userDTO.getOrders());
+            }
+        }
+        throw new NotUpdateException("User doesn't exist");
     }
 }

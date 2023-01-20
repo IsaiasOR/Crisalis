@@ -31,5 +31,4 @@ public class CrisalisApplication {
 		source.registerCorsConfiguration("/**", configuration);
 		return new CorsFilter(source);
 	}
-
 }

@@ -1,10 +1,6 @@
 package com.Bootcamp.Crisalis.service;
 
-import com.Bootcamp.Crisalis.exception.custom.EmptyElementException;
-import com.Bootcamp.Crisalis.exception.custom.NotCreatedException;
-import com.Bootcamp.Crisalis.exception.custom.NotEliminatedException;
-import com.Bootcamp.Crisalis.exception.custom.UnauthorizedException;
-import com.Bootcamp.Crisalis.model.Need;
+import com.Bootcamp.Crisalis.exception.custom.*;
 import com.Bootcamp.Crisalis.model.Product;
 import com.Bootcamp.Crisalis.model.dto.ProductDTO;
 import com.Bootcamp.Crisalis.repository.ProductRepository;
@@ -36,15 +32,14 @@ public class ProductService {
         if (ObjectUtils.isEmpty(productDTO.getBaseAmount())) {
             throw new EmptyElementException("Base amount is empty");
         }
-/*        if (ObjectUtils.isEmpty(productDTO.getNeed())) {
-            throw new EmptyElementException("Need is empty");
-        }*/
         return Boolean.TRUE;
     }
 
-
-    public void deleteProductById(Integer id) {
-        this.productRepository.deleteById(id);
+    public Product deleteProductById(Integer id) {
+        if (this.productRepository.existsById(id)) {
+            return this.productRepository.deleteProductById(id);
+        }
+        throw new NotEliminatedException("Error in deleting product");
     }
 
     public ProductDTO findProductById(Integer id) {
@@ -60,5 +55,30 @@ public class ProductService {
                 .stream()
                 .map(Product::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    public Product updateProduct(ProductDTO productDTO, Integer id) {
+        if (this.productRepository.existsById(id)) {
+            if (this.checkProductDTO(ProductDTO
+                    .builder()
+                    .name(productDTO.getName())
+                    .build())) {
+                this.productRepository.getReferenceById(id).setName(productDTO.getName());
+            }
+            if (this.checkProductDTO(ProductDTO
+                    .builder()
+                    .baseAmount(productDTO.getBaseAmount())
+                    .build())) {
+                this.productRepository.getReferenceById(id).setBaseAmount(productDTO.getBaseAmount());
+            }
+            if (this.checkProductDTO(ProductDTO
+                    .builder()
+                    .guarantee(productDTO.getGuarantee())
+                    .build())) {
+                this.productRepository.getReferenceById(id).setGuarantee(productDTO.getGuarantee());
+            }
+            return this.productRepository.getReferenceById(id);
+        }
+        throw new NotUpdateException("Product doesn't exist");
     }
 }

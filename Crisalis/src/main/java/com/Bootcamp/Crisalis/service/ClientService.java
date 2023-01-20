@@ -1,10 +1,8 @@
 package com.Bootcamp.Crisalis.service;
 
-import com.Bootcamp.Crisalis.exception.custom.EmptyElementException;
-import com.Bootcamp.Crisalis.exception.custom.NotCreatedException;
-import com.Bootcamp.Crisalis.exception.custom.NotEliminatedException;
-import com.Bootcamp.Crisalis.exception.custom.UnauthorizedException;
+import com.Bootcamp.Crisalis.exception.custom.*;
 import com.Bootcamp.Crisalis.model.Client;
+import com.Bootcamp.Crisalis.model.dto.BusinessDTO;
 import com.Bootcamp.Crisalis.model.dto.ClientDTO;
 import com.Bootcamp.Crisalis.repository.ClientRepository;
 import lombok.AllArgsConstructor;
@@ -57,9 +55,11 @@ public class ClientService {
         throw new NotEliminatedException("Error in deleting client");
     }
 
-
-    public void deleteClientById(Integer id) {
-        this.clientRepository.deleteById(id);
+    public Client deleteClientById(Integer id) {
+        if (this.clientRepository.existsById(id)) {
+            return this.clientRepository.deleteClientById(id);
+        }
+        throw new NotEliminatedException("Business doesn't exist");
     }
 
     public ClientDTO findClientByDni(Integer dni) {
@@ -84,4 +84,61 @@ public class ClientService {
                 .map(Client::toDTO)
                 .collect(Collectors.toList());
     }
+
+    public ClientDTO findClientById(Integer id) {
+        if (this.clientRepository.existsById(id)) {
+            return this.clientRepository.findClientById(id);
+        }
+        throw new UnauthorizedException("Client doesn't exist");
+    }
+
+    public Client updateClient(ClientDTO clientDTO, Integer id) {
+        if (this.clientRepository.existsById(id)) {
+            if (checkClientDTO(ClientDTO
+                    .builder()
+                    .dni(clientDTO.getDni())
+                    .build())) {
+                this.clientRepository.getReferenceById(id).setDni(clientDTO.getDni());
+            }
+            if (checkClientDTO(ClientDTO
+                    .builder()
+                    .firstname(clientDTO.getFirstname())
+                    .build())) {
+                this.clientRepository.getReferenceById(id).setFirstname(clientDTO.getFirstname());
+            }
+            if (checkClientDTO(ClientDTO
+                    .builder()
+                    .lastname(clientDTO.getLastname())
+                    .build())) {
+                this.clientRepository.getReferenceById(id).setLastname(clientDTO.getLastname());
+            }
+            if (checkClientDTO(ClientDTO
+                    .builder()
+                    .email(clientDTO.getEmail())
+                    .build())) {
+                this.clientRepository.getReferenceById(id).setEmail(clientDTO.getEmail());
+            }
+            if (checkClientDTO(ClientDTO
+                    .builder()
+                    .activeService(clientDTO.getActiveService())
+                    .build())) {
+                this.clientRepository.getReferenceById(id).setActiveService(clientDTO.getActiveService());
+            }
+            if (checkClientDTO(ClientDTO
+                    .builder()
+                    .businessSet(clientDTO.getBusinessSet())
+                    .build())) {
+                this.clientRepository.getReferenceById(id).setBusinessSet(clientDTO.getBusinessSet());
+            }
+            if (checkClientDTO(ClientDTO
+                    .builder()
+                    .orders(clientDTO.getOrders())
+                    .build())) {
+                this.clientRepository.getReferenceById(id).setOrders(clientDTO.getOrders());
+            }
+            return this.clientRepository.getReferenceById(id);
+        }
+        throw new NotUpdateException("Client doesn't exist");
+    }
 }
+

@@ -56,6 +56,7 @@ public class Service extends Need {
     private Set<Tax> taxes = new HashSet<>();*/
 
     public Service(ServiceDTO serviceDTO) {
+        super(serviceDTO);
         this.monthlyCost = serviceDTO.getMonthlyCost();
         this.supportChange = serviceDTO.getSupportChange();
         /*this.order = serviceDTO.getOrder();

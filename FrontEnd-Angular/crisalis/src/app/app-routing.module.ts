@@ -21,6 +21,10 @@ import { TaxAddComponent } from './components/tax/tax-add/tax-add.component';
 import { TaxEdityComponent } from './components/tax/tax-edity/tax-edity.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { OrderComponent } from './components/order/order.component';
+import { OrderAddComponent } from './components/order/order-add/order-add.component';
+import { OrderEdityComponent } from './components/order/order-edity/order-edity.component';
+import { Order } from './services/order/order';
 
 const routes: Routes = [
 
@@ -44,7 +48,10 @@ const routes: Routes = [
   {path: 'tax', component:TaxComponent},
   {path: 'tax-add', component:TaxAddComponent},
   {path: 'tax-edity', component:TaxEdityComponent},
-  {path: 'login', component:LoginComponent}
+  {path: 'login', component:LoginComponent},
+  {path: 'order', component:OrderComponent},
+  {path: 'order-add', component:OrderAddComponent},
+  {path: 'order-edity', component:OrderEdityComponent}
 
 ];
 

@@ -19,4 +19,9 @@ export class BusinessComponent implements OnInit{
       this.Business=response;
     });
   }
+
+  deleteRegister(id:any, iControl:any) {
+    console.log(id);
+    console.log(iControl);
+  }
 }

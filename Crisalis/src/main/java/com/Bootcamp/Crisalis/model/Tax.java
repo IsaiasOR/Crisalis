@@ -38,18 +38,14 @@ public class Tax {
 
     @ManyToMany(mappedBy = "taxes", cascade = CascadeType.ALL)
     @ToString.Exclude
-    private Set<Service> services = new HashSet<>();
-
-    @ManyToMany(mappedBy = "taxes", cascade = CascadeType.ALL)
-    @ToString.Exclude
-    private Set<Product> products = new HashSet<>();
+    private Set<Need> needs = new HashSet<>();
 
     public Tax(TaxDTO taxDTO) {
         this.name = taxDTO.getName();
         this.percentage = taxDTO.getPercentage();
-        //this.needs = taxDTO.getNeeds();
-        this.services = taxDTO.getServices();
-        this.products = taxDTO.getProducts();
+        this.needs = taxDTO.getNeeds();
+        //this.services = taxDTO.getServices();
+        //this.products = taxDTO.getProducts();
     }
 
     public TaxDTO toDTO() {
@@ -57,9 +53,9 @@ public class Tax {
                 .builder()
                 .name(this.name)
                 .percentage(this.percentage)
-                //.needs((HashSet<Need>) this.needs)
-                .services((HashSet<Service>) this.services)
-                .products((HashSet<Product>) this.products)
+                .needs((HashSet<Need>) this.needs)
+                //.services((HashSet<Service>) this.services)
+                //.products((HashSet<Product>) this.products)
                 .build();
     }
 }

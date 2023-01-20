@@ -6,5 +6,6 @@ export class Order {
     products!: BigInteger;
     services!: BigInteger;
     client!: BigInteger;
+    taxes!: BigInteger;
     user!: BigInteger;
 }

@@ -1,6 +1,7 @@
 package com.Bootcamp.Crisalis.repository;
 
 import com.Bootcamp.Crisalis.model.Client;
+import com.Bootcamp.Crisalis.model.dto.ClientDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,4 +15,8 @@ public interface ClientRepository extends JpaRepository<Client, Integer> {
     Client deleteByDni(Integer dni);
 
     Optional<Client> findByDni(Integer dni);
+
+    ClientDTO findClientById(Integer id);
+
+    Client deleteClientById(Integer id);
 }

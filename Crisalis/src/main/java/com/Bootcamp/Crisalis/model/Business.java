@@ -21,8 +21,7 @@ public class Business {
     @SequenceGenerator(
             name = "business_sequence",
             sequenceName = "business_sequence",
-            allocationSize = 1,
-            initialValue = 1
+            allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,

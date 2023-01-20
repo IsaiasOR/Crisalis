@@ -19,23 +19,34 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/new",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public Product saveProduct(@RequestBody ProductDTO productDTO) {
         return this.productService.saveProduct(productDTO);
     }
 
-    @DeleteMapping(value = "/deleteById", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void deleteProductById(@RequestParam Integer id) {
-        this.productService.deleteProductById(id);
+    @DeleteMapping(value = "/deleteById/{id}")
+    public Product deleteProductById(@PathVariable("id") Integer id) {
+        return this.productService.deleteProductById(id);
     }
 
-    @GetMapping(value = "/list", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/list",
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ProductDTO> getListAllProductsInBD() {
         return this.productService.getListAllProductsInBD();
     }
 
-    @GetMapping(value = "/findProduct", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ProductDTO findProductByNeed(@RequestBody Integer id) {
+    @GetMapping(value = "/findProduct/{id}",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ProductDTO findProductByNeed(@PathVariable("id") Integer id) {
         return this.productService.findProductById(id);
+    }
+
+    @PutMapping(value = "/update/{id}",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public Product updateProduct(@RequestBody ProductDTO productDTO, @PathVariable("id") Integer id) {
+        return this.productService.updateProduct(productDTO, id);
     }
 }

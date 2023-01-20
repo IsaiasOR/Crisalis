@@ -19,28 +19,35 @@ public class TaxController {
         this.taxService = taxService;
     }
 
-    @PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/new",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public Tax saveTax(@RequestBody TaxDTO taxDTO) {
         return this.taxService.saveTax(taxDTO);
     }
 
-    @GetMapping(value = "/list", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/list",
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public List<TaxDTO> getListAllTaxesInBD() {
         return this.taxService.getListAllTaxesInBD();
     }
 
-    @DeleteMapping(value = "/deleteByName", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Tax deleteTaxByName(@RequestParam String name) {
-        return this.taxService.deleteTaxByName(name);
+    @DeleteMapping(value = "/delete/{id}",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public TaxDTO deleteTaxById(@PathVariable("id")  Integer id) {
+        return this.taxService.deleteTaxById(id);
     }
 
-    @DeleteMapping(value = "/deleteById", produces = MediaType.APPLICATION_JSON_VALUE)
-    public void deleteTaxById(@RequestParam Integer id) {
-        this.taxService.deleteTaxById(id);
+    @GetMapping(value = "/findTax/{id}",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public TaxDTO findTaxById(@PathVariable("id")  Integer id) {
+        return this.taxService.findTaxById(id);
     }
 
-    @GetMapping(value = "/findTax", produces = MediaType.APPLICATION_JSON_VALUE)
-    public TaxDTO findTaxByName(@RequestParam String name) {
-        return this.taxService.findByName(name);
+    @PutMapping(value = "/update/{id}",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public Tax updateTax(@RequestBody TaxDTO taxDTO, @PathVariable("id") Integer id) {
+        return this.taxService.updateTax(taxDTO, id);
     }
 }

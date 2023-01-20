@@ -7,13 +7,14 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/need")
 @CrossOrigin(origins = {"localhost:8080", "localhost", "http://localhost:4200"})
 public class NeedController {
 
-    private final NeedService needService;
+/*    private final NeedService needService;
 
     public NeedController(NeedService needService) {
         this.needService = needService;
@@ -24,12 +25,7 @@ public class NeedController {
         return this.needService.saveNeed(needDTO);
     }
 
-    @DeleteMapping(value = "/deleteByName", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Need deleteNeedByName(@RequestParam String name) {
-        return this.needService.deleteNeedByName(name);
-    }
-
-    @DeleteMapping(value = "/deleteById", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/deleteById/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void deleteNeedById(@RequestParam Integer id) {
         this.needService.deleteNeedById(id);
     }
@@ -39,8 +35,8 @@ public class NeedController {
         return this.needService.getListAllNeedsInBD();
     }
 
-    @GetMapping(value = "/findNeed", produces = MediaType.APPLICATION_JSON_VALUE)
-    public NeedDTO findNeedByName(@RequestBody String name) {
-        return this.needService.findNeedByName(name);
-    }
+    @GetMapping(value = "/findNeed/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Optional<Need> findNeedById(@RequestBody Integer id) {
+        return this.needService.findNeedById(id);
+    }*/
 }

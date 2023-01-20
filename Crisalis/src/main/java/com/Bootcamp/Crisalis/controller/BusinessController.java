@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/business")
-@CrossOrigin(origins = {"localhost:8080", "localhost", "http://localhost:4200"})
+@CrossOrigin(origins = {"http://localhost:4200"})
 public class BusinessController {
 
     private final BusinessService businessService;
@@ -19,23 +19,47 @@ public class BusinessController {
         this.businessService = businessService;
     }
 
-    @PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/new",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public Business saveBusiness(@RequestBody BusinessDTO businessDTO) {
         return this.businessService.saveBusiness(businessDTO);
     }
 
-    @DeleteMapping(value = "/delete", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Business deleteBusiness(@RequestParam Integer cuit) {
-        return this.businessService.deleteBusiness(cuit);
+    @DeleteMapping(value = "/deleteByCuit/{cuit}",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public Business deleteBusinessByCuit(@PathVariable("cuit") Integer cuit) {
+        return this.businessService.deleteBusinessByCuit(cuit);
     }
 
-    @GetMapping(value = "/list", produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/deleteById/{id}",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public Business deleteBusinessById(@PathVariable("id") Integer id) {
+        return this.businessService.deleteBusinessById(id);
+    }
+
+    @GetMapping(value = "/list",
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public List<BusinessDTO> getListAllBusinessInBD() {
         return businessService.getListAllBusinessInBD();
     }
 
-    @GetMapping(value = "/findBusiness", produces = MediaType.APPLICATION_JSON_VALUE)
-    public BusinessDTO findBusinessByCuit(@RequestBody Integer cuit) {
+    @GetMapping(value = "/findBusiness/{cuit}",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public BusinessDTO findBusinessByCuit(@PathVariable("cuit") Integer cuit) {
         return this.businessService.findByCuit(cuit);
+    }
+
+    @GetMapping(value = "/findBusinessById/{id}",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public BusinessDTO findBusinessById(@PathVariable("id") Integer id) {
+        return this.businessService.findBusinessById(id);
+    }
+
+    @PutMapping(value = "/update/{id}",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public Business updateBusiness(@RequestBody BusinessDTO businessDTO, @PathVariable("id") Integer id) {
+        return this.businessService.updateBusiness(businessDTO, id);
     }
 }

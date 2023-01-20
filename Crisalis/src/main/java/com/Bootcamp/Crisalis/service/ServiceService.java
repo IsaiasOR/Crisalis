@@ -1,8 +1,6 @@
 package com.Bootcamp.Crisalis.service;
 
-import com.Bootcamp.Crisalis.exception.custom.EmptyElementException;
-import com.Bootcamp.Crisalis.exception.custom.NotCreatedException;
-import com.Bootcamp.Crisalis.exception.custom.UnauthorizedException;
+import com.Bootcamp.Crisalis.exception.custom.*;
 import com.Bootcamp.Crisalis.model.Service;
 import com.Bootcamp.Crisalis.model.dto.ServiceDTO;
 import com.Bootcamp.Crisalis.repository.ServiceRepository;
@@ -36,17 +34,14 @@ public class ServiceService {
         if (ObjectUtils.isEmpty(serviceDTO.getMonthlyCost())) {
             throw new EmptyElementException("Monthly cost is empty");
         }
-/*        if (ObjectUtils.isEmpty(serviceDTO.getNeed())) {
-            throw new EmptyElementException("Need is empty");
-        }*/
-        /*if (ObjectUtils.isEmpty(serviceDTO.getSupportChange())) {
-            throw new EmptyElementException("Support change is empty");
-        }*/
         return Boolean.TRUE;
     }
 
-    public void deleteServiceById(Integer id) {
-         this.serviceRepository.deleteById(id);
+    public ServiceDTO deleteServiceById(Integer id) {
+        if (this.serviceRepository.existsById(id)) {
+            return this.serviceRepository.deleteServiceById(id);
+        }
+        throw new NotEliminatedException("Service doesn't exist");
     }
 
     public ServiceDTO findServiceById(Integer id) {
@@ -62,5 +57,36 @@ public class ServiceService {
                 .stream()
                 .map(Service::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    public Service updateService(ServiceDTO serviceDTO, Integer id) {
+        if (this.serviceRepository.existsById(id)) {
+            if (this.checkServiceDTO(ServiceDTO
+                    .builder()
+                    .name(serviceDTO.getName())
+                    .build())) {
+                this.serviceRepository.getReferenceById(id).setName(serviceDTO.getName());
+            }
+            if (this.checkServiceDTO(ServiceDTO
+                    .builder()
+                    .baseAmount(serviceDTO.getBaseAmount())
+                    .build())) {
+                this.serviceRepository.getReferenceById(id).setBaseAmount(serviceDTO.getBaseAmount());
+            }
+            if (this.checkServiceDTO(ServiceDTO
+                    .builder()
+                    .monthlyCost(serviceDTO.getMonthlyCost())
+                    .build())) {
+                this.serviceRepository.getReferenceById(id).setMonthlyCost(serviceDTO.getMonthlyCost());
+            }
+            if (this.checkServiceDTO(ServiceDTO
+                    .builder()
+                    .supportChange(serviceDTO.getSupportChange())
+                    .build())) {
+                this.serviceRepository.getReferenceById(id).setSupportChange(serviceDTO.getSupportChange());
+            }
+            return this.serviceRepository.getReferenceById(id);
+        }
+        throw new NotUpdateException("Service doesn't exist");
     }
 }

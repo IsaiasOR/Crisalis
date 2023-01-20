@@ -22,8 +22,7 @@ public class Order {
     @SequenceGenerator(
             name = "order_sequence",
             sequenceName = "order_sequence",
-            allocationSize = 1,
-            initialValue = 1
+            allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,

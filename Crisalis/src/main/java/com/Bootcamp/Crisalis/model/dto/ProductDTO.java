@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.math.BigDecimal;
+
 @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -12,15 +14,12 @@ import lombok.experimental.SuperBuilder;
 @Builder
 public class ProductDTO extends NeedDTO {
 
+    @JsonProperty("Name")
+    private String name;
+
+    @JsonProperty("BaseAmount")
+    private BigDecimal baseAmount;
+
     @JsonProperty("Guarantee")
     private Integer guarantee;
-
-   /* @JsonProperty("Order")
-    private Order order;
-
-    @JsonProperty("Taxes")
-    private HashSet<Tax> taxes;
-*/
-/*    @JsonProperty("Need")
-    private Need need;*/
 }

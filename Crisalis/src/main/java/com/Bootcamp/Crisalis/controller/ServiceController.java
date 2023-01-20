@@ -19,23 +19,34 @@ public class ServiceController {
         this.service = service;
     }
 
-    @PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/new",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public Service saveService(@RequestBody ServiceDTO serviceDTO) {
         return this.service.saveService(serviceDTO);
     }
 
-    @DeleteMapping(value = "/deleteById", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void deleteServiceById(@RequestParam Integer id) {
-        this.service.deleteServiceById(id);
+    @DeleteMapping(value = "/delete/{id}")
+    public ServiceDTO deleteServiceById(@PathVariable("id") Integer id) {
+        return this.service.deleteServiceById(id);
     }
 
-    @GetMapping(value = "/list", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/list",
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ServiceDTO> getListAllServicesInBD() {
         return this.service.getListAllServicesInBD();
     }
 
-    @GetMapping(value = "/findService", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ServiceDTO findServiceById(@RequestBody Integer id) {
+    @GetMapping(value = "/findService/{id}",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ServiceDTO findServiceById(@PathVariable("id") Integer id) {
         return this.service.findServiceById(id);
+    }
+
+    @PutMapping(value = "/update/{id}",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public Service updateBusiness(@RequestBody ServiceDTO serviceDTO, @PathVariable("id") Integer id) {
+        return this.service.updateService(serviceDTO, id);
     }
 }

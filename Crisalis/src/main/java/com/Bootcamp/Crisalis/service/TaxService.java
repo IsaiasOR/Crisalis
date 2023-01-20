@@ -1,9 +1,6 @@
 package com.Bootcamp.Crisalis.service;
 
-import com.Bootcamp.Crisalis.exception.custom.EmptyElementException;
-import com.Bootcamp.Crisalis.exception.custom.NotCreatedException;
-import com.Bootcamp.Crisalis.exception.custom.NotEliminatedException;
-import com.Bootcamp.Crisalis.exception.custom.UnauthorizedException;
+import com.Bootcamp.Crisalis.exception.custom.*;
 import com.Bootcamp.Crisalis.model.Tax;
 import com.Bootcamp.Crisalis.model.dto.TaxDTO;
 import com.Bootcamp.Crisalis.repository.TaxRepository;
@@ -50,8 +47,11 @@ public class TaxService {
     }
 
 
-    public void deleteTaxById(Integer id) {
-        this.taxRepository.deleteById(id);
+    public TaxDTO deleteTaxById(Integer id) {
+        if (this.taxRepository.existsById(id)) {
+            return this.taxRepository.deleteTaxById(id);
+        }
+        throw new NotEliminatedException("Error in deleting tax");
     }
 
     public TaxDTO findByName(String name) {
@@ -61,7 +61,7 @@ public class TaxService {
                         .build())) {
             return this.taxRepository.findByName(name)
                     .orElseThrow(
-                            () -> new UnauthorizedException("Invalid credentials")
+                            () -> new UnauthorizedException("Tax doesn't exist")
                     ).toDTO();
         }
         throw new UnauthorizedException("Invalid credentials");
@@ -73,5 +73,37 @@ public class TaxService {
                 .stream()
                 .map(Tax::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    public TaxDTO findTaxById(Integer id) {
+        if (this.taxRepository.existsById(id)) {
+            return this.taxRepository.findTaxById(id);
+        }
+        throw new UnauthorizedException("Tax doesn't exist");
+    }
+
+    public Tax updateTax(TaxDTO taxDTO, Integer id) {
+        if (this.taxRepository.existsById(id)) {
+            if (this.checkTaxDTO(TaxDTO
+                    .builder()
+                    .name(taxDTO.getName())
+                    .build())) {
+                this.taxRepository.getReferenceById(id).setName(taxDTO.getName());
+            }
+            if (this.checkTaxDTO(TaxDTO
+                    .builder()
+                    .percentage(taxDTO.getPercentage())
+                    .build())) {
+                this.taxRepository.getReferenceById(id).setPercentage(taxDTO.getPercentage());
+            }
+            if (this.checkTaxDTO(TaxDTO
+                    .builder()
+                    .needs(taxDTO.getNeeds())
+                    .build())) {
+                this.taxRepository.getReferenceById(id).setNeeds(taxDTO.getNeeds());
+            }
+            return this.taxRepository.getReferenceById(id);
+        }
+        throw new NotUpdateException("Tax doesn't exist");
     }
 }
