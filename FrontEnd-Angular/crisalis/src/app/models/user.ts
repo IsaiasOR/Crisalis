@@ -1,15 +1,15 @@
-export class Users {
-    public id: BigInteger;
-    public dni: BigInteger;
-    public firstName: String;
-    public lastName: String;
-    public pwd:String;
-    public email:String;
-    public phoneNumber: String;
-    public role: String;
+export class User {
+    id!: Number;
+    dni!: Number;
+    firstName!: String;
+    lastName!: String;
+    pwd!:String;
+    email!:String;
+    phoneNumber!: String;
+    role!: String;
     
-    constructor(id:BigInteger,
-                dni:BigInteger,
+    constructor(id:Number,
+                dni:Number,
                 firstName: String,
                 lastName: String,
                 pwd:String,
@@ -25,6 +25,4 @@ export class Users {
         this.phoneNumber = phoneNumber;
         this.role = role;
     }
-
-
 }

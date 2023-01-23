@@ -1,11 +1,11 @@
 export class Order {
-    id!: BigInteger;
+    id!: Number;
     dateCreated!: Date;
-    amount!: DoubleRange;
+    amount!: Number;
     description!: String;
-    products!: BigInteger;
-    services!: BigInteger;
-    client!: BigInteger;
-    taxes!: BigInteger;
-    user!: BigInteger;
+    products!: Number;
+    services!: Number;
+    client!: Number;
+    taxes!: Number;
+    user!: Number;
 }

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
-import { first } from 'rxjs/operators';
-import { Router } from '@angular/router';
-import { CrudService } from 'src/app/services/login/crud.service';
+import { User } from 'src/app/models/user';
+import { LoginService } from 'src/app/services/login/login.service';
 
 @Component({
   selector: 'app-login',
@@ -11,32 +9,20 @@ import { CrudService } from 'src/app/services/login/crud.service';
 })
 
 export class LoginComponent implements OnInit {
-  angForm: FormGroup;
+  
+  user: User = new User(0, 0, "", "", "", "", "", "");
 
-  constructor(private fb: FormBuilder,
-    private dataService: CrudService,
-    private router:Router) {
-    this.angForm = this.fb.group({
-      email: ['', [Validators.required,Validators.minLength(1), Validators.email]],
-      password: ['', Validators.required]
-    });
+  constructor(private loginService: LoginService) {
+
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
-  postdata(angForm1) {
-    this.dataService.userlogin(angForm1.value.email,angForm1.value.password)
-    .pipe(first())
-    .subscribe(
-      data => {
-        const redirect = this.dataService.redirectUrl ? this.dataService.redirectUrl : '/dashboard';
-        this.router.navigate([redirect]);
-      },
-      error => {
-        alert("User name or password is incorrect")
-      });
+  userLogin() {
+    console.log(this.user);
+    this.loginService.loginUser(this.user).subscribe(data => {
+      alert("Login Successfully")
+    }, error => alert("Sorry. Please enter correct Email and Password."))
   }
   
-  get email() { return this.angForm.get('email'); }
-  get password() { return this.angForm.get('password'); }
 }

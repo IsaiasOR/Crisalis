@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, EmailValidator } from '@angular/forms';
-import { CrudService } from 'src/app/services/person/crud.service';
+import { PersonService } from 'src/app/services/person/person.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +13,7 @@ export class PersonAddComponent {
 
   constructor(
     public form:FormBuilder,
-    private crudService:CrudService,
+    private crudService:PersonService,
     private router:Router
     ) {
 

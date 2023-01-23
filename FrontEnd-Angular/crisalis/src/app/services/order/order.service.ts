@@ -7,7 +7,7 @@ import { Order } from '../../models/order';
 @Injectable({
   providedIn: 'root'
 })
-export class CrudService {
+export class OrderService {
   //API: string='http://localhost:8080'
 
   constructor(private clientHttp:HttpClient) { }

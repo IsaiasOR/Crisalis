@@ -10,7 +10,6 @@ import { OrderComponent } from './components/order/order.component';
 import { BusinessComponent } from './components/business/business.component';
 import { BusinessAddComponent } from './components/business/business-add/business-add.component';
 import { BusinessModifyDataComponent } from './components/business/business-modify-data/business-modify-data.component';
-import { UserRegisterComponent } from './components/user/user-register/user-register.component';
 import { UserModifyDataComponent } from './components/user/user-modify-data/user-modify-data.component';
 import { PersonComponent } from './components/person/person.component';
 import { PersonAddComponent } from './components/person/person-add/person-add.component';
@@ -30,7 +29,7 @@ import { TaxAddComponent } from './components/tax/tax-add/tax-add.component';
 import { TaxEdityComponent } from './components/tax/tax-edity/tax-edity.component';
 import { OrderAddComponent } from './components/order/order-add/order-add.component';
 import { OrderEdityComponent } from './components/order/order-edity/order-edity.component';
-import { RegisterComponent } from './components/login/register/register.component';
+import { RegisterComponent } from './components/user/register/register.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +41,6 @@ import { RegisterComponent } from './components/login/register/register.componen
     BusinessComponent,
     BusinessAddComponent,
     BusinessModifyDataComponent,
-    UserRegisterComponent,
     UserModifyDataComponent,
     PersonComponent,
     PersonAddComponent,

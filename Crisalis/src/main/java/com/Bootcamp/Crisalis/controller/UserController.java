@@ -4,6 +4,7 @@ import com.Bootcamp.Crisalis.model.User;
 import com.Bootcamp.Crisalis.model.dto.UserDTO;
 import com.Bootcamp.Crisalis.service.UserService;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,8 +29,10 @@ public class UserController {
 
     @GetMapping(value = "/login",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public UserDTO loginUser(@RequestParam String email, @RequestParam String password) {
-        return this.userService.loginUserWithCredentials(email, password);
+    public ResponseEntity<UserDTO> loginUser(@RequestBody UserDTO userDTO) {
+        return ResponseEntity.ok(
+                this.userService.loginUserWithCredentials(
+                        userDTO.getEmail(), userDTO.getPassword()));
     }
 
     @GetMapping(value = "/list",

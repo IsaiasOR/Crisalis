@@ -1,5 +1,5 @@
 export class Tax {
-    id!: BigInteger;
+    id!: Number;
     name!: String;
-    percentage!: DoubleRange;
+    percentage!: Number;
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CrudService } from 'src/app/services/tax/crud.service';
+import { TaxService } from 'src/app/services/tax/tax.service';
 
 @Component({
   selector: 'app-tax',
@@ -10,7 +10,7 @@ export class TaxComponent implements OnInit{
   Taxes:any;
 
   constructor(
-    private crudService:CrudService
+    private crudService:TaxService
   ) {}
 
   ngOnInit(): void {

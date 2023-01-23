@@ -14,7 +14,6 @@ import { ProductAddComponent } from './components/product/product-add/product-ad
 import { ProductEdityComponent } from './components/product/product-edity/product-edity.component';
 import { BusinessModifyDataComponent } from './components/business/business-modify-data/business-modify-data.component';
 import { UserComponent } from './components/user/user.component';
-import { UserRegisterComponent } from './components/user/user-register/user-register.component';
 import { UserModifyDataComponent } from './components/user/user-modify-data/user-modify-data.component';
 import { TaxComponent } from './components/tax/tax.component';
 import { TaxAddComponent } from './components/tax/tax-add/tax-add.component';
@@ -31,7 +30,6 @@ const routes: Routes = [
   {path: '', pathMatch:'full', redirectTo:'home'},
   {path: 'home', component:HomeComponent},
   {path: 'user', component:UserComponent},
-  {path: 'user-register', component:UserRegisterComponent},
   {path: 'user-edity', component:UserModifyDataComponent},
   {path: 'person', component:PersonComponent},
   {path: 'person-add', component:PersonAddComponent},

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, EmailValidator } from '@angular/forms';
-import { CrudService } from 'src/app/services/product/crud.service';
+import { ProductService } from 'src/app/services/product/product.service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-product-add',
@@ -12,7 +12,7 @@ export class ProductAddComponent {
 
   constructor(
     public form:FormBuilder,
-    private crudService:CrudService,
+    private crudService:ProductService,
     private router:Router
     ) {
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CrudService } from 'src/app/services/person/crud.service';
+import { PersonService } from 'src/app/services/person/person.service';
 
 @Component({
   selector: 'app-person',
@@ -10,7 +10,7 @@ export class PersonComponent implements OnInit{
   Persons:any;
 
   constructor(
-    private crudService:CrudService
+    private crudService:PersonService
   ) {}
 
   ngOnInit(): void {

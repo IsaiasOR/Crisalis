@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CrudService } from 'src/app/services/order/crud.service';
+import { OrderService } from 'src/app/services/order/order.service';
 
 @Component({
   selector: 'app-order',
@@ -10,7 +10,7 @@ export class OrderComponent implements OnInit{
   Orders:any;
 
   constructor(
-    private crudService:CrudService
+    private crudService:OrderService
   ) {}
 
   ngOnInit(): void {

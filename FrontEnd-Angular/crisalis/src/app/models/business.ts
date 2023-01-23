@@ -1,7 +1,7 @@
 export class Business {
-    id!: BigInteger;
+    id!: Number;
     businessName!: String;
     actStartDate!: Date;
     cuit!: String;
-    dni!: BigInteger;
+    dni!: Number;
 }

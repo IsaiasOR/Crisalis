@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, EmailValidator } from '@angular/forms';
-import { CrudService } from 'src/app/services/tax/crud.service';
+import { TaxService } from 'src/app/services/tax/tax.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +13,7 @@ export class TaxAddComponent {
 
   constructor(
     public form:FormBuilder,
-    private crudService:CrudService,
+    private crudService:TaxService,
     private router:Router
     ) {
 

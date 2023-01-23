@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { CrudService } from 'src/app/services/order/crud.service';
+import { OrderService } from 'src/app/services/order/order.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +13,7 @@ export class OrderAddComponent {
 
   constructor(
     public form:FormBuilder,
-    private crudService:CrudService,
+    private crudService:OrderService,
     private router:Router
     ) {
 

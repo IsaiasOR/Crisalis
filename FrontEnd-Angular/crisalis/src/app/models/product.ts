@@ -1,8 +1,5 @@
 export class Product {
-    id!: BigInteger;
+    id!: Number;
     name!: String;
-    baseAmount!: DoubleRange;
-    // guarantee!:BigInteger;
-    // tax!:String;
-    // order!:BigInteger;
+    baseAmount!: Number;
 }

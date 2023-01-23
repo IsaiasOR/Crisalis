@@ -1,12 +1,11 @@
 export class Person {
-    id!: BigInteger;
+    id!: Number;
     firstname!: String;
     lastname!: String;
-    dni!:BigInteger;
+    dni!:Number;
     email!:String;
     phoneNumber!:String;
     direction!:String;
     activeService!:Boolean;
     cuit!:String;
-    // order!:BigInteger;
 }

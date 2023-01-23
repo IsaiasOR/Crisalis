@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, EmailValidator } from '@angular/forms';
-import { CrudService } from 'src/app/services/business/crud.service';
+import { BusinessService } from 'src/app/services/business/business.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +13,7 @@ export class BusinessAddComponent {
 
   constructor(
     public form:FormBuilder,
-    private crudService:CrudService,
+    private crudService:BusinessService,
     private router:Router
     ) {
 

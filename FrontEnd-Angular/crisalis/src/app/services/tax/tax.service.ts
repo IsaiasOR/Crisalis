@@ -7,7 +7,7 @@ import { Tax } from '../../models/tax';
 @Injectable({
   providedIn: 'root'
 })
-export class CrudService {
+export class TaxService {
   //API: string='http://localhost:8080/tax'
 
   constructor(private clientHttp:HttpClient) { }
