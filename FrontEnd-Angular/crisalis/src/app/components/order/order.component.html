@@ -17,24 +17,22 @@
                         <th>Productos</th>
                         <th>Servicios</th>
                         <th>Cliente</th>
-                        <th>Impuestos</th>
                         <th>Usuario</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let order of Orders; let iControl=index">
-                        <td>{{ order.id }}</td>
-                        <td>{{ order.dateCreated }}</td>
-                        <td>{{ order.amount }}</td>
-                        <td>{{ order.description }}</td>
-                        <td>{{ order.products }}</td>
-                        <td>{{ order.services }}</td>
-                        <td>{{ order.client }}</td>
-                        <td>{{ order.taxes }}</td>
-                        <td>{{ order.user }}</td>
+                        <td>{{ order.Id }}</td>
+                        <td>{{ order.DateCreated }}</td>
+                        <td>{{ order.Amount }}</td>
+                        <td>{{ order.Description }}</td>
+                        <td>{{ order.Products }}</td>
+                        <td>{{ order.Services }}</td>
+                        <td>{{ order.Client }}</td>
+                        <td>{{ order.User }}</td>
                         <td> 
                             <a class="btn btn-info" href="">Editar</a> | 
-                            <a class="btn btn-danger" role="button">Borrar</a>
+                            <a class="btn btn-danger" (click)="deleteRegister(order.Id,iControl)" role="button">Borrar</a>
                         </td>
                     </tr>
                 </tbody>

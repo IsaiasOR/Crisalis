@@ -10,14 +10,24 @@ export class TaxComponent implements OnInit{
   Taxes:any;
 
   constructor(
-    private crudService:TaxService
+    private taxService:TaxService
   ) {}
 
   ngOnInit(): void {
-    this.crudService.getTax().subscribe(response => {
+    this.taxService.getTax().subscribe(response => {
       console.log(response);
       this.Taxes=response;
     });
+  }
+
+  deleteRegister(id:any, iControl:any) {
+    console.log(id);
+    console.log(iControl);
+    if(window.confirm("¿Desea borrar el registro?")) {
+      this.taxService.deleteTax(id).subscribe((response) => {
+        this.Taxes.splice(iControl,1);
+      });
+    }
   }
 }
 

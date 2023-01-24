@@ -2,7 +2,7 @@ import { Product } from "./product";
 import { Service } from "./service";
 
 export class Tax {
-    id!: Number;
+    Id!: Number;
     Name!: String;
     Percentage!: Number;
     Products = new Set<Product>();

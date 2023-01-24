@@ -10,13 +10,23 @@ export class ProductComponent implements OnInit{
   Products:any;
 
   constructor(
-    private crudService:ProductService
+    private productService:ProductService
   ) {}
 
   ngOnInit(): void {
-    this.crudService.getProduct().subscribe(response => {
+    this.productService.getProduct().subscribe(response => {
       console.log(response);
       this.Products=response;
     });
+  }
+
+  deleteRegister(id:any, iControl:any) {
+    console.log(id);
+    console.log(iControl);
+    if(window.confirm("¿Desea borrar el registro?")) {
+      this.productService.deleteProduct(id).subscribe((response) => {
+        this.Products.splice(iControl,1);
+      });
+    }
   }
 }

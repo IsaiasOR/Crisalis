@@ -1,6 +1,7 @@
 import { UserRole } from "../enums/userRole";
 
 export class User {
+    Id!:Number;
     DNI!:Number;
     FirstName!:String;
     LastName!:String;

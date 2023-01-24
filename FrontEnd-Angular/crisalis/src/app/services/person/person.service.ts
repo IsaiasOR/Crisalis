@@ -20,4 +20,7 @@ export class PersonService {
     return this.clientHttp.get(this.API+"/list");
   }
 
+  deletePerson(id:any):Observable<any>{
+    return this.clientHttp.get(this.API+"/delete/"+id);
+  }
 }

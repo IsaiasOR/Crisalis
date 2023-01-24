@@ -15,25 +15,24 @@
                         <th>Apellido</th>
                         <th>D.N.I.</th>
                         <th>Correo electrónico</th>
-                        <th>Número de teléfono</th>
-                        <th>Dirección</th>
                         <th>Servicio activo</th>
+                        <th>Empresas relacionadas</th>
+                        <th>Pedidos relacionados</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let person of Persons; let iControl=index">
-                        <td>{{ person.id }}</td>
-                        <td>{{ person.firstname }}</td>
-                        <td>{{ person.lastname}}</td>
-                        <td>{{ person.dni }}</td>
-                        <td>{{ person.email }}</td>
-                        <td>{{ person.phoneNumber }}</td>
-                        <td>{{ person.direction }}</td>
-                        <td>{{ person.activeService }}</td>
-                        <td>{{ person.cuit }}</td>
+                        <td>{{ person.Id }}</td>
+                        <td>{{ person.Firstname }}</td>
+                        <td>{{ person.Lastname}}</td>
+                        <td>{{ person.DNI }}</td>
+                        <td>{{ person.Email }}</td>
+                        <td>{{ person.ActiveService }}</td>
+                        <td>{{ person.BusinessSet }}</td>
+                        <td>{{ person.Orders }}</td>
                         <td> 
-                            <a class="btn btn-info" href="/person-edity/{{ person.id }}">Editar</a> | 
+                            <a class="btn btn-info" href="/person-edity/{{ person.Id }}">Editar</a> | 
                             <a class="btn btn-danger" role="button">Borrar</a>
                         </td>
                     </tr>

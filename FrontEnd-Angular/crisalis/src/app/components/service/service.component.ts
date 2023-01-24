@@ -10,13 +10,23 @@ export class ServiceComponent implements OnInit{
   Services:any;
 
   constructor(
-    private crudService:ServiceService
+    private serviceService:ServiceService
   ) {}
 
   ngOnInit(): void {
-    this.crudService.getService().subscribe(response => {
+    this.serviceService.getService().subscribe(response => {
       console.log(response);
       this.Services=response;
     });
+  }
+
+  deleteRegister(id:any, iControl:any) {
+    console.log(id);
+    console.log(iControl);
+    if(window.confirm("¿Desea borrar el registro?")) {
+      this.serviceService.deleteService(id).subscribe((response) => {
+        this.Services.splice(iControl,1);
+      });
+    }
   }
 }

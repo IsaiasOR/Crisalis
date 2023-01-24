@@ -19,4 +19,8 @@ export class OrderService {
   getOrder(){
     return this.clientHttp.get(this.API+"/list");
   }
+
+  deleteOrder(id:any):Observable<any>{
+    return this.clientHttp.get(this.API+"/delete/"+id);
+  }
 }

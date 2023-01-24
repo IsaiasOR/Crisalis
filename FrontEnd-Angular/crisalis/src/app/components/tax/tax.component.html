@@ -17,12 +17,12 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let tax of Taxes; let iControl=index">
-                        <td>{{ tax.id }}</td>
-                        <td>{{ tax.name }}</td>
-                        <td>{{ tax.percentage}}</td>
+                        <td>{{ tax.Id }}</td>
+                        <td>{{ tax.Name }}</td>
+                        <td>{{ tax.Percentage}}</td>
                         <td> 
-                            <a class="btn btn-info" href="/tax-edity/{{ tax.id }}">Editar</a> | 
-                            <a class="btn btn-danger" role="button">Borrar</a>
+                            <a class="btn btn-info" href="/tax-edity/{{ tax.Id }}">Editar</a> | 
+                            <a class="btn btn-danger" (click)="deleteRegister(tax.Id,iControl)" role="button">Borrar</a>
                         </td>
                     </tr>
                 </tbody>

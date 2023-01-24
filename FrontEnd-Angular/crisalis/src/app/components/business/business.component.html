@@ -20,14 +20,14 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let business of Business; let iControl=index">
-                        <td>{{ business.id }}</td>
-                        <td>{{ business.businessName }}</td>
-                        <td>{{ business.actStartDate}}</td>
-                        <td>{{ business.cuit }}</td>
-                        <td>{{ business.dni }}</td>
+                        <td>{{ business.Id }}</td>
+                        <td>{{ business.BusinessName }}</td>
+                        <td>{{ business.ActStartDate}}</td>
+                        <td>{{ business.CUIT }}</td>
+                        <td>{{ business.Clients }}</td>
                         <td> 
-                            <a class="btn btn-info" href="/business-edity/{{ business.id }}">Editar</a> | 
-                            <a class="btn btn-danger" (click)="deleteRegister(business.id,iControl)" role="button">Borrar</a>
+                            <a class="btn btn-info" href="/business-edity/{{ business.Id }}">Editar</a> | 
+                            <a class="btn btn-danger" (click)="deleteRegister(business.Id,iControl)" role="button">Borrar</a>
                         </td>
                     </tr>
                 </tbody>

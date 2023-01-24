@@ -18,5 +18,9 @@ export class ServiceService {
 
   getService(){
     return this.clientHttp.get(this.API+"/list");
-  } 
+  }
+
+  deleteService(id:any):Observable<any>{
+    return this.clientHttp.get(this.API+"/delete/"+id);
+  }
 }

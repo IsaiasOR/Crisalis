@@ -18,5 +18,9 @@ export class TaxService {
 
   getTax(){
     return this.clientHttp.get(this.API+"/list");
-  } 
+  }
+
+  deleteTax(id:any):Observable<any>{
+    return this.clientHttp.get(this.API+"/delete/"+id);
+  }
 }

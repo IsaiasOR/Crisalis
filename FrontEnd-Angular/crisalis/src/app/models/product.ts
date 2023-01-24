@@ -1,5 +1,5 @@
 export class Product {
-    id!: Number;
+    Id!: Number;
     Name!: String;
     BaseAmount!: Number;
     Guarantee!: Number;

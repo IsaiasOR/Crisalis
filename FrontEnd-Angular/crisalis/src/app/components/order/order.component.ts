@@ -10,13 +10,23 @@ export class OrderComponent implements OnInit{
   Orders:any;
 
   constructor(
-    private crudService:OrderService
+    private orderService:OrderService
   ) {}
 
   ngOnInit(): void {
-    this.crudService.getOrder().subscribe(response => {
+    this.orderService.getOrder().subscribe(response => {
       console.log(response);
       this.Orders=response;
     });
+  }
+
+  deleteRegister(id:any, iControl:any) {
+    console.log(id);
+    console.log(iControl);
+    if(window.confirm("¿Desea borrar el registro?")) {
+      this.orderService.deleteOrder(id).subscribe((response) => {
+        this.Orders.splice(iControl,1);
+      });
+    }
   }
 }

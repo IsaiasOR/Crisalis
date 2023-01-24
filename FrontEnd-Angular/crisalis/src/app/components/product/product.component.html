@@ -17,12 +17,12 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let product of Products; let iControl=index">
-                        <td>{{ product.id }}</td>
-                        <td>{{ product.name }}</td>
-                        <td>{{ product.baseAmount}}</td>
+                        <td>{{ product.Id }}</td>
+                        <td>{{ product.Name }}</td>
+                        <td>{{ product.BaseAmount}}</td>
                         <td> 
-                            <a class="btn btn-info" href="/product-edity/{{ product.id }}">Editar</a> | 
-                            <a class="btn btn-danger" role="button">Borrar</a>
+                            <a class="btn btn-info" href="/product-edity/{{ product.Id }}">Editar</a> | 
+                            <a class="btn btn-danger" (click)="deleteRegister(product.Id,iControl)" role="button">Borrar</a>
                         </td>
                     </tr>
                 </tbody>

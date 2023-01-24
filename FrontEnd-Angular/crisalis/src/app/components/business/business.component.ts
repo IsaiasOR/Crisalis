@@ -6,6 +6,7 @@ import { BusinessService } from 'src/app/services/business/business.service';
   templateUrl: './business.component.html',
   styleUrls: ['./business.component.css']
 })
+
 export class BusinessComponent implements OnInit{
   Business:any;
 

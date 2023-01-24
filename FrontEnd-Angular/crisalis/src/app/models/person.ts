@@ -3,7 +3,7 @@ import { Business } from "./business";
 import { Order } from "./order";
 
 export class Person {
-    id!:BigInteger;
+    Id!:BigInteger;
     FirstName!: String;
     LastName!: String;
     DNI!:Number;

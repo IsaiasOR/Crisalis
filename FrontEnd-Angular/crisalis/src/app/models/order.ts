@@ -4,6 +4,7 @@ import { Service } from "./service";
 import { User } from "./user";
 
 export class Order {
+    Id!:Number;
     DateCreated!: Date;
     Amount!: Number;
     Description!: String;

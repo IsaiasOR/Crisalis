@@ -1,5 +1,5 @@
 export class Service {
-    id!: Number;
+    Id!: Number;
     Name!: String;
     BaseAmount!: Number;
     MonthlyCost!: Number;

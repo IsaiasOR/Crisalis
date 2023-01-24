@@ -10,13 +10,23 @@ export class PersonComponent implements OnInit{
   Persons:any;
 
   constructor(
-    private crudService:PersonService
+    private personService:PersonService
   ) {}
 
   ngOnInit(): void {
-    this.crudService.getPerson().subscribe(response => {
+    this.personService.getPerson().subscribe(response => {
       console.log(response);
       this.Persons=response;
     });
+  }
+
+  deleteRegister(id:any, iControl:any) {
+    console.log(id);
+    console.log(iControl);
+    if(window.confirm("¿Desea borrar el registro?")) {
+      this.personService.deletePerson(id).subscribe((response) => {
+        this.Persons.splice(iControl,1);
+      });
+    }
   }
 }
