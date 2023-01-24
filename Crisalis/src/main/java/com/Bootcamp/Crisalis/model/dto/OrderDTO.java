@@ -17,7 +17,7 @@ import java.util.HashSet;
 @Builder
 public class OrderDTO {
 
-    @JsonProperty("DateOrder")
+    @JsonProperty("DateCreated")
     private Date dateCreated;
 
     @JsonProperty("Amount")
@@ -26,15 +26,15 @@ public class OrderDTO {
     @JsonProperty("Description")
     private String description;
 
-    @JsonProperty("Id_User")
+    @JsonProperty("User")
     private User user;
 
-    @JsonProperty("Product")
+    @JsonProperty("Products")
     private HashSet<Product> products;
 
-    @JsonProperty("Need")
+    @JsonProperty("Services")
     private HashSet<Service> services;
 
-    @JsonProperty("Id_Client")
+    @JsonProperty("Client")
     private Client client;
 }

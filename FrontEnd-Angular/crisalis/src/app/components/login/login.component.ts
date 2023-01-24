@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserLogin } from 'src/app/models/userLogin';
+import { UserRole } from 'src/app/enums/userRole';
+import { User } from 'src/app/models/user';
 import { LoginService } from 'src/app/services/login/login.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { LoginService } from 'src/app/services/login/login.service';
 
 export class LoginComponent implements OnInit {
   
-  user: UserLogin = new UserLogin(0, "","","","","","");
+  user: User = new User(0, "","","","","",UserRole.NONE);
 
   constructor(private loginService: LoginService) {
 

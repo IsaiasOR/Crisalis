@@ -16,7 +16,7 @@ import java.util.HashSet;
 @Builder
 public class BusinessDTO {
 
-    @JsonProperty("BusinnesName")
+    @JsonProperty("BusinessName")
     private String businessName;
 
     @JsonProperty("ActStartDate")

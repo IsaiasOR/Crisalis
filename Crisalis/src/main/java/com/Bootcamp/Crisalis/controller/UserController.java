@@ -27,7 +27,8 @@ public class UserController {
         return this.userService.saveUser(userDTO);
     }
 
-    @PostMapping(value = "/login",
+    @GetMapping(value = "/login",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserDTO> loginUser(@RequestBody UserDTO userDTO) {
         return ResponseEntity.ok(
@@ -35,8 +36,7 @@ public class UserController {
                         userDTO.getEmail(), userDTO.getPassword()));
     }
 
-    @GetMapping(value = "/list",
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/list")
     public List<UserDTO> getAllUsers() {
         return this.userService.getListAllUsersInBD();
     }

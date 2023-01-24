@@ -8,15 +8,15 @@ import { Product } from '../../models/product';
   providedIn: 'root'
 })
 export class ProductService {
-  //API: string='http://localhost:8080'
+  API: string='http://localhost:8080/api/product'
 
   constructor(private clientHttp:HttpClient) { }
 
   addProduct(dataProduct:Product):Observable<any>{
-    return this.clientHttp.post("/api/product/new",dataProduct);
+    return this.clientHttp.post(this.API+"/new",dataProduct);
   }
 
   getProduct(){
-    return this.clientHttp.get("/api/product/list");
+    return this.clientHttp.get(this.API+"/list");
   }
 }

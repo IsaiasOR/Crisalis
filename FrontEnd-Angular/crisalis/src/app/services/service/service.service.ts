@@ -8,15 +8,15 @@ import { Service } from '../../models/service';
   providedIn: 'root'
 })
 export class ServiceService {
-  //API: string='http://localhost:8080/service'
+  API: string='http://localhost:8080/api/service'
 
   constructor(private clientHttp:HttpClient) { }
 
   addService(dataService:Service):Observable<any>{
-    return this.clientHttp.post("/api/service/new",dataService);
+    return this.clientHttp.post(this.API+"/new",dataService);
   }
 
   getService(){
-    return this.clientHttp.get("/api/service/list");
+    return this.clientHttp.get(this.API+"/list");
   } 
 }

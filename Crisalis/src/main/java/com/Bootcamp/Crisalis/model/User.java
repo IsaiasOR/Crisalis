@@ -26,8 +26,7 @@ public class User implements UserDetails {
     @SequenceGenerator(
             name = "user_sequence",
             sequenceName = "user_sequence",
-            allocationSize = 1,
-            initialValue = 1
+            allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
@@ -67,12 +66,6 @@ public class User implements UserDetails {
     @ToString.Exclude
     private Set<Order> orders = new HashSet<>();
 
-    /*
-    Otra opción para esto es:
-    1. Mapear en otra clase, es decir que reciba cierta cantidad de cosas y nosotros
-    lo mapeamos a lo que necesitemos (dependerá de cuánto tendremos que mapear)
-    2. Utilizar builder en vez de @NoArgsConstructor
-     */
     public User(UserDTO userDTO) {
         this.dni = userDTO.getDni();
         this.firstName = userDTO.getFirstName();

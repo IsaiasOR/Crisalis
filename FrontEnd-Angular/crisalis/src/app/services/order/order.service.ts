@@ -8,15 +8,15 @@ import { Order } from '../../models/order';
   providedIn: 'root'
 })
 export class OrderService {
-  //API: string='http://localhost:8080'
+  API: string='http://localhost:8080/api/order'
 
   constructor(private clientHttp:HttpClient) { }
 
   addOrder(dataOrder:Order):Observable<any>{
-    return this.clientHttp.post("/api/order/new",dataOrder);
+    return this.clientHttp.post(this.API+"/new",dataOrder);
   }
 
   getOrder(){
-    return this.clientHttp.get("/api/order/list");
+    return this.clientHttp.get(this.API+"/list");
   }
 }

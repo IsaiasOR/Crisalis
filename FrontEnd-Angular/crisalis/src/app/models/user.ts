@@ -1,11 +1,13 @@
-export class UserLogin {
+import { UserRole } from "../enums/userRole";
+
+export class User {
     DNI!:Number;
     FirstName!:String;
     LastName!:String;
     Email!:String;
     PhoneNumber!:String;
     Password!:String;
-    Role!:String
+    Role!:UserRole;
     
 
     constructor(dni:Number,
@@ -14,7 +16,7 @@ export class UserLogin {
         email:String,
         phoneNumber:String,
         password:String,
-        role:String) {
+        role:UserRole) {
             this.DNI = dni;
             this.FirstName = firstName;
             this.LastName = lastname;

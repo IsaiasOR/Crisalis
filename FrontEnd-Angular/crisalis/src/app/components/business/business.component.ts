@@ -9,10 +9,10 @@ import { BusinessService } from 'src/app/services/business/business.service';
 export class BusinessComponent implements OnInit{
   Business:any;
 
-  constructor(private crudService:BusinessService) {}
+  constructor(private businessService:BusinessService) {}
 
   ngOnInit(): void {
-    this.crudService.getBusiness().subscribe(response => {
+    this.businessService.getBusiness().subscribe(response => {
       console.log(response);
       this.Business=response;
     });
@@ -21,5 +21,10 @@ export class BusinessComponent implements OnInit{
   deleteRegister(id:any, iControl:any) {
     console.log(id);
     console.log(iControl);
+    if(window.confirm("¿Desea borrar el registro?")) {
+      this.businessService.deleteBusiness(id).subscribe((response) => {
+        this.Business.splice(iControl,1);
+      });
+    }
   }
 }

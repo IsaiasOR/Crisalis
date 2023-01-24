@@ -20,10 +20,10 @@ public class ClientDTO {
     @JsonProperty("ActiveService")
     private ActiveService activeService;
 
-    @JsonProperty("Firstname")
+    @JsonProperty("FirstName")
     private String firstname;
 
-    @JsonProperty("Lastname")
+    @JsonProperty("LastName")
     private String lastname;
 
     @JsonProperty("DNI")
@@ -32,7 +32,7 @@ public class ClientDTO {
     @JsonProperty("Email")
     private String email;
 
-    @JsonProperty("Business list")
+    @JsonProperty("BusinessSet")
     private HashSet<Business> businessSet;
 
     @JsonProperty("Orders")

@@ -8,15 +8,15 @@ import { Tax } from '../../models/tax';
   providedIn: 'root'
 })
 export class TaxService {
-  //API: string='http://localhost:8080/tax'
+  API: string='http://localhost:8080/api/tax'
 
   constructor(private clientHttp:HttpClient) { }
 
   addTax(dataTax:Tax):Observable<any>{
-    return this.clientHttp.post("/api/tax/new",dataTax);
+    return this.clientHttp.post(this.API+"/new",dataTax);
   }
 
   getTax(){
-    return this.clientHttp.get("/api/tax/list");
+    return this.clientHttp.get(this.API+"/list");
   } 
 }
