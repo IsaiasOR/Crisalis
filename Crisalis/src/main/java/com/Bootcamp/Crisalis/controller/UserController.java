@@ -27,7 +27,7 @@ public class UserController {
         return this.userService.saveUser(userDTO);
     }
 
-    @GetMapping(value = "/login",
+    @PostMapping(value = "/login",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserDTO> loginUser(@RequestBody UserDTO userDTO) {
         return ResponseEntity.ok(

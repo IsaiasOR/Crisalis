@@ -9,9 +9,7 @@ import { BusinessService } from 'src/app/services/business/business.service';
 export class BusinessComponent implements OnInit{
   Business:any;
 
-  constructor(
-    private crudService:BusinessService
-  ) {}
+  constructor(private crudService:BusinessService) {}
 
   ngOnInit(): void {
     this.crudService.getBusiness().subscribe(response => {
