@@ -37,9 +37,9 @@ public class OrderService {
         if (StringUtils.isEmpty(orderDTO.getDescription())) {
             throw new EmptyElementException("Description is empty");
         }
-        if (ObjectUtils.isEmpty(orderDTO.getUser())) {
+/*        if (ObjectUtils.isEmpty(orderDTO.getUser())) {
             throw new EmptyElementException("User is empty");
-        }
+        }*/
         if (ObjectUtils.isEmpty(orderDTO.getServices()) &&
                 ObjectUtils.isEmpty(orderDTO.getProducts())) {
             throw new EmptyElementException("Services and products are empty");
@@ -97,14 +97,14 @@ public class OrderService {
                 this.orderRepository.getReferenceById(id).setDescription(orderDTO.getDescription());
             }
         }
-        if (this.orderRepository.existsById(id)) {
+/*        if (this.orderRepository.existsById(id)) {
             if (this.checkOrderDTO(OrderDTO
                     .builder()
                     .user(orderDTO.getUser())
                     .build())) {
                 this.orderRepository.getReferenceById(id).setUser(orderDTO.getUser());
             }
-        }
+        }*/
         if (this.orderRepository.existsById(id)) {
             if (this.checkOrderDTO(OrderDTO
                     .builder()

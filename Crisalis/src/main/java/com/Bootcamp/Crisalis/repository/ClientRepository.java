@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Repository
-@Transactional(readOnly = true)
 public interface ClientRepository extends JpaRepository<Client, Integer> {
 
     Client deleteByDni(Integer dni);

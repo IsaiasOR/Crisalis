@@ -18,13 +18,13 @@ export class PersonAddComponent {
     ) {
 
     this.formGroup=this.form.group({
-      firstname:[''],
-      lastname:[''],
-      dni:[''],
-      email:[''],
-      phoneNumber:[''],
-      direction:[''],
-      cuit:['']
+      FirstName:[''],
+      LastName:[''],
+      DNI:[''],
+      Email:[''],
+      PhoneNumber:[''],
+      Address:[''],
+      BussinessSet:['']
     });
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { OrderService } from 'src/app/services/order/order.service';
 import { Router } from '@angular/router';
@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './order-add.component.html',
   styleUrls: ['./order-add.component.css']
 })
+
 export class OrderAddComponent {
   formGroup: FormGroup;
 
@@ -18,14 +19,13 @@ export class OrderAddComponent {
     ) {
 
     this.formGroup=this.form.group({
-      dateCreated:[''],
-      amount:[''],
-      description:[''],
-      products:[''],
-      services:[''],
-      client:[''],
-      taxes:[''],
-      user:['']
+      DateCreated:[''],
+      Amount:[''],
+      Description:[''],
+      Products:[''],
+      Services:[''],
+      Clients:[''],
+      User:['']
     });
   }
 

@@ -40,14 +40,14 @@ public class Order {
     @Column(name = "description")
     private String description;
 
-    @ManyToOne(
+/*    @ManyToOne(
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
             optional = false
     )
     @JoinColumn(name = "id_user")
     @ToString.Exclude
-    private User user;
+    private User user;*/
 
     @OneToMany(
             fetch = FetchType.EAGER,
@@ -83,7 +83,7 @@ public class Order {
     public Order(OrderDTO orderDTO) {
         this.dateCreated = orderDTO.getDateCreated();
         this.amount = orderDTO.getAmount();
-        this.user = orderDTO.getUser();
+        //this.user = orderDTO.getUser();
         //this.needs = orderDTO.getNeeds();
         this.products = orderDTO.getProducts();
         this.services = orderDTO.getServices();
@@ -95,7 +95,7 @@ public class Order {
                 .builder()
                 .dateCreated(this.dateCreated)
                 .amount(this.amount)
-                .user(this.user)
+                //.user(this.user)
                 //.needs((HashSet<Need>) this.needs)
                 .products((HashSet<Product>) this.products)
                 .services((HashSet<Service>) this.services)

@@ -26,8 +26,8 @@ public class OrderDTO {
     @JsonProperty("Description")
     private String description;
 
-    @JsonProperty("User")
-    private User user;
+/*    @JsonProperty("User")
+    private User user;*/
 
     @JsonProperty("Products")
     private HashSet<Product> products;

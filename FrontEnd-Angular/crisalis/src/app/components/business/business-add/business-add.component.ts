@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, EmailValidator } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { BusinessService } from 'src/app/services/business/business.service';
 import { Router } from '@angular/router';
 
@@ -18,10 +18,10 @@ export class BusinessAddComponent {
     ) {
 
     this.formGroup=this.form.group({
-      businessName:[''],
-      startDateAct:[''],
-      cuit:[''],
-      dni:['']
+      BusinessName:[''],
+      StartDateAct:[''],
+      CUIT:[''],
+      Clients:['']
     });
   }
 

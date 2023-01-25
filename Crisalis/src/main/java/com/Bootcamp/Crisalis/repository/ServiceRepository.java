@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 @Repository
-@Transactional(readOnly = true)
 public interface ServiceRepository extends JpaRepository<Service, Integer> {
 
     ServiceDTO deleteServiceById(Integer id);

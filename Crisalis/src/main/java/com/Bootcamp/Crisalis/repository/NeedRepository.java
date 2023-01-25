@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Repository
-@Transactional(readOnly = true)
 public interface NeedRepository extends JpaRepository<Need, Integer> {
 
     /*Optional<Need> findByName(String name);

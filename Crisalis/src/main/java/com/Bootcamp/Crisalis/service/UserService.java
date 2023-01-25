@@ -36,8 +36,8 @@ public class UserService {
         }
 
         //Codificación de la contraseña
-        String encodedPassword = bCryptPasswordEncoder.encode(userDTO.getPassword());
-        userDTO.setPassword(encodedPassword);
+        String encodedPassword = bCryptPasswordEncoder.encode(userDTO.getPass());
+        userDTO.setPass(encodedPassword);
 
         //Check User
         if(checkUserDTO(userDTO, Boolean.FALSE)) {
@@ -46,16 +46,17 @@ public class UserService {
         throw new NotCreatedException("Error in save new user");
     }
 
-    public UserDTO loginUserWithCredentials(String email, String password) {
+    public UserDTO loginUserWithCredentials(String email, String pass) {
         if (
                 this.checkUserDTO(UserDTO
                                 .builder()
                                 .email(email)
-                                .password(password)
+                                .pass(pass)
                                 .build()
                         ,Boolean.TRUE)
         ) {
-            return this.userRepository.findByEmailAndPassword(email, password)
+            String encodedPassword = bCryptPasswordEncoder.encode(pass);
+            return this.userRepository.findByEmailAndPass(email, pass)
                     .orElseThrow(
                             () -> new UnauthorizedException("Invalid credentials")
                     ).toDTO();
@@ -77,7 +78,7 @@ public class UserService {
             if(StringUtils.isEmpty(userDTO.getEmail())) {
                 throw new EmptyElementException("Email is empty");
             }
-            if(StringUtils.isEmpty(userDTO.getPassword())) {
+            if(StringUtils.isEmpty(userDTO.getPass())) {
                 throw new EmptyElementException("Password is empty");
             }
             if(StringUtils.isEmpty(userDTO.getFirstName())) {
@@ -99,13 +100,13 @@ public class UserService {
         if(StringUtils.isEmpty(userDTO.getEmail())) {
             throw new EmptyElementException("Email is empty");
         }
-        if(StringUtils.isEmpty(userDTO.getPassword())) {
+        if(StringUtils.isEmpty(userDTO.getPass())) {
             throw new EmptyElementException("Password is empty");
         }
         return Boolean.TRUE;
     }
 
-    public User deleteUserByDni(Integer dni) {
+/*    public User deleteUserByDni(Integer dni) {
         if (checkUserDTO(UserDTO
                 .builder()
                 .dni(dni)
@@ -113,7 +114,7 @@ public class UserService {
             return this.userRepository.deleteByDni(dni);
         }
         throw new NotEliminatedException("Error in deleting user");
-    }
+    }*/
 
     public UserDTO findByDni(Integer dni) {
         if (
@@ -131,12 +132,12 @@ public class UserService {
         throw new UnauthorizedException("Invalid credentials");
     }
 
-    public User deleteUserById(Integer id) {
+/*    public User deleteUserById(Integer id) {
         if (this.userRepository.existsById(id)) {
             return this.userRepository.deleteUserById(id);
         }
         throw new NotEliminatedException("Error in deleting user");
-    }
+    }*/
 
     public UserDTO findById(Integer id) {
         if (this.userRepository.existsById(id)) {
@@ -179,9 +180,9 @@ public class UserService {
             }
             if (this.checkUserDTO(UserDTO
                     .builder()
-                    .password(userDTO.getPassword())
+                    .pass(userDTO.getPass())
                     .build(), Boolean.FALSE)) {
-                this.userRepository.getReferenceById(id).setPassword(userDTO.getPassword());
+                this.userRepository.getReferenceById(id).setPass(userDTO.getPass());
             }
             if (this.checkUserDTO(UserDTO
                     .builder()
@@ -189,12 +190,12 @@ public class UserService {
                     .build(), Boolean.FALSE)) {
                 this.userRepository.getReferenceById(id).setUserRole(userDTO.getUserRole());
             }
-            if (this.checkUserDTO(UserDTO
+/*            if (this.checkUserDTO(UserDTO
                     .builder()
-                    .orders(userDTO.getOrders())
+                    //.orders(userDTO.getOrders())
                     .build(), Boolean.FALSE)) {
                 this.userRepository.getReferenceById(id).setOrders(userDTO.getOrders());
-            }
+            }*/
         }
         throw new NotUpdateException("User doesn't exist");
     }

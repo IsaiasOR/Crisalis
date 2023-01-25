@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")
-@CrossOrigin(origins = {"localhost:8080", "localhost", "localhost:4200"})
+@CrossOrigin(origins = {"localhost:8080", "localhost", "http://localhost:4200"})
 public class UserController {
 
     private final UserService userService;
@@ -27,13 +27,13 @@ public class UserController {
         return this.userService.saveUser(userDTO);
     }
 
-    @GetMapping(value = "/login",
+    @PostMapping(value = "/login",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserDTO> loginUser(@RequestBody UserDTO userDTO) {
         return ResponseEntity.ok(
                 this.userService.loginUserWithCredentials(
-                        userDTO.getEmail(), userDTO.getPassword()));
+                        userDTO.getEmail(), userDTO.getPass()));
     }
 
     @GetMapping(value = "/list")
@@ -41,17 +41,17 @@ public class UserController {
         return this.userService.getListAllUsersInBD();
     }
 
-    @DeleteMapping(value = "/deleteByDni/{dni}",
+/*    @DeleteMapping(value = "/deleteByDni/{dni}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public User deleteUserByDni(@PathVariable("dni") Integer dni) {
         return this.userService.deleteUserByDni(dni);
-    }
+    }*/
 
-    @DeleteMapping(value = "/deleteById/{id}",
+/*    @DeleteMapping(value = "/deleteById/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public User deleteUserById(@PathVariable("id") Integer id) {
         return this.userService.deleteUserById(id);
-    }
+    }*/
 
     @GetMapping(value = "/findUserByDni{dni}",
             produces = MediaType.APPLICATION_JSON_VALUE)

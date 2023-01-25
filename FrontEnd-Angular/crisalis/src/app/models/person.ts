@@ -8,6 +8,8 @@ export class Person {
     LastName!: String;
     DNI!:Number;
     Email!:String;
+    PhoneNumber!:String;
+    Address!:String;
     ActiveService!:ActiveService;
     BusinessSet = new Set<Business>();
     Orders = new Set<Order>();

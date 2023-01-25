@@ -32,11 +32,11 @@ public class UserDTO {
     private String phoneNumber;
 
     @JsonProperty("Password")
-    private String password;
+    private String pass;
 
     @JsonProperty("Role")
     private UserRole userRole;
 
-    @JsonProperty("Orders")
-    private HashSet<Order> orders;
+/*    @JsonProperty("Orders")
+    private HashSet<Order> orders;*/
 }

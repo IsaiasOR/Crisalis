@@ -51,7 +51,7 @@ public class User implements UserDetails {
     private String phoneNumber;
 
     @Column(name = "pass", nullable = false)
-    private String password;
+    private String pass;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false, length = 15)
@@ -62,9 +62,9 @@ public class User implements UserDetails {
     @Transient
     private Boolean locked = Boolean.FALSE;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @ToString.Exclude
-    private Set<Order> orders = new HashSet<>();
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @ToString.Exclude
+//    private Set<Order> orders = new HashSet<>();
 
     public User(UserDTO userDTO) {
         this.dni = userDTO.getDni();
@@ -72,9 +72,9 @@ public class User implements UserDetails {
         this.lastName = userDTO.getLastName();
         this.email = userDTO.getEmail();
         this.phoneNumber = userDTO.getPhoneNumber();
-        this.password = userDTO.getPassword();
+        this.pass = userDTO.getPass();
         this.userRole = userDTO.getUserRole();
-        this.orders = userDTO.getOrders();
+        //this.orders = userDTO.getOrders();
     }
 
     public UserDTO toDTO() {
@@ -86,16 +86,21 @@ public class User implements UserDetails {
                         .lastName(this.lastName)
                         .email(this.email)
                         .phoneNumber(this.phoneNumber)
-                        .password(this.password)
+                        .pass(this.pass)
                         .userRole(this.userRole)
-                        .orders((HashSet<Order>) this.orders)
+                        //.orders((HashSet<Order>) this.orders)
                         .build();
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(userRole.returnRole());
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(userRole.getRole());
         return Collections.singletonList(authority);
+    }
+
+    @Override
+    public String getPassword() {
+        return pass;
     }
 
     @Override

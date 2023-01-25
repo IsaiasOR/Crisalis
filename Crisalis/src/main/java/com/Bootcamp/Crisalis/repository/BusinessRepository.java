@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Repository
-@Transactional(readOnly = true)
 public interface BusinessRepository extends JpaRepository<Business, Integer> {
 
     Optional<BusinessDTO> findByCuit(Integer cuit);
