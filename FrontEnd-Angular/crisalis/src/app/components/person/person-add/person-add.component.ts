@@ -23,8 +23,7 @@ export class PersonAddComponent {
       DNI:[''],
       Email:[''],
       PhoneNumber:[''],
-      Address:[''],
-      BussinessSet:['']
+      Address:['']
     });
   }
 

@@ -10,21 +10,17 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Razón social</th>
                         <th>Fecha inicio de las actividades</th>
                         <th>C.U.I.T.</th>
-                        <th>Persona asociada</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let business of Business; let iControl=index">
-                        <td>{{ business.Id }}</td>
+                    <tr *ngFor="let business of Businesses; let iControl=index">
                         <td>{{ business.BusinessName }}</td>
-                        <td>{{ business.ActStartDate}}</td>
+                        <td>{{ business.ActStartDate }}</td>
                         <td>{{ business.CUIT }}</td>
-                        <td>{{ business.Clients }}</td>
                         <td> 
                             <a class="btn btn-info" href="/business-edity/{{ business.Id }}">Editar</a> | 
                             <a class="btn btn-danger" (click)="deleteRegister(business.Id,iControl)" role="button">Borrar</a>

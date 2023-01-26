@@ -3,14 +3,14 @@ import { Service } from "./service";
 
 export class Tax {
     Id!: Number;
-    Name!: String;
+    NameTax!: String;
     Percentage!: Number;
     Products = new Set<Product>();
     Services = new Set<Service>();
 
     constructor(name: String,
         percentage: Number) {
-            this.Name = name;
+            this.NameTax = name;
             this.Percentage = percentage;
     }
 }

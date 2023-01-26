@@ -20,8 +20,7 @@ export class BusinessAddComponent {
     this.formGroup=this.form.group({
       BusinessName:[''],
       StartDateAct:[''],
-      CUIT:[''],
-      Clients:['']
+      CUIT:['']
     });
   }
 

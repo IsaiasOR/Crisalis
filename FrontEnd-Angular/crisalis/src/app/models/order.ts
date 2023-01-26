@@ -20,6 +20,5 @@ export class Order {
             this.Amount = amount;
             this.DateCreated = dateCreated;
             this.Description = description;
-            this.Client = client;
     }
 }

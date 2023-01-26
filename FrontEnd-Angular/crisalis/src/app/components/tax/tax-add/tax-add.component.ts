@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, EmailValidator } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { TaxService } from 'src/app/services/tax/tax.service';
 import { Router } from '@angular/router';
 
@@ -18,8 +18,8 @@ export class TaxAddComponent {
     ) {
 
     this.formGroup=this.form.group({
-      name:[''],
-      amount:['']
+      NameTax:[''],
+      Percentage:['']
     });
   }
 

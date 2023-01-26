@@ -7,13 +7,13 @@ export class Business {
     CUIT!: String;
     Clients = new Set<Person>();
 
-    constructor(businessName:String,
+    constructor(id:Number,
+        businessName:String,
         actStartDate:Date,
-        cuit:String,
-        clients:Set<Person>) {
+        cuit:String) {
+            this.Id = id;
             this.BusinessName = businessName;
             this.ActStartDate = actStartDate;
             this.CUIT = cuit;
-            this.Clients = clients;
     }
 }

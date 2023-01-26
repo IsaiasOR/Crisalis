@@ -17,8 +17,8 @@ export class ProductAddComponent {
     ) {
 
     this.formGroup=this.form.group({
-      name:[''],
-      price:['']
+      Name:[''],
+      BaseAmount:['']
     });
   }
 

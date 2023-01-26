@@ -8,14 +8,14 @@ import { BusinessService } from 'src/app/services/business/business.service';
 })
 
 export class BusinessComponent implements OnInit{
-  Business:any;
+  Businesses:any;
 
   constructor(private businessService:BusinessService) {}
 
   ngOnInit(): void {
     this.businessService.getBusiness().subscribe(response => {
       console.log(response);
-      this.Business=response;
+      this.Businesses=response;
     });
   }
 
@@ -24,7 +24,7 @@ export class BusinessComponent implements OnInit{
     console.log(iControl);
     if(window.confirm("¿Desea borrar el registro?")) {
       this.businessService.deleteBusiness(id).subscribe((response) => {
-        this.Business.splice(iControl,1);
+        this.Businesses.splice(iControl,1);
       });
     }
   }

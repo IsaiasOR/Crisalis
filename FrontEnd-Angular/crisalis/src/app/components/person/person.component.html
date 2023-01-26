@@ -10,27 +10,25 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>D.N.I.</th>
                         <th>Correo electrónico</th>
+                        <th>Número de teléfono</th>
+                        <th>Dirección</th>
                         <th>Servicio activo</th>
-                        <th>Empresas relacionadas</th>
-                        <th>Pedidos relacionados</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let person of Persons; let iControl=index">
-                        <td>{{ person.Id }}</td>
-                        <td>{{ person.Firstname }}</td>
-                        <td>{{ person.Lastname}}</td>
+                        <td>{{ person.FirstName }}</td>
+                        <td>{{ person.LastName}}</td>
                         <td>{{ person.DNI }}</td>
                         <td>{{ person.Email }}</td>
+                        <td>{{ person.PhoneNumber }}</td>
+                        <td>{{ person.Address }}</td>
                         <td>{{ person.ActiveService }}</td>
-                        <td>{{ person.BusinessSet }}</td>
-                        <td>{{ person.Orders }}</td>
                         <td> 
                             <a class="btn btn-info" href="/person-edity/{{ person.Id }}">Editar</a> | 
                             <a class="btn btn-danger" role="button">Borrar</a>

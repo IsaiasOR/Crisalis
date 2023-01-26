@@ -10,16 +10,14 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Nombre</th>
                         <th>Porcentage</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let tax of Taxes; let iControl=index">
-                        <td>{{ tax.Id }}</td>
-                        <td>{{ tax.Name }}</td>
-                        <td>{{ tax.Percentage}}</td>
+                        <td>{{ tax.NameTax }}</td>
+                        <td>{{ tax.Percentage }}%</td>
                         <td> 
                             <a class="btn btn-info" href="/tax-edity/{{ tax.Id }}">Editar</a> | 
                             <a class="btn btn-danger" (click)="deleteRegister(tax.Id,iControl)" role="button">Borrar</a>

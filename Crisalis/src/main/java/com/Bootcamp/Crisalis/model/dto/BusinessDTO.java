@@ -1,6 +1,5 @@
 package com.Bootcamp.Crisalis.model.dto;
 
-import com.Bootcamp.Crisalis.model.Client;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.HashSet;
 
 @Data
 @NoArgsConstructor

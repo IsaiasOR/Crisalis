@@ -2,6 +2,7 @@ package com.Bootcamp.Crisalis.service;
 
 import com.Bootcamp.Crisalis.exception.custom.*;
 import com.Bootcamp.Crisalis.model.Client;
+import com.Bootcamp.Crisalis.model.Product;
 import com.Bootcamp.Crisalis.model.dto.BusinessDTO;
 import com.Bootcamp.Crisalis.model.dto.ClientDTO;
 import com.Bootcamp.Crisalis.repository.ClientRepository;
@@ -10,6 +11,7 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

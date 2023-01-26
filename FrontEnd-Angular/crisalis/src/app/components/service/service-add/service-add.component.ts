@@ -18,8 +18,8 @@ export class ServiceAddComponent {
     ) {
 
     this.formGroup=this.form.group({
-      name:[''],
-      price:['']
+      Name:[''],
+      BaseAmount:['']
     });
   }
 
