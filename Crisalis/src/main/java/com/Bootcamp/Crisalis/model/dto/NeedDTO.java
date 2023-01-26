@@ -25,9 +25,9 @@ public class NeedDTO {
     @JsonProperty("BaseAmount")
     private BigDecimal baseAmount;
 
-    @JsonProperty("Taxes")
+/*    @JsonProperty("Taxes")
     private HashSet<Tax> taxes;
 
     @JsonProperty("Order")
-    private Order order;
+    private Order order;*/
 }

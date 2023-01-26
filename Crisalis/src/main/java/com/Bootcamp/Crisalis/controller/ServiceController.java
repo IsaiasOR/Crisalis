@@ -27,8 +27,10 @@ public class ServiceController {
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    public ServiceDTO deleteServiceById(@PathVariable("id") Integer id) {
-        return this.service.deleteServiceById(id);
+    public String deleteServiceById(@PathVariable("id") Integer id) {
+        String msj = "Removal successful";
+        this.service.deleteServiceById(id);
+        return msj;
     }
 
     @GetMapping(value = "/list",
@@ -39,7 +41,7 @@ public class ServiceController {
 
     @GetMapping(value = "/findService/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ServiceDTO findServiceById(@PathVariable("id") Integer id) {
+    public Service findServiceById(@PathVariable("id") Integer id) {
         return this.service.findServiceById(id);
     }
 

@@ -21,7 +21,7 @@ public class TaxDTO {
     @JsonProperty("Percentage")
     private Double percentage;
 
-    @JsonProperty("Needs")
-    private HashSet<Need> needs;
+/*    @JsonProperty("Needs")
+    private HashSet<Need> needs;*/
 
 }

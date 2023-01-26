@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { UserLogin } from 'src/app/models/user';
+import { User } from 'src/app/models/user';
 
 
 @Injectable({
@@ -14,7 +14,7 @@ export class LoginService {
 
   constructor(private httpClient: HttpClient) {}
 
-  loginUser(userLogin: UserLogin): Observable<object> {
+  loginUser(userLogin: User): Observable<object> {
     console.log(userLogin);
     return this.httpClient.post(this.baseUrl, userLogin);
   }

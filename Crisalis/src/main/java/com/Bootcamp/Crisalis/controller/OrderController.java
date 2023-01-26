@@ -32,11 +32,11 @@ public class OrderController {
         return this.orderService.getListAllOrderInBD();
     }
 
-    @DeleteMapping(value = "/delete/{id}",
+/*    @DeleteMapping(value = "/delete/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Order deleteOrder(@PathVariable("id") Integer id) {
         return this.orderService.deleteOrder(id);
-    }
+    }*/
 
     @GetMapping(value = "/findOrder/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)

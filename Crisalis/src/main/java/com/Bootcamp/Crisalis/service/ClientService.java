@@ -45,7 +45,7 @@ public class ClientService {
         return Boolean.TRUE;
     }
 
-    public Client deleteClientByDni(Integer dni) {
+/*    public Client deleteClientByDni(Integer dni) {
         if (checkClientDTO(ClientDTO
                 .builder()
                 .dni(dni)
@@ -54,27 +54,25 @@ public class ClientService {
         }
         throw new NotEliminatedException("Error in deleting client");
     }
-
-    public Client deleteClientById(Integer id) {
-        if (this.clientRepository.existsById(id)) {
-            return this.clientRepository.deleteClientById(id);
+*/
+    public void deleteClientById(Integer id) {
+        if (!this.clientRepository.existsById(id)) {
+            throw new NotEliminatedException("Business doesn't exist");
         }
-        throw new NotEliminatedException("Business doesn't exist");
+        this.clientRepository.deleteById(id);
     }
 
     public ClientDTO findClientByDni(Integer dni) {
-        if (
-                this.checkClientDTO(ClientDTO
-                                .builder()
-                                .dni(dni)
-                                .build())
-        ) {
-            return this.clientRepository.findByDni(dni)
-                    .orElseThrow(
-                            () -> new UnauthorizedException("Client doesn't exist")
-                    ).toDTO();
+        if(ObjectUtils.isEmpty(dni)) {
+            throw new EmptyElementException("DNI is empty");
         }
-        throw new UnauthorizedException("Invalid credentials");
+        if(dni < 1000000) {
+            throw new UnauthorizedException("Invalid credentials");
+        }
+        return this.clientRepository.findByDni(dni)
+                .orElseThrow(
+                        () -> new UnauthorizedException("Client doesn't exist")
+                ).toDTO();
     }
 
     public List<ClientDTO> getListAllClientsInBD() {
@@ -85,7 +83,7 @@ public class ClientService {
                 .collect(Collectors.toList());
     }
 
-    public ClientDTO findClientById(Integer id) {
+    public Client findClientById(Integer id) {
         if (this.clientRepository.existsById(id)) {
             return this.clientRepository.findClientById(id);
         }
@@ -93,50 +91,31 @@ public class ClientService {
     }
 
     public Client updateClient(ClientDTO clientDTO, Integer id) {
+        Client newClient = clientRepository.getReferenceById(id);
+
         if (this.clientRepository.existsById(id)) {
-            if (checkClientDTO(ClientDTO
-                    .builder()
-                    .dni(clientDTO.getDni())
-                    .build())) {
-                this.clientRepository.getReferenceById(id).setDni(clientDTO.getDni());
+            if (!ObjectUtils.isEmpty(clientDTO.getDni())) {
+                newClient.setDni(clientDTO.getDni());
             }
-            if (checkClientDTO(ClientDTO
-                    .builder()
-                    .firstname(clientDTO.getFirstname())
-                    .build())) {
-                this.clientRepository.getReferenceById(id).setFirstname(clientDTO.getFirstname());
+            if (!StringUtils.isEmpty(clientDTO.getLastname())) {
+                newClient.setLastname(clientDTO.getLastname());
             }
-            if (checkClientDTO(ClientDTO
-                    .builder()
-                    .lastname(clientDTO.getLastname())
-                    .build())) {
-                this.clientRepository.getReferenceById(id).setLastname(clientDTO.getLastname());
+            if (!StringUtils.isEmpty(clientDTO.getFirstname())) {
+                newClient.setFirstname(clientDTO.getFirstname());
             }
-            if (checkClientDTO(ClientDTO
-                    .builder()
-                    .email(clientDTO.getEmail())
-                    .build())) {
-                this.clientRepository.getReferenceById(id).setEmail(clientDTO.getEmail());
+            if (!StringUtils.isEmpty(clientDTO.getEmail())) {
+                newClient.setEmail(clientDTO.getEmail());
             }
-            if (checkClientDTO(ClientDTO
-                    .builder()
-                    .activeService(clientDTO.getActiveService())
-                    .build())) {
-                this.clientRepository.getReferenceById(id).setActiveService(clientDTO.getActiveService());
+            if (!ObjectUtils.isEmpty(clientDTO.getActiveService())) {
+                newClient.setActiveService(clientDTO.getActiveService());
             }
-            if (checkClientDTO(ClientDTO
-                    .builder()
-                    .businessSet(clientDTO.getBusinessSet())
-                    .build())) {
-                this.clientRepository.getReferenceById(id).setBusinessSet(clientDTO.getBusinessSet());
+            if (!StringUtils.isEmpty(clientDTO.getPhoneNumber())) {
+                newClient.setPhoneNumber(clientDTO.getPhoneNumber());
             }
-            if (checkClientDTO(ClientDTO
-                    .builder()
-                    .orders(clientDTO.getOrders())
-                    .build())) {
-                this.clientRepository.getReferenceById(id).setOrders(clientDTO.getOrders());
+            if (!StringUtils.isEmpty(clientDTO.getAddress())) {
+                newClient.setAddress(clientDTO.getAddress());
             }
-            return this.clientRepository.getReferenceById(id);
+            return this.clientRepository.save(newClient);
         }
         throw new NotUpdateException("Client doesn't exist");
     }

@@ -16,7 +16,7 @@ public class CrisalisApplication {
 		SpringApplication.run(CrisalisApplication.class, args);
 	}
 
-	@Bean
+/*	@Bean
 	public CorsFilter corsFilter() {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		CorsConfiguration configuration = new CorsConfiguration();
@@ -30,5 +30,5 @@ public class CrisalisApplication {
 		configuration.addAllowedMethod("DELETE");
 		source.registerCorsConfiguration("/**", configuration);
 		return new CorsFilter(source);
-	}
+	}*/
 }

@@ -35,7 +35,7 @@ public class TaxService {
         return Boolean.TRUE;
     }
 
-
+/*
     public Tax deleteTaxByName(String name) {
         if (checkTaxDTO(TaxDTO
                 .builder()
@@ -44,17 +44,17 @@ public class TaxService {
             return this.taxRepository.deleteByName(name);
         }
         throw new NotEliminatedException("Error in deleting tax");
-    }
+    }*/
 
 
-    public TaxDTO deleteTaxById(Integer id) {
-        if (this.taxRepository.existsById(id)) {
-            return this.taxRepository.deleteTaxById(id);
+    public void deleteTaxById(Integer id) {
+        if(!this.taxRepository.existsById(id)) {
+            throw new NotEliminatedException("Error in deleting tax");
         }
-        throw new NotEliminatedException("Error in deleting tax");
+        this.taxRepository.deleteById(id);
     }
 
-    public TaxDTO findByName(String name) {
+/*    public TaxDTO findByName(String name) {
         if (this.checkTaxDTO(TaxDTO
                         .builder()
                         .name(name)
@@ -65,7 +65,7 @@ public class TaxService {
                     ).toDTO();
         }
         throw new UnauthorizedException("Invalid credentials");
-    }
+    }*/
 
     public List<TaxDTO> getListAllTaxesInBD() {
         return this.taxRepository
@@ -75,34 +75,24 @@ public class TaxService {
                 .collect(Collectors.toList());
     }
 
-    public TaxDTO findTaxById(Integer id) {
-        if (this.taxRepository.existsById(id)) {
-            return this.taxRepository.findTaxById(id);
-        }
-        throw new UnauthorizedException("Tax doesn't exist");
+    public Tax findTaxById(Integer id) {
+        return this.taxRepository.findById(id)
+                .orElseThrow(
+                        () -> new UnauthorizedException("Tax doesn't exist")
+                );
     }
 
     public Tax updateTax(TaxDTO taxDTO, Integer id) {
+        Tax newTax = taxRepository.getReferenceById(id);
+
         if (this.taxRepository.existsById(id)) {
-            if (this.checkTaxDTO(TaxDTO
-                    .builder()
-                    .name(taxDTO.getName())
-                    .build())) {
-                this.taxRepository.getReferenceById(id).setName(taxDTO.getName());
+            if (!StringUtils.isEmpty(taxDTO.getName())) {
+                newTax.setName(taxDTO.getName());
             }
-            if (this.checkTaxDTO(TaxDTO
-                    .builder()
-                    .percentage(taxDTO.getPercentage())
-                    .build())) {
-                this.taxRepository.getReferenceById(id).setPercentage(taxDTO.getPercentage());
+            if (!ObjectUtils.isEmpty(taxDTO.getPercentage())) {
+                newTax.setPercentage(taxDTO.getPercentage());
             }
-            if (this.checkTaxDTO(TaxDTO
-                    .builder()
-                    .needs(taxDTO.getNeeds())
-                    .build())) {
-                this.taxRepository.getReferenceById(id).setNeeds(taxDTO.getNeeds());
-            }
-            return this.taxRepository.getReferenceById(id);
+            return this.taxRepository.save(newTax);
         }
         throw new NotUpdateException("Tax doesn't exist");
     }

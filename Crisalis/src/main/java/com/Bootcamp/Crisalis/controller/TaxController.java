@@ -34,13 +34,15 @@ public class TaxController {
 
     @DeleteMapping(value = "/delete/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public TaxDTO deleteTaxById(@PathVariable("id")  Integer id) {
-        return this.taxService.deleteTaxById(id);
+    public String deleteTaxById(@PathVariable("id")  Integer id) {
+        String msj = "Removal successful";
+        this.taxService.deleteTaxById(id);
+        return msj;
     }
 
     @GetMapping(value = "/findTax/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public TaxDTO findTaxById(@PathVariable("id")  Integer id) {
+    public Tax findTaxById(@PathVariable("id")  Integer id) {
         return this.taxService.findTaxById(id);
     }
 

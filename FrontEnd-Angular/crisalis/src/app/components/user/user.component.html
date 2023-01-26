@@ -22,17 +22,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let user of User; let iControl=index">
-                        <td>{{ user.Id }}</td>
-                        <td>{{ user.DNI }}</td>
-                        <td>{{ user.FirstName }}</td>
-                        <td>{{ user.LastName }}</td>
-                        <td>{{ user.Email }}</td>
-                        <td>{{ user.PhoneNumber }}</td>
-                        <td>{{ user.Role }}</td>
+                    <tr >
+                        <td></td>
                         <td> 
-                            <a class="btn btn-info" href="/user-modify-data/{{ user.id }}">Editar</a> | 
-                            <a class="btn btn-danger" (click)="deleteRegister(user.id,iControl)" role="button">Borrar</a>
+                            <a class="btn btn-info">Editar</a> | 
+                            <a class="btn btn-danger" role="button">Borrar</a>
                         </td>
                     </tr>
                 </tbody>

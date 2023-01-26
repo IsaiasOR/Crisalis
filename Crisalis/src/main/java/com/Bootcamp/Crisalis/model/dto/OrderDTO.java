@@ -29,12 +29,12 @@ public class OrderDTO {
 /*    @JsonProperty("User")
     private User user;*/
 
-    @JsonProperty("Products")
+/*    @JsonProperty("Products")
     private HashSet<Product> products;
 
     @JsonProperty("Services")
     private HashSet<Service> services;
 
     @JsonProperty("Client")
-    private Client client;
+    private Client client;*/
 }

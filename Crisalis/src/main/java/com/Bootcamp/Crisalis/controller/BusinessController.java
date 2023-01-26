@@ -26,40 +26,42 @@ public class BusinessController {
         return this.businessService.saveBusiness(businessDTO);
     }
 
-    @DeleteMapping(value = "/deleteByCuit/{cuit}",
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public Business deleteBusinessByCuit(@PathVariable("cuit") Integer cuit) {
-        return this.businessService.deleteBusinessByCuit(cuit);
-    }
-
-    @DeleteMapping(value = "/deleteById/{id}",
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public Business deleteBusinessById(@PathVariable("id") Integer id) {
-        return this.businessService.deleteBusinessById(id);
-    }
-
     @GetMapping(value = "/list",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<BusinessDTO> getListAllBusinessInBD() {
-        return businessService.getListAllBusinessInBD();
+        return this.businessService.getListAllBusinessInBD();
     }
 
-    @GetMapping(value = "/findBusiness/{cuit}",
+    @GetMapping(value = "/findBusinessByCuit/{cuit}",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public BusinessDTO findBusinessByCuit(@PathVariable("cuit") Integer cuit) {
+    public Business findBusinessByCuit(@PathVariable("cuit") Integer cuit) {
         return this.businessService.findByCuit(cuit);
     }
 
     @GetMapping(value = "/findBusinessById/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public BusinessDTO findBusinessById(@PathVariable("id") Integer id) {
+    public Business findBusinessById(@PathVariable("id") Integer id) {
         return this.businessService.findBusinessById(id);
     }
 
     @PutMapping(value = "/update/{id}",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public Business updateBusiness(@RequestBody BusinessDTO businessDTO, @PathVariable("id") Integer id) {
+    public Business updateBusiness(@RequestBody BusinessDTO businessDTO,
+                                   @PathVariable("id") Integer id) {
         return this.businessService.updateBusiness(businessDTO, id);
+    }
+
+/*    @DeleteMapping(value = "/deleteByCuit/{cuit}",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public Optional<Business> deleteBusinessByCuit(@PathVariable("cuit") Integer cuit) {
+        return this.businessService.deleteBusinessByCuit(cuit);
+    }*/
+
+    @DeleteMapping(value = "/deleteById/{id}")
+    public String deleteBusinessById(@PathVariable("id") Integer id) {
+        String msj = "Removal successful";
+        this.businessService.deleteBusinessById(id);
+        return msj;
     }
 }

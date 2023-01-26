@@ -37,18 +37,18 @@ public class ServiceService {
         return Boolean.TRUE;
     }
 
-    public ServiceDTO deleteServiceById(Integer id) {
-        if (this.serviceRepository.existsById(id)) {
-            return this.serviceRepository.deleteServiceById(id);
+    public void deleteServiceById(Integer id) {
+        if (!this.serviceRepository.existsById(id)) {
+            throw new NotEliminatedException("Service doesn't exist");
         }
-        throw new NotEliminatedException("Service doesn't exist");
+        this.serviceRepository.deleteById(id);
     }
 
-    public ServiceDTO findServiceById(Integer id) {
+    public Service findServiceById(Integer id) {
             return this.serviceRepository.findById(id)
                     .orElseThrow(
                             () -> new UnauthorizedException("Service doesn't exist")
-                    ).toDTO();
+                    );
     }
 
     public List<ServiceDTO> getListAllServicesInBD() {
@@ -60,32 +60,22 @@ public class ServiceService {
     }
 
     public Service updateService(ServiceDTO serviceDTO, Integer id) {
+        Service newService = serviceRepository.getReferenceById(id);
+
         if (this.serviceRepository.existsById(id)) {
-            if (this.checkServiceDTO(ServiceDTO
-                    .builder()
-                    .name(serviceDTO.getName())
-                    .build())) {
-                this.serviceRepository.getReferenceById(id).setName(serviceDTO.getName());
+            if (!StringUtils.isEmpty(serviceDTO.getName())) {
+                newService.setName(serviceDTO.getName());
             }
-            if (this.checkServiceDTO(ServiceDTO
-                    .builder()
-                    .baseAmount(serviceDTO.getBaseAmount())
-                    .build())) {
-                this.serviceRepository.getReferenceById(id).setBaseAmount(serviceDTO.getBaseAmount());
+            if (!ObjectUtils.isEmpty(serviceDTO.getBaseAmount())) {
+                newService.setBaseAmount(serviceDTO.getBaseAmount());
             }
-            if (this.checkServiceDTO(ServiceDTO
-                    .builder()
-                    .monthlyCost(serviceDTO.getMonthlyCost())
-                    .build())) {
-                this.serviceRepository.getReferenceById(id).setMonthlyCost(serviceDTO.getMonthlyCost());
+            if (!ObjectUtils.isEmpty(serviceDTO.getMonthlyCost())) {
+                newService.setMonthlyCost(serviceDTO.getMonthlyCost());
             }
-            if (this.checkServiceDTO(ServiceDTO
-                    .builder()
-                    .supportChange(serviceDTO.getSupportChange())
-                    .build())) {
-                this.serviceRepository.getReferenceById(id).setSupportChange(serviceDTO.getSupportChange());
+            if (!ObjectUtils.isEmpty(serviceDTO.getSupportChange())) {
+                newService.setSupportChange(serviceDTO.getSupportChange());
             }
-            return this.serviceRepository.getReferenceById(id);
+            return this.serviceRepository.save(newService);
         }
         throw new NotUpdateException("Service doesn't exist");
     }

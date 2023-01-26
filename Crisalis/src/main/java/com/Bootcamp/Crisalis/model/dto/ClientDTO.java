@@ -1,15 +1,10 @@
 package com.Bootcamp.Crisalis.model.dto;
 
-import com.Bootcamp.Crisalis.enums.ActiveService;
-import com.Bootcamp.Crisalis.model.Business;
-import com.Bootcamp.Crisalis.model.Order;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.HashSet;
 
 @Data
 @NoArgsConstructor
@@ -18,7 +13,7 @@ import java.util.HashSet;
 public class ClientDTO {
 
     @JsonProperty("ActiveService")
-    private ActiveService activeService;
+    private Boolean activeService;
 
     @JsonProperty("FirstName")
     private String firstname;
@@ -32,9 +27,15 @@ public class ClientDTO {
     @JsonProperty("Email")
     private String email;
 
-    @JsonProperty("BusinessSet")
+    @JsonProperty("Address")
+    private String address;
+
+    @JsonProperty("PhoneNumber")
+    private String phoneNumber;
+
+/*    @JsonProperty("BusinessSet")
     private HashSet<Business> businessSet;
 
     @JsonProperty("Orders")
-    private HashSet<Order> orders;
+    private HashSet<Order> orders;*/
 }

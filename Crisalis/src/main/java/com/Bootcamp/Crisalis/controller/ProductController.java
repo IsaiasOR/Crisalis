@@ -27,8 +27,10 @@ public class ProductController {
     }
 
     @DeleteMapping(value = "/deleteById/{id}")
-    public Product deleteProductById(@PathVariable("id") Integer id) {
-        return this.productService.deleteProductById(id);
+    public String deleteProductById(@PathVariable("id") Integer id) {
+        String msj = "Removal successful";
+        this.productService.deleteProductById(id);
+        return msj;
     }
 
     @GetMapping(value = "/list",
@@ -39,7 +41,7 @@ public class ProductController {
 
     @GetMapping(value = "/findProduct/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ProductDTO findProductByNeed(@PathVariable("id") Integer id) {
+    public Product findProductById(@PathVariable("id") Integer id) {
         return this.productService.findProductById(id);
     }
 

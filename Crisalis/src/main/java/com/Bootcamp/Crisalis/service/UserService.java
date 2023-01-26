@@ -35,9 +35,9 @@ public class UserService {
             throw new IllegalStateException("Email already taken");
         }
 
-        //Codificación de la contraseña
+        /*//Codificación de la contraseña
         String encodedPassword = bCryptPasswordEncoder.encode(userDTO.getPass());
-        userDTO.setPass(encodedPassword);
+        userDTO.setPass(encodedPassword);*/
 
         //Check User
         if(checkUserDTO(userDTO, Boolean.FALSE)) {
@@ -55,7 +55,6 @@ public class UserService {
                                 .build()
                         ,Boolean.TRUE)
         ) {
-            String encodedPassword = bCryptPasswordEncoder.encode(pass);
             return this.userRepository.findByEmailAndPass(email, pass)
                     .orElseThrow(
                             () -> new UnauthorizedException("Invalid credentials")
@@ -117,19 +116,16 @@ public class UserService {
     }*/
 
     public UserDTO findByDni(Integer dni) {
-        if (
-                this.checkUserDTO(UserDTO
-                                .builder()
-                                .dni(dni)
-                                .build()
-                        ,Boolean.FALSE)
-        ) {
-            return this.userRepository.findByDni(dni)
-                    .orElseThrow(
-                            () -> new UnauthorizedException("User doesn't exist")
-                    ).toDTO();
+        if(ObjectUtils.isEmpty(dni)) {
+            throw new EmptyElementException("DNI is empty");
         }
-        throw new UnauthorizedException("Invalid credentials");
+        if(dni < 1000000) {
+            throw new UnauthorizedException("Invalid credentials");
+        }
+        return this.userRepository.findByDni(dni)
+                .orElseThrow(
+                        () -> new UnauthorizedException("User doesn't exist")
+                ).toDTO();
     }
 
 /*    public User deleteUserById(Integer id) {
@@ -139,7 +135,7 @@ public class UserService {
         throw new NotEliminatedException("Error in deleting user");
     }*/
 
-    public UserDTO findById(Integer id) {
+    public User findById(Integer id) {
         if (this.userRepository.existsById(id)) {
             return this.userRepository.findUserById(id);
         }
@@ -147,55 +143,31 @@ public class UserService {
     }
 
     public User updateUser(UserDTO userDTO, Integer id) {
+        User newUser = userRepository.getReferenceById(id);
+
         if (this.userRepository.existsById(id)) {
-            if (this.checkUserDTO(UserDTO
-                    .builder()
-                    .dni(userDTO.getDni())
-                    .build(), Boolean.FALSE)) {
-                this.userRepository.getReferenceById(id).setDni(userDTO.getDni());
+            if(!StringUtils.isEmpty(userDTO.getEmail())) {
+                newUser.setEmail(userDTO.getEmail());
             }
-            if (this.checkUserDTO(UserDTO
-                    .builder()
-                    .firstName(userDTO.getFirstName())
-                    .build(), Boolean.FALSE)) {
-                this.userRepository.getReferenceById(id).setFirstName(userDTO.getFirstName());
+            if(!StringUtils.isEmpty(userDTO.getPass())) {
+                newUser.setPass(userDTO.getPass());
             }
-            if (this.checkUserDTO(UserDTO
-                    .builder()
-                    .lastName(userDTO.getLastName())
-                    .build(), Boolean.FALSE)) {
-                this.userRepository.getReferenceById(id).setLastName(userDTO.getLastName());
+            if(!StringUtils.isEmpty(userDTO.getFirstName())) {
+                newUser.setFirstName(userDTO.getFirstName());
             }
-            if (this.checkUserDTO(UserDTO
-                    .builder()
-                    .email(userDTO.getEmail())
-                    .build(), Boolean.FALSE)) {
-                this.userRepository.getReferenceById(id).setEmail(userDTO.getEmail());
+            if(!StringUtils.isEmpty(userDTO.getLastName())) {
+                newUser.setLastName(userDTO.getLastName());
             }
-            if (this.checkUserDTO(UserDTO
-                    .builder()
-                    .phoneNumber(userDTO.getPhoneNumber())
-                    .build(), Boolean.FALSE)) {
-                this.userRepository.getReferenceById(id).setPhoneNumber(userDTO.getPhoneNumber());
+            if(!ObjectUtils.isEmpty(userDTO.getDni())) {
+                newUser.setDni(userDTO.getDni());
             }
-            if (this.checkUserDTO(UserDTO
-                    .builder()
-                    .pass(userDTO.getPass())
-                    .build(), Boolean.FALSE)) {
-                this.userRepository.getReferenceById(id).setPass(userDTO.getPass());
+            if(!StringUtils.isEmpty(userDTO.getPhoneNumber())) {
+                newUser.setPhoneNumber(userDTO.getPhoneNumber());
             }
-            if (this.checkUserDTO(UserDTO
-                    .builder()
-                    .userRole(userDTO.getUserRole())
-                    .build(), Boolean.FALSE)) {
-                this.userRepository.getReferenceById(id).setUserRole(userDTO.getUserRole());
+            if(!ObjectUtils.isEmpty(userDTO.getUserRole())) {
+                newUser.setUserRole(userDTO.getUserRole());
             }
-/*            if (this.checkUserDTO(UserDTO
-                    .builder()
-                    //.orders(userDTO.getOrders())
-                    .build(), Boolean.FALSE)) {
-                this.userRepository.getReferenceById(id).setOrders(userDTO.getOrders());
-            }*/
+            return this.userRepository.save(newUser);
         }
         throw new NotUpdateException("User doesn't exist");
     }

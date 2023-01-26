@@ -1,8 +1,6 @@
 package com.Bootcamp.Crisalis.controller;
 
-import com.Bootcamp.Crisalis.model.Business;
 import com.Bootcamp.Crisalis.model.Client;
-import com.Bootcamp.Crisalis.model.dto.BusinessDTO;
 import com.Bootcamp.Crisalis.model.dto.ClientDTO;
 import com.Bootcamp.Crisalis.service.ClientService;
 import org.springframework.http.MediaType;
@@ -28,16 +26,18 @@ public class ClientController {
         return this.clientService.saveClient(clientDTO);
     }
 
-    @DeleteMapping(value = "/deleteByDni/{dni}",
+/*   @DeleteMapping(value = "/deleteByDni/{dni}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Client deleteClientByDni(@PathVariable("dni") Integer dni) {
         return this.clientService.deleteClientByDni(dni);
-    }
+    }*/
 
     @DeleteMapping(value = "/deleteById/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public Client deleteClientById(@PathVariable("id") Integer id) {
-        return this.clientService.deleteClientById(id);
+    public String deleteClientById(@PathVariable("id") Integer id) {
+        String msj = "Removal successful";
+        this.clientService.deleteClientById(id);
+        return msj;
     }
 
     @GetMapping(value = "/list",
@@ -46,15 +46,15 @@ public class ClientController {
         return clientService.getListAllClientsInBD();
     }
 
-    @GetMapping(value = "/findClient/{dni}",
+    @GetMapping(value = "/findClientByDni/{dni}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ClientDTO findClientByDni(@PathVariable("dni") Integer dni) {
         return this.clientService.findClientByDni(dni);
     }
 
-    @GetMapping(value = "/findClient/{id}",
+    @GetMapping(value = "/findClientById/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ClientDTO findClientById(@PathVariable("id") Integer id) {
+    public Client findClientById(@PathVariable("id") Integer id) {
         return this.clientService.findClientById(id);
     }
 

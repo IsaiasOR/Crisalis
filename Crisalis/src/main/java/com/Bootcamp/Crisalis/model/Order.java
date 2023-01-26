@@ -49,7 +49,7 @@ public class Order {
     @ToString.Exclude
     private User user;*/
 
-    @OneToMany(
+/*    @OneToMany(
             fetch = FetchType.EAGER,
             mappedBy = "order",
             cascade = CascadeType.ALL
@@ -72,7 +72,7 @@ public class Order {
     )
     @JoinColumn(name = "id_client")
     @ToString.Exclude
-    private Client client;
+    private Client client;*/
 
     //@Transient
     //private final static int TOP_DISCOUNT = 0;
@@ -85,9 +85,9 @@ public class Order {
         this.amount = orderDTO.getAmount();
         //this.user = orderDTO.getUser();
         //this.needs = orderDTO.getNeeds();
-        this.products = orderDTO.getProducts();
+/*        this.products = orderDTO.getProducts();
         this.services = orderDTO.getServices();
-        this.client = orderDTO.getClient();
+        this.client = orderDTO.getClient();*/
     }
 
     public OrderDTO toDTO() {
@@ -97,9 +97,9 @@ public class Order {
                 .amount(this.amount)
                 //.user(this.user)
                 //.needs((HashSet<Need>) this.needs)
-                .products((HashSet<Product>) this.products)
+/*                .products((HashSet<Product>) this.products)
                 .services((HashSet<Service>) this.services)
-                .client(this.client)
+                .client(this.client)*/
                 .build();
     }
 

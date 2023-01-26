@@ -20,8 +20,7 @@ public class Tax {
     @SequenceGenerator(
             name = "tax_sequence",
             sequenceName = "tax_sequence",
-            allocationSize = 1,
-            initialValue = 1
+            allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
@@ -36,14 +35,14 @@ public class Tax {
     @Column(name = "percentage")
     private Double percentage;
 
-    @ManyToMany(mappedBy = "taxes", cascade = CascadeType.ALL)
+/*    @ManyToMany(mappedBy = "taxes", cascade = CascadeType.ALL)
     @ToString.Exclude
-    private Set<Need> needs = new HashSet<>();
+    private Set<Need> needs = new HashSet<>();*/
 
     public Tax(TaxDTO taxDTO) {
         this.name = taxDTO.getName();
         this.percentage = taxDTO.getPercentage();
-        this.needs = taxDTO.getNeeds();
+        //this.needs = taxDTO.getNeeds();
         //this.services = taxDTO.getServices();
         //this.products = taxDTO.getProducts();
     }
@@ -53,7 +52,7 @@ public class Tax {
                 .builder()
                 .name(this.name)
                 .percentage(this.percentage)
-                .needs((HashSet<Need>) this.needs)
+                //.needs((HashSet<Need>) this.needs)
                 //.services((HashSet<Service>) this.services)
                 //.products((HashSet<Product>) this.products)
                 .build();

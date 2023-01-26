@@ -35,45 +35,37 @@ public class BusinessService {
         if (ObjectUtils.isEmpty(businessDTO.getActStartDate())) {
             throw new EmptyElementException("Activities start date is empty");
         }
-        if (ObjectUtils.isEmpty(businessDTO.getClients())) {
+/*        if (ObjectUtils.isEmpty(businessDTO.getClients())) {
             throw new EmptyElementException("Client is empty");
-        }
+        }*/
         return Boolean.TRUE;
     }
 
-    public Business deleteBusinessByCuit(Integer cuit) {
-        if (checkBusinessDTO(BusinessDTO
-                .builder()
-                .cuit(cuit)
-                .build())) {
-            return this.businessRepository.deleteByCuit(cuit);
+/*    public Optional<Business> deleteBusinessByCuit(Integer cuit) {
+        if (ObjectUtils.isEmpty(cuit)) {
+            throw new EmptyElementException("CUIT is empty");
         }
-        throw new NotEliminatedException("Error in deleting client");
+        return this.businessRepository.deleteByCuit(cuit);
+    }*/
+
+    public void deleteBusinessById(Integer id) {
+        if (!this.businessRepository.existsById(id)) {
+            throw new NotEliminatedException("Error in deleting business");
+        }
+        this.businessRepository.deleteById(id);
     }
 
-    public Business deleteBusinessById(Integer id) {
-        if (this.businessRepository.existsById(id)) {
-            return this.businessRepository.deleteBusinessById(id);
+    public Business findByCuit(Integer cuit) {
+        if(ObjectUtils.isEmpty(cuit)) {
+            throw new EmptyElementException("CUIT is empty");
         }
-        throw new NotEliminatedException("Error in deleting client");
+        return this.businessRepository.findByCuit(cuit)
+                .orElseThrow(
+                        () -> new UnauthorizedException("Business doesn't exist")
+                );
     }
 
-    public BusinessDTO findByCuit(Integer cuit) {
-        if (
-                this.checkBusinessDTO(BusinessDTO
-                        .builder()
-                        .cuit(cuit)
-                        .build())
-        ) {
-            return this.businessRepository.findByCuit(cuit)
-                    .orElseThrow(
-                            () -> new UnauthorizedException("Business doesn't exist")
-                    );
-        }
-        throw new UnauthorizedException("Invalid credentials");
-    }
-
-    public BusinessDTO findBusinessById(Integer id) {
+    public Business findBusinessById(Integer id) {
         if (this.businessRepository.existsById(id)) {
             return this.businessRepository.findBusinessById(id);
         }
@@ -89,32 +81,19 @@ public class BusinessService {
     }
 
     public Business updateBusiness(BusinessDTO businessDTO, Integer id) {
+        Business newBusiness = businessRepository.getReferenceById(id);
+
         if (this.businessRepository.existsById(id)) {
-            if (checkBusinessDTO(BusinessDTO
-                    .builder()
-                    .businessName(businessDTO.getBusinessName())
-                    .build())) {
-                this.businessRepository.getReferenceById(id).setBusinessName(businessDTO.getBusinessName());
+            if (!StringUtils.isEmpty(businessDTO.getBusinessName())) {
+                newBusiness.setBusinessName(businessDTO.getBusinessName());
             }
-            if (checkBusinessDTO(BusinessDTO
-                    .builder()
-                    .cuit(businessDTO.getCuit())
-                    .build())) {
-                this.businessRepository.getReferenceById(id).setCuit(businessDTO.getCuit());
+            if (!ObjectUtils.isEmpty(businessDTO.getCuit())) {
+                newBusiness.setCuit(businessDTO.getCuit());
             }
-            if (checkBusinessDTO(BusinessDTO
-                    .builder()
-                    .actStartDate(businessDTO.getActStartDate())
-                    .build())) {
-                this.businessRepository.getReferenceById(id).setActStartDate(businessDTO.getActStartDate());
+            if (!ObjectUtils.isEmpty(businessDTO.getActStartDate())) {
+                newBusiness.setActStartDate(businessDTO.getActStartDate());
             }
-            if (checkBusinessDTO(BusinessDTO
-                    .builder()
-                    .clients(businessDTO.getClients())
-                    .build())) {
-                this.businessRepository.getReferenceById(id).setClients(businessDTO.getClients());
-            }
-            return this.businessRepository.getReferenceById(id);
+            return this.businessRepository.save(newBusiness);
         }
         throw new NotUpdateException("Business doesn't exist");
     }

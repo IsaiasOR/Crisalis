@@ -1,12 +1,9 @@
 package com.Bootcamp.Crisalis.model;
 
-import com.Bootcamp.Crisalis.enums.ActiveService;
 import com.Bootcamp.Crisalis.model.dto.ClientDTO;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -50,19 +47,19 @@ public class Client {
     private String address;
 
     @Column(name = "activeService", nullable = false)
-    private ActiveService activeService;
+    private Boolean activeService;
 
-    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+/*    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinTable(
             name = "clientBusiness",
             joinColumns = @JoinColumn(name = "fk_client"),
             inverseJoinColumns = @JoinColumn(name = "fk_business"))
     @ToString.Exclude
-    private Set<Business> businessSet = new HashSet<>();
+    private Set<Business> businessSet = new HashSet<>();*/
 
-    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+/*    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @ToString.Exclude
-    private Set<Order> orders = new HashSet<>();
+    private Set<Order> orders = new HashSet<>();*/
 
     public Client(ClientDTO clientDTO) {
         this.firstname = clientDTO.getFirstname();
@@ -70,8 +67,10 @@ public class Client {
         this.dni = clientDTO.getDni();
         this.email = clientDTO.getEmail();
         this.activeService = clientDTO.getActiveService();
-        this.businessSet = clientDTO.getBusinessSet();
-        this.orders = clientDTO.getOrders();
+        this.address = clientDTO.getAddress();
+        this.phoneNumber = clientDTO.getPhoneNumber();
+/*        this.businessSet = clientDTO.getBusinessSet();
+        this.orders = clientDTO.getOrders();*/
     }
 
     public ClientDTO toDTO() {
@@ -82,8 +81,10 @@ public class Client {
                 .dni(this.dni)
                 .email(this.email)
                 .activeService(this.activeService)
-                .businessSet((HashSet<Business>) this.businessSet)
-                .orders((HashSet<Order>) this.orders)
+                .address(this.address)
+                .phoneNumber(this.phoneNumber)
+/*                .businessSet((HashSet<Business>) this.businessSet)
+                .orders((HashSet<Order>) this.orders)*/
                 .build();
     }
 }

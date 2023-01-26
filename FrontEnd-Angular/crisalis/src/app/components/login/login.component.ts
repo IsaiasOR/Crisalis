@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { UserRole } from 'src/app/enums/userRole';
 import { User } from 'src/app/models/user';
 import { LoginService } from 'src/app/services/login/login.service';
 
@@ -11,7 +10,7 @@ import { LoginService } from 'src/app/services/login/login.service';
 
 export class LoginComponent implements OnInit {
   
-  user: User = new User(0, "","","","","",UserRole.NONE);
+  user: User = new User("","");
 
   constructor(private loginService: LoginService) {
 

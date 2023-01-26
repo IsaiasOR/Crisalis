@@ -35,18 +35,18 @@ public class ProductService {
         return Boolean.TRUE;
     }
 
-    public Product deleteProductById(Integer id) {
-        if (this.productRepository.existsById(id)) {
-            return this.productRepository.deleteProductById(id);
+    public void deleteProductById(Integer id) {
+        if (!this.productRepository.existsById(id)) {
+            throw new NotEliminatedException("Error in deleting product");
         }
-        throw new NotEliminatedException("Error in deleting product");
+        this.productRepository.deleteById(id);
     }
 
-    public ProductDTO findProductById(Integer id) {
+    public Product findProductById(Integer id) {
         return this.productRepository.findById(id)
                     .orElseThrow(
                             () -> new UnauthorizedException("Product doesn't exist")
-                    ).toDTO();
+                    );
     }
 
     public List<ProductDTO> getListAllProductsInBD() {
@@ -58,26 +58,19 @@ public class ProductService {
     }
 
     public Product updateProduct(ProductDTO productDTO, Integer id) {
+        Product newProduct = productRepository.getReferenceById(id);
+
         if (this.productRepository.existsById(id)) {
-            if (this.checkProductDTO(ProductDTO
-                    .builder()
-                    .name(productDTO.getName())
-                    .build())) {
-                this.productRepository.getReferenceById(id).setName(productDTO.getName());
+            if (!StringUtils.isEmpty(productDTO.getName())) {
+                newProduct.setName(productDTO.getName());
             }
-            if (this.checkProductDTO(ProductDTO
-                    .builder()
-                    .baseAmount(productDTO.getBaseAmount())
-                    .build())) {
-                this.productRepository.getReferenceById(id).setBaseAmount(productDTO.getBaseAmount());
+            if (!ObjectUtils.isEmpty(productDTO.getBaseAmount())) {
+                newProduct.setBaseAmount(productDTO.getBaseAmount());
             }
-            if (this.checkProductDTO(ProductDTO
-                    .builder()
-                    .guarantee(productDTO.getGuarantee())
-                    .build())) {
-                this.productRepository.getReferenceById(id).setGuarantee(productDTO.getGuarantee());
+            if (!ObjectUtils.isEmpty(productDTO.getGuarantee())) {
+                newProduct.setGuarantee(productDTO.getGuarantee());
             }
-            return this.productRepository.getReferenceById(id);
+            return this.productRepository.save(newProduct);
         }
         throw new NotUpdateException("Product doesn't exist");
     }

@@ -40,6 +40,7 @@ public class Need {
     @Column(name = "baseAmount", nullable = false)
     private BigDecimal baseAmount;
 
+/*
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_order")
     @ToString.Exclude
@@ -53,6 +54,7 @@ public class Need {
     @ManyToMany(cascade = CascadeType.ALL)
     @ToString.Exclude
     private Set<Tax> taxes = new HashSet<>();
+*/
 
 /*    @OneToOne
     @JoinColumn(name = "fk_product")
@@ -67,8 +69,8 @@ public class Need {
         this.baseAmount = needDTO.getBaseAmount();
 /*        this.product = needDTO.getProduct();
         this.service = needDTO.getService();*/
-        this.taxes = needDTO.getTaxes();
-        this.order = needDTO.getOrder();
+/*        this.taxes = needDTO.getTaxes();
+        this.order = needDTO.getOrder();*/
     }
 
     public NeedDTO toDTO() {
@@ -78,8 +80,8 @@ public class Need {
                 .baseAmount(this.baseAmount)
 /*                .product(this.product)
                 .service(this.service)*/
-                .taxes((HashSet<Tax>) this.taxes)
-                .order(this.order)
+/*                .taxes((HashSet<Tax>) this.taxes)
+                .order(this.order)*/
                 .build();
     }
 }

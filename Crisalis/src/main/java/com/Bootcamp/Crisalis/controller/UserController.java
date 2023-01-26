@@ -53,7 +53,7 @@ public class UserController {
         return this.userService.deleteUserById(id);
     }*/
 
-    @GetMapping(value = "/findUserByDni{dni}",
+    @GetMapping(value = "/findUserByDni/{dni}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public UserDTO findUserByDni(@PathVariable("dni") Integer dni) {
         return this.userService.findByDni(dni);
@@ -61,7 +61,7 @@ public class UserController {
 
     @GetMapping(value = "/findUserById/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public UserDTO findUser(@PathVariable("id") Integer id) {
+    public User findUser(@PathVariable("id") Integer id) {
         return this.userService.findById(id);
     }
 

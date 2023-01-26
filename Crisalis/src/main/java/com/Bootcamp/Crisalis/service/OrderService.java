@@ -40,13 +40,13 @@ public class OrderService {
 /*        if (ObjectUtils.isEmpty(orderDTO.getUser())) {
             throw new EmptyElementException("User is empty");
         }*/
-        if (ObjectUtils.isEmpty(orderDTO.getServices()) &&
+/*        if (ObjectUtils.isEmpty(orderDTO.getServices()) &&
                 ObjectUtils.isEmpty(orderDTO.getProducts())) {
             throw new EmptyElementException("Services and products are empty");
         }
         if (ObjectUtils.isEmpty(orderDTO.getClient())) {
             throw new EmptyElementException("Client is empty");
-        }
+        }*/
         return Boolean.TRUE;
     }
 
@@ -105,7 +105,7 @@ public class OrderService {
                 this.orderRepository.getReferenceById(id).setUser(orderDTO.getUser());
             }
         }*/
-        if (this.orderRepository.existsById(id)) {
+        /*if (this.orderRepository.existsById(id)) {
             if (this.checkOrderDTO(OrderDTO
                     .builder()
                     .client(orderDTO.getClient())
@@ -128,7 +128,7 @@ public class OrderService {
                     .build())) {
                 this.orderRepository.getReferenceById(id).setServices(orderDTO.getServices());
             }
-        }
+        }*/
         throw new UnauthorizedException("Order doesn't exist");
     }
 }

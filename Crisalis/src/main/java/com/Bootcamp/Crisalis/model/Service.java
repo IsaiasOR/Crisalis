@@ -5,8 +5,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -14,8 +12,6 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-//@Table(name= "service")
-//@PrimaryKeyJoinColumn(name="id_need")
 @DiscriminatorValue("Service")
 public class Service extends Need {
 
@@ -67,6 +63,8 @@ public class Service extends Need {
     public ServiceDTO toDTO() {
         return ServiceDTO
                 .builder()
+                .name(this.getName())
+                .baseAmount(this.getBaseAmount())
                 .monthlyCost(this.monthlyCost)
                 .supportChange(this.supportChange)
                 /*.order(this.order)
