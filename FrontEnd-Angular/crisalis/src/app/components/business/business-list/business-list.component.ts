@@ -2,15 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { BusinessService } from 'src/app/services/business/business.service';
 
 @Component({
-  selector: 'app-business',
-  templateUrl: './business.component.html',
-  styleUrls: ['./business.component.css']
+  selector: 'app-business-list',
+  templateUrl: './business-list.component.html',
+  styleUrls: ['./business-list.component.css']
 })
-
-export class BusinessComponent implements OnInit{
+export class BusinessListComponent implements OnInit {
   Businesses:any;
 
-  constructor(private businessService:BusinessService) {}
+  constructor(
+    private businessService:BusinessService
+  ) {}
 
   ngOnInit(): void {
     this.businessService.getBusiness().subscribe(response => {

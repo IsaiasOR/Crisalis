@@ -13,13 +13,13 @@ export class BusinessAddComponent {
 
   constructor(
     public form:FormBuilder,
-    private crudService:BusinessService,
+    private businessService:BusinessService,
     private router:Router
     ) {
 
     this.formGroup=this.form.group({
       BusinessName:[''],
-      StartDateAct:[''],
+      ActStartDate:[''],
       CUIT:['']
     });
   }
@@ -28,7 +28,7 @@ export class BusinessAddComponent {
     console.log("Me presionaste");
     console.log(this.formGroup.value);
     
-    this.crudService.addBusiness(this.formGroup.value).subscribe();
+    this.businessService.addBusiness(this.formGroup.value).subscribe();
   
     this.router.navigateByUrl('/business');
   }

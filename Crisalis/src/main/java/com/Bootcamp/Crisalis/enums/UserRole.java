@@ -1,8 +1,8 @@
 package com.Bootcamp.Crisalis.enums;
 
 public enum UserRole {
-    ADMIN("Administrator"),
-    SUPER_ADMIN("Super administrator");
+    ADMINISTRATOR("Administrator"),
+    USER("User");
 
     private final String role;
 

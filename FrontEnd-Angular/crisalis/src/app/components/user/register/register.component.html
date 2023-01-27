@@ -1,43 +1,60 @@
-<!-- <br>
+<br>
 <div class="container-fluid" id="">
     <h1>Registración</h1>
-    <form class="form-control" name="" id="">
-            <div class="form-group">
-                <label for="inputFirstname">Nombre</label>
-                <input type="text" class="form-control" id="inputFirstname" placeholder="Ingresar nombre">
+    <form class="form-control" [formGroup]="formGroup" (ngSubmit)="sendData()">
+            <div class="mb-3">
+                <label for="inputFirstname" class="form-label">Nombre</label>
+                <input type="text" class="form-control" 
+                formControlName="FirstName" id="inputFirstname" placeholder="Ingresar nombre">
             </div>
-            <div class="form-group">
-                <label for="inputLastname">Apellido</label>
-                <input type="text" class="form-control" id="inputLastname" placeholder="Ingresar apellido">
+            
+            <div class="mb-3">
+                <label for="inputLastname" class="form-label">Apellido</label>
+                <input type="text" class="form-control" 
+                formControlName="LastName" id="inputLastname" placeholder="Ingresar apellido">
             </div>
-            <div class="form-group">
-                <label for="inputDNI">D.N.I.</label>
-                <input type="number" class="form-control" id="inputDNI" placeholder="Ingresar D.N.I.">
+            
+            <div class="mb-3">
+                <label for="inputDNI" class="form-label">D.N.I.</label>
+                <input type="number" class="form-control" 
+                formControlName="DNI" id="inputDNI" placeholder="Ingresar D.N.I.">
             </div>
-            <div class="form-group">
-                <label for="inputPhoneNumber">Número de celular</label>
-                <input type="number" class="form-control" id="inputPhoneNumber" placeholder="Ingresar número de celular">
+            
+            <div class="mb-3">
+                <label for="inputPhoneNumber" class="form-label">Número de celular</label>
+                <input type="number" class="form-control" 
+                formControlName="PhoneNumber" id="inputPhoneNumber" placeholder="Ingresar número de celular">
             </div>
-            <div class="form-group">
-                <label for="inputRole">Rol</label>
+            
+            <div class="mb-3">
+                <label for="inputRole" class="form-label">Rol</label>
                 <select id="inputRole" class="form-select" aria-label="Default select example">
                     <option selected>Seleccionar</option>
-                    <option value="ADMIN">Administrador</option>
-                    <option value="SUPER_ADMIN">Super administrador</option>
+                    <option value="USER" formControlName="Role">Usuario</option>
+                    <option value="ADMINISTRATOR" formControlName="Role">Administrador</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label for="inputEmail">Correo electrónico</label>
-                <input type="email" class="form-control" id="inputEmail" placeholder="Ingresar correo electrónico">
+
+            <div class="mb-3">
+                <label for="inputEmail" class="form-label">Correo electrónico</label>
+                <input type="email" class="form-control" 
+                formControlName="Email" id="inputEmail" placeholder="Ingresar correo electrónico">
             </div>
-            <div class="form-group">
-                <label for="inputPassword">Contraseña</label>
-                <input type="password" class="form-control" id="inputPassword" placeholder="Ingresar contraseña">
+            
+            <div class="mb-3">
+                <label for="inputPassword" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" 
+                formControlName="Password" id="inputPassword" placeholder="Ingresar contraseña">
             </div>
+
         <br>
-        <button type="submit" class="btn btn-primary">Registrar</button>
+        <div class="btn-group" role="group" aria-label="">
+            <button type="submit" class="btn btn-primary">Registrar</button>
+            <button type="button" class="btn btn-danger">Cancelar</button>
+        </div>
+        
     </form>
-</div> -->
+</div>
 
 
 

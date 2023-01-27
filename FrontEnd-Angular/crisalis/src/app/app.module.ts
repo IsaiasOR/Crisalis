@@ -7,7 +7,6 @@ import { ServiceComponent } from './components/service/service.component';
 import { ProductComponent } from './components/product/product.component';
 import { UserComponent } from './components/user/user.component';
 import { OrderComponent } from './components/order/order.component';
-import { BusinessComponent } from './components/business/business.component';
 import { BusinessAddComponent } from './components/business/business-add/business-add.component';
 import { BusinessModifyDataComponent } from './components/business/business-modify-data/business-modify-data.component';
 import { UserModifyDataComponent } from './components/user/user-modify-data/user-modify-data.component';
@@ -38,7 +37,6 @@ import { RegisterComponent } from './components/user/register/register.component
     ProductComponent,
     UserComponent,
     OrderComponent,
-    BusinessComponent,
     BusinessAddComponent,
     BusinessModifyDataComponent,
     UserModifyDataComponent,

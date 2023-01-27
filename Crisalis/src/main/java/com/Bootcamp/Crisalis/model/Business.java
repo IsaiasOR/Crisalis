@@ -57,6 +57,7 @@ public class Business {
     public BusinessDTO toDTO() {
         return BusinessDTO
                 .builder()
+                .id(this.id)
                 .businessName(this.businessName)
                 .actStartDate(this.actStartDate)
                 .cuit(this.cuit)

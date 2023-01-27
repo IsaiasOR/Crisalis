@@ -14,6 +14,9 @@ import java.time.LocalDate;
 @Builder
 public class BusinessDTO {
 
+    @JsonProperty("Id")
+    private Integer id;
+
     @JsonProperty("BusinessName")
     private String businessName;
 

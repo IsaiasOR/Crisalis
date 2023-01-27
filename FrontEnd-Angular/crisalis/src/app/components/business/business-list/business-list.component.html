@@ -10,6 +10,7 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Razón social</th>
                         <th>Fecha inicio de las actividades</th>
                         <th>C.U.I.T.</th>
@@ -18,6 +19,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let business of Businesses; let iControl=index">
+                        <td>{{ business.Id }}</td>
                         <td>{{ business.BusinessName }}</td>
                         <td>{{ business.ActStartDate }}</td>
                         <td>{{ business.CUIT }}</td>
