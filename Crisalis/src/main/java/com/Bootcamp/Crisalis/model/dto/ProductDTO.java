@@ -14,6 +14,9 @@ import java.math.BigDecimal;
 @Builder
 public class ProductDTO extends NeedDTO {
 
+    @JsonProperty("Id")
+    private Integer id;
+
     @JsonProperty("Name")
     private String name;
 

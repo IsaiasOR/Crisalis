@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TaxComponent } from './tax.component';
+import { TaxListComponent } from './tax-list.component';
 
-describe('TaxComponent', () => {
-  let component: TaxComponent;
-  let fixture: ComponentFixture<TaxComponent>;
+describe('TaxListComponent', () => {
+  let component: TaxListComponent;
+  let fixture: ComponentFixture<TaxListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TaxComponent ]
+      declarations: [ TaxListComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TaxComponent);
+    fixture = TestBed.createComponent(TaxListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -13,6 +13,9 @@ import lombok.NoArgsConstructor;
 @Builder
 public class UserDTO {
 
+    @JsonProperty("Id")
+    private Integer id;
+
     @JsonProperty("DNI")
     private Integer dni;
 

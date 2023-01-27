@@ -76,6 +76,7 @@ public class Need {
     public NeedDTO toDTO() {
         return NeedDTO
                 .builder()
+                .id(this.id)
                 .name(this.name)
                 .baseAmount(this.baseAmount)
 /*                .product(this.product)

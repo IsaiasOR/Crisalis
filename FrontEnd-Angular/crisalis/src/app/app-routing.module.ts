@@ -9,7 +9,7 @@ import { PersonListComponent } from './components/person/person-list/person-list
 import { PersonAddComponent } from './components/person/person-add/person-add.component';
 import { PersonEdityComponent } from './components/person/person-edity/person-edity.component';
 
-import { ServiceComponent } from './components/service/service.component';
+import { ServiceListComponent } from './components/service/service-list/service-list.component';
 import { ServiceAddComponent } from './components/service/service-add/service-add.component';
 import { ServiceEdityComponent } from './components/service/service-edity/service-edity.component';
 
@@ -17,25 +17,28 @@ import { ProductListComponent } from './components/product/product-list/product-
 import { ProductAddComponent } from './components/product/product-add/product-add.component';
 import { ProductEdityComponent } from './components/product/product-edity/product-edity.component';
 
-import { UserComponent } from './components/user/user.component';
+import { UserListComponent } from './components/user/user-list/user-list.component';
 import { UserModifyDataComponent } from './components/user/user-modify-data/user-modify-data.component';
-
 import { RegisterComponent } from './components/user/register/register.component';
-import { TaxComponent } from './components/tax/tax.component';
+
+import { TaxListComponent } from './components/tax/tax-list/tax-list.component';
 import { TaxAddComponent } from './components/tax/tax-add/tax-add.component';
 import { TaxEdityComponent } from './components/tax/tax-edity/tax-edity.component';
+
 import { HomeComponent } from './components/home/home.component';
+
 import { LoginComponent } from './components/login/login.component';
+
 import { OrderListComponent } from './components/order/order-list/order-list.component';
 import { OrderAddComponent } from './components/order/order-add/order-add.component';
 import { OrderEdityComponent } from './components/order/order-edity/order-edity.component';
-import { Order } from './models/order';
 
 const routes: Routes = [
 
   {path: '', pathMatch:'full', redirectTo:'home'},
   {path: 'home', component:HomeComponent},
-  {path: 'user-list', component:UserComponent},
+
+  {path: 'user-list', component:UserListComponent},
   {path: 'user-edity', component:UserModifyDataComponent},
   {path: 'user-register', component:RegisterComponent},
 
@@ -51,11 +54,11 @@ const routes: Routes = [
   {path: 'product-add', component:ProductAddComponent},
   {path: 'product-edity', component:ProductEdityComponent},
 
-  {path: 'service-list', component:ServiceComponent},
+  {path: 'service-list', component:ServiceListComponent},
   {path: 'service-add', component:ServiceAddComponent},
   {path: 'service-edity', component:ServiceEdityComponent},
 
-  {path: 'tax-list', component:TaxComponent},
+  {path: 'tax-list', component:TaxListComponent},
   {path: 'tax-add', component:TaxAddComponent},
   {path: 'tax-edity', component:TaxEdityComponent},
 

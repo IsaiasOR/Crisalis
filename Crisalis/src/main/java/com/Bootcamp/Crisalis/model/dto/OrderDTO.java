@@ -1,6 +1,5 @@
 package com.Bootcamp.Crisalis.model.dto;
 
-import com.Bootcamp.Crisalis.model.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,13 +8,15 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.HashSet;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class OrderDTO {
+
+    @JsonProperty("Id")
+    private Integer id;
 
     @JsonProperty("DateCreated")
     private Date dateCreated;

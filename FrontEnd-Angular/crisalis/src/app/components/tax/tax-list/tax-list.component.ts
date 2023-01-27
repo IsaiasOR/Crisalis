@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { TaxService } from 'src/app/services/tax/tax.service';
 
 @Component({
-  selector: 'app-tax',
-  templateUrl: './tax.component.html',
-  styleUrls: ['./tax.component.css']
+  selector: 'app-tax-list',
+  templateUrl: './tax-list.component.html',
+  styleUrls: ['./tax-list.component.css']
 })
-export class TaxComponent implements OnInit{
+
+export class TaxListComponent implements OnInit{
   Taxes:any;
 
   constructor(
@@ -30,4 +31,3 @@ export class TaxComponent implements OnInit{
     }
   }
 }
-

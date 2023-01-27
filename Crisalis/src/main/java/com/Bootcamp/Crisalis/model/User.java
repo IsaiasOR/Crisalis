@@ -81,6 +81,7 @@ public class User implements UserDetails {
         return
                 UserDTO
                         .builder()
+                        .id(this.id)
                         .dni(this.dni)
                         .firstName(this.firstName)
                         .lastName(this.lastName)

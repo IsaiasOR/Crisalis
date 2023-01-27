@@ -10,12 +10,14 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Nombre</th>
                         <th>Porcentage</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let tax of Taxes; let iControl=index">
+                        <td>{{ tax.Id }}</td>
                         <td>{{ tax.NameTax }}</td>
                         <td>{{ tax.Percentage }}%</td>
                         <td> 

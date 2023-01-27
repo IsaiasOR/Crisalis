@@ -12,6 +12,9 @@ import lombok.NoArgsConstructor;
 @Builder
 public class TaxDTO {
 
+    @JsonProperty("Id")
+    private Integer id;
+
     @JsonProperty("NameTax")
     private String name;
 

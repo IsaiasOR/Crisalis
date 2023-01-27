@@ -12,6 +12,9 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ClientDTO {
 
+    @JsonProperty("Id")
+    private Integer id;
+
     @JsonProperty("ActiveService")
     private Boolean activeService;
 

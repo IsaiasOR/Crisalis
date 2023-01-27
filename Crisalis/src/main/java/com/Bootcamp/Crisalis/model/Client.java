@@ -76,6 +76,7 @@ public class Client {
     public ClientDTO toDTO() {
         return ClientDTO
                 .builder()
+                .id(this.id)
                 .firstname(this.firstname)
                 .lastname(this.lastname)
                 .dni(this.dni)

@@ -93,6 +93,7 @@ public class Order {
     public OrderDTO toDTO() {
         return OrderDTO
                 .builder()
+                .id(this.id)
                 .dateCreated(this.dateCreated)
                 .amount(this.amount)
                 //.user(this.user)

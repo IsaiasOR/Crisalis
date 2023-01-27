@@ -50,6 +50,7 @@ public class Tax {
     public TaxDTO toDTO() {
         return TaxDTO
                 .builder()
+                .id(this.id)
                 .name(this.name)
                 .percentage(this.percentage)
                 //.needs((HashSet<Need>) this.needs)
