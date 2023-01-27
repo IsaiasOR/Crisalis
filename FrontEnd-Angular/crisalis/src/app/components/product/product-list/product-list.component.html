@@ -10,12 +10,14 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Nombre</th>
                         <th>Monto</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let product of Products; let iControl=index">
+                        <td>{{ product.Id }}</td>
                         <td>{{ product.Name }}</td>
                         <td>${{ product.BaseAmount }}</td>
                         <td> 

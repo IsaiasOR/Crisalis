@@ -4,13 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceComponent } from './components/service/service.component';
-import { ProductComponent } from './components/product/product.component';
 import { UserComponent } from './components/user/user.component';
-import { OrderComponent } from './components/order/order.component';
 import { BusinessAddComponent } from './components/business/business-add/business-add.component';
 import { BusinessModifyDataComponent } from './components/business/business-modify-data/business-modify-data.component';
 import { UserModifyDataComponent } from './components/user/user-modify-data/user-modify-data.component';
-import { PersonComponent } from './components/person/person.component';
 import { PersonAddComponent } from './components/person/person-add/person-add.component';
 import { PersonEdityComponent } from './components/person/person-edity/person-edity.component';
 import { LoginComponent } from './components/login/login.component';
@@ -29,18 +26,18 @@ import { TaxEdityComponent } from './components/tax/tax-edity/tax-edity.componen
 import { OrderAddComponent } from './components/order/order-add/order-add.component';
 import { OrderEdityComponent } from './components/order/order-edity/order-edity.component';
 import { RegisterComponent } from './components/user/register/register.component';
+import { OrderListComponent } from './components/order/order-list/order-list.component';
+import { PersonListComponent } from './components/person/person-list/person-list.component';
+import { ProductListComponent } from './components/product/product-list/product-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ServiceComponent,
-    ProductComponent,
     UserComponent,
-    OrderComponent,
     BusinessAddComponent,
     BusinessModifyDataComponent,
     UserModifyDataComponent,
-    PersonComponent,
     PersonAddComponent,
     PersonEdityComponent,
     ProductAddComponent,
@@ -54,7 +51,10 @@ import { RegisterComponent } from './components/user/register/register.component
     LoginComponent,
     OrderAddComponent,
     OrderEdityComponent,
-    RegisterComponent
+    RegisterComponent,
+    OrderListComponent,
+    PersonListComponent,
+    ProductListComponent
   ],
   imports: [
     BrowserModule,

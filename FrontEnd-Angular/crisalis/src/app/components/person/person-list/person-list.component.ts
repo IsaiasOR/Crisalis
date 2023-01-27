@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { PersonService } from 'src/app/services/person/person.service';
 
 @Component({
-  selector: 'app-person',
-  templateUrl: './person.component.html',
-  styleUrls: ['./person.component.css']
+  selector: 'app-person-list',
+  templateUrl: './person-list.component.html',
+  styleUrls: ['./person-list.component.css']
 })
-export class PersonComponent implements OnInit{
+export class PersonListComponent implements OnInit{
   Persons:any;
 
   constructor(

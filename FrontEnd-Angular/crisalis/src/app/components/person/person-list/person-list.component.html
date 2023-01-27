@@ -10,6 +10,7 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>D.N.I.</th>
@@ -22,6 +23,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let person of Persons; let iControl=index">
+                        <td>{{ person.Id }}</td>
                         <td>{{ person.FirstName }}</td>
                         <td>{{ person.LastName}}</td>
                         <td>{{ person.DNI }}</td>
