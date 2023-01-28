@@ -24,11 +24,10 @@ export class ServiceAddComponent {
   }
 
   sendData():any {
-    console.log("Me presionaste");
     console.log(this.formGroup.value);
     
     this.crudService.addService(this.formGroup.value).subscribe();
   
-    this.router.navigateByUrl('/service');
+    this.router.navigateByUrl('/service-list');
   }
 }

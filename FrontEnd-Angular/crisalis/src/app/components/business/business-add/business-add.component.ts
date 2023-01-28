@@ -25,7 +25,6 @@ export class BusinessAddComponent {
   }
 
   sendData():any {
-    console.log("Me presionaste");
     console.log(this.formGroup.value);
     
     this.businessService.addBusiness(this.formGroup.value).subscribe();

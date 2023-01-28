@@ -31,7 +31,7 @@
 
 <br>
 <div class="container-xxl">
-    <button class="btn btn-primary" href="/user-register">Registrar usuario</button>
+    <a class="btn btn-primary" href="/user-register">Registrar usuario</a>
 
     <br>
     <br>
@@ -64,8 +64,8 @@
                             <td>{{ user.PhoneNumber }}</td>
                             <td>{{ user.Role }}</td>
                             <td> 
-                                <a class="btn btn-info">Editar</a> | 
-                                <a class="btn btn-danger" role="button">Borrar</a>
+                                <a class="btn btn-info" href="/user-edity/{{ user.Id }}">Editar</a> | 
+                                <a class="btn btn-danger" (click)="deleteRegister(user.Id,iControl)" role="button">Borrar</a>
                             </td>
                         </tr>
                     </tbody>

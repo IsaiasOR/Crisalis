@@ -24,11 +24,10 @@ export class TaxAddComponent {
   }
 
   sendData():any {
-    console.log("Me presionaste");
     console.log(this.formGroup.value);
     
     this.crudService.addTax(this.formGroup.value).subscribe();
   
-    this.router.navigateByUrl('/tax');
+    this.router.navigateByUrl('/tax-list');
   }
 }

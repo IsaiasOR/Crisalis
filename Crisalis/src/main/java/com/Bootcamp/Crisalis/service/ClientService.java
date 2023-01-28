@@ -41,9 +41,9 @@ public class ClientService {
         if (StringUtils.isEmpty(clientDTO.getEmail())) {
             throw new EmptyElementException("Email is empty");
         }
-        if (ObjectUtils.isEmpty(clientDTO.getActiveService())) {
+/*        if (ObjectUtils.isEmpty(clientDTO.getActiveService())) {
             throw new EmptyElementException("Active service is empty");
-        }
+        }*/
         return Boolean.TRUE;
     }
 

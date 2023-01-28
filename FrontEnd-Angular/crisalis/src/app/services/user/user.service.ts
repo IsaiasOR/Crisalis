@@ -16,19 +16,11 @@ export class UserService {
     private router: Router
   ) { }
 
-  // loginUser(userLogin: UserLogin): Observable<any> {
-  //   return this.clientHttp.post(this.API+"/login", userLogin);
-  // }
-
-  // registerUser(dataProduct:User):Observable<any>{
-  //   return this.clientHttp.post(this.API+"/new",dataProduct);
-  // }
-
   getUser(){
     return this.clientHttp.get(this.API+"/list");
   }
 
   deleteUser(id:any):Observable<any>{
-    return this.clientHttp.get(this.API+"/delete/"+id);
+    return this.clientHttp.delete(this.API+"/deleteById/"+id);
   }
 }

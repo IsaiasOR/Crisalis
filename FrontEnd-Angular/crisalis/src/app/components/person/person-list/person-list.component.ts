@@ -27,6 +27,7 @@ export class PersonListComponent implements OnInit{
       this.personService.deletePerson(id).subscribe((response) => {
         this.Persons.splice(iControl,1);
       });
+      location.reload();
     }
   }
 }

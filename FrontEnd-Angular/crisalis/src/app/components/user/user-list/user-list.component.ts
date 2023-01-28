@@ -28,6 +28,7 @@ export class UserListComponent implements OnInit {
       this.userService.deleteUser(id).subscribe((response) => {
         this.Users.splice(iControl,1);
       });
+      location.reload();
     }
   }
 

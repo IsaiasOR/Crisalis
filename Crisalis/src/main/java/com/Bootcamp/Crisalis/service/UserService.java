@@ -128,12 +128,12 @@ public class UserService {
                 ).toDTO();
     }
 
-/*    public User deleteUserById(Integer id) {
-        if (this.userRepository.existsById(id)) {
-            return this.userRepository.deleteUserById(id);
+    public void deleteUserById(Integer id) {
+        if(!this.userRepository.existsById(id)) {
+            throw new NotEliminatedException("Error in deleting user");
         }
-        throw new NotEliminatedException("Error in deleting user");
-    }*/
+        this.userRepository.deleteById(id);
+    }
 
     public User findById(Integer id) {
         if (this.userRepository.existsById(id)) {

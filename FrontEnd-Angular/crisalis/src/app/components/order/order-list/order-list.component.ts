@@ -28,6 +28,7 @@ export class OrderListComponent {
       this.orderService.deleteOrder(id).subscribe((response) => {
         this.Orders.splice(iControl,1);
       });
+      location.reload();
     }
   }
 }

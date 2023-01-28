@@ -61,12 +61,12 @@
             </div>
             
             <div class="mb-3">
-                <label for="inputRole" class="form-label">Rol</label>
-                <select id="inputRole" class="form-select" aria-label="Default select example">
-                    <option selected>Seleccionar</option>
-                    <option value="USER" formControlName="Role">Usuario</option>
-                    <option value="ADMINISTRATOR" formControlName="Role">Administrador</option>
-                </select>
+                <label class="checkbox-inline">
+                    <input type="radio" formControlName="Role" id="User" value="USER" checked> Usuario&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </label>
+                <label class="checkbox-inline">
+                    <input type="radio" formControlName="Role" id="Admin" value="ADMINISTRATOR"> Administrador
+                </label>
             </div>
 
             <div class="mb-3">

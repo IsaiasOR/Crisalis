@@ -67,7 +67,7 @@
                             <td>{{ person.ActiveService }}</td>
                             <td> 
                                 <a class="btn btn-info" href="/person-edity/{{ person.Id }}">Editar</a> | 
-                                <a class="btn btn-danger" role="button">Borrar</a>
+                                <a class="btn btn-danger" (click)="deleteRegister(person.Id,iControl)" role="button">Borrar</a>
                             </td>
                         </tr>
                     </tbody>

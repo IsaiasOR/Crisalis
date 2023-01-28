@@ -28,6 +28,7 @@ export class TaxListComponent implements OnInit{
       this.taxService.deleteTax(id).subscribe((response) => {
         this.Taxes.splice(iControl,1);
       });
+      location.reload();
     }
   }
 }

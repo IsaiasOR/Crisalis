@@ -25,7 +25,6 @@ export class ProductAddComponent {
   }
 
   sendData():any {
-    console.log("Me presionaste");
     console.log(this.formGroup.value);
     
     this.productService.addProduct(this.formGroup.value).subscribe();

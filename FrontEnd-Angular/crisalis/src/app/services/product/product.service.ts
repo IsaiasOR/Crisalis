@@ -21,6 +21,6 @@ export class ProductService {
   }
 
   deleteProduct(id:any):Observable<any>{
-    return this.clientHttp.get(this.API+"/delete/"+id);
+    return this.clientHttp.delete(this.API+"/deleteById/"+id);
   }
 }

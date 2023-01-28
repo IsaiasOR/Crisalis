@@ -27,6 +27,7 @@ export class BusinessListComponent implements OnInit {
       this.businessService.deleteBusiness(id).subscribe((response) => {
         this.Businesses.splice(iControl,1);
       });
+      location.reload();
     }
   }
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product/product.service';
 
-
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -28,6 +27,7 @@ export class ProductListComponent implements OnInit{
       this.productService.deleteProduct(id).subscribe((response) => {
         this.Products.splice(iControl,1);
       });
+    location.reload();
     }
   }
 }

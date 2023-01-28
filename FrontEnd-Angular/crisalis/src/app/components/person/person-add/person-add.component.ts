@@ -23,12 +23,12 @@ export class PersonAddComponent {
       DNI:[''],
       Email:[''],
       PhoneNumber:[''],
-      Address:['']
+      Address:[''],
+      ActiveService:['false']
     });
   }
 
   sendData():any {
-    console.log("Me presionaste");
     console.log(this.formGroup.value);
     
     this.crudService.addPerson(this.formGroup.value).subscribe();

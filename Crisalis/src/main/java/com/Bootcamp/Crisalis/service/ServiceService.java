@@ -31,9 +31,9 @@ public class ServiceService {
         if (ObjectUtils.isEmpty(serviceDTO.getBaseAmount())) {
             throw new EmptyElementException("Base amount is empty");
         }
-        if (ObjectUtils.isEmpty(serviceDTO.getMonthlyCost())) {
+/*        if (ObjectUtils.isEmpty(serviceDTO.getMonthlyCost())) {
             throw new EmptyElementException("Monthly cost is empty");
-        }
+        }*/
         return Boolean.TRUE;
     }
 

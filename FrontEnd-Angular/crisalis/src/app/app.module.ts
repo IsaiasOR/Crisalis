@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BusinessAddComponent } from './components/business/business-add/business-add.component';
 import { BusinessModifyDataComponent } from './components/business/business-modify-data/business-modify-data.component';
+import { BusinessListComponent } from './components/business/business-list/business-list.component';
 import { UserModifyDataComponent } from './components/user/user-modify-data/user-modify-data.component';
 import { PersonAddComponent } from './components/person/person-add/person-add.component';
 import { PersonEdityComponent } from './components/person/person-edity/person-edity.component';
@@ -36,6 +37,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent,
     BusinessAddComponent,
     BusinessModifyDataComponent,
+    BusinessListComponent,
     UserModifyDataComponent,
     PersonAddComponent,
     PersonEdityComponent,

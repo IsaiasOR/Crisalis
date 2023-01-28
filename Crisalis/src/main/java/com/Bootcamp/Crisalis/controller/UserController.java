@@ -47,11 +47,12 @@ public class UserController {
         return this.userService.deleteUserByDni(dni);
     }*/
 
-/*    @DeleteMapping(value = "/deleteById/{id}",
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public User deleteUserById(@PathVariable("id") Integer id) {
-        return this.userService.deleteUserById(id);
-    }*/
+    @DeleteMapping(value = "/deleteById/{id}")
+    public String deleteUserById(@PathVariable("id") Integer id) {
+        String msj = "Removal successful";
+        this.userService.deleteUserById(id);
+        return msj;
+    }
 
     @GetMapping(value = "/findUserByDni/{dni}",
             produces = MediaType.APPLICATION_JSON_VALUE)

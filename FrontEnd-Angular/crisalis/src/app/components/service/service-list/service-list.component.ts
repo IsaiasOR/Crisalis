@@ -27,6 +27,7 @@ export class ServiceListComponent implements OnInit{
       this.serviceService.deleteService(id).subscribe((response) => {
         this.Services.splice(iControl,1);
       });
+      location.reload();
     }
   }
 }

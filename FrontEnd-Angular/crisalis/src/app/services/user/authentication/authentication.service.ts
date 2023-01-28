@@ -33,7 +33,7 @@ export class AuthenticationService {
         localStorage.setItem(this.tokenKey, token);
         alert("Registración exitosa.")
         this.router.navigate(['user-list']);
-      }, error => alert("Disculpe. Por favor ingrese los datos correctamente."))
+      })
   }
 
   public logout() {

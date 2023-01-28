@@ -18,6 +18,6 @@ export class AuthenticationUser {
     }
     
     registerUser(dataProduct:User):Observable<any>{
-        return this.clientHttp.post(this.API+"/new",dataProduct);
+        return this.clientHttp.post(this.API+"/register",dataProduct);
     }
 }
