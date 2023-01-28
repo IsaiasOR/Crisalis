@@ -30,6 +30,6 @@ export class BusinessAddComponent {
     
     this.businessService.addBusiness(this.formGroup.value).subscribe();
   
-    this.router.navigateByUrl('/business');
+    this.router.navigateByUrl('/business-list');
   }
 }

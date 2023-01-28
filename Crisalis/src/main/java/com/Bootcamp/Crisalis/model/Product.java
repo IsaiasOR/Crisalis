@@ -63,6 +63,7 @@ public class Product extends Need {
     public ProductDTO toDTO() {
         return ProductDTO
                 .builder()
+                .id(this.getId())
                 .name(this.getName())
                 .baseAmount(this.getBaseAmount())
                 .guarantee(this.guarantee)

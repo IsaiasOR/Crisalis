@@ -63,6 +63,7 @@ public class Service extends Need {
     public ServiceDTO toDTO() {
         return ServiceDTO
                 .builder()
+                .id(this.getId())
                 .name(this.getName())
                 .baseAmount(this.getBaseAmount())
                 .monthlyCost(this.monthlyCost)

@@ -1,59 +1,93 @@
-<div class="card">
-    <div class="card-header">
-        Actualizar datos del cliente
-    </div>
-    <div class="card-body">
-
-        <form>
-
-            <div class="mb-3">
-                <label for="" class="form-label">Nombre</label>
-                <input type="text"
-                class="form-control" name="" id="" aria-describedby="helpId" placeholder="Ingresar nombre">
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-md navbar-light bg-light border-4 border-bottom border-primary">
+        <div class="container-fluid">
+            <a href="/" class="navbar-brand">Finnegans</a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#MenuNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="MenuNav" class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-3">
+                    <li class="nav-item"><a class="nav-link" href="/order-list">Pedidos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/product-list">Productos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/service-list">Servicios</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Clientes</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/person-list">Personas</a></li>
+                            <li><a class="dropdown-item" href="/business-list">Empresas</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tax-list">Impuestos</a> 
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user-list">Usuarios</a> 
+                    </li>
+                </ul>
             </div>
+        </div>
+    </nav>
+</div>
 
-            <div class="mb-3">
-                <label for="" class="form-label">Apellido</label>
-                <input type="text"
-                class="form-control" name="" id="" aria-describedby="helpId" placeholder="Ingresar apellido">
-            </div>
+<br>
+<div class="container-xxl">
+    <div class="card">
+        <div class="card-header">
+            Actualizar datos del cliente
+        </div>
+        <div class="card-body">
 
-            <div class="mb-3">
-                <label for="" class="form-label">D.N.I.</label>
-                <input type="number"
-                class="form-control" name="" id="" aria-describedby="helpId" placeholder="Ingresar D.N.I.">
-            </div>
+            <form>
 
-            <div class="mb-3">
-                <label for="" class="form-label">Correo electrónico</label>
-                <input type="email"
-                class="form-control" name="" id="" aria-describedby="helpId" placeholder="Ingresar correo electrónico">
-            </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Nombre</label>
+                    <input type="text"
+                    class="form-control" name="" id="" aria-describedby="helpId" placeholder="Ingresar nombre">
+                </div>
 
-            <div class="mb-3">
-                <label for="" class="form-label">Número de teléfono</label>
-                <input type="text"
-                class="form-control" name="" id="" aria-describedby="helpId" placeholder="Ingresar número de teléfono">
-            </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Apellido</label>
+                    <input type="text"
+                    class="form-control" name="" id="" aria-describedby="helpId" placeholder="Ingresar apellido">
+                </div>
 
-            <div class="mb-3">
-                <label for="" class="form-label">Dirección</label>
-                <input type="text"
-                class="form-control" name="" id="" aria-describedby="helpId" placeholder="Ingresar dirección">
-            </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">D.N.I.</label>
+                    <input type="number"
+                    class="form-control" name="" id="" aria-describedby="helpId" placeholder="Ingresar D.N.I.">
+                </div>
 
-            <div class="mb-3">
-                <label for="" class="form-label">Asociar con empresa</label>
-                <input type="text"
-                class="form-control" name="" id="" aria-describedby="helpId" placeholder="Ingresar C.U.I.T.">
-            </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Correo electrónico</label>
+                    <input type="email"
+                    class="form-control" name="" id="" aria-describedby="helpId" placeholder="Ingresar correo electrónico">
+                </div>
 
-            <div class="btn-group" role="group" aria-label="">
-                <button type="button" class="btn btn-success">Actualizar</button>
-                <button type="button" class="btn btn-primary">Cancelar</button>
-            </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Número de teléfono</label>
+                    <input type="text"
+                    class="form-control" name="" id="" aria-describedby="helpId" placeholder="Ingresar número de teléfono">
+                </div>
 
-        </form>
+                <div class="mb-3">
+                    <label for="" class="form-label">Dirección</label>
+                    <input type="text"
+                    class="form-control" name="" id="" aria-describedby="helpId" placeholder="Ingresar dirección">
+                </div>
 
+                <div class="mb-3">
+                    <label for="" class="form-label">Asociar con empresa</label>
+                    <input type="text"
+                    class="form-control" name="" id="" aria-describedby="helpId" placeholder="Ingresar C.U.I.T.">
+                </div>
+
+                <div class="btn-group" role="group" aria-label="">
+                    <button type="button" class="btn btn-success">Actualizar</button>
+                    <button type="button" class="btn btn-primary">Cancelar</button>
+                </div>
+
+            </form>
+
+        </div>
     </div>
 </div>

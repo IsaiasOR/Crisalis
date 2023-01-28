@@ -21,8 +21,9 @@ export class AuthenticationService {
     .loginUser(userLogin)
     .subscribe((token) => {
       localStorage.setItem(this.tokenKey, token);
-      this.router.navigate(['home']);
-    })
+      alert("Inicio de sesión exitoso.");
+      this.router.navigate(['/']);
+    }, error => alert("Disculpe. Por favor ingrese correctamente el email y la contraseña."))
   }
 
   public register(user: User): void {
@@ -30,8 +31,9 @@ export class AuthenticationService {
       .registerUser(user)
       .subscribe((token) => {
         localStorage.setItem(this.tokenKey, token);
-        this.router.navigate(['/']);
-      })
+        alert("Registración exitosa.")
+        this.router.navigate(['user-list']);
+      }, error => alert("Disculpe. Por favor ingrese los datos correctamente."))
   }
 
   public logout() {

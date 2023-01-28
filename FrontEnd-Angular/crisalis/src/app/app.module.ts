@@ -17,7 +17,6 @@ import { ProductAddComponent } from './components/product/product-add/product-ad
 import { ProductEdityComponent } from './components/product/product-edity/product-edity.component';
 import { ServiceAddComponent } from './components/service/service-add/service-add.component';
 import { ServiceEdityComponent } from './components/service/service-edity/service-edity.component';
-import { HomeComponent } from './components/home/home.component';
 import { TaxAddComponent } from './components/tax/tax-add/tax-add.component';
 import { TaxEdityComponent } from './components/tax/tax-edity/tax-edity.component';
 import { OrderAddComponent } from './components/order/order-add/order-add.component';
@@ -29,7 +28,7 @@ import { ProductListComponent } from './components/product/product-list/product-
 import { ServiceListComponent } from './components/service/service-list/service-list.component';
 import { TaxListComponent } from './components/tax/tax-list/tax-list.component';
 import { UserListComponent } from './components/user/user-list/user-list.component';
-import { SecretComponent } from './secret/secret.component';
+import { SecretComponent } from './components/secret/secret.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -44,7 +43,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ProductEdityComponent,
     ServiceAddComponent,
     ServiceEdityComponent,
-    HomeComponent,
     TaxAddComponent,
     TaxEdityComponent,
     LoginComponent,

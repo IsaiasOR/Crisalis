@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, EmailValidator } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { PersonService } from 'src/app/services/person/person.service';
 import { Router } from '@angular/router';
 
@@ -33,6 +33,6 @@ export class PersonAddComponent {
     
     this.crudService.addPerson(this.formGroup.value).subscribe();
   
-    this.router.navigateByUrl('/person');
+    this.router.navigateByUrl('/person-list');
   }
 }

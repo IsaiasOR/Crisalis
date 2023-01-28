@@ -30,6 +30,6 @@ export class ProductAddComponent {
     
     this.productService.addProduct(this.formGroup.value).subscribe();
   
-    this.router.navigateByUrl('/product');
+    this.router.navigateByUrl('/product-list');
   }
 }

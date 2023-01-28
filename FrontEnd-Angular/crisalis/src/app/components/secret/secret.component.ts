@@ -1,6 +1,5 @@
-import { AuthenticationService } from '../services/user/authentication/authentication.service';
+import { AuthenticationService } from "src/app/services/user/authentication/authentication.service";
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-secret',
