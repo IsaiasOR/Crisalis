@@ -8,11 +8,11 @@ import { BusinessModifyDataComponent } from './components/business/business-modi
 import { UserModifyDataComponent } from './components/user/user-modify-data/user-modify-data.component';
 import { PersonAddComponent } from './components/person/person-add/person-add.component';
 import { PersonEdityComponent } from './components/person/person-edity/person-edity.component';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/user/login/login.component';
 
-
+import { TokenInterceptor } from './helpers/token.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ProductAddComponent } from './components/product/product-add/product-add.component';
 import { ProductEdityComponent } from './components/product/product-edity/product-edity.component';
 import { ServiceAddComponent } from './components/service/service-add/service-add.component';
@@ -29,6 +29,8 @@ import { ProductListComponent } from './components/product/product-list/product-
 import { ServiceListComponent } from './components/service/service-list/service-list.component';
 import { TaxListComponent } from './components/tax/tax-list/tax-list.component';
 import { UserListComponent } from './components/user/user-list/user-list.component';
+import { SecretComponent } from './secret/secret.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -54,16 +56,20 @@ import { UserListComponent } from './components/user/user-list/user-list.compone
     ProductListComponent,
     ServiceListComponent,
     TaxListComponent,
-    UserListComponent
+    UserListComponent,
+    SecretComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

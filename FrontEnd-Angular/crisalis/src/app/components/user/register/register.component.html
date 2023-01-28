@@ -1,11 +1,14 @@
 <br>
 <div class="container-fluid" id="">
     <h1>Registración</h1>
-    <form class="form-control" [formGroup]="formGroup" (ngSubmit)="sendData()">
+    <form class="form-control" [formGroup]="registerForm" (ngSubmit)="sendData()">
             <div class="mb-3">
                 <label for="inputFirstname" class="form-label">Nombre</label>
-                <input type="text" class="form-control" 
-                formControlName="FirstName" id="inputFirstname" placeholder="Ingresar nombre">
+                <input type="text" 
+                class="form-control" 
+                formControlName="FirstName" 
+                id="inputFirstname" 
+                placeholder="Ingresar nombre">
             </div>
             
             <div class="mb-3">

@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { SecretComponent } from './secret/secret.component';
+import { AuthGuard } from './helpers/auth.guard';
+
 import { BusinessListComponent } from './components/business/business-list/business-list.component';
 import { BusinessAddComponent } from './components/business/business-add/business-add.component';
 import { BusinessModifyDataComponent } from './components/business/business-modify-data/business-modify-data.component';
@@ -27,7 +30,7 @@ import { TaxEdityComponent } from './components/tax/tax-edity/tax-edity.componen
 
 import { HomeComponent } from './components/home/home.component';
 
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/user/login/login.component';
 
 import { OrderListComponent } from './components/order/order-list/order-list.component';
 import { OrderAddComponent } from './components/order/order-add/order-add.component';
@@ -35,7 +38,9 @@ import { OrderEdityComponent } from './components/order/order-edity/order-edity.
 
 const routes: Routes = [
 
-  {path: '', pathMatch:'full', redirectTo:'home'},
+  //{path: '', pathMatch:'full', redirectTo:'home'},
+  {path: '', component: SecretComponent, canActivate: [AuthGuard]},
+
   {path: 'home', component:HomeComponent},
 
   {path: 'user-list', component:UserListComponent},

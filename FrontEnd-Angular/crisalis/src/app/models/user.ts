@@ -11,9 +11,18 @@ export class User {
     Role!:UserRole;
     
 
-    constructor(
+    constructor(dni:Number,
+        firstName: String,
+        lastName: String,
+        phoneNumber: String,
+        role: UserRole,
         email:String,
         password:String) {
+            this.DNI = dni;
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this.PhoneNumber = phoneNumber;
+            this.Role = role;
             this.Email = email;
             this.Password = password;
     }
