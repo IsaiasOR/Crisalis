@@ -13,12 +13,12 @@ export class UserModifyDataComponent implements OnInit {
   id:any;
 
   constructor(
-    private activeRote:ActivatedRoute,
+    private activeRoute:ActivatedRoute,
     private userService:UserService,
     public formBuilder:FormBuilder,
     private router:Router
   ) {
-    this.id = this.activeRote.snapshot.paramMap.get('Id');
+    this.id = this.activeRoute.snapshot.paramMap.get('Id');
     console.log(this.id);
 
     this.userService.getSingleUser(this.id).subscribe(

@@ -33,48 +33,57 @@
 <div class="container-xxl" id="">
     <h1>Actualizar datos del usuario</h1>
     <form class="form-control" [formGroup]="formUser" (ngSubmit)="sendData()">
-            <div class="form-group">
-                <label for="inputFirstname">Nombre</label>
-                <input type="text" formControlName="FirstName"
-                class="form-control" id="inputFirstname" placeholder="Ingresar nombre">
-            </div>
-            <div class="form-group">
-                <label for="inputLastname">Apellido</label>
-                <input type="text" formControlName="LastName"
-                class="form-control" id="inputLastname" placeholder="Ingresar apellido">
-            </div>
-            <div class="form-group">
-                <label for="inputDNI">D.N.I.</label>
-                <input type="number" formControlName="DNI"
-                class="form-control" id="inputDNI" placeholder="Ingresar D.N.I.">
-            </div>
-            <div class="form-group">
-                <label for="inputPhoneNumber">Número de celular</label>
-                <input type="number" formControlName="PhoneNumber"
-                class="form-control" id="inputPhoneNumber" placeholder="Ingresar número de celular">
-            </div>
-            <div class="mb-3">
-                <label class="checkbox-inline">
-                    <input type="radio" formControlName="Role" id="User" value="USER" checked> Usuario&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </label>
-                <label class="checkbox-inline">
-                    <input type="radio" formControlName="Role" id="Admin" value="ADMINISTRATOR"> Administrador
-                </label>
-            </div>
-            <div class="form-group">
-                <label for="inputEmail">Correo electrónico</label>
-                <input type="email" formControlName="Email"
-                class="form-control" id="inputEmail" placeholder="Ingresar correo electrónico">
-            </div>
-            <div class="form-group">
-                <label for="inputPassword">Contraseña</label>
-                <input type="password" formControlName="Password"
-                class="form-control" id="inputPassword" placeholder="Ingresar contraseña">
-            </div>
-            <br>
-            <div class="btn-group" role="group" aria-label="">
-                <button type="submit" class="btn btn-success">Actualizar</button>
-                <button type="button" class="btn btn-primary">Cancelar</button>
-            </div>
+        <div class="mb-3">
+            <label for="inputFirstname" class="form-label">Nombre</label>
+            <input type="text" 
+            class="form-control" 
+            formControlName="FirstName" 
+            id="inputFirstname" 
+            placeholder="Ingresar nombre">
+        </div>
+        
+        <div class="mb-3">
+            <label for="inputLastname" class="form-label">Apellido</label>
+            <input type="text" class="form-control" 
+            formControlName="LastName" id="inputLastname" placeholder="Ingresar apellido">
+        </div>
+        
+        <div class="mb-3">
+            <label for="inputDNI" class="form-label">D.N.I.</label>
+            <input type="number" class="form-control" 
+            formControlName="DNI" id="inputDNI" placeholder="Ingresar D.N.I.">
+        </div>
+        
+        <div class="mb-3">
+            <label for="inputPhoneNumber" class="form-label">Número de celular</label>
+            <input type="number" class="form-control" 
+            formControlName="PhoneNumber" id="inputPhoneNumber" placeholder="Ingresar número de celular">
+        </div>
+        
+        <div class="mb-3">
+            <label class="checkbox-inline">
+                <input type="radio" formControlName="Role" id="User" value="USER" checked> Usuario&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </label>
+            <label class="checkbox-inline">
+                <input type="radio" formControlName="Role" id="Admin" value="ADMINISTRATOR"> Administrador
+            </label>
+        </div>
+
+        <div class="mb-3">
+            <label for="inputEmail" class="form-label">Correo electrónico</label>
+            <input type="email" class="form-control" 
+            formControlName="Email" id="inputEmail" placeholder="Ingresar correo electrónico">
+        </div>
+        
+        <div class="mb-3">
+            <label for="inputPassword" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" 
+            formControlName="Password" id="inputPassword" placeholder="Ingresar contraseña">
+        </div>
+        <br>
+        <div class="btn-group" role="group" aria-label="">
+            <button type="submit" class="btn btn-success">Actualizar</button>
+            <button type="button" [routerLink]="['/user-list']" routerLinkActive="router-link-active"  class="btn btn-primary">Cancelar</button>
+        </div>
     </form>
 </div>

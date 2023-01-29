@@ -32,29 +32,29 @@
 <br>
 <div class="container-xxl">
     <div class="card">
-        <div class="card-header">
+        <h2 class="card-header">
             Registrar nuevo impuesto
-        </div>
+        </h2>
         <div class="card-body">
 
-            <form [formGroup]="formGroup" (ngSubmit)="sendData()">
+            <form ngNativeValidate [formGroup]="formGroup" (ngSubmit)="sendData()">
 
                 <div class="mb-3">
                     <label for="" class="form-label">Nombre</label>
-                    <input type="text"
+                    <input type="text" required
                     class="form-control" name="" formControlName="NameTax" id="" aria-describedby="helpId" placeholder="Ingresar nombre">
                 </div>
 
                 <div class="mb-3">
                     <label for="" class="form-label">Porcentage</label>
-                    <input type="number"
+                    <input type="number" required
                     class="form-control" name="" formControlName="Percentage" id="" aria-describedby="helpId" placeholder="Ingresar monto">
                 </div>
 
 
                 <div class="btn-group" role="group" aria-label="">
                     <button type="submit" class="btn btn-primary">Registrar</button>
-                    <button type="button" class="btn btn-danger">Cancelar</button>
+                    <button type="button" [routerLink]="['/tax-list']" routerLinkActive="router-link-active"  class="btn btn-danger">Cancelar</button>
                 </div>
 
             </form>

@@ -21,7 +21,7 @@
                         <a class="nav-link" href="/tax-list">Impuestos</a> 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/user-list">Usuarios</a> 
+                        <a class="nav-link" [routerLink]="['/user-list']" routerLinkActive="router-link-active" >Usuarios</a> 
                     </li>
                 </ul>
             </div>
@@ -35,9 +35,7 @@
     <br>
     <br>
     <div class="card">
-        <div class="card-header">
-            Empresas
-        </div>
+        <h2 class="card-header">Empresas</h2>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table">
