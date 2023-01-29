@@ -23,4 +23,12 @@ export class UserService {
   deleteUser(id:any):Observable<any>{
     return this.clientHttp.delete(this.API+"/deleteById/"+id);
   }
+
+  getSingleUser(id:any):Observable<any> {
+    return this.clientHttp.get(this.API+"/findUserById/"+id);
+  }
+
+  editUser(id:any, dataUser:any):Observable<any> {
+    return this.clientHttp.put(this.API+"/update/"+id,dataUser);
+  }
 }

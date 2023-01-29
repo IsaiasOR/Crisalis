@@ -26,7 +26,7 @@ public class BusinessService {
     }
 
     public Boolean checkBusinessDTO(BusinessDTO businessDTO) {
-        if (ObjectUtils.isEmpty(businessDTO.getCuit())) {
+        if (StringUtils.isEmpty(businessDTO.getCuit())) {
             throw new EmptyElementException("CUIT is empty");
         }
         if (StringUtils.isEmpty(businessDTO.getBusinessName())) {
@@ -41,8 +41,8 @@ public class BusinessService {
         return Boolean.TRUE;
     }
 
-/*    public Optional<Business> deleteBusinessByCuit(Integer cuit) {
-        if (ObjectUtils.isEmpty(cuit)) {
+/*    public Optional<Business> deleteBusinessByCuit(String cuit) {
+        if (StringUtils.isEmpty(cuit)) {
             throw new EmptyElementException("CUIT is empty");
         }
         return this.businessRepository.deleteByCuit(cuit);
@@ -55,8 +55,8 @@ public class BusinessService {
         this.businessRepository.deleteById(id);
     }
 
-    public Business findByCuit(Integer cuit) {
-        if(ObjectUtils.isEmpty(cuit)) {
+    public Business findByCuit(String cuit) {
+        if(StringUtils.isEmpty(cuit)) {
             throw new EmptyElementException("CUIT is empty");
         }
         return this.businessRepository.findByCuit(cuit)
@@ -87,7 +87,7 @@ public class BusinessService {
             if (!StringUtils.isEmpty(businessDTO.getBusinessName())) {
                 newBusiness.setBusinessName(businessDTO.getBusinessName());
             }
-            if (!ObjectUtils.isEmpty(businessDTO.getCuit())) {
+            if (!StringUtils.isEmpty(businessDTO.getCuit())) {
                 newBusiness.setCuit(businessDTO.getCuit());
             }
             if (!ObjectUtils.isEmpty(businessDTO.getActStartDate())) {

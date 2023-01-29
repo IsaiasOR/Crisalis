@@ -12,16 +12,23 @@ export class BusinessService {
 
   constructor(private clientHttp:HttpClient) { }
 
-  addBusiness(dataBusiness:Business):Observable<any>{
+  addBusiness(dataBusiness:Business):Observable<any> {
     return this.clientHttp.post(this.API+"/new",dataBusiness);
   }
 
-  getBusiness(){
+  getBusiness() {
     return this.clientHttp.get(this.API+"/list");
   }
 
-  deleteBusiness(id:any):Observable<any>{
+  deleteBusiness(id:any):Observable<any> {
     return this.clientHttp.delete(this.API+"/deleteById/"+id);
   }
 
+  getSingleBusiness(id:any):Observable<any> {
+    return this.clientHttp.get(this.API+"/findBusinessById/"+id);
+  }
+
+  editBusiness(id:any, dataBusiness:any):Observable<any> {
+    return this.clientHttp.put(this.API+"/update/"+id,dataBusiness);
+  }
 }

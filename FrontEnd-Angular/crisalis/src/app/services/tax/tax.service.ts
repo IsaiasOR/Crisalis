@@ -23,4 +23,12 @@ export class TaxService {
   deleteTax(id:any):Observable<any>{
     return this.clientHttp.delete(this.API+"/delete/"+id);
   }
+
+  getSingleTax(id:any):Observable<any> {
+    return this.clientHttp.get(this.API+"/findTax/"+id);
+  }
+
+  editTax(id:any, dataTax:any):Observable<any> {
+    return this.clientHttp.put(this.API+"/update/"+id,dataTax);
+  }
 }

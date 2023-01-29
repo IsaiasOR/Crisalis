@@ -23,4 +23,12 @@ export class OrderService {
   deleteOrder(id:any):Observable<any>{
     return this.clientHttp.delete(this.API+"/delete/"+id);
   }
+
+  getSingleOrder(id:any):Observable<any> {
+    return this.clientHttp.get(this.API+"/findOrder/"+id);
+  }
+
+  editOrder(id:any, dataOrder:any):Observable<any> {
+    return this.clientHttp.put(this.API+"/update/"+id,dataOrder);
+  }
 }

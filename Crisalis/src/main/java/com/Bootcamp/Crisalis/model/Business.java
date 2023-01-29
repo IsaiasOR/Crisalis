@@ -5,8 +5,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -37,7 +35,7 @@ public class Business {
     private LocalDate actStartDate;
 
     @Column(name = "cuit", nullable = false)
-    private Integer cuit;
+    private String cuit;
 
 /*    @ManyToMany(
             mappedBy = "businessSet",

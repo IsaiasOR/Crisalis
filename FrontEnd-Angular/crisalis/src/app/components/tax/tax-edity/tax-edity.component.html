@@ -37,23 +37,23 @@
         </div>
         <div class="card-body">
 
-            <form >
+            <form [formGroup]="formTax" (ngSubmit)="sendData()">
 
                 <div class="mb-3">
                     <label for="" class="form-label">Nombre</label>
-                    <input type="text"
+                    <input type="text" formControlName="NameTax"
                     class="form-control" name="" id="" aria-describedby="helpId" placeholder="Ingresar nombre">
                 </div>
 
                 <div class="mb-3">
-                    <label for="" class="form-label">Monto</label>
-                    <input type="number"
+                    <label for="" class="form-label">Porcentage</label>
+                    <input type="number" formControlName="Percentage"
                     class="form-control" name="" id="" aria-describedby="helpId" placeholder="Ingresar monto">
                 </div>
 
 
                 <div class="btn-group" role="group" aria-label="">
-                    <button type="button" class="btn btn-success">Actualizar</button>
+                    <button type="submit" class="btn btn-success">Actualizar</button>
                     <button type="button" class="btn btn-primary">Cancelar</button>
                 </div>
 

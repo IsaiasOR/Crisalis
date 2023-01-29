@@ -9,7 +9,7 @@ import java.util.Optional;
 @Repository
 public interface BusinessRepository extends JpaRepository<Business, Integer> {
 
-    Optional<Business> findByCuit(Integer cuit);
+    Optional<Business> findByCuit(String cuit);
 
     Business findBusinessById(Integer id);
 

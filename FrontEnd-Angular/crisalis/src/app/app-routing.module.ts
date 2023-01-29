@@ -39,34 +39,34 @@ const routes: Routes = [
   {path: '', component: SecretComponent, canActivate: [AuthGuard]},
 
   {path: 'user-list', component:UserListComponent},
-  {path: 'user-edity', component:UserModifyDataComponent},
+  {path: 'user-edity/:Id', component:UserModifyDataComponent},
   {path: 'user-register', component:RegisterComponent},
 
   {path: 'person-list', component:PersonListComponent},
   {path: 'person-add', component:PersonAddComponent},
-  {path: 'person-edity', component:PersonEdityComponent},
+  {path: 'person-edity/:Id', component:PersonEdityComponent},
 
   {path: 'business-list', component:BusinessListComponent},
   {path: 'business-add', component:BusinessAddComponent},
-  {path: 'business-edity', component:BusinessModifyDataComponent},
+  {path: 'business-edity/:Id', component:BusinessModifyDataComponent},
 
   {path: 'product-list', component:ProductListComponent},
   {path: 'product-add', component:ProductAddComponent},
-  {path: 'product-edity', component:ProductEdityComponent},
+  {path: 'product-edity/:Id', component:ProductEdityComponent},
 
   {path: 'service-list', component:ServiceListComponent},
   {path: 'service-add', component:ServiceAddComponent},
-  {path: 'service-edity', component:ServiceEdityComponent},
+  {path: 'service-edity/:Id', component:ServiceEdityComponent},
 
   {path: 'tax-list', component:TaxListComponent},
   {path: 'tax-add', component:TaxAddComponent},
-  {path: 'tax-edity', component:TaxEdityComponent},
+  {path: 'tax-edity/:Id', component:TaxEdityComponent},
 
   {path: 'login', component:LoginComponent},
 
   {path: 'order-list', component:OrderListComponent},
   {path: 'order-add', component:OrderAddComponent},
-  {path: 'order-edity', component:OrderEdityComponent}
+  {path: 'order-edity/:Id', component:OrderEdityComponent}
 
 ];
 

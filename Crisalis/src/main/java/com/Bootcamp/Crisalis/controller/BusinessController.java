@@ -34,7 +34,7 @@ public class BusinessController {
 
     @GetMapping(value = "/findBusinessByCuit/{cuit}",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public Business findBusinessByCuit(@PathVariable("cuit") Integer cuit) {
+    public Business findBusinessByCuit(@PathVariable("cuit") String cuit) {
         return this.businessService.findByCuit(cuit);
     }
 
@@ -54,7 +54,7 @@ public class BusinessController {
 
 /*    @DeleteMapping(value = "/deleteByCuit/{cuit}",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public Optional<Business> deleteBusinessByCuit(@PathVariable("cuit") Integer cuit) {
+    public Optional<Business> deleteBusinessByCuit(@PathVariable("cuit") String cuit) {
         return this.businessService.deleteBusinessByCuit(cuit);
     }*/
 

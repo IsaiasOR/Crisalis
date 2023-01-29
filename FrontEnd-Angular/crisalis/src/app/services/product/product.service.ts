@@ -23,4 +23,12 @@ export class ProductService {
   deleteProduct(id:any):Observable<any>{
     return this.clientHttp.delete(this.API+"/deleteById/"+id);
   }
+
+  getSingleProduct(id:any):Observable<any> {
+    return this.clientHttp.get(this.API+"/findProduct/"+id);
+  }
+
+  editProduct(id:any, dataProduct:any):Observable<any> {
+    return this.clientHttp.put(this.API+"/update/"+id,dataProduct);
+  }
 }

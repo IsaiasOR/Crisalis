@@ -23,4 +23,12 @@ export class ServiceService {
   deleteService(id:any):Observable<any>{
     return this.clientHttp.delete(this.API+"/delete/"+id);
   }
+
+  getSingleService(id:any):Observable<any> {
+    return this.clientHttp.get(this.API+"/findService/"+id);
+  }
+
+  editService(id:any, dataService:any):Observable<any> {
+    return this.clientHttp.put(this.API+"/update/"+id,dataService);
+  }
 }

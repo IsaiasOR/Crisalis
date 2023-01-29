@@ -37,34 +37,34 @@
         </div>
         <div class="card-body">
 
-            <form>
+            <form [formGroup]="formBusiness" (ngSubmit)="sendData()">
 
                 <div class="mb-3">
                     <label for="" class="form-label">Razón social</label>
-                    <input type="text"
+                    <input type="text" formControlName="BusinessName"
                     class="form-control" name="" id="" aria-describedby="helpId" placeholder="Ingresar razón social">
                 </div>
 
                 <div class="mb-3">
                     <label for="" class="form-label">Fecha de inicio de las actividades</label>
-                    <input type="date"
+                    <input type="date" formControlName="ActStartDate"
                     class="form-control" name="" id="" aria-describedby="helpId" placeholder="Ingresar fecha">
                 </div>
 
                 <div class="mb-3">
                     <label for="" class="form-label">C.U.I.T.</label>
-                    <input type="number"
+                    <input type="text" formControlName="CUIT"
                     class="form-control" name="" id="" aria-describedby="helpId" placeholder="Ingresar C.U.I.T.">
                 </div>
-
+<!-- 
                 <div class="mb-3">
                     <label for="" class="form-label">Asociar con cliente</label>
                     <input type="number"
                     class="form-control" name="" id="" aria-describedby="helpId" placeholder="Ingresar D.N.I.">
-                </div>
+                </div> -->
 
                 <div class="btn-group" role="group" aria-label="">
-                    <button type="button" class="btn btn-success">Actualizar</button>
+                    <button type="submit" class="btn btn-success">Actualizar</button>
                     <button type="button" class="btn btn-primary">Cancelar</button>
                 </div>
             </form>

@@ -24,7 +24,7 @@ public class BusinessDTO {
     private LocalDate actStartDate;
 
     @JsonProperty("CUIT")
-    private Integer cuit;
+    private String cuit;
 
 /*    @JsonProperty("Client")
     private HashSet<Client> clients;*/
