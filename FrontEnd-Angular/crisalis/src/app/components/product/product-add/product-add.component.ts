@@ -27,8 +27,9 @@ export class ProductAddComponent {
   sendData():any {
     console.log(this.formGroup.value);
     
-    this.productService.addProduct(this.formGroup.value).subscribe();
+    this.productService.addProduct(this.formGroup.value).subscribe(response => {
+      this.router.navigateByUrl('/product-list');
+    });
   
-    this.router.navigateByUrl('/product-list');
   }
 }

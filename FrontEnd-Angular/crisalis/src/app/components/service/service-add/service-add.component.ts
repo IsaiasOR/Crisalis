@@ -26,8 +26,8 @@ export class ServiceAddComponent {
   sendData():any {
     console.log(this.formGroup.value);
     
-    this.crudService.addService(this.formGroup.value).subscribe();
-  
-    this.router.navigateByUrl('/service-list');
+    this.crudService.addService(this.formGroup.value).subscribe(response => {
+      this.router.navigateByUrl('/service-list');
+    });
   }
 }

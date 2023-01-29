@@ -27,8 +27,9 @@ export class BusinessAddComponent {
   sendData():any {
     console.log(this.formGroup.value);
     
-    this.businessService.addBusiness(this.formGroup.value).subscribe();
+    this.businessService.addBusiness(this.formGroup.value).subscribe(reponse => {
+      this.router.navigateByUrl('/business-list');
+    });
   
-    this.router.navigateByUrl('/business-list');
   }
 }

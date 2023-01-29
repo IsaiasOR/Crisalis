@@ -31,8 +31,9 @@ export class PersonAddComponent {
   sendData():any {
     console.log(this.formGroup.value);
     
-    this.crudService.addPerson(this.formGroup.value).subscribe();
+    this.crudService.addPerson(this.formGroup.value).subscribe(response => {
+      this.router.navigateByUrl('/person-list');
+    });
   
-    this.router.navigateByUrl('/person-list');
   }
 }

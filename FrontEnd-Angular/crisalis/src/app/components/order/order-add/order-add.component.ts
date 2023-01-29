@@ -33,8 +33,9 @@ export class OrderAddComponent {
     console.log("Me presionaste");
     console.log(this.formGroup.value);
     
-    this.crudService.addOrder(this.formGroup.value).subscribe();
+    this.crudService.addOrder(this.formGroup.value).subscribe(response => {
+      this.router.navigateByUrl('/order-list');
+    });
   
-    this.router.navigateByUrl('/order');
   }
 }

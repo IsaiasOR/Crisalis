@@ -26,8 +26,9 @@ export class TaxAddComponent {
   sendData():any {
     console.log(this.formGroup.value);
     
-    this.crudService.addTax(this.formGroup.value).subscribe();
+    this.crudService.addTax(this.formGroup.value).subscribe(response => {
+      this.router.navigateByUrl('/tax-list');
+    });
   
-    this.router.navigateByUrl('/tax-list');
   }
 }
