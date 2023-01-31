@@ -4,6 +4,7 @@ import com.Bootcamp.Crisalis.model.dto.ProductDTO;
 import lombok.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -32,10 +33,10 @@ public class Product extends Need {
     @Column(name = "guarantee")
     private Integer guarantee;
 
-   /* @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_order")
-    @ToString.Exclude
-    private Order order;*/
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "id_order")
+//    @ToString.Exclude
+//    private Order order;
 
 /*    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
     private Need need;*/
@@ -55,8 +56,8 @@ public class Product extends Need {
         /*this.setBaseAmount(productDTO.getBaseAmount());
         this.setName(productDTO.getName());*/
         this.guarantee = productDTO.getGuarantee();
-        /*this.order = productDTO.getOrder();
-        this.taxes = productDTO.getTaxes();*/
+//        this.order = productDTO.getOrder();
+//        this.taxes = productDTO.getTaxes();
         //this.need = productDTO.getNeed();
     }
 
@@ -66,11 +67,10 @@ public class Product extends Need {
                 .id(this.getId())
                 .name(this.getName())
                 .baseAmount(this.getBaseAmount())
+                .taxes(this.getTaxes())
                 .guarantee(this.guarantee)
-                /*.order(this.order)
-                .taxes((HashSet<Tax>) this.taxes)*/
+//                .order(this.order)
                 //.need(this.need)
                 .build();
     }
-
 }

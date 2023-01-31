@@ -1,6 +1,7 @@
 package com.Bootcamp.Crisalis.model;
 
 import com.Bootcamp.Crisalis.model.dto.OrderDTO;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -40,39 +41,39 @@ public class Order {
     @Column(name = "description")
     private String description;
 
-/*    @ManyToOne(
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
+    @ManyToOne(
+            fetch = FetchType.EAGER,
             optional = false
     )
     @JoinColumn(name = "id_user")
     @ToString.Exclude
-    private User user;*/
+    private User user;
 
-/*    @OneToMany(
-            fetch = FetchType.EAGER,
-            mappedBy = "order",
-            cascade = CascadeType.ALL
+    @OneToMany(
+            fetch = FetchType.EAGER
     )
     @ToString.Exclude
     private Set<Product> products = new HashSet<>();
 
     @OneToMany(
-            fetch = FetchType.EAGER,
-            mappedBy = "order",
-            cascade = CascadeType.ALL
+            fetch = FetchType.EAGER
     )
     @ToString.Exclude
     private Set<Service> services = new HashSet<>();
 
     @ManyToOne(
             fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL,
             optional = false
     )
     @JoinColumn(name = "id_client")
     @ToString.Exclude
-    private Client client;*/
+    private Client client;
+
+//    @OneToMany(
+//            fetch = FetchType.EAGER
+//    )
+//    @ToString.Exclude
+//    private Set<Tax> taxes = new HashSet<>();
 
     //@Transient
     //private final static int TOP_DISCOUNT = 0;
@@ -83,11 +84,12 @@ public class Order {
     public Order(OrderDTO orderDTO) {
         this.dateCreated = orderDTO.getDateCreated();
         this.amount = orderDTO.getAmount();
-        //this.user = orderDTO.getUser();
-        //this.needs = orderDTO.getNeeds();
-/*        this.products = orderDTO.getProducts();
+        this.description = orderDTO.getDescription();
+        this.user = orderDTO.getUser();
+        this.products = orderDTO.getProducts();
         this.services = orderDTO.getServices();
-        this.client = orderDTO.getClient();*/
+        this.client = orderDTO.getClient();
+//        this.taxes = orderDTO.getTaxes();
     }
 
     public OrderDTO toDTO() {
@@ -96,11 +98,12 @@ public class Order {
                 .id(this.id)
                 .dateCreated(this.dateCreated)
                 .amount(this.amount)
-                //.user(this.user)
-                //.needs((HashSet<Need>) this.needs)
-/*                .products((HashSet<Product>) this.products)
-                .services((HashSet<Service>) this.services)
-                .client(this.client)*/
+                .description(this.description)
+                .user(this.user)
+                .products(this.products)
+                .services(this.services)
+                .client(this.client)
+//                .taxes(this.taxes)
                 .build();
     }
 

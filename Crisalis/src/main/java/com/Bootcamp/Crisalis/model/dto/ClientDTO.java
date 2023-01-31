@@ -1,5 +1,6 @@
 package com.Bootcamp.Crisalis.model.dto;
 
+import com.Bootcamp.Crisalis.model.Business;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,9 +37,9 @@ public class ClientDTO {
     @JsonProperty("PhoneNumber")
     private String phoneNumber;
 
-/*    @JsonProperty("BusinessSet")
-    private HashSet<Business> businessSet;
+    @JsonProperty("Business")
+    private Business business;
 
-    @JsonProperty("Orders")
-    private HashSet<Order> orders;*/
+//    @JsonProperty("Orders")
+//    private Set<Order> orders;
 }

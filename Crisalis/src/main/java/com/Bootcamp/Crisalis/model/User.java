@@ -62,10 +62,6 @@ public class User implements UserDetails {
     @Transient
     private Boolean locked = Boolean.FALSE;
 
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @ToString.Exclude
-//    private Set<Order> orders = new HashSet<>();
-
     public User(UserDTO userDTO) {
         this.dni = userDTO.getDni();
         this.firstName = userDTO.getFirstName();
@@ -74,7 +70,6 @@ public class User implements UserDetails {
         this.phoneNumber = userDTO.getPhoneNumber();
         this.pass = userDTO.getPass();
         this.userRole = userDTO.getUserRole();
-        //this.orders = userDTO.getOrders();
     }
 
     public UserDTO toDTO() {
@@ -89,7 +84,6 @@ public class User implements UserDetails {
                         .phoneNumber(this.phoneNumber)
                         .pass(this.pass)
                         .userRole(this.userRole)
-                        //.orders((HashSet<Order>) this.orders)
                         .build();
     }
 

@@ -32,15 +32,16 @@ public class OrderController {
         return this.orderService.getListAllOrderInBD();
     }
 
-/*    @DeleteMapping(value = "/delete/{id}",
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public Order deleteOrder(@PathVariable("id") Integer id) {
-        return this.orderService.deleteOrder(id);
-    }*/
+    @DeleteMapping(value = "/delete/{id}")
+    public String deleteOrder(@PathVariable("id") Integer id) {
+        String msj = "Removal successful";
+        this.orderService.deleteOrderById(id);
+        return msj;
+    }
 
     @GetMapping(value = "/findOrder/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public OrderDTO findOrder(@PathVariable("id") Integer id) {
+    public Order findOrder(@PathVariable("id") Integer id) {
         return this.orderService.findOrderById(id);
     }
 

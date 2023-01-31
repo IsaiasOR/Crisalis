@@ -5,6 +5,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -37,19 +39,18 @@ public class Business {
     @Column(name = "cuit", nullable = false)
     private String cuit;
 
-/*    @ManyToMany(
-            mappedBy = "businessSet",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    @ToString.Exclude
-    private Set<Client> clients = new HashSet<>();*/
+//    @OneToMany(
+//            cascade = CascadeType.MERGE,
+//            fetch = FetchType.LAZY
+//    )
+//    @ToString.Exclude
+//    private Set<Client> clients = new HashSet<>();
 
     public Business(BusinessDTO businessDTO) {
         this.businessName = businessDTO.getBusinessName();
         this.actStartDate = businessDTO.getActStartDate();
         this.cuit = businessDTO.getCuit();
-        //this.clients = businessDTO.getClients();
+//        this.clients = businessDTO.getClients();
     }
 
     public BusinessDTO toDTO() {
@@ -59,7 +60,7 @@ public class Business {
                 .businessName(this.businessName)
                 .actStartDate(this.actStartDate)
                 .cuit(this.cuit)
-                //.clients((HashSet<Client>) this.clients)
+//                .clients(this.clients)
                 .build();
     }
 }

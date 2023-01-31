@@ -117,6 +117,9 @@ public class ClientService {
             if (!StringUtils.isEmpty(clientDTO.getAddress())) {
                 newClient.setAddress(clientDTO.getAddress());
             }
+            if (!ObjectUtils.isEmpty(clientDTO.getBusiness())) {
+                newClient.setBusiness(clientDTO.getBusiness());
+            }
             return this.clientRepository.save(newClient);
         }
         throw new NotUpdateException("Client doesn't exist");

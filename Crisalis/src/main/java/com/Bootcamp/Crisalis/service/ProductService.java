@@ -2,6 +2,7 @@ package com.Bootcamp.Crisalis.service;
 
 import com.Bootcamp.Crisalis.exception.custom.*;
 import com.Bootcamp.Crisalis.model.Product;
+import com.Bootcamp.Crisalis.model.Tax;
 import com.Bootcamp.Crisalis.model.dto.ProductDTO;
 import com.Bootcamp.Crisalis.repository.ProductRepository;
 import lombok.AllArgsConstructor;
@@ -9,6 +10,7 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,6 +26,41 @@ public class ProductService {
         }
         throw new NotCreatedException("Error in save new product");
     }
+
+//    public BigDecimal calculatedTotalAmount(ProductDTO productDTO) {
+//        BigDecimal total = new BigDecimal(0);
+//
+//        total = total.add(productDTO.getBaseAmount());
+//
+//        if (!ObjectUtils.isEmpty(productDTO.getTaxes())) {
+//            List<BigDecimal> taxes =
+//                    productDTO
+//                            .getTaxes()
+//                            .stream()
+//                            .map(Tax::getPercentage)
+//                            .collect(Collectors.toList());
+//
+//            for ( BigDecimal t : taxes) {
+//                total = total.add(total
+//                        .multiply(t)
+//                        .divide(new BigDecimal(100)));
+//            }
+//        }
+//
+//        if (productDTO.getGuarantee() > 0) {
+//            BigDecimal guarantee = productDTO.getBaseAmount()
+//                    .multiply(new BigDecimal(2))
+//                    .divide(new BigDecimal(100));
+//
+//            int i = productDTO.getGuarantee();
+//            while(i > 0) {
+//                total = total.add(guarantee);
+//                i--;
+//            }
+//        }
+//
+//        return total;
+//    }
 
     private Boolean checkProductDTO(ProductDTO productDTO) {
         if (StringUtils.isEmpty(productDTO.getName())) {
@@ -69,6 +106,9 @@ public class ProductService {
             }
             if (!ObjectUtils.isEmpty(productDTO.getGuarantee())) {
                 newProduct.setGuarantee(productDTO.getGuarantee());
+            }
+            if (!ObjectUtils.isEmpty(productDTO.getTaxes())) {
+                newProduct.setTaxes(productDTO.getTaxes());
             }
             return this.productRepository.save(newProduct);
         }

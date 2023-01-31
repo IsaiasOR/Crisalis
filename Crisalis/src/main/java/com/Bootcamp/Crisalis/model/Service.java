@@ -1,5 +1,6 @@
 package com.Bootcamp.Crisalis.model;
 
+import com.Bootcamp.Crisalis.enums.TypeService;
 import com.Bootcamp.Crisalis.model.dto.ServiceDTO;
 import lombok.*;
 
@@ -34,6 +35,9 @@ public class Service extends Need {
     @Column(name = "supportChange")
     private BigDecimal supportChange;
 
+    @Column(name = "typeService")
+    private TypeService typeService;
+
    /* @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_order")
     @ToString.Exclude
@@ -54,6 +58,7 @@ public class Service extends Need {
     public Service(ServiceDTO serviceDTO) {
         super(serviceDTO);
         this.monthlyCost = serviceDTO.getMonthlyCost();
+        this.typeService = serviceDTO.getTypeService();
         this.supportChange = serviceDTO.getSupportChange();
         /*this.order = serviceDTO.getOrder();
         this.taxes = serviceDTO.getTaxes();*/
@@ -66,10 +71,11 @@ public class Service extends Need {
                 .id(this.getId())
                 .name(this.getName())
                 .baseAmount(this.getBaseAmount())
+                .taxes(this.getTaxes())
                 .monthlyCost(this.monthlyCost)
+                .typeService(this.typeService)
                 .supportChange(this.supportChange)
-                /*.order(this.order)
-                .taxes((HashSet<Tax>) this.taxes)*/
+//                .order(this.order)
                 //.need(this.need)
                 .build();
     }

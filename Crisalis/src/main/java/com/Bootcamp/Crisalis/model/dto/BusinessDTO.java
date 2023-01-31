@@ -26,6 +26,6 @@ public class BusinessDTO {
     @JsonProperty("CUIT")
     private String cuit;
 
-/*    @JsonProperty("Client")
-    private HashSet<Client> clients;*/
+//    @JsonProperty("Client")
+//    private Set<Client> clients;
 }

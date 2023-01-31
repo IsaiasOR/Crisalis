@@ -24,6 +24,7 @@ export class OrderAddComponent {
       Description:[''],
       Products:[''],
       Services:[''],
+      Taxes:[''],
       Clients:[''],
       User:['']
     });

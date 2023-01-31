@@ -40,21 +40,19 @@ public class Need {
     @Column(name = "baseAmount", nullable = false)
     private BigDecimal baseAmount;
 
+    @OneToMany(
+            fetch = FetchType.EAGER
+    )
+    @ToString.Exclude
+    private Set<Tax> taxes = new HashSet<>();
 /*
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_order")
     @ToString.Exclude
     private Order order;
-
-    @JoinTable(
-            name = "needTax",
-            joinColumns = @JoinColumn(name = "fk_need"),
-            inverseJoinColumns = @JoinColumn(name="fk_tax")
-    )
-    @ManyToMany(cascade = CascadeType.ALL)
-    @ToString.Exclude
-    private Set<Tax> taxes = new HashSet<>();
 */
+
+
 
 /*    @OneToOne
     @JoinColumn(name = "fk_product")
@@ -69,8 +67,8 @@ public class Need {
         this.baseAmount = needDTO.getBaseAmount();
 /*        this.product = needDTO.getProduct();
         this.service = needDTO.getService();*/
-/*        this.taxes = needDTO.getTaxes();
-        this.order = needDTO.getOrder();*/
+        this.taxes = needDTO.getTaxes();
+//        this.order = needDTO.getOrder();
     }
 
     public NeedDTO toDTO() {
@@ -81,8 +79,8 @@ public class Need {
                 .baseAmount(this.baseAmount)
 /*                .product(this.product)
                 .service(this.service)*/
-/*                .taxes((HashSet<Tax>) this.taxes)
-                .order(this.order)*/
+                .taxes(this.taxes)
+//                .order(this.order)
                 .build();
     }
 }

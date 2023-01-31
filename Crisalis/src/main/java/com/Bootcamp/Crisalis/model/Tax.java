@@ -4,6 +4,7 @@ import com.Bootcamp.Crisalis.model.dto.TaxDTO;
 import lombok.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -33,7 +34,7 @@ public class Tax {
     private String name;
 
     @Column(name = "percentage")
-    private Double percentage;
+    private BigDecimal percentage;
 
 /*    @ManyToMany(mappedBy = "taxes", cascade = CascadeType.ALL)
     @ToString.Exclude

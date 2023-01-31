@@ -36,7 +36,4 @@ public class UserDTO {
 
     @JsonProperty("Role")
     private UserRole userRole;
-
-/*    @JsonProperty("Orders")
-    private HashSet<Order> orders;*/
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Product } from 'src/app/models/product';
 import { OrderService } from 'src/app/services/order/order.service';
 
 @Component({
@@ -9,15 +10,22 @@ import { OrderService } from 'src/app/services/order/order.service';
 
 export class OrderListComponent {
   Orders:any;
+  listProducts: any;
+  array: any;
 
   constructor(
-    private orderService:OrderService
-  ) {}
+    private orderService:OrderService,
+  ) {
+    this.array = [];
+  }
 
   ngOnInit(): void {
     this.orderService.getOrder().subscribe(response => {
       console.log(response);
       this.Orders=response;
+      
+      console.log(this.Orders[0]['Products']);
+      
     });
   }
 

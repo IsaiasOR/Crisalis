@@ -4,6 +4,8 @@ import com.Bootcamp.Crisalis.model.dto.ClientDTO;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -11,15 +13,14 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name= "Client")
+@Table(name= "Clients")
 public class Client {
 
     @Id
     @SequenceGenerator(
             name = "client_sequence",
             sequenceName = "client_sequence",
-            allocationSize = 1,
-            initialValue = 1
+            allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
@@ -49,17 +50,20 @@ public class Client {
     @Column(name = "activeService", nullable = false)
     private Boolean activeService;
 
-/*    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "clientBusiness",
-            joinColumns = @JoinColumn(name = "fk_client"),
-            inverseJoinColumns = @JoinColumn(name = "fk_business"))
+    @ManyToOne(
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL
+    )
+    @JoinColumn(name = "id_business")
     @ToString.Exclude
-    private Set<Business> businessSet = new HashSet<>();*/
+    private Business business;
 
-/*    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @ToString.Exclude
-    private Set<Order> orders = new HashSet<>();*/
+//    @OneToMany(
+//            mappedBy = "client",
+//            fetch = FetchType.LAZY
+//    )
+//    @ToString.Exclude
+//    private Set<Order> orders = new HashSet<>();
 
     public Client(ClientDTO clientDTO) {
         this.firstname = clientDTO.getFirstname();
@@ -69,8 +73,8 @@ public class Client {
         this.activeService = clientDTO.getActiveService();
         this.address = clientDTO.getAddress();
         this.phoneNumber = clientDTO.getPhoneNumber();
-/*        this.businessSet = clientDTO.getBusinessSet();
-        this.orders = clientDTO.getOrders();*/
+        this.business = clientDTO.getBusiness();
+//        this.orders = clientDTO.getOrders();
     }
 
     public ClientDTO toDTO() {
@@ -84,8 +88,8 @@ public class Client {
                 .activeService(this.activeService)
                 .address(this.address)
                 .phoneNumber(this.phoneNumber)
-/*                .businessSet((HashSet<Business>) this.businessSet)
-                .orders((HashSet<Order>) this.orders)*/
+                .business(this.business)
+//                .orders(this.orders)
                 .build();
     }
 }

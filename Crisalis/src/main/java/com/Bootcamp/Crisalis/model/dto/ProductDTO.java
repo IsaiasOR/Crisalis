@@ -1,10 +1,12 @@
 package com.Bootcamp.Crisalis.model.dto;
 
+import com.Bootcamp.Crisalis.model.Tax;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
@@ -25,4 +27,10 @@ public class ProductDTO extends NeedDTO {
 
     @JsonProperty("Guarantee")
     private Integer guarantee;
+
+    @JsonProperty("Taxes")
+    private Set<Tax> taxes;
+
+//    @JsonProperty("Order")
+//    private Order order;
 }
