@@ -10,6 +10,8 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -23,6 +25,9 @@ public class OrderService {
 
     public Order creatingOrder(OrderDTO orderDTO) {
         if (checkOrderDTO(orderDTO)) {
+            String date = DateTimeFormatter.ofPattern("MMM dd yyyy")
+                    .format(LocalDateTime.now());
+            orderDTO.setDateCreated(date);
             orderDTO.setStatus(Status.ACTIVE);
             orderDTO.setAmount(calculatedService.calculatedTotalAmount(orderDTO));
             return this.orderRepository.save(new Order(orderDTO));
@@ -70,7 +75,7 @@ public class OrderService {
         Order newOrder = orderRepository.getReferenceById(id);
 
         if (this.orderRepository.existsById(id)) {
-            if (!ObjectUtils.isEmpty(orderDTO.getDateCreated())) {
+            if (!StringUtils.isEmpty(orderDTO.getDateCreated())) {
                 newOrder.setDateCreated(orderDTO.getDateCreated());
             }
             if (!StringUtils.isEmpty(orderDTO.getDescription())) {

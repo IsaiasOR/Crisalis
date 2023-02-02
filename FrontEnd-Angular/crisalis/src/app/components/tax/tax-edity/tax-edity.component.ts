@@ -25,8 +25,8 @@ export class TaxEdityComponent implements OnInit {
       response => {
         console.log(response);
         this.formTax.setValue({
-          NameTax:response[0]['NameTax'],
-          Percentage:response[0]['Percentage']
+          NameTax:response['name'],
+          Percentage:response['percentage']
         });
       }
     );

@@ -25,13 +25,13 @@ export class PersonEdityComponent implements OnInit {
       response => {
         console.log(response);
         this.formPerson.setValue({
-          FirstName:response[0]['FirstName'],
-          LastName:response[0]['LastName'],
-          DNI:response[0]['DNI'],
-          Email:response[0]['Email'],
-          PhoneNumber:response[0]['PhoneNumber'],
-          Address:response[0]['Address'],
-          ActiveService:response[0]['ActiveService']
+          FirstName:response['FirstName'],
+          LastName:response['LastName'],
+          DNI:response['DNI'],
+          Email:response['Email'],
+          PhoneNumber:response['PhoneNumber'],
+          Address:response['Address'],
+          ActiveService:response['ActiveService']
         });
       }
     );

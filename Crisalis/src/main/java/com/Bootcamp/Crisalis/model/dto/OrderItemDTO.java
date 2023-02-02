@@ -21,7 +21,7 @@ public class OrderItemDTO {
     private Integer id;
 
     @JsonProperty("DateCreated")
-    private Date dateCreated;
+    private String dateCreated;
 
     @JsonProperty("Amount")
     private BigDecimal amount;

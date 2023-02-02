@@ -25,8 +25,8 @@ export class ServiceEdityComponent implements OnInit {
       response => {
         console.log(response);
         this.formService.setValue({
-          Name:response[0]['Name'],
-          BaseAmount:response[0]['BaseAmount']
+          Name:response['name'],
+          BaseAmount:response['baseAmount']
         });
       }
     );

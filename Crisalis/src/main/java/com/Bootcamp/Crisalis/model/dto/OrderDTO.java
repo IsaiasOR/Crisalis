@@ -19,7 +19,7 @@ import java.util.Set;
 public class OrderDTO {
 
     @JsonProperty("DateCreated")
-    private Date dateCreated;
+    private String dateCreated;
 
     @JsonProperty("Amount")
     private BigDecimal amount;

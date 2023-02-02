@@ -26,9 +26,9 @@ export class BusinessModifyDataComponent implements OnInit {
       response => {
         console.log(response);
         this.formBusiness.setValue({
-          BusinessName:response[0]['BusinessName'],
-          ActStartDate:response[0]['ActStartDate'],
-          CUIT:response[0]['CUIT']
+          BusinessName:response['businessName'],
+          ActStartDate:response['actStartDate'],
+          CUIT:response['cuit']
         });
       }
     );

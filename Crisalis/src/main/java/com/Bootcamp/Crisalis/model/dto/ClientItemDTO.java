@@ -27,7 +27,4 @@ public class ClientItemDTO {
 
     @JsonProperty("ActiveService")
     private Boolean activeService;
-
-    @JsonProperty("Business")
-    private String business;
 }

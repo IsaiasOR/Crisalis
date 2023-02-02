@@ -29,6 +29,4 @@ public class ServiceItemDTO extends NeedDTO {
     @JsonProperty("TypeService")
     private TypeService typeService;
 
-    @JsonProperty("Status")
-    private Status status;
 }

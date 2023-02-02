@@ -36,40 +36,40 @@
         <div class="card-body">
             <form ngNativeValidate [formGroup]="formGroup" (ngSubmit)="sendData()">
                 <div class="mb-3">
-                    <label for="" class="form-label">Fecha</label>
-                    <input type="date" required
-                    class="form-control" name="" formControlName="DateCreated" id="" aria-describedby="helpId" placeholder="Ingresar fecha del pedido">
-                </div>
-                <div class="mb-3">
-                    <label for="" class="form-label">Monto total</label>
-                    <input type="number" required step="any"
-                    class="form-control" name="" formControlName="Amount" id="" aria-describedby="helpId" placeholder="Ingresar monto">
-                </div>
-                <div class="mb-3">
                     <label for="" class="form-label">Descripción</label>
                     <input type="text" required
                     class="form-control" name="" formControlName="Description" id="" aria-describedby="helpId" placeholder="Descripción del pedido">
                 </div>
+
                 <div class="mb-3">
-                    <label for="" class="form-label">Asociar producto</label>
-                    <input type="number" required
-                    class="form-control" name="" formControlName="Products" id="" aria-describedby="helpId" placeholder="Ingresar ID del producto">
-                </div>
+                    <label for="inputProducts" class="form-label">Productos</label>
+                    <select multiple class="form-select" aria-label="Default select example" formControlName="Products">
+                        <option [ngValue]="product" *ngFor="let product of listProducts">{{product.Name}}</option>
+                    </select>
+                </div> 
+
                 <div class="mb-3">
-                    <label for="" class="form-label">Asociar servicio</label>
-                    <input type="number" required
-                    class="form-control" name="" formControlName="Services" id="" aria-describedby="helpId" placeholder="Ingresar ID del servicio">
-                </div>
+                    <label for="inputServices" class="form-label">Servicios</label>
+                    <select multiple class="form-select" aria-label="Default select example" formControlName="Services">
+                        <option [ngValue]="service" *ngFor="let service of listServices">{{service.Name}}</option>
+                    </select>
+                </div> 
+
                 <div class="mb-3">
-                    <label for="" class="form-label">Asociar cliente</label>
-                    <input type="number" required
-                    class="form-control" name="" formControlName="Client" id="" aria-describedby="helpId" placeholder="Ingresar D.N.I. del cliente">
-                </div>
+                    <label for="inputClient" class="form-label">Cliente</label>
+                    <select class="form-select" aria-label="Default select example" formControlName="Client">
+                        <option selected  [ngValue]="''">Abrir este menú de selección</option>
+                        <option [ngValue]="client" *ngFor="let client of listClients">{{client.LastName}}, {{client.FirstName}}</option>
+                    </select>
+                </div> 
+
                 <div class="mb-3">
-                    <label for="" class="form-label">Asociar usuario</label>
-                    <input type="number" required
-                    class="form-control" name="" formControlName="User" id="" aria-describedby="helpId" placeholder="Ingresar ID del usuario">
-                </div>
+                    <label for="inputUser" class="form-label">Usuario</label>
+                    <select class="form-select" aria-label="Default select example" formControlName="User">
+                        <option selected  [ngValue]="''">Abrir este menú de selección</option>
+                        <option [ngValue]="user" *ngFor="let user of listUsers">{{user.Email}}</option>
+                    </select>
+                </div> 
                 
                 <div class="btn-group" role="group" aria-label="">
                     <button type="submit" class="btn btn-primary">Registrar</button>

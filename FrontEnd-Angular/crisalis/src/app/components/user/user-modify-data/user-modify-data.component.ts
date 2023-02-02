@@ -25,13 +25,13 @@ export class UserModifyDataComponent implements OnInit {
       response => {
         console.log(response);
         this.formUser.setValue({
-          DNI:response[0]['DNI'],
-          FirstName:response[0]['FirstName'],
-          LastName:response[0]['LastName'],
-          PhoneNumber:response[0]['PhoneNumber'],
-          Role:response[0]['Role'],
-          Email:response[0]['Email'],
-          Password:response[0]['Password']
+          DNI:response['dni'],
+          FirstName:response['firstName'],
+          LastName:response['lastName'],
+          PhoneNumber:response['phoneNumber'],
+          Role:response['userRole'],
+          Email:response['email'],
+          Password:response['password']
         });
       }
     );

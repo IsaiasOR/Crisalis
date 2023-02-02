@@ -25,7 +25,6 @@ public class ServiceService {
     public Service saveService(ServiceDTO serviceDTO) {
         if (checkServiceDTO(serviceDTO)) {
 //            serviceDTO.setMonthlyCost(calculatedMonthlyCost(serviceDTO));
-            serviceDTO.setStatus(Status.INACTIVE);
             return this.serviceRepository.save(new Service(serviceDTO));
         }
         throw new NotCreatedException("Error in save new service");
@@ -113,9 +112,6 @@ public class ServiceService {
             }
             if (!ObjectUtils.isEmpty(serviceDTO.getTypeService())){
                 newService.setTypeService(serviceDTO.getTypeService());
-            }
-            if (!ObjectUtils.isEmpty(serviceDTO.getStatus())){
-                newService.setStatus(serviceDTO.getStatus());
             }
             if (!ObjectUtils.isEmpty(serviceDTO.getTaxes())){
                 newService.setTaxes(serviceDTO.getTaxes());

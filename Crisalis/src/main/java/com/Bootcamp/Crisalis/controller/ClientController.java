@@ -55,7 +55,7 @@ public class ClientController {
 
     @GetMapping(value = "/findClientById/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public Client findClientById(@PathVariable("id") Integer id) {
+    public ClientDTO findClientById(@PathVariable("id") Integer id) {
         return this.clientService.findClientById(id);
     }
 

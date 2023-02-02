@@ -53,7 +53,6 @@ public class Service extends Need {
                 .name(this.getName())
                 .baseAmount(this.getBaseAmount())
                 .typeService(this.typeService)
-                .status(this.getStatus())
                 .build();
     }
 

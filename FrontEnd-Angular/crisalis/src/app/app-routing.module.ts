@@ -18,6 +18,7 @@ import { ServiceEdityComponent } from './components/service/service-edity/servic
 import { ProductListComponent } from './components/product/product-list/product-list.component';
 import { ProductAddComponent } from './components/product/product-add/product-add.component';
 import { ProductEdityComponent } from './components/product/product-edity/product-edity.component';
+import { PersonDetailsComponent } from './components/person/person-details/person-details.component';
 
 import { UserListComponent } from './components/user/user-list/user-list.component';
 import { UserModifyDataComponent } from './components/user/user-modify-data/user-modify-data.component';
@@ -47,6 +48,7 @@ const routes: Routes = [
   {path: 'person-list', component:PersonListComponent},
   {path: 'person-add', component:PersonAddComponent},
   {path: 'person-edity/:Id', component:PersonEdityComponent},
+  {path: 'person-details/:Id', component:PersonDetailsComponent},
 
   {path: 'business-list', component:BusinessListComponent},
   {path: 'business-add', component:BusinessAddComponent},

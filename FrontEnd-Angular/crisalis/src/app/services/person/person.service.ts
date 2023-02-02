@@ -25,7 +25,7 @@ export class PersonService {
   }
 
   getSinglePerson(id:any):Observable<any> {
-    return this.clientHttp.get(this.API+"/findClientByDni/"+id);
+    return this.clientHttp.get(this.API+"/findClientById/"+id);
   }
 
   editPerson(id:any, dataPerson:any):Observable<any> {

@@ -89,9 +89,9 @@ public class ClientService {
                 .collect(Collectors.toList());
     }
 
-    public Client findClientById(Integer id) {
+    public ClientDTO findClientById(Integer id) {
         if (this.clientRepository.existsById(id)) {
-            return this.clientRepository.findClientById(id);
+            return this.clientRepository.findClientById(id).toDTO();
         }
         throw new UnauthorizedException("Client doesn't exist");
     }

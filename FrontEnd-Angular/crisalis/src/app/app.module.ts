@@ -32,6 +32,7 @@ import { UserListComponent } from './components/user/user-list/user-list.compone
 import { SecretComponent } from './components/secret/secret.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OrderDetailsComponent } from './components/order/order-details/order-details.component';
+import { PersonDetailsComponent } from './components/person/person-details/person-details.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { OrderDetailsComponent } from './components/order/order-details/order-de
     UserListComponent,
     SecretComponent,
     OrderDetailsComponent,
+    PersonDetailsComponent,
   ],
   imports: [
     BrowserModule,

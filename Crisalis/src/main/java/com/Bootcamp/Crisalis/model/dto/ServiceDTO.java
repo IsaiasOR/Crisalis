@@ -39,8 +39,4 @@ public class ServiceDTO extends NeedDTO {
     @JsonProperty("Taxes")
     private Set<Tax> taxes;
 
-    @JsonProperty("Status")
-    private Status status;
-
-
 }

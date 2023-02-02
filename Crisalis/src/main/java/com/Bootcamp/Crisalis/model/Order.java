@@ -32,7 +32,7 @@ public class Order {
     private Integer id;
 
     @Column(name = "dateOrder", nullable = false)
-    private Date dateCreated;
+    private String dateCreated;
 
     @Column(name = "amount", nullable = false)
     private BigDecimal amount;

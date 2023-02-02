@@ -93,7 +93,6 @@ public class Client {
                 .lastname(this.lastname)
                 .dni(this.dni)
                 .activeService(this.activeService)
-                .business(this.business.getBusinessName())
                 .build();
     }
 }

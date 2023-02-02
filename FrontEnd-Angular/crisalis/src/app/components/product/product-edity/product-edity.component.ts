@@ -25,15 +25,17 @@ export class ProductEdityComponent implements OnInit {
       response => {
         console.log(response);
         this.formProduct.setValue({
-          Name:response[0]['Name'],
-          BaseAmount:response[0]['BaseAmount']
+          Name:response['name'],
+          BaseAmount:response['baseAmount'],
+          Status:response['status']
         });
       }
     );
 
     this.formProduct = this.formBuilder.group({
       Name:[''],
-      BaseAmount:['']
+      BaseAmount:[''],
+      Status:['']
     });
 
   }
