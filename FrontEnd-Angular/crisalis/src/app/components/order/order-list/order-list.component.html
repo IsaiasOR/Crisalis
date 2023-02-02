@@ -1,0 +1,73 @@
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-md navbar-light bg-light border-4 border-bottom border-primary">
+        <div class="container-fluid">
+            <a href="/" class="navbar-brand">Finnegans</a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#MenuNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="MenuNav" class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-3">
+                    <li class="nav-item"><a class="nav-link" href="/order-list">Pedidos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/product-list">Productos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/service-list">Servicios</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Clientes</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/person-list">Personas</a></li>
+                            <li><a class="dropdown-item" href="/business-list">Empresas</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tax-list">Impuestos</a> 
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user-list">Usuarios</a> 
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="container-xxl">
+    <br>
+    <a class="btn btn-primary" href="order-add">Registrar pedido</a>
+    <br>
+    <br>
+    <div class="card">
+        <h2 class="card-header">Pedidos</h2>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Fecha</th>
+                            <th>Monto total</th>
+                            <th>Descripción</th>
+                            <th>Cliente</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let order of Orders; let iControl=index">
+                            <td>{{ order.Id }}</td>
+                            <td>{{ order.DateCreated }}</td>
+                            <td>{{ order.Amount }}</td>
+                            <td>{{ order.Description }}</td>
+                            <td>{{ order.Client }}</td>
+                            <td>{{ order.Status }}</td>
+                            <td> 
+                                <a class="btn btn-info" href="/order-edity/{{ order.Id }}">Editar</a> | 
+                                <a class="btn btn-danger" (click)="deleteRegister(order.Id,iControl)" role="button">Borrar</a> |
+                                <a class="btn btn-primary" href="/order-details/{{ order.Id }}">Detalles</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+    </div>
+</div>

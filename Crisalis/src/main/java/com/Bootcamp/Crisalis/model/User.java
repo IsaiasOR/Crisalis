@@ -2,54 +2,74 @@ package com.Bootcamp.Crisalis.model;
 
 import com.Bootcamp.Crisalis.enums.UserRole;
 import com.Bootcamp.Crisalis.model.dto.UserDTO;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.Bootcamp.Crisalis.model.dto.UserItemDTO;
+import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
-@Data
-@Entity
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name= "Usuario")
-public class User {
+@Entity
+@Table(name= "users")
+public class User implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id_Usuario")
+    @SequenceGenerator(
+            name = "user_sequence",
+            sequenceName = "user_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "user_sequence"
+    )
+    @Column(name = "id_user")
     private Integer id;
 
-    @Column(name = "Nombre")
+    @Column(name = "dni", nullable = false)
+    private Integer dni;
+
+    @Column(name = "firstname", nullable = false, length = 25)
     private String firstName;
 
-    @Column(name = "Apellido")
+    @Column(name = "lastname", nullable = false, length = 25)
     private String lastName;
 
-    @Column(name = "Usuario")
-    private String username;
-
-    @Column(name = "Email")
+    @Column(name = "email", nullable = false, length = 50)
     private String email;
 
-    @Column(name = "Contraseña")
-    private String password;
+    @Column(name = "phoneNumber", length = 25)
+    private String phoneNumber;
 
-    @Column(name = "Role")
+    @Column(name = "pass", nullable = false)
+    private String pass;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false, length = 15)
     private UserRole userRole;
 
-    /*
-    Otra opción para esto es:
-    1. Mapear en otra clase, es decir que reciba cierta cantidad de cosas y nosotros
-    lo mapeamos a lo que necesitemos (dependerá de cuánto tendremos que mapear)
-    2. Utilizar builder en vez de @NoArgsConstructor
-     */
+    @Transient
+    private Boolean enabled = Boolean.FALSE;
+    @Transient
+    private Boolean locked = Boolean.FALSE;
+
     public User(UserDTO userDTO) {
+        this.dni = userDTO.getDni();
         this.firstName = userDTO.getFirstName();
         this.lastName = userDTO.getLastName();
-        this.username = userDTO.getUsername();
         this.email = userDTO.getEmail();
-        this.password = userDTO.getPassword();
+        this.phoneNumber = userDTO.getPhoneNumber();
+        this.pass = userDTO.getPass();
         this.userRole = userDTO.getUserRole();
     }
 
@@ -57,11 +77,62 @@ public class User {
         return
                 UserDTO
                         .builder()
+                        .id(this.id)
+                        .dni(this.dni)
                         .firstName(this.firstName)
                         .lastName(this.lastName)
-                        .username(this.username)
                         .email(this.email)
-                        .password(this.password)
+                        .phoneNumber(this.phoneNumber)
+                        .pass(this.pass)
+                        .userRole(this.userRole)
                         .build();
+    }
+
+    public UserItemDTO toItemDTO() {
+        return
+                UserItemDTO
+                        .builder()
+                        .id(this.id)
+                        .dni(this.dni)
+                        .firstName(this.firstName)
+                        .lastName(this.lastName)
+                        .email(this.email)
+                        .build();
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(userRole.getRole());
+        return Collections.singletonList(authority);
+    }
+
+    @Override
+    public String getPassword() {
+        return pass;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return !locked;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
     }
 }

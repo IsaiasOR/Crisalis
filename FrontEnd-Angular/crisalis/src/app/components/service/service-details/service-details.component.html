@@ -1,0 +1,59 @@
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-md navbar-light bg-light border-4 border-bottom border-primary">
+        <div class="container-fluid">
+            <a href="/" class="navbar-brand">Finnegans</a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#MenuNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="MenuNav" class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-3">
+                    <li class="nav-item"><a class="nav-link" href="/order-list">Pedidos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/product-list">Productos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/service-list">Servicios</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Clientes</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/person-list">Personas</a></li>
+                            <li><a class="dropdown-item" href="/business-list">Empresas</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tax-list">Impuestos</a> 
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user-list">Usuarios</a> 
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="container-xxl">
+    <br>
+    <br>
+    <div class="card">
+        <h2 class="card-header">Servicio</h2>
+        <div class="card-body">
+            <div class="table-responsive">
+                <ul>
+                    <li>Id: {{ serviceDetails.id }}</li>
+                    <li>Nombre: {{ serviceDetails.name }}</li>
+                    <li>Precio: {{ serviceDetails.baseAmount }}</li>
+                    <li>Tipo de servicio: {{ serviceDetails.typeService }}</li>
+                    <li>Cargo por soporte: {{ serviceDetails.supportChange }}</li>
+                    <li>Impuestos
+                        <ul *ngFor="let tax of serviceDetails.taxes">
+                            <li>DNI: {{ tax.id }}</li>
+                            <li>Nombre: {{ tax.name }}</li>
+                            <li>Porcentage: {{ tax.percentage }}</li>
+                        </ul>
+                    </li>
+                    <li>Costo mensual: {{ serviceDetails.monthlyCost }}</li>
+                </ul>
+            </div>
+
+            <a type="button" href="/person-list" class="btn btn-primary">Volver</a>
+        </div>
+    </div>
+</div>

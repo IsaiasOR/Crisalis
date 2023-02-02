@@ -1,0 +1,63 @@
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-md navbar-light bg-light border-4 border-bottom border-primary">
+        <div class="container-fluid">
+            <a href="/" class="navbar-brand">Finnegans</a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#MenuNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="MenuNav" class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-3">
+                    <li class="nav-item"><a class="nav-link" href="/order-list">Pedidos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/product-list">Productos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/service-list">Servicios</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Clientes</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/person-list">Personas</a></li>
+                            <li><a class="dropdown-item" href="/business-list">Empresas</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tax-list">Impuestos</a> 
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user-list">Usuarios</a> 
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<br>
+<div class="container-xxl">
+    <div class="card">
+        <h2 class="card-header">
+            Registrar servicio
+        </h2>
+        <div class="card-body">
+
+            <form ngNativeValidate [formGroup]="formGroup" (ngSubmit)="sendData()">
+
+                <div class="mb-3">
+                    <label for="" class="form-label">Nombre</label>
+                    <input type="text" required
+                    class="form-control" name="" formControlName="Name" id="" aria-describedby="helpId" placeholder="Ingresar nombre">
+                </div>
+
+                <div class="mb-3">
+                    <label for="" class="form-label">Precio</label>
+                    <input type="number" required step="any"
+                    class="form-control" name="" formControlName="BaseAmount" id="" aria-describedby="helpId" placeholder="Ingresar monto">
+                </div>
+
+                <div class="btn-group" role="group" aria-label="">
+                    <button type="submit" class="btn btn-primary">Registrar</button>
+                    <button type="button" [routerLink]="['/service-list']" routerLinkActive="router-link-active"  class="btn btn-danger">Cancelar</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>

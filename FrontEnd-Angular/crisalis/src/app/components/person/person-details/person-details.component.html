@@ -1,0 +1,62 @@
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-md navbar-light bg-light border-4 border-bottom border-primary">
+        <div class="container-fluid">
+            <a href="/" class="navbar-brand">Finnegans</a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#MenuNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="MenuNav" class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-3">
+                    <li class="nav-item"><a class="nav-link" href="/order-list">Pedidos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/product-list">Productos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/service-list">Servicios</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Clientes</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/person-list">Personas</a></li>
+                            <li><a class="dropdown-item" href="/business-list">Empresas</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tax-list">Impuestos</a> 
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user-list">Usuarios</a> 
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="container-xxl">
+    <br>
+    <br>
+    <div class="card">
+        <h2 class="card-header">Cliente</h2>
+        <div class="card-body">
+            <div class="table-responsive">
+                <ul>
+                    <li>Id: {{ personDetails.Id }}</li>
+                    <li>DNI: {{ personDetails.DNI }}</li>
+                    <li>Nombre: {{ personDetails.FirstName }}</li>
+                    <li>Apellido: {{ personDetails.LastName }}</li>
+                    <li>Correo eléctronico: {{ personDetails.Email }}</li>
+                    <li>Número de teléfono: {{ personDetails.PhoneNumber }}</li>
+                    <li>Dirección: {{ personDetails.Address }}</li>
+                    <li>Dirección: {{ personDetails.ActiveService }}</li>
+                    <li>Empresa
+                        <ul>
+                            <li>ID: {{ personDetails.Business.id }}</li>
+                            <li>Nombre: {{ personDetails.Business.businessName }}</li>
+                            <li>CUIT: {{ personDetails.Business.cuit }}</li>
+                            <li>Fecha de inicio de actividades: {{ personDetails.Business.actStartDate }}</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <a type="button" href="/person-list" class="btn btn-primary">Volver</a>
+        </div>
+    </div>
+</div>

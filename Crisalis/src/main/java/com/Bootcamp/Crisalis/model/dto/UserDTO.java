@@ -2,29 +2,38 @@ package com.Bootcamp.Crisalis.model.dto;
 
 import com.Bootcamp.Crisalis.enums.UserRole;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class UserDTO {
 
-    //Desde el font-end viene como "Nombre" y aquí se lo mapea y se lo trabaja como firstName
-    @JsonProperty("Nombre")
+    @JsonProperty("Id")
+    private Integer id;
+
+    @JsonProperty("DNI")
+    private Integer dni;
+
+    @JsonProperty("FirstName")
     private String firstName;
 
-    @JsonProperty("Apellido")
+    @JsonProperty("LastName")
     private String lastName;
-
-    @JsonProperty("Usuario")
-    private String username;
 
     @JsonProperty("Email")
     private String email;
 
-    @JsonProperty("Contraseña")
-    private String password;
+    @JsonProperty("PhoneNumber")
+    private String phoneNumber;
 
-    @JsonProperty("Rol")
+    @JsonProperty("Password")
+    private String pass;
+
+    @JsonProperty("Role")
     private UserRole userRole;
 }
