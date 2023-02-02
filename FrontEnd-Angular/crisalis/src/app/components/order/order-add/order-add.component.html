@@ -58,7 +58,7 @@
                 <div class="mb-3">
                     <label for="inputClient" class="form-label">Cliente</label>
                     <select class="form-select" aria-label="Default select example" formControlName="Client">
-                        <option selected  [ngValue]="''">Abrir este menú de selección</option>
+                        <option selected  [ngValue]="''">Seleccionar cliente</option>
                         <option [ngValue]="client" *ngFor="let client of listClients">{{client.LastName}}, {{client.FirstName}}</option>
                     </select>
                 </div> 
@@ -66,7 +66,7 @@
                 <div class="mb-3">
                     <label for="inputUser" class="form-label">Usuario</label>
                     <select class="form-select" aria-label="Default select example" formControlName="User">
-                        <option selected  [ngValue]="''">Abrir este menú de selección</option>
+                        <option selected  [ngValue]="''">Seleccionar usuario</option>
                         <option [ngValue]="user" *ngFor="let user of listUsers">{{user.Email}}</option>
                     </select>
                 </div> 
