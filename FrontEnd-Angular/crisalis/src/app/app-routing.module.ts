@@ -32,6 +32,8 @@ import { LoginComponent } from './components/user/login/login.component';
 import { OrderListComponent } from './components/order/order-list/order-list.component';
 import { OrderAddComponent } from './components/order/order-add/order-add.component';
 import { OrderEdityComponent } from './components/order/order-edity/order-edity.component';
+import { OrderDetailsComponent } from './components/order/order-details/order-details.component';
+
 import { SecretComponent } from './components/secret/secret.component';
 
 const routes: Routes = [
@@ -66,7 +68,8 @@ const routes: Routes = [
 
   {path: 'order-list', component:OrderListComponent},
   {path: 'order-add', component:OrderAddComponent},
-  {path: 'order-edity/:Id', component:OrderEdityComponent}
+  {path: 'order-edity/:Id', component:OrderEdityComponent},
+  {path: 'order-details/:Id', component:OrderDetailsComponent}
 
 ];
 

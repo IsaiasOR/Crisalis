@@ -13,12 +13,12 @@ export class Order {
     Client!: Person;
     User!: User;
 
-    constructor(dateCreated: Date,
-        amount: Number,
-        description: String,
-        client: Person) {
-            this.Amount = amount;
-            this.DateCreated = dateCreated;
-            this.Description = description;
-    }
+    // constructor(dateCreated: Date,
+    //     amount: Number,
+    //     description: String,
+    //     client: Person) {
+    //         this.Amount = amount;
+    //         this.DateCreated = dateCreated;
+    //         this.Description = description;
+    // }
 }

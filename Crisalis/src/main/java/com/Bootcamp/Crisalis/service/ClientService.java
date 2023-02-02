@@ -5,6 +5,7 @@ import com.Bootcamp.Crisalis.model.Client;
 import com.Bootcamp.Crisalis.model.Product;
 import com.Bootcamp.Crisalis.model.dto.BusinessDTO;
 import com.Bootcamp.Crisalis.model.dto.ClientDTO;
+import com.Bootcamp.Crisalis.model.dto.ClientItemDTO;
 import com.Bootcamp.Crisalis.repository.ClientRepository;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.ObjectUtils;
@@ -41,9 +42,12 @@ public class ClientService {
         if (StringUtils.isEmpty(clientDTO.getEmail())) {
             throw new EmptyElementException("Email is empty");
         }
-/*        if (ObjectUtils.isEmpty(clientDTO.getActiveService())) {
-            throw new EmptyElementException("Active service is empty");
-        }*/
+        if (ObjectUtils.isEmpty(clientDTO.getAddress())) {
+            throw new EmptyElementException("Address is empty");
+        }
+        if (ObjectUtils.isEmpty(clientDTO.getPhoneNumber())) {
+            throw new EmptyElementException("Phone number is empty");
+        }
         return Boolean.TRUE;
     }
 
@@ -77,11 +81,11 @@ public class ClientService {
                 ).toDTO();
     }
 
-    public List<ClientDTO> getListAllClientsInBD() {
+    public List<ClientItemDTO> getListAllClientsInBD() {
         return this.clientRepository
                 .findAll()
                 .stream()
-                .map(Client::toDTO)
+                .map(Client::toCLientItemDTO)
                 .collect(Collectors.toList());
     }
 

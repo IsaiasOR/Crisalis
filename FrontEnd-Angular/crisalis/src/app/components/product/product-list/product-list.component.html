@@ -45,6 +45,7 @@
                             <th>ID</th>
                             <th>Nombre</th>
                             <th>Monto</th>
+                            <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -53,6 +54,7 @@
                             <td>{{ product.Id }}</td>
                             <td>{{ product.Name }}</td>
                             <td>${{ product.BaseAmount }}</td>
+                            <td>{{ product.Status }}</td>
                             <td> 
                                 <a class="btn btn-info" href="/product-edity/{{ product.Id }}">Editar</a> | 
                                 <a class="btn btn-danger" (click)="deleteRegister(product.Id,iControl)" role="button">Borrar</a>

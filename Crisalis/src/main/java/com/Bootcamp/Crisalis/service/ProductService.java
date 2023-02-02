@@ -1,16 +1,16 @@
 package com.Bootcamp.Crisalis.service;
 
+import com.Bootcamp.Crisalis.enums.Status;
 import com.Bootcamp.Crisalis.exception.custom.*;
 import com.Bootcamp.Crisalis.model.Product;
-import com.Bootcamp.Crisalis.model.Tax;
 import com.Bootcamp.Crisalis.model.dto.ProductDTO;
+import com.Bootcamp.Crisalis.model.dto.ProductItemDTO;
 import com.Bootcamp.Crisalis.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,6 +22,7 @@ public class ProductService {
 
     public Product saveProduct(ProductDTO productDTO) {
         if (checkProductDTO(productDTO)) {
+            productDTO.setStatus(Status.INACTIVE);
             return this.productRepository.save(new Product(productDTO));
         }
         throw new NotCreatedException("Error in save new product");
@@ -86,11 +87,11 @@ public class ProductService {
                     );
     }
 
-    public List<ProductDTO> getListAllProductsInBD() {
+    public List<ProductItemDTO> getListAllProductsInBD() {
         return this.productRepository
                 .findAll()
                 .stream()
-                .map(Product::toDTO)
+                .map(Product::toItemDTO)
                 .collect(Collectors.toList());
     }
 
@@ -109,6 +110,9 @@ public class ProductService {
             }
             if (!ObjectUtils.isEmpty(productDTO.getTaxes())) {
                 newProduct.setTaxes(productDTO.getTaxes());
+            }
+            if (!ObjectUtils.isEmpty(productDTO.getStatus())) {
+                newProduct.setStatus(productDTO.getStatus());
             }
             return this.productRepository.save(newProduct);
         }

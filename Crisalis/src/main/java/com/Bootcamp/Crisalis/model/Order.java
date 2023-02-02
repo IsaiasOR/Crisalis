@@ -1,14 +1,13 @@
 package com.Bootcamp.Crisalis.model;
 
-import com.Bootcamp.Crisalis.model.dto.OrderDTO;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.Bootcamp.Crisalis.enums.Status;
+import com.Bootcamp.Crisalis.model.dto.*;
 import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -40,6 +39,9 @@ public class Order {
 
     @Column(name = "description")
     private String description;
+
+    @Column(name = "status")
+    private Status status;
 
     @ManyToOne(
             fetch = FetchType.EAGER,
@@ -89,13 +91,13 @@ public class Order {
         this.products = orderDTO.getProducts();
         this.services = orderDTO.getServices();
         this.client = orderDTO.getClient();
+        this.status = orderDTO.getStatus();
 //        this.taxes = orderDTO.getTaxes();
     }
 
     public OrderDTO toDTO() {
         return OrderDTO
                 .builder()
-                .id(this.id)
                 .dateCreated(this.dateCreated)
                 .amount(this.amount)
                 .description(this.description)
@@ -104,6 +106,32 @@ public class Order {
                 .services(this.services)
                 .client(this.client)
 //                .taxes(this.taxes)
+                .build();
+    }
+
+    public OrderItemDTO toOrderItemDTO() {
+        return OrderItemDTO
+                .builder()
+                .id(this.id)
+                .amount(this.amount)
+                .description(this.description)
+                .client(this.client.getDni())
+                .status(this.status)
+                .build();
+    }
+
+    public OrderDetailsDTO toOrderDetailsDTO() {
+        return OrderDetailsDTO
+                .builder()
+                .id(this.id)
+                .amount(this.amount)
+                .description(this.description)
+                .client(this.client.toCLientItemDTO())
+                .status(this.status)
+                .products(this.products.stream().map(Product::toItemDTO).collect(Collectors.toList()))
+                .services(this.services.stream().map(Service::toServiceItemDTO).collect(Collectors.toList()))
+                .user(this.user.toItemDTO())
+                .status(this.status)
                 .build();
     }
 

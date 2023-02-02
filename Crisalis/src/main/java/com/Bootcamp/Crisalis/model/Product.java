@@ -1,6 +1,7 @@
 package com.Bootcamp.Crisalis.model;
 
 import com.Bootcamp.Crisalis.model.dto.ProductDTO;
+import com.Bootcamp.Crisalis.model.dto.ProductItemDTO;
 import lombok.*;
 
 import javax.persistence.*;
@@ -68,9 +69,20 @@ public class Product extends Need {
                 .name(this.getName())
                 .baseAmount(this.getBaseAmount())
                 .taxes(this.getTaxes())
+                .status(this.getStatus())
                 .guarantee(this.guarantee)
 //                .order(this.order)
                 //.need(this.need)
+                .build();
+    }
+
+    public ProductItemDTO toItemDTO() {
+        return ProductItemDTO
+                .builder()
+                .id(this.getId())
+                .name(this.getName())
+                .baseAmount(this.getBaseAmount())
+                .status(this.getStatus())
                 .build();
     }
 }

@@ -2,6 +2,7 @@ package com.Bootcamp.Crisalis.controller;
 
 import com.Bootcamp.Crisalis.model.Service;
 import com.Bootcamp.Crisalis.model.dto.ServiceDTO;
+import com.Bootcamp.Crisalis.model.dto.ServiceItemDTO;
 import com.Bootcamp.Crisalis.service.ServiceService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,7 @@ public class ServiceController {
 
     @GetMapping(value = "/list",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ServiceDTO> getListAllServicesInBD() {
+    public List<ServiceItemDTO> getListAllServicesInBD() {
         return this.service.getListAllServicesInBD();
     }
 

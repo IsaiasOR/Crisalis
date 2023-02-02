@@ -1,10 +1,12 @@
 package com.Bootcamp.Crisalis.service;
 
+import com.Bootcamp.Crisalis.enums.Status;
 import com.Bootcamp.Crisalis.enums.TypeService;
 import com.Bootcamp.Crisalis.exception.custom.*;
 import com.Bootcamp.Crisalis.model.Service;
 import com.Bootcamp.Crisalis.model.Tax;
 import com.Bootcamp.Crisalis.model.dto.ServiceDTO;
+import com.Bootcamp.Crisalis.model.dto.ServiceItemDTO;
 import com.Bootcamp.Crisalis.repository.ServiceRepository;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.ObjectUtils;
@@ -23,6 +25,7 @@ public class ServiceService {
     public Service saveService(ServiceDTO serviceDTO) {
         if (checkServiceDTO(serviceDTO)) {
 //            serviceDTO.setMonthlyCost(calculatedMonthlyCost(serviceDTO));
+            serviceDTO.setStatus(Status.INACTIVE);
             return this.serviceRepository.save(new Service(serviceDTO));
         }
         throw new NotCreatedException("Error in save new service");
@@ -84,11 +87,11 @@ public class ServiceService {
                     );
     }
 
-    public List<ServiceDTO> getListAllServicesInBD() {
+    public List<ServiceItemDTO> getListAllServicesInBD() {
         return this.serviceRepository
                 .findAll()
                 .stream()
-                .map(Service::toDTO)
+                .map(Service::toServiceItemDTO)
                 .collect(Collectors.toList());
     }
 
@@ -110,6 +113,12 @@ public class ServiceService {
             }
             if (!ObjectUtils.isEmpty(serviceDTO.getTypeService())){
                 newService.setTypeService(serviceDTO.getTypeService());
+            }
+            if (!ObjectUtils.isEmpty(serviceDTO.getStatus())){
+                newService.setStatus(serviceDTO.getStatus());
+            }
+            if (!ObjectUtils.isEmpty(serviceDTO.getTaxes())){
+                newService.setTaxes(serviceDTO.getTaxes());
             }
             return this.serviceRepository.save(newService);
         }

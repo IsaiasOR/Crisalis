@@ -2,6 +2,7 @@ package com.Bootcamp.Crisalis.controller;
 
 import com.Bootcamp.Crisalis.model.Client;
 import com.Bootcamp.Crisalis.model.dto.ClientDTO;
+import com.Bootcamp.Crisalis.model.dto.ClientItemDTO;
 import com.Bootcamp.Crisalis.service.ClientService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -42,7 +43,7 @@ public class ClientController {
 
     @GetMapping(value = "/list",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ClientDTO> getListAllClientsInBD() {
+    public List<ClientItemDTO> getListAllClientsInBD() {
         return clientService.getListAllClientsInBD();
     }
 

@@ -1,5 +1,6 @@
 package com.Bootcamp.Crisalis.model.dto;
 
+import com.Bootcamp.Crisalis.enums.Status;
 import com.Bootcamp.Crisalis.enums.TypeService;
 import com.Bootcamp.Crisalis.model.Tax;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -37,5 +38,9 @@ public class ServiceDTO extends NeedDTO {
 
     @JsonProperty("Taxes")
     private Set<Tax> taxes;
+
+    @JsonProperty("Status")
+    private Status status;
+
 
 }

@@ -11,13 +11,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ClientDTO {
+public class ClientItemDTO {
 
     @JsonProperty("Id")
     private Integer id;
-
-    @JsonProperty("ActiveService")
-    private Boolean activeService;
 
     @JsonProperty("FirstName")
     private String firstname;
@@ -28,15 +25,9 @@ public class ClientDTO {
     @JsonProperty("DNI")
     private Integer dni;
 
-    @JsonProperty("Email")
-    private String email;
-
-    @JsonProperty("Address")
-    private String address;
-
-    @JsonProperty("PhoneNumber")
-    private String phoneNumber;
+    @JsonProperty("ActiveService")
+    private Boolean activeService;
 
     @JsonProperty("Business")
-    private Business business;
+    private String business;
 }

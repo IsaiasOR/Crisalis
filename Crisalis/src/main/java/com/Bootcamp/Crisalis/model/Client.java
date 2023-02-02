@@ -1,6 +1,7 @@
 package com.Bootcamp.Crisalis.model;
 
 import com.Bootcamp.Crisalis.model.dto.ClientDTO;
+import com.Bootcamp.Crisalis.model.dto.ClientItemDTO;
 import lombok.*;
 
 import javax.persistence.*;
@@ -52,18 +53,11 @@ public class Client {
 
     @ManyToOne(
             fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL
+            cascade = CascadeType.MERGE
     )
     @JoinColumn(name = "id_business")
     @ToString.Exclude
     private Business business;
-
-//    @OneToMany(
-//            mappedBy = "client",
-//            fetch = FetchType.LAZY
-//    )
-//    @ToString.Exclude
-//    private Set<Order> orders = new HashSet<>();
 
     public Client(ClientDTO clientDTO) {
         this.firstname = clientDTO.getFirstname();
@@ -74,7 +68,6 @@ public class Client {
         this.address = clientDTO.getAddress();
         this.phoneNumber = clientDTO.getPhoneNumber();
         this.business = clientDTO.getBusiness();
-//        this.orders = clientDTO.getOrders();
     }
 
     public ClientDTO toDTO() {
@@ -89,7 +82,19 @@ public class Client {
                 .address(this.address)
                 .phoneNumber(this.phoneNumber)
                 .business(this.business)
-//                .orders(this.orders)
+                .build();
+    }
+
+    public ClientItemDTO toCLientItemDTO() {
+        return ClientItemDTO
+                .builder()
+                .id(this.id)
+                .firstname(this.firstname)
+                .lastname(this.lastname)
+                .dni(this.dni)
+                .activeService(this.activeService)
+                .business(this.business.getBusinessName())
                 .build();
     }
 }
+

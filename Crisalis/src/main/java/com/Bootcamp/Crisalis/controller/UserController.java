@@ -2,6 +2,7 @@ package com.Bootcamp.Crisalis.controller;
 
 import com.Bootcamp.Crisalis.model.User;
 import com.Bootcamp.Crisalis.model.dto.UserDTO;
+import com.Bootcamp.Crisalis.model.dto.UserItemDTO;
 import com.Bootcamp.Crisalis.service.UserService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +38,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/list")
-    public List<UserDTO> getAllUsers() {
+    public List<UserItemDTO> getAllUsers() {
         return this.userService.getListAllUsersInBD();
     }
 

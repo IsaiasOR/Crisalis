@@ -45,11 +45,8 @@
                             <th>Fecha</th>
                             <th>Monto total</th>
                             <th>Descripción</th>
-                            <th>Productos</th>
-                            <th>Servicios</th>
-                            <th>Impuestos</th>
                             <th>Cliente</th>
-                            <th>Usuario</th>
+                            <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -59,14 +56,12 @@
                             <td>{{ order.DateCreated }}</td>
                             <td>{{ order.Amount }}</td>
                             <td>{{ order.Description }}</td>
-                            <td>{{ order.Products }}</td>
-                            <td>{{ order.Services }}</td>
-                            <td>{{ order.Taxes }}</td>
                             <td>{{ order.Client }}</td>
-                            <td>{{ order.User }}</td>
+                            <td>{{ order.Status }}</td>
                             <td> 
                                 <a class="btn btn-info" href="/order-edity/{{ order.Id }}">Editar</a> | 
-                                <a class="btn btn-danger" (click)="deleteRegister(order.Id,iControl)" role="button">Borrar</a>
+                                <a class="btn btn-danger" (click)="deleteRegister(order.Id,iControl)" role="button">Borrar</a> |
+                                <a class="btn btn-primary" href="/order-details/{{ order.Id }}">Detalles</a>
                             </td>
                         </tr>
                     </tbody>

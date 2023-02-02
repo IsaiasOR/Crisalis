@@ -30,4 +30,11 @@ export class ServiceListComponent implements OnInit{
       location.reload();
     }
   }
+
+  updateStatus(id:any, iControl:any) {
+    this.serviceService.updateStatus(id).subscribe((response) => {
+      this.Services.splice(iControl,1);
+    });
+    location.reload();
+  }
 }

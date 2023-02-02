@@ -1,5 +1,6 @@
 package com.Bootcamp.Crisalis.model;
 
+import com.Bootcamp.Crisalis.enums.Status;
 import com.Bootcamp.Crisalis.model.dto.NeedDTO;
 import lombok.*;
 
@@ -40,6 +41,9 @@ public class Need {
     @Column(name = "baseAmount", nullable = false)
     private BigDecimal baseAmount;
 
+    @Column(name = "status")
+    private Status status;
+
     @OneToMany(
             fetch = FetchType.EAGER
     )
@@ -65,6 +69,7 @@ public class Need {
     public Need(NeedDTO needDTO) {
         this.name = needDTO.getName();
         this.baseAmount = needDTO.getBaseAmount();
+        this.status =  needDTO.getStatus();
 /*        this.product = needDTO.getProduct();
         this.service = needDTO.getService();*/
         this.taxes = needDTO.getTaxes();
@@ -77,6 +82,7 @@ public class Need {
                 .id(this.id)
                 .name(this.name)
                 .baseAmount(this.baseAmount)
+                .status(this.status)
 /*                .product(this.product)
                 .service(this.service)*/
                 .taxes(this.taxes)

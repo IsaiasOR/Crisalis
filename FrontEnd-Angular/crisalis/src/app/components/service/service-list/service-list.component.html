@@ -45,6 +45,8 @@
                             <th>ID</th>
                             <th>Nombre</th>
                             <th>Monto</th>
+                            <th>Tipo de servicio</th>
+                            <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -52,7 +54,9 @@
                         <tr *ngFor="let service of Services; let iControl=index">
                             <td>{{ service.Id }}</td>
                             <td>{{ service.Name }}</td>
-                            <td>{{ service.BaseAmount}}</td>
+                            <td>{{ service.BaseAmount }}</td>
+                            <td>{{ service.TypeService }}</td>
+                            <td>{{ service.Status }}</td>
                             <td> 
                                 <a class="btn btn-info" href="/service-edity/{{ service.Id }}">Editar</a> | 
                                 <a class="btn btn-danger" (click)="deleteRegister(service.Id,iControl)" role="button">Borrar</a>

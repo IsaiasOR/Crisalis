@@ -31,6 +31,7 @@ import { TaxListComponent } from './components/tax/tax-list/tax-list.component';
 import { UserListComponent } from './components/user/user-list/user-list.component';
 import { SecretComponent } from './components/secret/secret.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OrderDetailsComponent } from './components/order/order-details/order-details.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TaxListComponent,
     UserListComponent,
     SecretComponent,
+    OrderDetailsComponent,
   ],
   imports: [
     BrowserModule,

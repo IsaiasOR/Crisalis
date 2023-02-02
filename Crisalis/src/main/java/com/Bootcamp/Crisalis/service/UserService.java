@@ -3,6 +3,7 @@ package com.Bootcamp.Crisalis.service;
 import com.Bootcamp.Crisalis.exception.custom.*;
 import com.Bootcamp.Crisalis.model.User;
 import com.Bootcamp.Crisalis.model.dto.UserDTO;
+import com.Bootcamp.Crisalis.model.dto.UserItemDTO;
 import com.Bootcamp.Crisalis.repository.UserRepository;
 import com.Bootcamp.Crisalis.security.EmailValidator;
 import lombok.AllArgsConstructor;
@@ -63,11 +64,11 @@ public class UserService {
         throw new UnauthorizedException("Invalid credentials");
     }
 
-    public List<UserDTO> getListAllUsersInBD() {
+    public List<UserItemDTO> getListAllUsersInBD() {
         return this.userRepository
                 .findAll()
                 .stream()
-                .map(User::toDTO)
+                .map(User::toItemDTO)
                 .collect(Collectors.toList());
     }
 

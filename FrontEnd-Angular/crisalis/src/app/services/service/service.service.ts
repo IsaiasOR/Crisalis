@@ -31,4 +31,8 @@ export class ServiceService {
   editService(id:any, dataService:any):Observable<any> {
     return this.clientHttp.put(this.API+"/update/"+id,dataService);
   }
+
+  updateStatus(id:any):Observable<any> {
+    return this.clientHttp.get(this.API+"/updateStatus/"+id);
+  }
 }

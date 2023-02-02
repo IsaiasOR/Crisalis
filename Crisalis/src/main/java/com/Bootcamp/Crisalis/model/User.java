@@ -2,6 +2,7 @@ package com.Bootcamp.Crisalis.model;
 
 import com.Bootcamp.Crisalis.enums.UserRole;
 import com.Bootcamp.Crisalis.model.dto.UserDTO;
+import com.Bootcamp.Crisalis.model.dto.UserItemDTO;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -84,6 +85,18 @@ public class User implements UserDetails {
                         .phoneNumber(this.phoneNumber)
                         .pass(this.pass)
                         .userRole(this.userRole)
+                        .build();
+    }
+
+    public UserItemDTO toItemDTO() {
+        return
+                UserItemDTO
+                        .builder()
+                        .id(this.id)
+                        .dni(this.dni)
+                        .firstName(this.firstName)
+                        .lastName(this.lastName)
+                        .email(this.email)
                         .build();
     }
 

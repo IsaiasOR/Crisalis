@@ -12,7 +12,7 @@ export class OrderService {
 
   constructor(private clientHttp:HttpClient) { }
 
-  addOrder(dataOrder:Order):Observable<any>{
+  addOrder(dataOrder:Order){
     return this.clientHttp.post(this.API+"/new",dataOrder);
   }
 
@@ -26,6 +26,10 @@ export class OrderService {
 
   getSingleOrder(id:any):Observable<any> {
     return this.clientHttp.get(this.API+"/findOrder/"+id);
+  }
+
+  getSingleOrderDetails(id:any):Observable<any> {
+    return this.clientHttp.get(this.API+"/findOrderDetails/"+id);
   }
 
   editOrder(id:any, dataOrder:any):Observable<any> {

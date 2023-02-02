@@ -1,7 +1,7 @@
 package com.Bootcamp.Crisalis.model.dto;
 
 import com.Bootcamp.Crisalis.enums.Status;
-import com.Bootcamp.Crisalis.model.*;
+import com.Bootcamp.Crisalis.model.Client;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,13 +10,15 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class OrderDTO {
+public class OrderItemDTO {
+
+    @JsonProperty("Id")
+    private Integer id;
 
     @JsonProperty("DateCreated")
     private Date dateCreated;
@@ -27,17 +29,8 @@ public class OrderDTO {
     @JsonProperty("Description")
     private String description;
 
-    @JsonProperty("User")
-    private User user;
-
-    @JsonProperty("Products")
-    private Set<Product> products;
-
-    @JsonProperty("Services")
-    private Set<Service> services;
-
     @JsonProperty("Client")
-    private Client client;
+    private Integer client;
 
     @JsonProperty("Status")
     private Status status;
