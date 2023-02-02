@@ -29,46 +29,31 @@
     </nav>
 </div>
 
-<br>
 <div class="container-xxl">
+    <br>
+    <br>
     <div class="card">
-        <h2 class="card-header">
-            Actualizar datos del producto
-        </h2>
+        <h2 class="card-header">Servicio</h2>
         <div class="card-body">
+            <div class="table-responsive">
+                <ul>
+                    <li>Id: {{ serviceDetails.id }}</li>
+                    <li>Nombre: {{ serviceDetails.name }}</li>
+                    <li>Precio: {{ serviceDetails.baseAmount }}</li>
+                    <li>Tipo de servicio: {{ serviceDetails.typeService }}</li>
+                    <li>Cargo por soporte: {{ serviceDetails.supportChange }}</li>
+                    <li>Impuestos
+                        <ul *ngFor="let tax of serviceDetails.taxes">
+                            <li>DNI: {{ tax.id }}</li>
+                            <li>Nombre: {{ tax.name }}</li>
+                            <li>Porcentage: {{ tax.percentage }}</li>
+                        </ul>
+                    </li>
+                    <li>Costo mensual: {{ serviceDetails.monthlyCost }}</li>
+                </ul>
+            </div>
 
-            <form [formGroup]="formProduct" (ngSubmit)="sendData()">
-
-                <div class="mb-3">
-                    <label for="" class="form-label">Nombre</label>
-                    <input type="text" formControlName="Name"
-                    class="form-control" name="" id="" aria-describedby="helpId" placeholder="Ingresar nombre">
-                </div>
-
-                <div class="mb-3">
-                    <label for="" class="form-label">Monto</label>
-                    <input type="number" formControlName="BaseAmount" step="any"
-                    class="form-control" name="" id="" aria-describedby="helpId" placeholder="Ingresar monto">
-                </div>
-
-                <!-- <div class="mb-3">
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="" formControlName="Status" value="ACTIVE" checked> Activo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        </label>
-                        <label>
-                            <input type="radio" name="" formControlName="Status" value="INACTIVE"> Inactivo
-                        </label>
-                    </div>
-                </div> -->
-
-                <div class="btn-group" role="group" aria-label="">
-                    <button type="submit" class="btn btn-success">Actualizar</button>
-                    <button type="button" [routerLink]="['/product-list']" routerLinkActive="router-link-active"  class="btn btn-primary">Cancelar</button>
-                </div>
-
-            </form>
-
+            <a type="button" href="/person-list" class="btn btn-primary">Volver</a>
         </div>
     </div>
 </div>

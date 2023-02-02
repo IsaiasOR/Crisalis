@@ -25,6 +25,4 @@ public class ProductItemDTO extends NeedDTO {
     @JsonProperty("BaseAmount")
     private BigDecimal baseAmount;
 
-    @JsonProperty("Status")
-    private Status status;
 }

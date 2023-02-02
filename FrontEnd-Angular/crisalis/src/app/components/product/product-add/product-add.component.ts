@@ -20,8 +20,7 @@ export class ProductAddComponent {
 
     this.formGroup=this.form.group({
       Name:[''],
-      BaseAmount:[''],
-      Status:['']
+      BaseAmount:['']
     });
   }
 

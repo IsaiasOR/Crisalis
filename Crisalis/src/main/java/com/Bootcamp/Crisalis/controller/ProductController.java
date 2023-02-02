@@ -42,7 +42,7 @@ public class ProductController {
 
     @GetMapping(value = "/findProduct/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public Product findProductById(@PathVariable("id") Integer id) {
+    public ProductDTO findProductById(@PathVariable("id") Integer id) {
         return this.productService.findProductById(id);
     }
 

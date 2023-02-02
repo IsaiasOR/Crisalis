@@ -48,7 +48,6 @@
                             <li>Nombre: {{ orderDetails.Client.FirstName }}</li>
                             <li>Apellido: {{ orderDetails.Client.LastName }}</li>
                             <li>DNI: {{ orderDetails.Client.DNI }}</li>
-                            <li>Empresa: {{ orderDetails.Client.Business }}</li>
                             <li>Servicio activo: {{ orderDetails.Client.ActiveService }}</li>
                         </ul>
                     </li>
@@ -57,12 +56,6 @@
                             <li>ID: {{ orderProduct.Id }}</li>
                             <li>Nombre: {{ orderProduct.Name }}</li>
                             <li>Precio: {{ orderProduct.BaseAmount }}</li>
-                            <li>Impuestos
-                                <ul *ngFor="let orderTax of orderDetails.Products.Taxes">
-                                    <li>Nombre: {{ orderTax.Name }}</li>
-                                    <li>Porcentage: {{ orderTax.Percentage }}</li>
-                                </ul>
-                            </li>
                         </ul>
                     </li>
                     <li>Servicios
@@ -70,13 +63,6 @@
                             <li>ID: {{ orderService.Id }}</li>
                             <li>Nombre: {{ orderService.Name }}</li>
                             <li>Precio: {{ orderService.BaseAmount }}</li>
-                            <li>Estado: {{ orderService.Status }}</li>
-                            <li>Impuestos
-                                <ul *ngFor="let orderTax of orderDetails.Services.Taxes">
-                                    <li>Nombre: {{ orderTax.Name }}</li>
-                                    <li>Porcentage: {{ orderTax.Percentage }}</li>
-                                </ul>
-                            </li>
                             <li>Tipo de servicio: {{ orderService.TypeService }}</li>
                         </ul>
                     </li>
@@ -84,7 +70,7 @@
                         <ul>
                             <li>ID: {{ orderDetails.User.Id }}</li>
                             <li>Nombre: {{ orderDetails.User.FirstName }}</li>
-                            <li>Apellido: {{ orderDetails.User.lastName }}</li>
+                            <li>Apellido: {{ orderDetails.User.LastName }}</li>
                             <li>DNI: {{ orderDetails.User.DNI }}</li>
                             <li>Correo eléctronico: {{ orderDetails.User.Email }}</li>
                         </ul>

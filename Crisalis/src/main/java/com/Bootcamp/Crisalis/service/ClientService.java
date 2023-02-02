@@ -91,7 +91,7 @@ public class ClientService {
 
     public ClientDTO findClientById(Integer id) {
         if (this.clientRepository.existsById(id)) {
-            return this.clientRepository.findClientById(id).toDTO();
+            return this.clientRepository.findById(id).orElseThrow().toDTO();
         }
         throw new UnauthorizedException("Client doesn't exist");
     }

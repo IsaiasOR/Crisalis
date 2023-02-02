@@ -57,7 +57,9 @@
                             <td>{{ service.TypeService }}</td>
                             <td> 
                                 <a class="btn btn-info" href="/service-edity/{{ service.Id }}">Editar</a> | 
-                                <a class="btn btn-danger" (click)="deleteRegister(service.Id,iControl)" role="button">Borrar</a>
+                                <a class="btn btn-danger" (click)="deleteRegister(service.Id,iControl)" role="button">Borrar</a> | 
+                                <a class="btn btn-primary" href="/service-details/{{ service.Id }}">Detalles</a>
+                            
                             </td>
                         </tr>
                     </tbody>

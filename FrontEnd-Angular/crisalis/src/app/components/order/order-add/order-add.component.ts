@@ -31,9 +31,9 @@ export class OrderAddComponent implements OnInit{
     ) {
 
     this.formGroup=this.form.group({
-      Description:[''],
+      Description:[],
       Products:[],
-      Services:[],
+      Services:[''],
       Client:[''],
       User:['']
     });
@@ -62,9 +62,8 @@ export class OrderAddComponent implements OnInit{
   }
 
   sendData():any {
-    console.log("Me presionaste");
     console.log(this.formGroup.value);
-    
+
     this.crudService.addOrder(this.formGroup.value).subscribe(response => {
       this.router.navigateByUrl('/order-list');
     });

@@ -1,6 +1,5 @@
 package com.Bootcamp.Crisalis.service;
 
-import com.Bootcamp.Crisalis.enums.Status;
 import com.Bootcamp.Crisalis.exception.custom.*;
 import com.Bootcamp.Crisalis.model.Product;
 import com.Bootcamp.Crisalis.model.dto.ProductDTO;
@@ -22,7 +21,6 @@ public class ProductService {
 
     public Product saveProduct(ProductDTO productDTO) {
         if (checkProductDTO(productDTO)) {
-            productDTO.setStatus(Status.INACTIVE);
             return this.productRepository.save(new Product(productDTO));
         }
         throw new NotCreatedException("Error in save new product");
@@ -74,17 +72,17 @@ public class ProductService {
     }
 
     public void deleteProductById(Integer id) {
-        if (!this.productRepository.existsById(id)) {
-            throw new NotEliminatedException("Error in deleting product");
+        if (this.productRepository.existsById(id)) {
+            this.productRepository.deleteById(id);
         }
-        this.productRepository.deleteById(id);
+        throw new NotEliminatedException("Error in deleting product");
     }
 
-    public Product findProductById(Integer id) {
-        return this.productRepository.findById(id)
-                    .orElseThrow(
-                            () -> new UnauthorizedException("Product doesn't exist")
-                    );
+    public ProductDTO findProductById(Integer id) {
+        if (this.productRepository.existsById(id)) {
+            return this.productRepository.findById(id).get().toDTO();
+        }
+        throw new UnauthorizedException(("Product doesn't exist"));
     }
 
     public List<ProductItemDTO> getListAllProductsInBD() {
@@ -110,9 +108,6 @@ public class ProductService {
             }
             if (!ObjectUtils.isEmpty(productDTO.getTaxes())) {
                 newProduct.setTaxes(productDTO.getTaxes());
-            }
-            if (!ObjectUtils.isEmpty(productDTO.getStatus())) {
-                newProduct.setStatus(productDTO.getStatus());
             }
             return this.productRepository.save(newProduct);
         }

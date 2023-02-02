@@ -10,15 +10,17 @@ import { BusinessModifyDataComponent } from './components/business/business-modi
 import { PersonListComponent } from './components/person/person-list/person-list.component';
 import { PersonAddComponent } from './components/person/person-add/person-add.component';
 import { PersonEdityComponent } from './components/person/person-edity/person-edity.component';
+import { PersonDetailsComponent } from './components/person/person-details/person-details.component';
 
 import { ServiceListComponent } from './components/service/service-list/service-list.component';
 import { ServiceAddComponent } from './components/service/service-add/service-add.component';
 import { ServiceEdityComponent } from './components/service/service-edity/service-edity.component';
+import { ServiceDetailsComponent } from './components/service/service-details/service-details.component';
 
 import { ProductListComponent } from './components/product/product-list/product-list.component';
 import { ProductAddComponent } from './components/product/product-add/product-add.component';
 import { ProductEdityComponent } from './components/product/product-edity/product-edity.component';
-import { PersonDetailsComponent } from './components/person/person-details/person-details.component';
+import { ProductDetailsComponent } from './components/product/product-details/product-details.component';
 
 import { UserListComponent } from './components/user/user-list/user-list.component';
 import { UserModifyDataComponent } from './components/user/user-modify-data/user-modify-data.component';
@@ -57,10 +59,12 @@ const routes: Routes = [
   {path: 'product-list', component:ProductListComponent},
   {path: 'product-add', component:ProductAddComponent},
   {path: 'product-edity/:Id', component:ProductEdityComponent},
+  {path: 'product-details/:Id', component:ProductDetailsComponent},
 
   {path: 'service-list', component:ServiceListComponent},
   {path: 'service-add', component:ServiceAddComponent},
   {path: 'service-edity/:Id', component:ServiceEdityComponent},
+  {path: 'service-details/:Id', component:ServiceDetailsComponent},
 
   {path: 'tax-list', component:TaxListComponent},
   {path: 'tax-add', component:TaxAddComponent},

@@ -19,9 +19,6 @@ public class Product extends Need {
     @Column(name = "guarantee")
     private Integer guarantee;
 
-    @Column(name = "status")
-    private Status status;
-
     public Product(ProductDTO productDTO) {
         super(productDTO);
         this.guarantee = productDTO.getGuarantee();
@@ -34,7 +31,6 @@ public class Product extends Need {
                 .name(this.getName())
                 .baseAmount(this.getBaseAmount())
                 .taxes(this.getTaxes())
-                .status(this.getStatus())
                 .guarantee(this.guarantee)
                 .build();
     }
@@ -45,7 +41,6 @@ public class Product extends Need {
                 .id(this.getId())
                 .name(this.getName())
                 .baseAmount(this.getBaseAmount())
-                .status(this.getStatus())
                 .build();
     }
 }

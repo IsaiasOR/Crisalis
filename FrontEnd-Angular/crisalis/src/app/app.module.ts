@@ -33,6 +33,8 @@ import { SecretComponent } from './components/secret/secret.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OrderDetailsComponent } from './components/order/order-details/order-details.component';
 import { PersonDetailsComponent } from './components/person/person-details/person-details.component';
+import { ProductDetailsComponent } from './components/product/product-details/product-details.component';
+import { ServiceDetailsComponent } from './components/service/service-details/service-details.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { PersonDetailsComponent } from './components/person/person-details/perso
     SecretComponent,
     OrderDetailsComponent,
     PersonDetailsComponent,
+    ProductDetailsComponent,
+    ServiceDetailsComponent,
   ],
   imports: [
     BrowserModule,
