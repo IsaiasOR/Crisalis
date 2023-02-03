@@ -172,4 +172,8 @@ public class UserService {
         }
         throw new NotUpdateException("User doesn't exist");
     }
+
+    public List<User> getAllUsersCompleteInBD() {
+        return this.userRepository.findAll();
+    }
 }

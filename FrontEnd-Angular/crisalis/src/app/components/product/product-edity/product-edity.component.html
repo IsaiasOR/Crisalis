@@ -51,16 +51,14 @@
                     class="form-control" name="" id="" aria-describedby="helpId" placeholder="Ingresar monto">
                 </div>
 
-                <!-- <div class="mb-3">
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="" formControlName="Status" value="ACTIVE" checked> Activo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        </label>
-                        <label>
-                            <input type="radio" name="" formControlName="Status" value="INACTIVE"> Inactivo
-                        </label>
-                    </div>
-                </div> -->
+
+                <div class="mb-3">
+                    <label for="" class="form-label">Impuestos</label>
+                    <select multiple class="form-select" aria-label="Default select example" formControlName="Taxes">
+                        <option selected  [ngValue]='null'>Ninguno</option>
+                        <option [ngValue]="tax" *ngFor="let tax of listTaxes">{{tax.name}}</option>
+                    </select>
+                </div>
 
                 <div class="btn-group" role="group" aria-label="">
                     <button type="submit" class="btn btn-success">Actualizar</button>

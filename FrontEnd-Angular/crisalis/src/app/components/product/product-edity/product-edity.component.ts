@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/services/product/product.service';
+import { TaxService } from 'src/app/services/tax/tax.service';
 
 @Component({
   selector: 'app-product-edity',
@@ -11,12 +12,14 @@ import { ProductService } from 'src/app/services/product/product.service';
 export class ProductEdityComponent implements OnInit {
   formProduct: FormGroup;
   id:any;
+  listTaxes:any;
 
   constructor(
     private activeRote:ActivatedRoute,
     private productService:ProductService,
     public formBuilder:FormBuilder,
-    private router:Router
+    private router:Router,
+    private taxService:TaxService
   ) {
     this.id = this.activeRote.snapshot.paramMap.get('Id');
     console.log(this.id);
@@ -26,19 +29,25 @@ export class ProductEdityComponent implements OnInit {
         console.log(response);
         this.formProduct.setValue({
           Name:response['Name'],
-          BaseAmount:response['BaseAmount']
+          BaseAmount:response['BaseAmount'],
+          Taxes:response['Taxes']
         });
       }
     );
 
     this.formProduct = this.formBuilder.group({
       Name:[''],
-      BaseAmount:['']
+      BaseAmount:[''],
+      Taxes:['']
     });
 
   }
 
   ngOnInit(): void {
+    this.taxService.getTax().subscribe(response => {
+      console.log(response);
+      this.listTaxes=response;
+    });
   }
 
   sendData():any {

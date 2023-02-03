@@ -113,4 +113,8 @@ public class ProductService {
         }
         throw new NotUpdateException("Product doesn't exist");
     }
+
+    public List<Product> getAllProductsCompleteInBD() {
+        return this.productRepository.findAll();
+    }
 }

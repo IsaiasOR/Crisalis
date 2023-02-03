@@ -20,6 +20,10 @@ export class ProductService {
     return this.clientHttp.get(this.API+"/list");
   }
 
+  getProductComplete(){
+    return this.clientHttp.get(this.API+"/listComplete");
+  }
+
   deleteProduct(id:any):Observable<any>{
     return this.clientHttp.delete(this.API+"/deleteById/"+id);
   }

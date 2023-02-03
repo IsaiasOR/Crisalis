@@ -3,6 +3,7 @@ package com.Bootcamp.Crisalis.model;
 import com.Bootcamp.Crisalis.enums.UserRole;
 import com.Bootcamp.Crisalis.model.dto.UserDTO;
 import com.Bootcamp.Crisalis.model.dto.UserItemDTO;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -11,8 +12,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 
 @Getter
 @Setter

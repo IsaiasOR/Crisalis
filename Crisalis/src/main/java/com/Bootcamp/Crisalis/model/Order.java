@@ -45,7 +45,8 @@ public class Order {
 
     @ManyToOne(
             fetch = FetchType.EAGER,
-            optional = false
+            optional = false,
+            cascade = CascadeType.ALL
     )
     @JoinColumn(name = "id_user")
     @ToString.Exclude
@@ -71,12 +72,6 @@ public class Order {
     @ToString.Exclude
     private Client client;
 
-//    @OneToMany(
-//            fetch = FetchType.EAGER
-//    )
-//    @ToString.Exclude
-//    private Set<Tax> taxes = new HashSet<>();
-
     //@Transient
     //private final static int TOP_DISCOUNT = 0;
     //¿Garantia en años?
@@ -92,7 +87,6 @@ public class Order {
         this.services = orderDTO.getServices();
         this.client = orderDTO.getClient();
         this.status = orderDTO.getStatus();
-//        this.taxes = orderDTO.getTaxes();
     }
 
     public OrderDTO toDTO() {
@@ -105,7 +99,6 @@ public class Order {
                 .products(this.products)
                 .services(this.services)
                 .client(this.client)
-//                .taxes(this.taxes)
                 .build();
     }
 
@@ -113,6 +106,7 @@ public class Order {
         return OrderItemDTO
                 .builder()
                 .id(this.id)
+                .dateCreated(this.dateCreated)
                 .amount(this.amount)
                 .description(this.description)
                 .client(this.client.getDni())

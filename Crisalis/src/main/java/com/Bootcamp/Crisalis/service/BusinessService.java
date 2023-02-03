@@ -72,12 +72,8 @@ public class BusinessService {
         throw new UnauthorizedException("Business doesn't exist");
     }
 
-    public List<BusinessDTO> getListAllBusinessInBD() {
-        return this.businessRepository
-                .findAll()
-                .stream()
-                .map(Business::toDTO)
-                .collect(Collectors.toList());
+    public List<Business> getListAllBusinessInBD() {
+        return this.businessRepository.findAll();
     }
 
     public Business updateBusiness(BusinessDTO businessDTO, Integer id) {

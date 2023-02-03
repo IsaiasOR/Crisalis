@@ -34,16 +34,9 @@ public class Tax {
     @Column(name = "percentage")
     private BigDecimal percentage;
 
-/*    @ManyToMany(mappedBy = "taxes", cascade = CascadeType.ALL)
-    @ToString.Exclude
-    private Set<Need> needs = new HashSet<>();*/
-
     public Tax(TaxDTO taxDTO) {
         this.name = taxDTO.getName();
         this.percentage = taxDTO.getPercentage();
-        //this.needs = taxDTO.getNeeds();
-        //this.services = taxDTO.getServices();
-        //this.products = taxDTO.getProducts();
     }
 
     public TaxDTO toDTO() {
@@ -52,9 +45,6 @@ public class Tax {
                 .id(this.id)
                 .name(this.name)
                 .percentage(this.percentage)
-                //.needs((HashSet<Need>) this.needs)
-                //.services((HashSet<Service>) this.services)
-                //.products((HashSet<Product>) this.products)
                 .build();
     }
 }

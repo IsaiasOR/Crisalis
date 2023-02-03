@@ -72,7 +72,7 @@ public class ClientService {
         if(ObjectUtils.isEmpty(dni)) {
             throw new EmptyElementException("DNI is empty");
         }
-        if(dni < 1000000) {
+        if(dni < 100000) {
             throw new UnauthorizedException("Invalid credentials");
         }
         return this.clientRepository.findByDni(dni)
@@ -121,12 +121,14 @@ public class ClientService {
             if (!StringUtils.isEmpty(clientDTO.getAddress())) {
                 newClient.setAddress(clientDTO.getAddress());
             }
-            if (!ObjectUtils.isEmpty(clientDTO.getBusiness())) {
-                newClient.setBusiness(clientDTO.getBusiness());
-            }
+            newClient.setBusiness(clientDTO.getBusiness());
             return this.clientRepository.save(newClient);
         }
         throw new NotUpdateException("Client doesn't exist");
+    }
+
+    public List<Client> getAllClientsCompleteInBD() {
+        return this.clientRepository.findAll();
     }
 }
 

@@ -42,18 +42,19 @@
                     <li>Precio: {{ serviceDetails.baseAmount }}</li>
                     <li>Tipo de servicio: {{ serviceDetails.typeService }}</li>
                     <li>Cargo por soporte: {{ serviceDetails.supportChange }}</li>
+                    <li>Costo mensual: {{ serviceDetails.monthlyCost }}</li>
                     <li>Impuestos
                         <ul *ngFor="let tax of serviceDetails.taxes">
-                            <li>DNI: {{ tax.id }}</li>
+                            <li>ID: {{ tax.id }}</li>
                             <li>Nombre: {{ tax.name }}</li>
                             <li>Porcentage: {{ tax.percentage }}</li>
+                            <br>
                         </ul>
                     </li>
-                    <li>Costo mensual: {{ serviceDetails.monthlyCost }}</li>
                 </ul>
             </div>
 
-            <a type="button" href="/person-list" class="btn btn-primary">Volver</a>
+            <a type="button" href="/service-list" class="btn btn-primary">Volver</a>
         </div>
     </div>
 </div>

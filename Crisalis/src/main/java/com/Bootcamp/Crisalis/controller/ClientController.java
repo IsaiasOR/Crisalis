@@ -47,6 +47,12 @@ public class ClientController {
         return clientService.getListAllClientsInBD();
     }
 
+    @GetMapping(value = "/listComplete",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Client> getAllClientsCompleteInBD() {
+        return clientService.getAllClientsCompleteInBD();
+    }
+
     @GetMapping(value = "/findClientByDni/{dni}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ClientDTO findClientByDni(@PathVariable("dni") Integer dni) {

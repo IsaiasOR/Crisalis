@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ServiceService } from 'src/app/services/service/service.service';
+import { TaxService } from 'src/app/services/tax/tax.service';
 
 @Component({
   selector: 'app-service-edity',
@@ -10,13 +11,15 @@ import { ServiceService } from 'src/app/services/service/service.service';
 })
 export class ServiceEdityComponent implements OnInit {
   formService: FormGroup;
+  listTaxes:any;
   id:any;
 
   constructor(
     private activeRote:ActivatedRoute,
     private serviceService:ServiceService,
     public formBuilder:FormBuilder,
-    private router:Router
+    private router:Router,
+    private taxService:TaxService
   ) {
     this.id = this.activeRote.snapshot.paramMap.get('Id');
     console.log(this.id);
@@ -26,19 +29,29 @@ export class ServiceEdityComponent implements OnInit {
         console.log(response);
         this.formService.setValue({
           Name:response['name'],
-          BaseAmount:response['baseAmount']
+          BaseAmount:response['baseAmount'],
+          TypeService:response['typeService'],
+          SupportChange:response['supportChange'],
+          Taxes:response['taxes'],
         });
       }
     );
 
     this.formService = this.formBuilder.group({
       Name:[''],
-      BaseAmount:['']
+      BaseAmount:[''],
+      TypeService:[''],
+      SupportChange:[''],
+      Taxes:['']
     });
 
   }
 
   ngOnInit(): void {
+    this.taxService.getTax().subscribe(response => {
+      console.log(response);
+      this.listTaxes=response;
+    });
   }
 
   sendData():any {

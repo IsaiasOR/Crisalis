@@ -46,9 +46,34 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="" class="form-label">Precio</label>
+                    <label for="" class="form-label">Monto base</label>
                     <input type="number" required step="any"
                     class="form-control" name="" formControlName="BaseAmount" id="" aria-describedby="helpId" placeholder="Ingresar monto">
+                </div>
+
+                <div class="mb-3">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="opciones" formControlName="TypeService" value="COMMON" checked> Común&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </label>
+                        <label>
+                            <input type="radio" name="opciones" formControlName="TypeService" value="SPECIAL"> Especial
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="" class="form-label">Cargo por soporte</label>
+                    <input type="number" step="any"
+                    class="form-control" name="" formControlName="SupportChange" id="" aria-describedby="helpId" placeholder="Ingresar el monto del soporte">
+                </div>
+
+                <div class="mb-3">
+                    <label for="" class="form-label">Impuestos</label>
+                    <select multiple class="form-select" aria-label="Default select example" formControlName="Taxes">
+                        <option selected  [ngValue]='null'>Ninguno</option>
+                        <option [ngValue]="tax" *ngFor="let tax of listTaxes">{{tax.name}}</option>
+                    </select>
                 </div>
 
                 <div class="btn-group" role="group" aria-label="">
