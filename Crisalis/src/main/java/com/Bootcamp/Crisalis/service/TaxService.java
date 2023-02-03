@@ -54,25 +54,9 @@ public class TaxService {
         this.taxRepository.deleteById(id);
     }
 
-/*    public TaxDTO findByName(String name) {
-        if (this.checkTaxDTO(TaxDTO
-                        .builder()
-                        .name(name)
-                        .build())) {
-            return this.taxRepository.findByName(name)
-                    .orElseThrow(
-                            () -> new UnauthorizedException("Tax doesn't exist")
-                    ).toDTO();
-        }
-        throw new UnauthorizedException("Invalid credentials");
-    }*/
-
-    public List<TaxDTO> getListAllTaxesInBD() {
+    public List<Tax> getListAllTaxesInBD() {
         return this.taxRepository
-                .findAll()
-                .stream()
-                .map(Tax::toDTO)
-                .collect(Collectors.toList());
+                .findAll();
     }
 
     public Tax findTaxById(Integer id) {

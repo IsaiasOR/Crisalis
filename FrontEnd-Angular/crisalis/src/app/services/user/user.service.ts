@@ -20,6 +20,10 @@ export class UserService {
     return this.clientHttp.get(this.API+"/list");
   }
 
+  getUserComplete(){
+    return this.clientHttp.get(this.API+"/listComplete");
+  }
+
   deleteUser(id:any):Observable<any>{
     return this.clientHttp.delete(this.API+"/deleteById/"+id);
   }

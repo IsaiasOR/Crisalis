@@ -28,7 +28,7 @@ public class TaxController {
 
     @GetMapping(value = "/list",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<TaxDTO> getListAllTaxesInBD() {
+    public List<Tax> getListAllTaxesInBD() {
         return this.taxService.getListAllTaxesInBD();
     }
 

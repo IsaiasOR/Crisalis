@@ -28,7 +28,7 @@ public class BusinessController {
 
     @GetMapping(value = "/list",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<BusinessDTO> getListAllBusinessInBD() {
+    public List<Business> getListAllBusinessInBD() {
         return this.businessService.getListAllBusinessInBD();
     }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PersonService } from 'src/app/services/person/person.service';
+import { BusinessService } from 'src/app/services/business/business.service';
 
 @Component({
   selector: 'app-person-edity',
@@ -11,12 +12,14 @@ import { PersonService } from 'src/app/services/person/person.service';
 export class PersonEdityComponent implements OnInit {
   formPerson: FormGroup;
   id:any;
+  listBusiness:any;
 
   constructor(
     private activeRote:ActivatedRoute,
     private personService:PersonService,
     public formBuilder:FormBuilder,
-    private router:Router
+    private router:Router,
+    private businessService:BusinessService
   ) {
     this.id = this.activeRote.snapshot.paramMap.get('Id');
     console.log(this.id);
@@ -31,6 +34,7 @@ export class PersonEdityComponent implements OnInit {
           Email:response['Email'],
           PhoneNumber:response['PhoneNumber'],
           Address:response['Address'],
+          Business:['Business'],
           ActiveService:response['ActiveService']
         });
       }
@@ -43,12 +47,17 @@ export class PersonEdityComponent implements OnInit {
       Email:[''],
       PhoneNumber:[''],
       Address:[''],
-      ActiveService:['']
+      ActiveService:[''],
+      Business:['']
     });
 
   }
 
   ngOnInit(): void {
+    this.businessService.getBusiness().subscribe(response => {
+      console.log(response);
+      this.listBusiness=response;
+    });
   }
 
   sendData():any {

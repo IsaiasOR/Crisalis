@@ -40,6 +40,12 @@ public class ServiceController {
         return this.service.getListAllServicesInBD();
     }
 
+    @GetMapping(value = "/listComplete",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Service> getAllServicesCompleteInBD() {
+        return this.service.getAllServicesCompleteInBD();
+    }
+
     @GetMapping(value = "/findService/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Service findServiceById(@PathVariable("id") Integer id) {

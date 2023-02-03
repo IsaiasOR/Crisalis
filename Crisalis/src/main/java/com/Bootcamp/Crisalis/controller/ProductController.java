@@ -40,6 +40,12 @@ public class ProductController {
         return this.productService.getListAllProductsInBD();
     }
 
+    @GetMapping(value = "/listComplete",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Product> getAllProductsCompleteInBD() {
+        return this.productService.getAllProductsCompleteInBD();
+    }
+
     @GetMapping(value = "/findProduct/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ProductDTO findProductById(@PathVariable("id") Integer id) {

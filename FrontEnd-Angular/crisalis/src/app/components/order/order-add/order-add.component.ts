@@ -31,8 +31,8 @@ export class OrderAddComponent implements OnInit{
     ) {
 
     this.formGroup=this.form.group({
-      Description:[],
-      Products:[],
+      Description:[''],
+      Products:[''],
       Services:[''],
       Client:[''],
       User:['']
@@ -40,22 +40,22 @@ export class OrderAddComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.productService.getProduct().subscribe(response => {
+    this.productService.getProductComplete().subscribe(response => {
       console.log(response);
       this.listProducts=response;
     });
 
-    this.serviceService.getService().subscribe(response => {
+    this.serviceService.getServiceComplete().subscribe(response => {
       console.log(response);
       this.listServices=response;
     });
 
-    this.personService.getPerson().subscribe(response => {
+    this.personService.getPersonComplete().subscribe(response => {
       console.log(response);
       this.listClients=response;
     });
 
-    this.userService.getUser().subscribe(response => {
+    this.userService.getUserComplete().subscribe(response => {
       console.log(response);
       this.listUsers=response;
     });

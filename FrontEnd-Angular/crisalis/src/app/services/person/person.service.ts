@@ -20,6 +20,10 @@ export class PersonService {
     return this.clientHttp.get(this.API+"/list");
   }
 
+  getPersonComplete(){
+    return this.clientHttp.get(this.API+"/listComplete");
+  }
+
   deletePerson(id:any):Observable<any>{
     return this.clientHttp.delete(this.API+"/deleteById/"+id);
   }

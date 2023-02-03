@@ -52,8 +52,7 @@ public class Client {
     private Boolean activeService;
 
     @ManyToOne(
-            fetch = FetchType.EAGER,
-            cascade = CascadeType.MERGE
+            fetch = FetchType.EAGER
     )
     @JoinColumn(name = "id_business")
     @ToString.Exclude

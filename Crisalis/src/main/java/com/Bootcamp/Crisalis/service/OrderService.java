@@ -25,11 +25,10 @@ public class OrderService {
 
     public Order creatingOrder(OrderDTO orderDTO) {
         if (checkOrderDTO(orderDTO)) {
-            String date = DateTimeFormatter.ofPattern("MMM dd yyyy")
-                    .format(LocalDateTime.now());
-            orderDTO.setDateCreated(date);
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+            orderDTO.setDateCreated(dtf.format(LocalDateTime.now()));
             orderDTO.setStatus(Status.ACTIVE);
-            orderDTO.setAmount(calculatedService.calculatedTotalAmount(orderDTO));
+//            orderDTO.setAmount(calculatedService.calculatedTotalAmount(orderDTO));
             return this.orderRepository.save(new Order(orderDTO));
         }
         throw new NotCreatedException("Error creating order");

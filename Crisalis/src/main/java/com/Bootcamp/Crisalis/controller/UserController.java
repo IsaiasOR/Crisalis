@@ -42,6 +42,11 @@ public class UserController {
         return this.userService.getListAllUsersInBD();
     }
 
+    @GetMapping(value = "/listComplete")
+    public List<User> getAllUsersCompleteInBD() {
+        return this.userService.getAllUsersCompleteInBD();
+    }
+
 /*    @DeleteMapping(value = "/deleteByDni/{dni}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public User deleteUserByDni(@PathVariable("dni") Integer dni) {

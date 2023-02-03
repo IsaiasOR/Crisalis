@@ -43,15 +43,16 @@
                     <li>Garantía: {{ productDetails.Guarantee }}</li>
                     <li>Impuestos
                         <ul *ngFor="let tax of productDetails.Taxes">
-                            <li>DNI: {{ tax.Id }}</li>
-                            <li>Nombre: {{ tax.Name }}</li>
-                            <li>Porcentage: {{ tax.Percentage }}</li>
+                            <li>ID: {{ tax.id }}</li>
+                            <li>Nombre: {{ tax.name }}</li>
+                            <li>Porcentage: {{ tax.percentage }}</li>
+                            <br>
                         </ul>
                     </li>
                 </ul>
             </div>
 
-            <a type="button" href="/person-list" class="btn btn-primary">Volver</a>
+            <a type="button" href="/product-list" class="btn btn-primary">Volver</a>
         </div>
     </div>
 </div>

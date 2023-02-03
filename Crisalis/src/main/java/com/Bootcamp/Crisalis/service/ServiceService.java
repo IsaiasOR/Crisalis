@@ -1,10 +1,7 @@
 package com.Bootcamp.Crisalis.service;
 
-import com.Bootcamp.Crisalis.enums.Status;
-import com.Bootcamp.Crisalis.enums.TypeService;
 import com.Bootcamp.Crisalis.exception.custom.*;
 import com.Bootcamp.Crisalis.model.Service;
-import com.Bootcamp.Crisalis.model.Tax;
 import com.Bootcamp.Crisalis.model.dto.ServiceDTO;
 import com.Bootcamp.Crisalis.model.dto.ServiceItemDTO;
 import com.Bootcamp.Crisalis.repository.ServiceRepository;
@@ -12,7 +9,6 @@ import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -66,9 +62,6 @@ public class ServiceService {
         if (ObjectUtils.isEmpty(serviceDTO.getTypeService())) {
             throw new EmptyElementException("Type service is empty");
         }
-//        if (ObjectUtils.isEmpty(serviceDTO.getSupportChange())) {
-//            throw new EmptyElementException("Support change is empty");
-//        }
         return Boolean.TRUE;
     }
 
@@ -113,11 +106,13 @@ public class ServiceService {
             if (!ObjectUtils.isEmpty(serviceDTO.getTypeService())){
                 newService.setTypeService(serviceDTO.getTypeService());
             }
-            if (!ObjectUtils.isEmpty(serviceDTO.getTaxes())){
-                newService.setTaxes(serviceDTO.getTaxes());
-            }
+            newService.setTaxes(serviceDTO.getTaxes());
             return this.serviceRepository.save(newService);
         }
         throw new NotUpdateException("Service doesn't exist");
+    }
+
+    public List<Service> getAllServicesCompleteInBD() {
+        return this.serviceRepository.findAll();
     }
 }
