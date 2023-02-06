@@ -78,7 +78,6 @@
                 <div class="mb-3">
                     <label for="" class="form-label">Empresa</label>
                     <select class="form-select" aria-label="Default select example" formControlName="Business">
-                        <option selected [ngValue]="null">Null</option>
                         <option [ngValue]="business" *ngFor="let business of listBusiness">{{business.businessName}}</option>
                     </select>
                 </div> 

@@ -54,7 +54,6 @@
                 <div class="mb-3">
                     <label for="" class="form-label">Impuestos</label>
                     <select multiple class="form-select" aria-label="Default select example" formControlName="Taxes">
-                        <option selected  [ngValue]='null'>Ninguno</option>
                         <option [ngValue]="tax" *ngFor="let tax of listTaxes">{{tax.name}}</option>
                     </select>
                 </div>

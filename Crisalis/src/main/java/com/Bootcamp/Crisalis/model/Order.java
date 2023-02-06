@@ -45,8 +45,7 @@ public class Order {
 
     @ManyToOne(
             fetch = FetchType.EAGER,
-            optional = false,
-            cascade = CascadeType.ALL
+            optional = false
     )
     @JoinColumn(name = "id_user")
     @ToString.Exclude
@@ -71,12 +70,6 @@ public class Order {
     @JoinColumn(name = "id_client")
     @ToString.Exclude
     private Client client;
-
-    //@Transient
-    //private final static int TOP_DISCOUNT = 0;
-    //¿Garantia en años?
-    //@Transient
-    //private int quantity;
 
     public Order(OrderDTO orderDTO) {
         this.dateCreated = orderDTO.getDateCreated();
@@ -119,6 +112,7 @@ public class Order {
                 .builder()
                 .id(this.id)
                 .amount(this.amount)
+                .dateCreated(this.dateCreated)
                 .description(this.description)
                 .client(this.client.toCLientItemDTO())
                 .status(this.status)
@@ -128,11 +122,4 @@ public class Order {
                 .status(this.status)
                 .build();
     }
-
-    /*
-    Métodos:
-    + aplicarIncrementoPrecioProducto(precio: double, anios: int): void
-    + aplicarDescuentoPrecioProducto(valor: double): void
-    + asignarServicioACliente(): void
-     */
 }

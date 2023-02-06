@@ -1,5 +1,6 @@
 package com.Bootcamp.Crisalis.service;
 
+import com.Bootcamp.Crisalis.enums.TypeService;
 import com.Bootcamp.Crisalis.exception.custom.*;
 import com.Bootcamp.Crisalis.model.Service;
 import com.Bootcamp.Crisalis.model.dto.ServiceDTO;
@@ -26,32 +27,6 @@ public class ServiceService {
         throw new NotCreatedException("Error in save new service");
     }
 
-//    public BigDecimal calculatedMonthlyCost(ServiceDTO serviceDTO) {
-//        BigDecimal cost = new BigDecimal(0);
-//        cost = cost.add(serviceDTO.getBaseAmount());
-//
-//        if (!ObjectUtils.isEmpty(serviceDTO.getTaxes())) {
-//            List<BigDecimal> taxes =
-//                    serviceDTO
-//                            .getTaxes()
-//                            .stream()
-//                            .map(Tax::getPercentage)
-//                            .collect(Collectors.toList());
-//
-//            for (BigDecimal t : taxes) {
-//                cost = cost.add(cost
-//                        .multiply(t)
-//                        .divide(new BigDecimal(100)));
-//            }
-//        }
-//
-//        if (serviceDTO.getTypeService() == TypeService.SPECIAL) {
-//            cost.add(serviceDTO.getSupportChange());
-//        }
-//
-//        return cost;
-//    }
-
     private Boolean checkServiceDTO(ServiceDTO serviceDTO) {
         if (StringUtils.isEmpty(serviceDTO.getName())) {
             throw new EmptyElementException("Name is empty");
@@ -61,6 +36,14 @@ public class ServiceService {
         }
         if (ObjectUtils.isEmpty(serviceDTO.getTypeService())) {
             throw new EmptyElementException("Type service is empty");
+        }
+        if (serviceDTO.getTypeService() == TypeService.COMMON &&
+        !ObjectUtils.isEmpty(serviceDTO.getSupportChange())) {
+            throw new EmptyElementException("Type service is common");
+        }
+        if (serviceDTO.getTypeService() == TypeService.SPECIAL &&
+                ObjectUtils.isEmpty(serviceDTO.getSupportChange())) {
+            throw new EmptyElementException("Support change is empty");
         }
         return Boolean.TRUE;
     }
@@ -97,9 +80,6 @@ public class ServiceService {
             if (!ObjectUtils.isEmpty(serviceDTO.getBaseAmount())) {
                 newService.setBaseAmount(serviceDTO.getBaseAmount());
             }
-//            if (!ObjectUtils.isEmpty(serviceDTO.getMonthlyCost())) {
-//                newService.setMonthlyCost(serviceDTO.getMonthlyCost());
-//            }
             if (!ObjectUtils.isEmpty(serviceDTO.getSupportChange())) {
                 newService.setSupportChange(serviceDTO.getSupportChange());
             }

@@ -27,7 +27,7 @@ export class PersonAddComponent implements OnInit {
       Email:[''],
       PhoneNumber:[''],
       Address:[''],
-      Business:[''],
+      Business:[],
       ActiveService:['false']
     });
   }

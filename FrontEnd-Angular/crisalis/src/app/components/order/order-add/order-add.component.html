@@ -41,18 +41,20 @@
                     class="form-control" name="" formControlName="Description" id="" aria-describedby="helpId" placeholder="Descripción del pedido">
                 </div>
 
-                <div class="mb-3">
-                    <label for="inputProducts" class="form-label">Productos</label>
-                    <select multiple class="form-select" aria-label="Default select example" formControlName="Products">
-                        <option selected  [ngValue]='null'>Ninguno</option>
-                        <option [ngValue]="product" *ngFor="let product of listProducts">{{product.name}}</option>
-                    </select>
+                <br>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="inputProducts" class="form-label">Productos</label>
+                        <select multiple class="form-select" aria-label="Default select example" formControlName="Products">
+                            <option [ngValue]="product" *ngFor="let product of listProducts">{{product.name}}</option>
+                        </select>
+                    </div>
                 </div>
-                
+
+                <br>
                 <div class="mb-3">
                     <label for="inputServices" class="form-label">Servicios</label>
                     <select multiple class="form-select" aria-label="Default select example" formControlName="Services">
-                        <option selected  [ngValue]='null'>Ninguno</option>
                         <option [ngValue]="service" *ngFor="let service of listServices">{{service.name}}</option>
                     </select>
                 </div>

@@ -10,6 +10,7 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -21,14 +22,14 @@ import java.util.stream.Collectors;
 public class OrderService {
 
     private final OrderRepository orderRepository;
-    private final CalculatedService calculatedService;
+    private final CalculatedOrderService calculatedOrderService;
 
     public Order creatingOrder(OrderDTO orderDTO) {
         if (checkOrderDTO(orderDTO)) {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
             orderDTO.setDateCreated(dtf.format(LocalDateTime.now()));
             orderDTO.setStatus(Status.ACTIVE);
-//            orderDTO.setAmount(calculatedService.calculatedTotalAmount(orderDTO));
+            orderDTO.setAmount(calculatedOrderService.calculatedTotalAmount(orderDTO));
             return this.orderRepository.save(new Order(orderDTO));
         }
         throw new NotCreatedException("Error creating order");
@@ -74,9 +75,6 @@ public class OrderService {
         Order newOrder = orderRepository.getReferenceById(id);
 
         if (this.orderRepository.existsById(id)) {
-            if (!StringUtils.isEmpty(orderDTO.getDateCreated())) {
-                newOrder.setDateCreated(orderDTO.getDateCreated());
-            }
             if (!StringUtils.isEmpty(orderDTO.getDescription())) {
                 newOrder.setDescription(orderDTO.getDescription());
             }
@@ -95,6 +93,8 @@ public class OrderService {
             if (!ObjectUtils.isEmpty(orderDTO.getStatus())) {
                 newOrder.setStatus(orderDTO.getStatus());
             }
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+            newOrder.setDateCreated(dtf.format(LocalDateTime.now()));
             return this.orderRepository.save(newOrder);
         }
         throw new NotUpdateException("Order doesn't exist");
@@ -108,18 +108,4 @@ public class OrderService {
                 .findById(id)
                 .map(Order::toOrderDetailsDTO);
     }
-
-//    public Order updateStatus(Integer id, Status status) {
-//        Order newOrder = orderRepository.getReferenceById(id);
-//
-//        if (this.orderRepository.existsById(id)) {
-//            if (status == Status.ACTIVE) {
-//                newOrder.setStatus(Status.ACTIVE);
-//            } else {
-//                newOrder.setStatus(Status.INACTIVE);
-//            }
-//            return this.orderRepository.save(newOrder);
-//        }
-//        throw new NotUpdateException("Order doesn't exist");
-//    }
 }

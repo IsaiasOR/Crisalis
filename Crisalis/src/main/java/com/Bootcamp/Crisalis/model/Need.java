@@ -46,6 +46,8 @@ public class Need {
     @ToString.Exclude
     private Set<Tax> taxes = new HashSet<>();
 
+
+
     public Need(NeedDTO needDTO) {
         this.name = needDTO.getName();
         this.baseAmount = needDTO.getBaseAmount();

@@ -48,7 +48,7 @@ export class PersonEdityComponent implements OnInit {
       PhoneNumber:[''],
       Address:[''],
       ActiveService:[''],
-      Business:['']
+      Business:[]
     });
 
   }

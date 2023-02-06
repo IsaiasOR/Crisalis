@@ -38,7 +38,7 @@ export class ProductEdityComponent implements OnInit {
     this.formProduct = this.formBuilder.group({
       Name:[''],
       BaseAmount:[''],
-      Taxes:['']
+      Taxes:[]
     });
 
   }

@@ -24,7 +24,7 @@ export class ProductAddComponent implements OnInit {
     this.formGroup=this.form.group({
       Name:[''],
       BaseAmount:[''],
-      Taxes:['']
+      Taxes:[]
     });
   }
 

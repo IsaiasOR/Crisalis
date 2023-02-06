@@ -1,9 +1,10 @@
 package com.Bootcamp.Crisalis.service;
 
 import com.Bootcamp.Crisalis.model.Product;
+import com.Bootcamp.Crisalis.model.Tax;
 import com.Bootcamp.Crisalis.model.dto.OrderDTO;
+import com.Bootcamp.Crisalis.model.dto.ProductDTO;
 import com.Bootcamp.Crisalis.model.dto.ProductItemDTO;
-import com.Bootcamp.Crisalis.model.dto.ServiceItemDTO;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
@@ -14,21 +15,23 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-public class CalculatedService {
+public class CalculatedOrderService {
+
+    private CalculatedProductService calculatedProductService;
 
     public BigDecimal calculatedTotalAmount(OrderDTO orderDTO) {
         BigDecimal total = new BigDecimal(0);
 
         if (!ObjectUtils.isEmpty(orderDTO.getProducts())) {
-            List<BigDecimal> amountProducts =
-                    orderDTO
-                            .getProducts()
-                            .stream()
-                            .map(Product::getBaseAmount)
-                            .collect(Collectors.toList());
 
-            for ( BigDecimal p : amountProducts) {
-                total = total.add(p);
+            List<ProductDTO> listProductDTO = orderDTO
+                    .getProducts()
+                    .stream()
+                    .map(Product::toDTO)
+                    .collect(Collectors.toList());
+
+            for (ProductDTO p : listProductDTO ) {
+                total = total.add(calculatedProductService.calculatedTotalAmountProduct(p));
             }
 
         }
@@ -45,6 +48,10 @@ public class CalculatedService {
             }
 
         }
+
+
+
         return total;
     }
+
 }

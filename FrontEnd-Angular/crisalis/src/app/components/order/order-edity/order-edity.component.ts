@@ -19,6 +19,7 @@ export class OrderEdityComponent implements OnInit {
   listServices: any;
   listClients: any;
   listUsers: any;
+  oldOrder:any;
 
   constructor(
     private activeRote:ActivatedRoute,
@@ -36,6 +37,7 @@ export class OrderEdityComponent implements OnInit {
     this.orderService.getSingleOrder(this.id).subscribe(
       response => {
         console.log(response);
+        this.oldOrder=response;
         this.formOrder.setValue({
           Description:response['description'],
           Products:response['products'],
@@ -47,9 +49,9 @@ export class OrderEdityComponent implements OnInit {
     );
 
     this.formOrder = this.formBuilder.group({
-      Description:[],
+      Description:[''],
       Products:[],
-      Services:[''],
+      Services:[],
       Client:[''],
       User:['']
     });
@@ -57,22 +59,22 @@ export class OrderEdityComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.productService.getProduct().subscribe(response => {
+    this.productService.getProductComplete().subscribe(response => {
       console.log(response);
       this.listProducts=response;
     });
 
-    this.serviceService.getService().subscribe(response => {
+    this.serviceService.getServiceComplete().subscribe(response => {
       console.log(response);
       this.listServices=response;
     });
 
-    this.personService.getPerson().subscribe(response => {
+    this.personService.getPersonComplete().subscribe(response => {
       console.log(response);
       this.listClients=response;
     });
 
-    this.userService.getUser().subscribe(response => {
+    this.userService.getUserComplete().subscribe(response => {
       console.log(response);
       this.listUsers=response;
     });
