@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { OrderService } from 'src/app/services/order/order.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ProductService } from 'src/app/services/product/product.service';
-import { ServiceService } from 'src/app/services/service/service.service';
 import { PersonService } from 'src/app/services/person/person.service';
 import { UserService } from 'src/app/services/user/user.service';
+import { OrderDetailsService } from 'src/app/services/order-details/order-details.service';
 
 @Component({
   selector: 'app-order-edity',
@@ -15,58 +14,56 @@ import { UserService } from 'src/app/services/user/user.service';
 export class OrderEdityComponent implements OnInit {
   formOrder: FormGroup;
   id:any;
-  listProducts: any;
-  listServices: any;
   listClients: any;
   listUsers: any;
-  oldOrder:any;
+  listOrdersDetails: any;
 
   constructor(
-    private activeRote:ActivatedRoute,
-    private orderService:OrderService,
     public formBuilder:FormBuilder,
+    private orderService:OrderService,
     private router:Router,
-    private productService:ProductService,
-    private serviceService:ServiceService,
     private personService:PersonService,
-    private userService:UserService
+    private userService:UserService,
+    private orderDetailsService:OrderDetailsService,
+    private activatedRoute:ActivatedRoute
   ) {
-    this.id = this.activeRote.snapshot.paramMap.get('Id');
+    this.id = this.activatedRoute.snapshot.paramMap.get('Id');
     console.log(this.id);
 
-    this.orderService.getSingleOrder(this.id).subscribe(
+    this.orderService.findOrder(this.id).subscribe(
       response => {
         console.log(response);
-        this.oldOrder=response;
         this.formOrder.setValue({
+          TotalAmount:response['totalAmount'],
           Description:response['description'],
-          Products:response['products'],
-          Services:response['services'],
           Client:response['client'],
-          User:response['user']
+          User:response['user'],
+          OrderDetails:response['orderDetails']
         });
       }
     );
 
     this.formOrder = this.formBuilder.group({
+      TotalAmount:[],
       Description:[''],
-      Products:[],
-      Services:[],
       Client:[''],
-      User:['']
+      User:[''],
+      OrderDetails:[]
     });
 
   }
 
   ngOnInit(): void {
-    this.productService.getProductComplete().subscribe(response => {
+    this.orderService.findOrder(this.id).subscribe(response => {
       console.log(response);
-      this.listProducts=response;
-    });
-
-    this.serviceService.getServiceComplete().subscribe(response => {
-      console.log(response);
-      this.listServices=response;
+      this.listOrdersDetails=response.orderDetails;
+      this.formOrder=this.formBuilder.group({
+        TotalAmount:[],
+        Description:[''],
+        Client:[''],
+        User:[''],
+        OrderDetails:[this.listOrdersDetails]
+      });
     });
 
     this.personService.getPersonComplete().subscribe(response => {
@@ -87,5 +84,13 @@ export class OrderEdityComponent implements OnInit {
     this.orderService.editOrder(this.id, this.formOrder.value).subscribe(() => {
       this.router.navigateByUrl('/order-list');
     });
+  }
+
+  deleteRegister(id:any) {
+    console.log(id);
+    if(window.confirm("¿Desea borrar el registro?")) {
+      this.orderDetailsService.deleteOrderDetails(id).subscribe();
+      location.reload();
+    }
   }
 }

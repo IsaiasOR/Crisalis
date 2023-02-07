@@ -11,6 +11,7 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @org.springframework.stereotype.Service
@@ -54,11 +55,16 @@ public class ServiceService {
         this.serviceRepository.deleteById(id);
     }
 
-    public Service findServiceById(Integer id) {
-            return this.serviceRepository.findById(id)
-                    .orElseThrow(
-                            () -> new UnauthorizedException("Service doesn't exist")
-                    );
+    public Optional<Service> findServiceById(Integer id) {
+        if (this.serviceRepository.existsById(id)) {
+            return this.serviceRepository.findById(id);
+        }
+        throw new NotEliminatedException("Service doesn't exist");
+
+//            return this.serviceRepository.findById(id)
+//                    .orElseThrow(
+//                            () -> new UnauthorizedException("Service doesn't exist")
+//                    );
     }
 
     public List<ServiceItemDTO> getListAllServicesInBD() {

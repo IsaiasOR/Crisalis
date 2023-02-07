@@ -9,6 +9,8 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class OrderDetailsService {
@@ -23,12 +25,13 @@ public class OrderDetailsService {
     }
 
     public Boolean checkOrderDetailsDTO(OrderDetailsDTO orderDetailsDTO) {
-        if (ObjectUtils.isEmpty(orderDetailsDTO.getAmount())) {
-            throw new EmptyElementException("Amount is empty");
-        }
         if (ObjectUtils.isEmpty(orderDetailsDTO.getService()) &&
         ObjectUtils.isEmpty(orderDetailsDTO.getProduct())) {
             throw new EmptyElementException("Service and product are empty");
+        }
+        if (!ObjectUtils.isEmpty(orderDetailsDTO.getService()) &&
+                !ObjectUtils.isEmpty(orderDetailsDTO.getProduct())) {
+            throw new EmptyElementException("Single product or service");
         }
         if (ObjectUtils.isEmpty(orderDetailsDTO.getProduct()) &&
                 !ObjectUtils.isEmpty(orderDetailsDTO.getQuantity())) {
@@ -80,5 +83,13 @@ public class OrderDetailsService {
             return this.orderDetailsRepository.save(newOrderDetails);
         }
         throw new NotUpdateException("Order details doesn't exist");
+    }
+
+    public List<OrderDetails> getListAllOrderDetailsInBD() {
+        return this.orderDetailsRepository.findAll();
+    }
+
+    public List<OrderDetails> orderDetailsNoOrder() {
+        return this.orderDetailsRepository.orderDetailsNoOrder();
     }
 }

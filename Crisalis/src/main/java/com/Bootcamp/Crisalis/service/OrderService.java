@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -36,6 +38,9 @@ public class OrderService {
         if (ObjectUtils.isEmpty(orderDTO.getClient())) {
            throw new EmptyElementException("Client is empty");
         }
+        if (ObjectUtils.isEmpty(orderDTO.getOrderDetails())) {
+            throw new EmptyElementException("Order details are empty");
+        }
         return Boolean.TRUE;
     }
 
@@ -46,19 +51,15 @@ public class OrderService {
         this.orderRepository.deleteById(id);
     }
 
-//    public List<OrderItemDTO> getListAllOrderInBD() {
-//        return this.orderRepository
-//                .findAll()
-//                .stream()
-//                .map(Order::toOrderItemDTO)
-//                .collect(Collectors.toList());
-//    }
+    public List<Order> getListAllOrderInBD() {
+        return this.orderRepository.findAll();
+    }
 
-    public Order findOrderById(Integer id) {
-        return this.orderRepository.findById(id)
-                .orElseThrow(
-                        () -> new UnauthorizedException("Order doesn't exist")
-                );
+    public Optional<Order> findOrderById(Integer id) {
+        if (!this.orderRepository.existsById(id)) {
+            throw new UnauthorizedException("Order doesn't exist");
+        }
+        return this.orderRepository.findById(id);
     }
 
     public Order updateOrder(OrderDTO orderDTO, Integer id) {

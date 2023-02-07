@@ -35,6 +35,10 @@ import { OrderListComponent } from './components/order/order-list/order-list.com
 import { OrderAddComponent } from './components/order/order-add/order-add.component';
 import { OrderEdityComponent } from './components/order/order-edity/order-edity.component';
 
+import { OrderDetailsAddComponent } from './components/order-details/order-details-add/order-details-add.component';
+import { OrderDetailsEdityComponent } from './components/order-details/order-details-edity/order-details-edity.component';
+import { OrderDetailsSingletonComponent } from './components/order-details/order-details-singleton/order-details-singleton.component';
+
 import { SecretComponent } from './components/secret/secret.component';
 
 const routes: Routes = [
@@ -72,6 +76,10 @@ const routes: Routes = [
   {path: 'order-list', component:OrderListComponent},
   {path: 'order-add', component:OrderAddComponent},
   {path: 'order-edity/:Id', component:OrderEdityComponent},
+
+  {path: 'order-details-singleton/:Id', component:OrderDetailsSingletonComponent},
+  {path: 'order-details-add', component:OrderDetailsAddComponent},
+  {path: 'order-details-edity/:Id', component:OrderDetailsEdityComponent}
 
 ];
 

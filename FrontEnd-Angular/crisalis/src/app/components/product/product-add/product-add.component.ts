@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 
 export class ProductAddComponent implements OnInit {
   formGroup: FormGroup;
-  listTaxes: any;
 
   constructor(
     public form:FormBuilder,

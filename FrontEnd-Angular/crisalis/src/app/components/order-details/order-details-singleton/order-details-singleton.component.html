@@ -1,0 +1,75 @@
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-md navbar-light bg-light border-4 border-bottom border-primary">
+        <div class="container-fluid">
+            <a href="/" class="navbar-brand">Finnegans</a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#MenuNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="MenuNav" class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-3">
+                    <li class="nav-item"><a class="nav-link" href="/order-list">Pedidos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/product-list">Productos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/service-list">Servicios</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Clientes</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/person-list">Personas</a></li>
+                            <li><a class="dropdown-item" href="/business-list">Empresas</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tax-list">Impuestos</a> 
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user-list">Usuarios</a> 
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="container-xxl">
+    <br>
+    <br>
+    <div class="card">
+        <h2 class="card-header">Detalle del pedido</h2>
+        <div class="card-body">
+            <div class="table-responsive">
+                <ul>
+                    <li>ID: {{ orderDetailsSigleton.id }}</li>
+                    <li>Fecha de registración: {{ orderDetailsSigleton.dateCreated }}</li>
+                    <li>Monto total: {{ orderDetailsSigleton.totalAmount }}</li>
+                    <li>Descripción: {{ orderDetailsSigleton.description }}</li>
+                    <li>Estado: {{ orderDetailsSigleton.status }}</li>
+                    <li>Cliente
+                        <ul>
+                            <li>ID: {{ orderDetailsSigleton.client.id }}</li>
+                            <li>DNI: {{ orderDetailsSigleton.client.dni }}</li>
+                            <li>Nombre: {{ orderDetailsSigleton.client.firstname }}</li>
+                            <li>Apellido: {{ orderDetailsSigleton.client.lastname }}</li>
+                        </ul>
+                    </li>
+                    <li>Pedidos
+                        <ul *ngFor="let orderD of orderDetailsSigleton.orderDetails">
+                            <li>ID: {{ orderD.id }}</li>
+                            <li>Monto: {{ orderD.amount}}</li>
+                            <li>Descripción: {{ orderD.description }}</li>
+                            <li>Producto: {{ orderD.product.name }}</li>
+                            <li>Cantidad del producto: {{ orderD.quantity }}</li>
+                            <li>Garantía del producto: {{ orderD.guarantee }}</li>
+                            <li>Servicios: {{ orderD.service.name }}</li>
+                            <li>Impuestos
+                                <ul *ngFor="let orderTaxes of orderDetailsSigleton.orderDetails.taxes">
+                                    <li>Nombre: {{ orderTaxes.name }}</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <a type="button" href="/order-list" class="btn btn-primary">Volver</a>
+        </div>
+    </div>
+</div>

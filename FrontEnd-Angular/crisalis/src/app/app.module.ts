@@ -35,7 +35,7 @@ import { PersonDetailsComponent } from './components/person/person-details/perso
 import { ServiceDetailsComponent } from './components/service/service-details/service-details.component';
 import { OrderDetailsAddComponent } from './components/order-details/order-details-add/order-details-add.component';
 import { OrderDetailsEdityComponent } from './components/order-details/order-details-edity/order-details-edity.component';
-import { OrderDetailsListComponent } from './components/order-details/order-details-list/order-details-list.component';
+import { OrderDetailsSingletonComponent } from './components/order-details/order-details-singleton/order-details-singleton.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +67,7 @@ import { OrderDetailsListComponent } from './components/order-details/order-deta
     ServiceDetailsComponent,
     OrderDetailsAddComponent,
     OrderDetailsEdityComponent,
-    OrderDetailsListComponent,
+    OrderDetailsSingletonComponent,
   ],
   imports: [
     BrowserModule,

@@ -52,16 +52,16 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let order of Orders; let iControl=index">
-                            <td>{{ order.Id }}</td>
-                            <td>{{ order.DateCreated }}</td>
-                            <td>{{ order.Amount }}</td>
-                            <td>{{ order.Description }}</td>
-                            <td>{{ order.Client }}</td>
-                            <td>{{ order.Status }}</td>
+                            <td>{{ order.id }}</td>
+                            <td>{{ order.dateCreated }}</td>
+                            <td>{{ order.totalAmount }}</td>
+                            <td>{{ order.description }}</td>
+                            <td>{{ order.client.dni }}</td>
+                            <td>{{ order.status }}</td>
                             <td> 
-                                <a class="btn btn-info" href="/order-edity/{{ order.Id }}">Editar</a> | 
-                                <a class="btn btn-danger" (click)="deleteRegister(order.Id,iControl)" role="button">Borrar</a> |
-                                <a class="btn btn-primary" href="/order-details/{{ order.Id }}">Detalles</a>
+                                <a class="btn btn-info" href="/order-edity/{{ order.id }}">Editar</a> | 
+                                <a class="btn btn-danger" (click)="deleteRegister(order.id,iControl)" role="button">Borrar</a> |
+                                <a class="btn btn-primary" href="order-details-singleton/{{order.id}}">Detalles</a>
                             </td>
                         </tr>
                     </tbody>

@@ -1,15 +1,11 @@
 import { Person } from "./person";
-import { Product } from "./product";
-import { Service } from "./service";
 import { User } from "./user";
 
 export class Order {
     Id!:Number;
     DateCreated!: Date;
-    Amount!: Number;
+    TotalAmount!: Number;
     Description!: String;
-    Products = new Set<Product>();
-    Services = new Set<Service>();
     Client!: Person;
     User!: User;
 

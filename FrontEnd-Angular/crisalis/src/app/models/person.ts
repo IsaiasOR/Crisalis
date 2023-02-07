@@ -11,7 +11,6 @@ export class Person {
     Address!:String;
     ActiveService!: Boolean;
     BusinessSet = new Set<Business>();
-    Orders = new Set<Order>();
 
     constructor(firstName:String,
         lastName:String,

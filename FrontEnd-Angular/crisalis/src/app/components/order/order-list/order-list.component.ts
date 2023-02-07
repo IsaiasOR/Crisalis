@@ -16,7 +16,7 @@ export class OrderListComponent {
   }
 
   ngOnInit(): void {
-    this.orderService.getOrder().subscribe(response => {
+    this.orderService.listOrder().subscribe(response => {
       console.log(response);
       this.Orders=response;
     });

@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/service")
@@ -48,7 +49,7 @@ public class ServiceController {
 
     @GetMapping(value = "/findService/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public Service findServiceById(@PathVariable("id") Integer id) {
+    public Optional<Service> findServiceById(@PathVariable("id") Integer id) {
         return this.service.findServiceById(id);
     }
 
