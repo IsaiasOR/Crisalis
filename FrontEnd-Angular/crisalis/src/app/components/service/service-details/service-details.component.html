@@ -43,14 +43,6 @@
                     <li>Tipo de servicio: {{ serviceDetails.typeService }}</li>
                     <li>Cargo por soporte: {{ serviceDetails.supportChange }}</li>
                     <li>Costo mensual: {{ serviceDetails.monthlyCost }}</li>
-                    <li>Impuestos
-                        <ul *ngFor="let tax of serviceDetails.taxes">
-                            <li>ID: {{ tax.id }}</li>
-                            <li>Nombre: {{ tax.name }}</li>
-                            <li>Porcentage: {{ tax.percentage }}</li>
-                            <br>
-                        </ul>
-                    </li>
                 </ul>
             </div>
 

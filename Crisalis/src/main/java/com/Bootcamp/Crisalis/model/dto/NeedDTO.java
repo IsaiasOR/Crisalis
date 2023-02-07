@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
-import java.util.Set;
 
 @SuperBuilder
 @Data
@@ -27,8 +26,5 @@ public class NeedDTO {
 
     @JsonProperty("BaseAmount")
     private BigDecimal baseAmount;
-
-    @JsonProperty("Taxes")
-    private Set<Tax> taxes;
 
 }

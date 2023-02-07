@@ -37,7 +37,4 @@ public class ServiceDTO extends NeedDTO {
     @JsonProperty("TypeService")
     private TypeService typeService;
 
-    @JsonProperty("Taxes")
-    private Set<Tax> taxes;
-
 }

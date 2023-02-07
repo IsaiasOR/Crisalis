@@ -3,7 +3,6 @@ package com.Bootcamp.Crisalis.controller;
 import com.Bootcamp.Crisalis.model.Order;
 import com.Bootcamp.Crisalis.model.dto.OrderDTO;
 import com.Bootcamp.Crisalis.model.dto.OrderDetailsDTO;
-import com.Bootcamp.Crisalis.model.dto.OrderItemDTO;
 import com.Bootcamp.Crisalis.service.OrderService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -29,11 +28,11 @@ public class OrderController {
         return this.orderService.creatingOrder(orderDTO);
     }
 
-    @GetMapping(value = "/list",
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<OrderItemDTO> getAllOrders() {
-        return this.orderService.getListAllOrderInBD();
-    }
+//    @GetMapping(value = "/list",
+//            produces = MediaType.APPLICATION_JSON_VALUE)
+//    public List<OrderItemDTO> getAllOrders() {
+//        return this.orderService.getListAllOrderInBD();
+//    }
 
     @DeleteMapping(value = "/delete/{id}")
     public String deleteOrder(@PathVariable("id") Integer id) {
@@ -48,11 +47,11 @@ public class OrderController {
         return this.orderService.findOrderById(id);
     }
 
-    @GetMapping(value = "/findOrderDetails/{id}",
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public Optional<OrderDetailsDTO> findOrderDetails(@PathVariable("id") Integer id) {
-        return this.orderService.findOrderDetails(id);
-    }
+//    @GetMapping(value = "/findOrderDetails/{id}",
+//            produces = MediaType.APPLICATION_JSON_VALUE)
+//    public Optional<OrderDetailsDTO> findOrderDetails(@PathVariable("id") Integer id) {
+//        return this.orderService.findOrderDetails(id);
+//    }
 
     @PutMapping(value = "/update/{id}",
             consumes = MediaType.APPLICATION_JSON_VALUE,

@@ -10,26 +10,20 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class OrderService {
 
     private final OrderRepository orderRepository;
-    private final CalculatedOrderService calculatedOrderService;
 
     public Order creatingOrder(OrderDTO orderDTO) {
         if (checkOrderDTO(orderDTO)) {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
             orderDTO.setDateCreated(dtf.format(LocalDateTime.now()));
             orderDTO.setStatus(Status.ACTIVE);
-            orderDTO.setAmount(calculatedOrderService.calculatedTotalAmount(orderDTO));
             return this.orderRepository.save(new Order(orderDTO));
         }
         throw new NotCreatedException("Error creating order");
@@ -38,10 +32,6 @@ public class OrderService {
     public Boolean checkOrderDTO(OrderDTO orderDTO) {
         if (ObjectUtils.isEmpty(orderDTO.getUser())) {
             throw new EmptyElementException("User is empty");
-        }
-        if (ObjectUtils.isEmpty(orderDTO.getServices()) &&
-                ObjectUtils.isEmpty(orderDTO.getProducts())) {
-           throw new EmptyElementException("Services and products are empty");
         }
         if (ObjectUtils.isEmpty(orderDTO.getClient())) {
            throw new EmptyElementException("Client is empty");
@@ -56,13 +46,13 @@ public class OrderService {
         this.orderRepository.deleteById(id);
     }
 
-    public List<OrderItemDTO> getListAllOrderInBD() {
-        return this.orderRepository
-                .findAll()
-                .stream()
-                .map(Order::toOrderItemDTO)
-                .collect(Collectors.toList());
-    }
+//    public List<OrderItemDTO> getListAllOrderInBD() {
+//        return this.orderRepository
+//                .findAll()
+//                .stream()
+//                .map(Order::toOrderItemDTO)
+//                .collect(Collectors.toList());
+//    }
 
     public Order findOrderById(Integer id) {
         return this.orderRepository.findById(id)
@@ -81,12 +71,6 @@ public class OrderService {
             if (!ObjectUtils.isEmpty(orderDTO.getClient())) {
                 newOrder.setClient(orderDTO.getClient());
             }
-            if (!ObjectUtils.isEmpty(orderDTO.getProducts())) {
-                newOrder.setProducts(orderDTO.getProducts());
-            }
-            if (!ObjectUtils.isEmpty(orderDTO.getServices())) {
-                newOrder.setServices(orderDTO.getServices());
-            }
             if (!ObjectUtils.isEmpty(orderDTO.getUser())) {
                 newOrder.setUser(orderDTO.getUser());
             }
@@ -100,12 +84,12 @@ public class OrderService {
         throw new NotUpdateException("Order doesn't exist");
     }
 
-    public Optional<OrderDetailsDTO> findOrderDetails(Integer id) {
-        if (!this.orderRepository.existsById(id)) {
-            throw new NotEliminatedException("Order doesn't exist");
-        }
-        return this.orderRepository
-                .findById(id)
-                .map(Order::toOrderDetailsDTO);
-    }
+//    public Optional<OrderDetailsDTO> findOrderDetails(Integer id) {
+//        if (!this.orderRepository.existsById(id)) {
+//            throw new NotEliminatedException("Order doesn't exist");
+//        }
+//        return this.orderRepository
+//                .findById(id)
+//                .map(Order::toOrderDetailsDTO);
+//    }
 }

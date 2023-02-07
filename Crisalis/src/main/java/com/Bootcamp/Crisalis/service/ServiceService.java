@@ -21,7 +21,6 @@ public class ServiceService {
 
     public Service saveService(ServiceDTO serviceDTO) {
         if (checkServiceDTO(serviceDTO)) {
-//            serviceDTO.setMonthlyCost(calculatedMonthlyCost(serviceDTO));
             return this.serviceRepository.save(new Service(serviceDTO));
         }
         throw new NotCreatedException("Error in save new service");
@@ -86,7 +85,6 @@ public class ServiceService {
             if (!ObjectUtils.isEmpty(serviceDTO.getTypeService())){
                 newService.setTypeService(serviceDTO.getTypeService());
             }
-            newService.setTaxes(serviceDTO.getTaxes());
             return this.serviceRepository.save(newService);
         }
         throw new NotUpdateException("Service doesn't exist");

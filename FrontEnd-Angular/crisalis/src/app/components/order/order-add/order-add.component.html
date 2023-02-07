@@ -35,13 +35,17 @@
         <h2 class="card-header">Registrar pedido</h2>
         <div class="card-body">
             <form ngNativeValidate [formGroup]="formGroup" (ngSubmit)="sendData()">
+
+                <p>La fecha de creación del pedido se conocerá una vez que se cree el pedido.</p>
+                <p>El monto total del pedido se conocerá una vez que se cree el pedido.</p>
+
                 <div class="mb-3">
                     <label for="" class="form-label">Descripción</label>
                     <input type="text"
                     class="form-control" name="" formControlName="Description" id="" aria-describedby="helpId" placeholder="Descripción del pedido">
                 </div>
 
-                <br>
+                <!-- <br>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="inputProducts" class="form-label">Productos</label>
@@ -57,7 +61,7 @@
                     <select multiple class="form-select" aria-label="Default select example" formControlName="Services">
                         <option [ngValue]="service" *ngFor="let service of listServices">{{service.name}}</option>
                     </select>
-                </div>
+                </div> -->
 
                 <div class="mb-3">
                     <label for="inputClient" class="form-label">Cliente</label>

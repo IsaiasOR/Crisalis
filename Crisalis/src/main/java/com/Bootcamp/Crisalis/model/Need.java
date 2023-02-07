@@ -40,18 +40,9 @@ public class Need {
     @Column(name = "baseAmount", nullable = false)
     private BigDecimal baseAmount;
 
-    @OneToMany(
-            fetch = FetchType.EAGER
-    )
-    @ToString.Exclude
-    private Set<Tax> taxes = new HashSet<>();
-
-
-
     public Need(NeedDTO needDTO) {
         this.name = needDTO.getName();
         this.baseAmount = needDTO.getBaseAmount();
-        this.taxes = needDTO.getTaxes();
     }
 
     public NeedDTO toDTO() {
@@ -60,7 +51,6 @@ public class Need {
                 .id(this.id)
                 .name(this.name)
                 .baseAmount(this.baseAmount)
-                .taxes(this.taxes)
                 .build();
     }
 }

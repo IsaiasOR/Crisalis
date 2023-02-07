@@ -25,7 +25,6 @@ public class Product extends Need {
                 .id(this.getId())
                 .name(this.getName())
                 .baseAmount(this.getBaseAmount())
-                .taxes(this.getTaxes())
                 .build();
     }
 

@@ -1,6 +1,9 @@
 package com.Bootcamp.Crisalis.model.dto;
 
 import com.Bootcamp.Crisalis.enums.Status;
+import com.Bootcamp.Crisalis.model.Product;
+import com.Bootcamp.Crisalis.model.Service;
+import com.Bootcamp.Crisalis.model.Tax;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,7 +11,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -19,27 +23,25 @@ public class OrderDetailsDTO {
     @JsonProperty("Id")
     private Integer id;
 
-    @JsonProperty("DateCreated")
-    private String dateCreated;
-
     @JsonProperty("Amount")
     private BigDecimal amount;
 
     @JsonProperty("Description")
     private String description;
 
-    @JsonProperty("Status")
-    private Status status;
-
-    @JsonProperty("Client")
-    private ClientItemDTO client;
-
     @JsonProperty("Products")
-    private List<ProductItemDTO> products;
+    private Product product;
+
+    @JsonProperty("Quantity")
+    private Integer quantity;
+
+    @JsonProperty("Guarantee")
+    private Integer guarantee;
 
     @JsonProperty("Services")
-    private List<ServiceItemDTO> services;
+    private Service service;
 
-    @JsonProperty("User")
-    private UserItemDTO user;
+    @JsonProperty("Taxes")
+    private Set<Tax> taxes = new HashSet<>();
+
 }

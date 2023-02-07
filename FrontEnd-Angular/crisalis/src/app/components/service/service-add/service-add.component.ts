@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ServiceService } from 'src/app/services/service/service.service';
 import { Router } from '@angular/router';
-import { TaxService } from 'src/app/services/tax/tax.service';
 
 @Component({
   selector: 'app-service-add',
@@ -11,30 +10,22 @@ import { TaxService } from 'src/app/services/tax/tax.service';
 })
 export class ServiceAddComponent implements OnInit{
   formGroup: FormGroup;
-  listTaxes:any;
 
   constructor(
     public form:FormBuilder,
     private crudService:ServiceService,
     private router:Router,
-    private taxService:TaxService
     ) {
 
     this.formGroup=this.form.group({
       Name:[''],
       BaseAmount:[''],
       TypeService:[''],
-      SupportChange:[''],
-      Taxes:[]
+      SupportChange:['']
     });
   }
 
-  ngOnInit(): void {
-    this.taxService.getTax().subscribe(response => {
-      console.log(response);
-      this.listTaxes=response;
-    });
-  }
+  ngOnInit(): void { }
 
   sendData():any {
     console.log(this.formGroup.value);

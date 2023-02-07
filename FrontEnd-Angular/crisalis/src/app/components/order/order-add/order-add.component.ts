@@ -2,8 +2,6 @@ import { Component, OnInit, ɵɵsetComponentScope } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { OrderService } from 'src/app/services/order/order.service';
 import { Router } from '@angular/router';
-import { ProductService } from 'src/app/services/product/product.service';
-import { ServiceService } from 'src/app/services/service/service.service';
 import { PersonService } from 'src/app/services/person/person.service';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -15,8 +13,6 @@ import { UserService } from 'src/app/services/user/user.service';
 
 export class OrderAddComponent implements OnInit {
   formGroup: FormGroup;
-  listProducts: any;
-  listServices: any;
   listClients: any;
   listUsers: any;
 
@@ -24,31 +20,27 @@ export class OrderAddComponent implements OnInit {
     public form:FormBuilder,
     private crudService:OrderService,
     private router:Router,
-    private productService:ProductService,
-    private serviceService:ServiceService,
     private personService:PersonService,
     private userService:UserService
     ) {
 
     this.formGroup=this.form.group({
       Description:[''],
-      Products:[],
-      Services:[],
       Client:[''],
       User:['']
     });
   }
 
   ngOnInit(): void {
-    this.productService.getProductComplete().subscribe(response => {
-      console.log(response);
-      this.listProducts=response;
-    });
+    // this.productService.getProductComplete().subscribe(response => {
+    //   console.log(response);
+    //   this.listProducts=response;
+    // });
 
-    this.serviceService.getServiceComplete().subscribe(response => {
-      console.log(response);
-      this.listServices=response;
-    });
+    // this.serviceService.getServiceComplete().subscribe(response => {
+    //   console.log(response);
+    //   this.listServices=response;
+    // });
 
     this.personService.getPersonComplete().subscribe(response => {
       console.log(response);

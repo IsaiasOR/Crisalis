@@ -20,7 +20,6 @@ import { ServiceDetailsComponent } from './components/service/service-details/se
 import { ProductListComponent } from './components/product/product-list/product-list.component';
 import { ProductAddComponent } from './components/product/product-add/product-add.component';
 import { ProductEdityComponent } from './components/product/product-edity/product-edity.component';
-import { ProductDetailsComponent } from './components/product/product-details/product-details.component';
 
 import { UserListComponent } from './components/user/user-list/user-list.component';
 import { UserModifyDataComponent } from './components/user/user-modify-data/user-modify-data.component';
@@ -35,7 +34,6 @@ import { LoginComponent } from './components/user/login/login.component';
 import { OrderListComponent } from './components/order/order-list/order-list.component';
 import { OrderAddComponent } from './components/order/order-add/order-add.component';
 import { OrderEdityComponent } from './components/order/order-edity/order-edity.component';
-import { OrderDetailsComponent } from './components/order/order-details/order-details.component';
 
 import { SecretComponent } from './components/secret/secret.component';
 
@@ -59,7 +57,6 @@ const routes: Routes = [
   {path: 'product-list', component:ProductListComponent},
   {path: 'product-add', component:ProductAddComponent},
   {path: 'product-edity/:Id', component:ProductEdityComponent},
-  {path: 'product-details/:Id', component:ProductDetailsComponent},
 
   {path: 'service-list', component:ServiceListComponent},
   {path: 'service-add', component:ServiceAddComponent},
@@ -75,7 +72,6 @@ const routes: Routes = [
   {path: 'order-list', component:OrderListComponent},
   {path: 'order-add', component:OrderAddComponent},
   {path: 'order-edity/:Id', component:OrderEdityComponent},
-  {path: 'order-details/:Id', component:OrderDetailsComponent}
 
 ];
 

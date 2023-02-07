@@ -34,8 +34,8 @@ public class Order {
     @Column(name = "dateOrder", nullable = false)
     private String dateCreated;
 
-    @Column(name = "amount", nullable = false)
-    private BigDecimal amount;
+    @Column(name = "totalAmount", nullable = false)
+    private BigDecimal totalAmount;
 
     @Column(name = "description")
     private String description;
@@ -51,18 +51,6 @@ public class Order {
     @ToString.Exclude
     private User user;
 
-    @OneToMany(
-            fetch = FetchType.EAGER
-    )
-    @ToString.Exclude
-    private Set<Product> products = new HashSet<>();
-
-    @OneToMany(
-            fetch = FetchType.EAGER
-    )
-    @ToString.Exclude
-    private Set<Service> services = new HashSet<>();
-
     @ManyToOne(
             fetch = FetchType.EAGER,
             optional = false
@@ -71,55 +59,31 @@ public class Order {
     @ToString.Exclude
     private Client client;
 
+    @OneToMany(
+            fetch = FetchType.EAGER
+    )
+    @ToString.Exclude
+    private Set<OrderDetails> orderDetails = new HashSet<>();
+
     public Order(OrderDTO orderDTO) {
         this.dateCreated = orderDTO.getDateCreated();
-        this.amount = orderDTO.getAmount();
+        this.totalAmount = orderDTO.getTotalAmount();
         this.description = orderDTO.getDescription();
         this.user = orderDTO.getUser();
-        this.products = orderDTO.getProducts();
-        this.services = orderDTO.getServices();
         this.client = orderDTO.getClient();
         this.status = orderDTO.getStatus();
+        this.orderDetails = orderDTO.getOrderDetails();
     }
 
     public OrderDTO toDTO() {
         return OrderDTO
                 .builder()
                 .dateCreated(this.dateCreated)
-                .amount(this.amount)
+                .totalAmount(this.totalAmount)
                 .description(this.description)
                 .user(this.user)
-                .products(this.products)
-                .services(this.services)
                 .client(this.client)
-                .build();
-    }
-
-    public OrderItemDTO toOrderItemDTO() {
-        return OrderItemDTO
-                .builder()
-                .id(this.id)
-                .dateCreated(this.dateCreated)
-                .amount(this.amount)
-                .description(this.description)
-                .client(this.client.getDni())
-                .status(this.status)
-                .build();
-    }
-
-    public OrderDetailsDTO toOrderDetailsDTO() {
-        return OrderDetailsDTO
-                .builder()
-                .id(this.id)
-                .amount(this.amount)
-                .dateCreated(this.dateCreated)
-                .description(this.description)
-                .client(this.client.toCLientItemDTO())
-                .status(this.status)
-                .products(this.products.stream().map(Product::toItemDTO).collect(Collectors.toList()))
-                .services(this.services.stream().map(Service::toServiceItemDTO).collect(Collectors.toList()))
-                .user(this.user.toItemDTO())
-                .status(this.status)
+                .orderDetails(this.orderDetails)
                 .build();
     }
 }

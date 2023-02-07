@@ -9,10 +9,8 @@ import com.Bootcamp.Crisalis.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -70,9 +68,6 @@ public class ProductService {
             }
             if (!ObjectUtils.isEmpty(productDTO.getBaseAmount())) {
                 newProduct.setBaseAmount(productDTO.getBaseAmount());
-            }
-            if (!ObjectUtils.isEmpty(productDTO.getTaxes())) {
-                newProduct.setTaxes(productDTO.getTaxes());
             }
             return this.productRepository.save(newProduct);
         }
