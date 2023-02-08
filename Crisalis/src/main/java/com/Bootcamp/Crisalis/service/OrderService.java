@@ -22,7 +22,6 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
     private final CalculatedOrderService calculatedOrderService;
-    private final OrderDetailsRepository orderDetailsRepository;
 
     public Order creatingOrder(OrderDTO orderDTO) {
         if (checkOrderDTO(orderDTO)) {
@@ -75,6 +74,9 @@ public class OrderService {
             }
             if (!ObjectUtils.isEmpty(orderDTO.getClient())) {
                 newOrder.setClient(orderDTO.getClient());
+            }
+            if (!ObjectUtils.isEmpty(orderDTO.getOrderDetails())) {
+                newOrder.setOrderDetails(orderDTO.getOrderDetails());
             }
             if (!ObjectUtils.isEmpty(orderDTO.getUser())) {
                 newOrder.setUser(orderDTO.getUser());

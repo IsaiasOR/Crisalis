@@ -67,9 +67,6 @@ public class OrderDetailsService {
         OrderDetails newOrderDetails = orderDetailsRepository.getReferenceById(id);
 
         if (this.orderDetailsRepository.existsById(id)) {
-            if (!ObjectUtils.isEmpty(orderDetailsDTO.getAmount())) {
-                newOrderDetails.setAmount(orderDetailsDTO.getAmount());
-            }
             if (!StringUtils.isEmpty(orderDetailsDTO.getDescription())) {
                 newOrderDetails.setDescription(orderDetailsDTO.getDescription());
             }

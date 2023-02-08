@@ -34,7 +34,7 @@ export class PersonEdityComponent implements OnInit {
           Email:response['Email'],
           PhoneNumber:response['PhoneNumber'],
           Address:response['Address'],
-          Business:['Business'],
+          Business:response['Business'],
           ActiveService:response['ActiveService']
         });
       }
@@ -47,8 +47,8 @@ export class PersonEdityComponent implements OnInit {
       Email:[''],
       PhoneNumber:[''],
       Address:[''],
+      Business:[],
       ActiveService:[''],
-      Business:[]
     });
 
   }
