@@ -34,7 +34,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PersonDetailsComponent } from './components/person/person-details/person-details.component';
 import { ServiceDetailsComponent } from './components/service/service-details/service-details.component';
 import { OrderDetailsAddComponent } from './components/order-details/order-details-add/order-details-add.component';
-import { OrderDetailsEdityComponent } from './components/order-details/order-details-edity/order-details-edity.component';
 import { OrderDetailsSingletonComponent } from './components/order-details/order-details-singleton/order-details-singleton.component';
 
 @NgModule({
@@ -66,7 +65,6 @@ import { OrderDetailsSingletonComponent } from './components/order-details/order
     PersonDetailsComponent,
     ServiceDetailsComponent,
     OrderDetailsAddComponent,
-    OrderDetailsEdityComponent,
     OrderDetailsSingletonComponent,
   ],
   imports: [

@@ -37,12 +37,6 @@
             <form ngNativeValidate [formGroup]="formGroup" (ngSubmit)="sendData()">
 
                 <div class="mb-3">
-                    <label for="" class="form-label">Monto</label>
-                    <input type="number"
-                    class="form-control" name="" formControlName="Amount" id="" aria-describedby="helpId" placeholder="Monto">
-                </div>
-
-                <div class="mb-3">
                     <label for="" class="form-label">Descripción</label>
                     <input type="text"
                     class="form-control" name="" formControlName="Description" id="" aria-describedby="helpId" placeholder="Descripción del pedido">
@@ -68,15 +62,16 @@
 
                     <div class="mb-3">
                         <label for="" class="form-label">Cantidad del producto</label>
-                        <input type="text"
+                        <input type="number"
                         class="form-control" name="" formControlName="Quantity" id="" aria-describedby="helpId" placeholder="Cantidad">
                     </div>
     
                     <div class="mb-3">
                         <label for="" class="form-label">Garantía</label>
-                        <input type="text"
+                        <input type="number"
                         class="form-control" name="" formControlName="Guarantee" id="" aria-describedby="helpId" placeholder="Garantía">
                     </div>
+                    
                 </div>
                 
                 <div *ngIf="formNumber == 2">

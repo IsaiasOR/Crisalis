@@ -1,4 +1,4 @@
-import { Component, OnInit, ɵɵsetComponentScope } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProductService } from 'src/app/services/product/product.service';
@@ -28,7 +28,6 @@ export class OrderDetailsAddComponent implements OnInit {
     ) {
 
     this.formGroup=this.form.group({
-      Amount:[],
       Description:[''],
       Product:[],
       Quantity:[],
@@ -58,7 +57,7 @@ export class OrderDetailsAddComponent implements OnInit {
   sendData():any {
     console.log(this.formGroup.value);
     
-    this.orderDetailsService.addOrderDetails(this.formGroup.value).subscribe(response => {
+    this.orderDetailsService.addOrderDetails(this.formGroup.value).subscribe(reponse => {
       this.router.navigateByUrl('/order-add');
     });
   }

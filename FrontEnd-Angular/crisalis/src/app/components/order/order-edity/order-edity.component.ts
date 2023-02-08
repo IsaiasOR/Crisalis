@@ -34,21 +34,21 @@ export class OrderEdityComponent implements OnInit {
       response => {
         console.log(response);
         this.formOrder.setValue({
-          TotalAmount:response['totalAmount'],
           Description:response['description'],
           Client:response['client'],
           User:response['user'],
-          OrderDetails:response['orderDetails']
+          OrderDetails:response['orderDetails'],
+          Status:response['status']
         });
       }
     );
 
     this.formOrder = this.formBuilder.group({
-      TotalAmount:[],
       Description:[''],
       Client:[''],
       User:[''],
-      OrderDetails:[]
+      OrderDetails:[],
+      Status:['']
     });
 
   }
@@ -57,13 +57,6 @@ export class OrderEdityComponent implements OnInit {
     this.orderService.findOrder(this.id).subscribe(response => {
       console.log(response);
       this.listOrdersDetails=response.orderDetails;
-      this.formOrder=this.formBuilder.group({
-        TotalAmount:[],
-        Description:[''],
-        Client:[''],
-        User:[''],
-        OrderDetails:[this.listOrdersDetails]
-      });
     });
 
     this.personService.getPersonComplete().subscribe(response => {
@@ -86,11 +79,10 @@ export class OrderEdityComponent implements OnInit {
     });
   }
 
-  deleteRegister(id:any) {
-    console.log(id);
-    if(window.confirm("¿Desea borrar el registro?")) {
-      this.orderDetailsService.deleteOrderDetails(id).subscribe();
-      location.reload();
-    }
-  }
+  // deleteRegister(id:any) {
+  //   console.log(id);
+  //   this.orderDetailsService.deleteOrderDetails(id).subscribe(respnse => {
+  //     location.reload();
+  //   });
+  // }
 }

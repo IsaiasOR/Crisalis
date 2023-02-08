@@ -4,6 +4,7 @@ import com.Bootcamp.Crisalis.enums.Status;
 import com.Bootcamp.Crisalis.exception.custom.*;
 import com.Bootcamp.Crisalis.model.Order;
 import com.Bootcamp.Crisalis.model.dto.*;
+import com.Bootcamp.Crisalis.repository.OrderDetailsRepository;
 import com.Bootcamp.Crisalis.repository.OrderRepository;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.ObjectUtils;
@@ -20,12 +21,15 @@ import java.util.Optional;
 public class OrderService {
 
     private final OrderRepository orderRepository;
+    private final CalculatedOrderService calculatedOrderService;
+    private final OrderDetailsRepository orderDetailsRepository;
 
     public Order creatingOrder(OrderDTO orderDTO) {
         if (checkOrderDTO(orderDTO)) {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
             orderDTO.setDateCreated(dtf.format(LocalDateTime.now()));
             orderDTO.setStatus(Status.ACTIVE);
+            orderDTO.setTotalAmount(this.calculatedOrderService.calculatedTotalAmount(orderDTO));
             return this.orderRepository.save(new Order(orderDTO));
         }
         throw new NotCreatedException("Error creating order");

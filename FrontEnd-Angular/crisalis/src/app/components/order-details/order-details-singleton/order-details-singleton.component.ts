@@ -9,7 +9,7 @@ import { OrderService } from 'src/app/services/order/order.service';
 })
 export class OrderDetailsSingletonComponent implements OnInit {
   id:any;
-  orderDetailsSigleton:any;
+  order:any;
 
   constructor(
     private activeRote:ActivatedRoute,
@@ -22,7 +22,7 @@ export class OrderDetailsSingletonComponent implements OnInit {
   ngOnInit(): void {
     this.orderService.findOrder(this.id).subscribe(response => {
       console.log(response);
-      this.orderDetailsSigleton=response;
+      this.order=response;
     });
   }
 }

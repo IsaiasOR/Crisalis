@@ -16,9 +16,14 @@ import java.util.List;
 public class OrderDetailsService {
 
     private final OrderDetailsRepository orderDetailsRepository;
+    private final CalculatedOrderDetailsService calculatedOrderDetailsService;
 
     public OrderDetails creatingOrder(OrderDetailsDTO orderDetailsDTO) {
         if (checkOrderDetailsDTO(orderDetailsDTO)) {
+            orderDetailsDTO.setAmount(
+                    this.calculatedOrderDetailsService
+                            .calculatedAmountOrderDetails(orderDetailsDTO)
+            );
             return this.orderDetailsRepository.save(new OrderDetails(orderDetailsDTO));
         }
         throw new NotCreatedException("Error creating order");

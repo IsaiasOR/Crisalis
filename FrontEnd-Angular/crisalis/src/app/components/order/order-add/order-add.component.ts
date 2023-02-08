@@ -28,7 +28,6 @@ export class OrderAddComponent implements OnInit {
     ) {
 
     this.formGroup=this.form.group({
-      TotalAmount:[],
       Description:[''],
       Client:[''],
       User:[''],
@@ -41,7 +40,6 @@ export class OrderAddComponent implements OnInit {
       console.log(response);
       this.listOrdersDetails=response;
       this.formGroup=this.form.group({
-        TotalAmount:[],
         Description:[''],
         Client:[''],
         User:[''],
@@ -70,9 +68,7 @@ export class OrderAddComponent implements OnInit {
 
   deleteRegister(id:any) {
     console.log(id);
-    if(window.confirm("¿Desea borrar el registro?")) {
-      this.orderDetailsService.deleteOrderDetails(id).subscribe();
-      location.reload();
-    }
+    this.orderDetailsService.deleteOrderDetails(id).subscribe();
+    location.reload();
   }
 }

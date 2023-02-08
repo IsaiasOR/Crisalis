@@ -39,6 +39,11 @@
                 <p>La fecha de creación del pedido se registrará automáticamente una vez que se cree el pedido.</p>
                 <p>El monto total del pedido se registrará automáticamente una vez que se cree el pedido.</p>
 
+                <div>
+                    <a type="button" href="/order-details-add" class="btn btn-success">Seleccionar producto/servicios para el pedido</a>
+                </div>
+
+                <br>
                 <div class="mb-3">
                     <label for="inputClient" class="form-label">Cliente</label>
                     <select class="form-select" aria-label="Default select example" formControlName="Client">
@@ -46,24 +51,13 @@
                     </select>
                 </div>
 
-                <div>
-                    <a type="button" href="/order-details-add" class="btn btn-success">Seleccionar producto/servicios para el pedido</a>
-                </div>
-                
-                <br>
                 <div class="mb-3">
                     <label class="form-label">Detalles para el pedido</label>
                     <ul *ngFor="let order of listOrdersDetails">
                         <li>${{order.amount}} - {{order.description}}</li>
-                        <a class="btn btn-info">Editar</a> | 
+                        <!-- <a class="btn btn-info">Editar</a> |  -->
                         <a class="btn btn-danger" (click)="deleteRegister(order.id)" role="button">Borrar</a>
                     </ul>
-                </div>
-
-                <div class="mb-3">
-                    <label for="" class="form-label">Total</label>
-                    <input type="text"
-                    class="form-control" name="" formControlName="TotalAmount" id="" aria-describedby="helpId" placeholder="Total">
                 </div>
 
                 <div class="mb-3">
