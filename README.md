@@ -1,6 +1,6 @@
 # Crisalis - Gestor de pedidos
 
-#### Funciones:
+### Funciones:
 
 - Inicio de sesión y cierre de sesión
 - ABM de productos
