@@ -11,17 +11,12 @@ import javax.persistence.*;
 @Setter
 @ToString
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @DiscriminatorValue("Product")
 public class Product extends Need {
 
-    @Column(name = "guarantee")
-    private Integer guarantee;
-
     public Product(ProductDTO productDTO) {
         super(productDTO);
-        this.guarantee = productDTO.getGuarantee();
     }
 
     public ProductDTO toDTO() {
@@ -30,8 +25,6 @@ public class Product extends Need {
                 .id(this.getId())
                 .name(this.getName())
                 .baseAmount(this.getBaseAmount())
-                .taxes(this.getTaxes())
-                .guarantee(this.guarantee)
                 .build();
     }
 

@@ -4,6 +4,7 @@ import com.Bootcamp.Crisalis.enums.Status;
 import com.Bootcamp.Crisalis.exception.custom.*;
 import com.Bootcamp.Crisalis.model.Order;
 import com.Bootcamp.Crisalis.model.dto.*;
+import com.Bootcamp.Crisalis.repository.OrderDetailsRepository;
 import com.Bootcamp.Crisalis.repository.OrderRepository;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.ObjectUtils;
@@ -14,21 +15,21 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class OrderService {
 
     private final OrderRepository orderRepository;
-    private final CalculatedService calculatedService;
+    private final CalculatedOrderService calculatedOrderService;
+    private final OrderDetailsRepository orderDetailsRepository;
 
     public Order creatingOrder(OrderDTO orderDTO) {
         if (checkOrderDTO(orderDTO)) {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
             orderDTO.setDateCreated(dtf.format(LocalDateTime.now()));
             orderDTO.setStatus(Status.ACTIVE);
-//            orderDTO.setAmount(calculatedService.calculatedTotalAmount(orderDTO));
+            orderDTO.setTotalAmount(this.calculatedOrderService.calculatedTotalAmount(orderDTO));
             return this.orderRepository.save(new Order(orderDTO));
         }
         throw new NotCreatedException("Error creating order");
@@ -38,12 +39,11 @@ public class OrderService {
         if (ObjectUtils.isEmpty(orderDTO.getUser())) {
             throw new EmptyElementException("User is empty");
         }
-        if (ObjectUtils.isEmpty(orderDTO.getServices()) &&
-                ObjectUtils.isEmpty(orderDTO.getProducts())) {
-           throw new EmptyElementException("Services and products are empty");
-        }
         if (ObjectUtils.isEmpty(orderDTO.getClient())) {
            throw new EmptyElementException("Client is empty");
+        }
+        if (ObjectUtils.isEmpty(orderDTO.getOrderDetails())) {
+            throw new EmptyElementException("Order details are empty");
         }
         return Boolean.TRUE;
     }
@@ -55,39 +55,26 @@ public class OrderService {
         this.orderRepository.deleteById(id);
     }
 
-    public List<OrderItemDTO> getListAllOrderInBD() {
-        return this.orderRepository
-                .findAll()
-                .stream()
-                .map(Order::toOrderItemDTO)
-                .collect(Collectors.toList());
+    public List<Order> getListAllOrderInBD() {
+        return this.orderRepository.findAll();
     }
 
-    public Order findOrderById(Integer id) {
-        return this.orderRepository.findById(id)
-                .orElseThrow(
-                        () -> new UnauthorizedException("Order doesn't exist")
-                );
+    public Optional<Order> findOrderById(Integer id) {
+        if (!this.orderRepository.existsById(id)) {
+            throw new UnauthorizedException("Order doesn't exist");
+        }
+        return this.orderRepository.findById(id);
     }
 
     public Order updateOrder(OrderDTO orderDTO, Integer id) {
         Order newOrder = orderRepository.getReferenceById(id);
 
         if (this.orderRepository.existsById(id)) {
-            if (!StringUtils.isEmpty(orderDTO.getDateCreated())) {
-                newOrder.setDateCreated(orderDTO.getDateCreated());
-            }
             if (!StringUtils.isEmpty(orderDTO.getDescription())) {
                 newOrder.setDescription(orderDTO.getDescription());
             }
             if (!ObjectUtils.isEmpty(orderDTO.getClient())) {
                 newOrder.setClient(orderDTO.getClient());
-            }
-            if (!ObjectUtils.isEmpty(orderDTO.getProducts())) {
-                newOrder.setProducts(orderDTO.getProducts());
-            }
-            if (!ObjectUtils.isEmpty(orderDTO.getServices())) {
-                newOrder.setServices(orderDTO.getServices());
             }
             if (!ObjectUtils.isEmpty(orderDTO.getUser())) {
                 newOrder.setUser(orderDTO.getUser());
@@ -95,31 +82,19 @@ public class OrderService {
             if (!ObjectUtils.isEmpty(orderDTO.getStatus())) {
                 newOrder.setStatus(orderDTO.getStatus());
             }
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+            newOrder.setDateCreated(dtf.format(LocalDateTime.now()));
             return this.orderRepository.save(newOrder);
         }
         throw new NotUpdateException("Order doesn't exist");
     }
 
-    public Optional<OrderDetailsDTO> findOrderDetails(Integer id) {
-        if (!this.orderRepository.existsById(id)) {
-            throw new NotEliminatedException("Order doesn't exist");
-        }
-        return this.orderRepository
-                .findById(id)
-                .map(Order::toOrderDetailsDTO);
-    }
-
-//    public Order updateStatus(Integer id, Status status) {
-//        Order newOrder = orderRepository.getReferenceById(id);
-//
-//        if (this.orderRepository.existsById(id)) {
-//            if (status == Status.ACTIVE) {
-//                newOrder.setStatus(Status.ACTIVE);
-//            } else {
-//                newOrder.setStatus(Status.INACTIVE);
-//            }
-//            return this.orderRepository.save(newOrder);
+//    public Optional<OrderDetailsDTO> findOrderDetails(Integer id) {
+//        if (!this.orderRepository.existsById(id)) {
+//            throw new NotEliminatedException("Order doesn't exist");
 //        }
-//        throw new NotUpdateException("Order doesn't exist");
+//        return this.orderRepository
+//                .findById(id)
+//                .map(Order::toOrderDetailsDTO);
 //    }
 }

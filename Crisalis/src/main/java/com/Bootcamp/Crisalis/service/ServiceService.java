@@ -1,5 +1,6 @@
 package com.Bootcamp.Crisalis.service;
 
+import com.Bootcamp.Crisalis.enums.TypeService;
 import com.Bootcamp.Crisalis.exception.custom.*;
 import com.Bootcamp.Crisalis.model.Service;
 import com.Bootcamp.Crisalis.model.dto.ServiceDTO;
@@ -10,6 +11,7 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @org.springframework.stereotype.Service
@@ -20,37 +22,10 @@ public class ServiceService {
 
     public Service saveService(ServiceDTO serviceDTO) {
         if (checkServiceDTO(serviceDTO)) {
-//            serviceDTO.setMonthlyCost(calculatedMonthlyCost(serviceDTO));
             return this.serviceRepository.save(new Service(serviceDTO));
         }
         throw new NotCreatedException("Error in save new service");
     }
-
-//    public BigDecimal calculatedMonthlyCost(ServiceDTO serviceDTO) {
-//        BigDecimal cost = new BigDecimal(0);
-//        cost = cost.add(serviceDTO.getBaseAmount());
-//
-//        if (!ObjectUtils.isEmpty(serviceDTO.getTaxes())) {
-//            List<BigDecimal> taxes =
-//                    serviceDTO
-//                            .getTaxes()
-//                            .stream()
-//                            .map(Tax::getPercentage)
-//                            .collect(Collectors.toList());
-//
-//            for (BigDecimal t : taxes) {
-//                cost = cost.add(cost
-//                        .multiply(t)
-//                        .divide(new BigDecimal(100)));
-//            }
-//        }
-//
-//        if (serviceDTO.getTypeService() == TypeService.SPECIAL) {
-//            cost.add(serviceDTO.getSupportChange());
-//        }
-//
-//        return cost;
-//    }
 
     private Boolean checkServiceDTO(ServiceDTO serviceDTO) {
         if (StringUtils.isEmpty(serviceDTO.getName())) {
@@ -62,6 +37,14 @@ public class ServiceService {
         if (ObjectUtils.isEmpty(serviceDTO.getTypeService())) {
             throw new EmptyElementException("Type service is empty");
         }
+        if (serviceDTO.getTypeService() == TypeService.COMMON &&
+        !ObjectUtils.isEmpty(serviceDTO.getSupportChange())) {
+            throw new EmptyElementException("Type service is common");
+        }
+        if (serviceDTO.getTypeService() == TypeService.SPECIAL &&
+                ObjectUtils.isEmpty(serviceDTO.getSupportChange())) {
+            throw new EmptyElementException("Support change is empty");
+        }
         return Boolean.TRUE;
     }
 
@@ -72,11 +55,16 @@ public class ServiceService {
         this.serviceRepository.deleteById(id);
     }
 
-    public Service findServiceById(Integer id) {
-            return this.serviceRepository.findById(id)
-                    .orElseThrow(
-                            () -> new UnauthorizedException("Service doesn't exist")
-                    );
+    public Optional<Service> findServiceById(Integer id) {
+        if (this.serviceRepository.existsById(id)) {
+            return this.serviceRepository.findById(id);
+        }
+        throw new NotEliminatedException("Service doesn't exist");
+
+//            return this.serviceRepository.findById(id)
+//                    .orElseThrow(
+//                            () -> new UnauthorizedException("Service doesn't exist")
+//                    );
     }
 
     public List<ServiceItemDTO> getListAllServicesInBD() {
@@ -97,16 +85,12 @@ public class ServiceService {
             if (!ObjectUtils.isEmpty(serviceDTO.getBaseAmount())) {
                 newService.setBaseAmount(serviceDTO.getBaseAmount());
             }
-//            if (!ObjectUtils.isEmpty(serviceDTO.getMonthlyCost())) {
-//                newService.setMonthlyCost(serviceDTO.getMonthlyCost());
-//            }
             if (!ObjectUtils.isEmpty(serviceDTO.getSupportChange())) {
                 newService.setSupportChange(serviceDTO.getSupportChange());
             }
             if (!ObjectUtils.isEmpty(serviceDTO.getTypeService())){
                 newService.setTypeService(serviceDTO.getTypeService());
             }
-            newService.setTaxes(serviceDTO.getTaxes());
             return this.serviceRepository.save(newService);
         }
         throw new NotUpdateException("Service doesn't exist");

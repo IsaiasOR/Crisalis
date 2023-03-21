@@ -16,7 +16,7 @@ export class OrderService {
     return this.clientHttp.post(this.API+"/new",dataOrder);
   }
 
-  getOrder(){
+  listOrder(){
     return this.clientHttp.get(this.API+"/list");
   }
 
@@ -24,12 +24,8 @@ export class OrderService {
     return this.clientHttp.delete(this.API+"/delete/"+id);
   }
 
-  getSingleOrder(id:any):Observable<any> {
+  findOrder(id:any):Observable<any> {
     return this.clientHttp.get(this.API+"/findOrder/"+id);
-  }
-
-  getSingleOrderDetails(id:any):Observable<any> {
-    return this.clientHttp.get(this.API+"/findOrderDetails/"+id);
   }
 
   editOrder(id:any, dataOrder:any):Observable<any> {

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ProductService } from 'src/app/services/product/product.service';
 import { Router } from '@angular/router';
-import { TaxService } from 'src/app/services/tax/tax.service';
 
 @Component({
   selector: 'app-product-add',
@@ -12,28 +11,20 @@ import { TaxService } from 'src/app/services/tax/tax.service';
 
 export class ProductAddComponent implements OnInit {
   formGroup: FormGroup;
-  listTaxes: any;
 
   constructor(
     public form:FormBuilder,
     private productService:ProductService,
     private router:Router,
-    private taxService:TaxService
     ) {
 
     this.formGroup=this.form.group({
       Name:[''],
-      BaseAmount:[''],
-      Taxes:['']
+      BaseAmount:['']
     });
   }
 
-  ngOnInit(): void {
-    this.taxService.getTax().subscribe(response => {
-      console.log(response);
-      this.listTaxes=response;
-    });
-  }
+  ngOnInit(): void { }
 
   sendData():any {
     console.log(this.formGroup.value);

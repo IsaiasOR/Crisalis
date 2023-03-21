@@ -33,48 +33,35 @@
     <br>
     <br>
     <div class="card">
-        <h2 class="card-header">Pedido</h2>
+        <h2 class="card-header">Detalle del pedido</h2>
         <div class="card-body">
             <div class="table-responsive">
                 <ul>
-                    <li>Id: {{ orderDetails.Id }}</li>
-                    <li>Fecha de creación: {{ orderDetails.DateCreated }}</li>
-                    <li>Monto total: {{ orderDetails.Amount }}</li>
-                    <li>Descripción: {{ orderDetails.Description }}</li>
-                    <li>Estado: {{ orderDetails.Status }}</li>
-                    <li> Cliente
+                    <li>ID: {{ order.id }}</li>
+                    <li>Fecha de registración: {{ order.dateCreated }}</li>
+                    <li>Monto total: {{ order.totalAmount }}</li>
+                    <li>Descripción: {{ order.description }}</li>
+                    <li>Estado: {{ order.status }}</li>
+                    <li>Cliente
                         <ul>
-                            <li>ID: {{ orderDetails.Client.Id }}</li>
-                            <li>Nombre: {{ orderDetails.Client.FirstName }}</li>
-                            <li>Apellido: {{ orderDetails.Client.LastName }}</li>
-                            <li>DNI: {{ orderDetails.Client.DNI }}</li>
-                            <li>Servicio activo: {{ orderDetails.Client.ActiveService }}</li>
+                            <li>ID: {{ order.client.id }}</li>
+                            <li>DNI: {{ order.client.dni }}</li>
+                            <li>Nombre: {{ order.client.firstname }}</li>
+                            <li>Apellido: {{ order.client.lastname }}</li>
                         </ul>
                     </li>
-                    <li>Productos
-                        <ul *ngFor="let orderProduct of orderDetails.Products">
-                            <li>ID: {{ orderProduct.Id }}</li>
-                            <li>Nombre: {{ orderProduct.Name }}</li>
-                            <li>Precio: {{ orderProduct.BaseAmount }}</li>
+                    <li>Pedidos
+                        <ul *ngFor="let orderD of order.orderDetails">
+                            <li>ID: {{ orderD.id }}</li>
+                            <li>Monto: {{ orderD.amount}}</li>
+                            <li>Descripción: {{ orderD.description }}</li>
+                            <li>Impuestos
+                                <ul *ngFor="let orderTaxes of orderD.taxes">
+                                    <li>Nombre: {{ orderTaxes.name }}</li>
+                                    <li>Porcentage: {{ orderTaxes.percentage }}</li>
+                                </ul>
+                            </li>
                             <br>
-                        </ul>
-                    </li>
-                    <li>Servicios
-                        <ul *ngFor="let orderService of orderDetails.Services">
-                            <li>ID: {{ orderService.Id }}</li>
-                            <li>Nombre: {{ orderService.Name }}</li>
-                            <li>Precio: {{ orderService.BaseAmount }}</li>
-                            <li>Tipo de servicio: {{ orderService.TypeService }}</li>
-                            <br>
-                        </ul>
-                    </li>
-                    <li>Usuario del pedido
-                        <ul>
-                            <li>ID: {{ orderDetails.User.Id }}</li>
-                            <li>Nombre: {{ orderDetails.User.FirstName }}</li>
-                            <li>Apellido: {{ orderDetails.User.LastName }}</li>
-                            <li>DNI: {{ orderDetails.User.DNI }}</li>
-                            <li>Correo eléctronico: {{ orderDetails.User.Email }}</li>
                         </ul>
                     </li>
                 </ul>

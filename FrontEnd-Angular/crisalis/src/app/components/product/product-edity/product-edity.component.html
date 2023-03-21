@@ -50,16 +50,7 @@
                     <input type="number" formControlName="BaseAmount" step="any"
                     class="form-control" name="" id="" aria-describedby="helpId" placeholder="Ingresar monto">
                 </div>
-
-
-                <div class="mb-3">
-                    <label for="" class="form-label">Impuestos</label>
-                    <select multiple class="form-select" aria-label="Default select example" formControlName="Taxes">
-                        <option selected  [ngValue]='null'>Ninguno</option>
-                        <option [ngValue]="tax" *ngFor="let tax of listTaxes">{{tax.name}}</option>
-                    </select>
-                </div>
-
+                
                 <div class="btn-group" role="group" aria-label="">
                     <button type="submit" class="btn btn-success">Actualizar</button>
                     <button type="button" [routerLink]="['/product-list']" routerLinkActive="router-link-active"  class="btn btn-primary">Cancelar</button>

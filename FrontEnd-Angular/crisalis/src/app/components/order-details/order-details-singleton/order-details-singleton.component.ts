@@ -3,13 +3,13 @@ import { ActivatedRoute } from '@angular/router';
 import { OrderService } from 'src/app/services/order/order.service';
 
 @Component({
-  selector: 'app-order-details',
-  templateUrl: './order-details.component.html',
-  styleUrls: ['./order-details.component.css']
+  selector: 'app-order-details-singleton',
+  templateUrl: './order-details-singleton.component.html',
+  styleUrls: ['./order-details-singleton.component.css']
 })
-export class OrderDetailsComponent implements OnInit {
+export class OrderDetailsSingletonComponent implements OnInit {
   id:any;
-  orderDetails:any;
+  order:any;
 
   constructor(
     private activeRote:ActivatedRoute,
@@ -20,9 +20,9 @@ export class OrderDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.orderService.getSingleOrderDetails(this.id).subscribe(response => {
+    this.orderService.findOrder(this.id).subscribe(response => {
       console.log(response);
-      this.orderDetails=response;
+      this.order=response;
     });
   }
 }

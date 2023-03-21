@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -20,24 +21,22 @@ public class OrderDTO {
     @JsonProperty("DateCreated")
     private String dateCreated;
 
-    @JsonProperty("Amount")
-    private BigDecimal amount;
+    @JsonProperty("TotalAmount")
+    private BigDecimal totalAmount;
 
     @JsonProperty("Description")
     private String description;
 
-    @JsonProperty("User")
-    private User user;
-
-    @JsonProperty("Products")
-    private Set<Product> products;
-
-    @JsonProperty("Services")
-    private Set<Service> services;
-
     @JsonProperty("Client")
     private Client client;
 
+    @JsonProperty("User")
+    private User user;
+
     @JsonProperty("Status")
     private Status status;
+
+    @JsonProperty("OrderDetails")
+    private Set<OrderDetails> orderDetails = new HashSet<>();
+
 }

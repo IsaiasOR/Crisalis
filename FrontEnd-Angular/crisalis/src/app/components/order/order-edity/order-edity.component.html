@@ -29,54 +29,58 @@
     </nav>
 </div>
 
+<br>
 <div class="container-xxl">
     <div class="card">
-        <div class="card-header">
-            Actualizar datos del pedido
-        </div>
+        <h2 class="card-header">Actualizar datos del pedido</h2>
         <div class="card-body">
-            <form class="formGroup" [formGroup]="formOrder" (ngSubmit)="sendData()">
+            <form ngNativeValidate [formGroup]="formOrder" (ngSubmit)="sendData()">
+
+                <p>La fecha de creación del pedido se registrará automáticamente una vez que se actualice el pedido.</p>
+                <p>El monto total del pedido se registrará automáticamente una vez que se actialice el pedido.</p>
+
+                <br>
+                <div class="mb-3">
+                    <label class="form-label">Detalles para el pedido</label>
+                    <ul *ngFor="let order of listOrdersDetails">
+                        <li>${{order.amount}} - {{order.description}}</li>
+                    </ul>
+                </div>
+
+                <div class="mb-3">
+                    <label for="inputClient" class="form-label">Cliente</label>
+                    <select class="form-select" aria-label="Default select example" formControlName="Client">
+                        <option [ngValue]="client" *ngFor="let client of listClients">{{client.lastname}}, {{client.firstname}}</option>
+                    </select>
+                </div>
+
                 <div class="mb-3">
                     <label for="" class="form-label">Descripción</label>
                     <input type="text"
                     class="form-control" name="" formControlName="Description" id="" aria-describedby="helpId" placeholder="Descripción del pedido">
                 </div>
-                
-                <div class="mb-3">
-                    <label for="inputProducts" class="form-label">Productos</label>
-                    <select multiple class="form-select" aria-label="Default select example" formControlName="Products">
-                        <option [ngValue]="product" *ngFor="let product of listProducts">{{product.Name}}</option>
-                    </select>
-                </div> 
 
                 <div class="mb-3">
-                    <label for="inputServices" class="form-label">Servicios</label>
-                    <select multiple class="form-select" aria-label="Default select example" formControlName="Services">
-                        <option [ngValue]="service" *ngFor="let service of listServices">{{service.Name}}</option>
-                    </select>
-                </div> 
-
-                <div class="mb-3">
-                    <label for="inputClient" class="form-label">Cliente</label>
-                    <select class="form-select" aria-label="Default select example" formControlName="Client">
-                        <option selected  [ngValue]="''">Seleccionar cliente</option>
-                        <option [ngValue]="client" *ngFor="let client of listClients">{{client.LastName}}, {{client.FirstName}}</option>
-                    </select>
-                </div> 
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="opciones" formControlName="Status" value="ACTIVE" checked> Activo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </label>
+                        <label>
+                            <input type="radio" name="opciones" formControlName="Status" value="INACTIVE"> Inactivo
+                        </label>
+                    </div>
+                </div>
 
                 <div class="mb-3">
                     <label for="inputUser" class="form-label">Usuario</label>
                     <select class="form-select" aria-label="Default select example" formControlName="User">
-                        <option selected  [ngValue]="''">Seleccionar usuario</option>
-                        <option [ngValue]="user" *ngFor="let user of listUsers">{{user.Email}}</option>
+                        <option [ngValue]="user" *ngFor="let user of listUsers">{{user.email}}</option>
                     </select>
-                </div> 
-                
-
+                </div>
                 
                 <div class="btn-group" role="group" aria-label="">
-                    <button type="submit" class="btn btn-success">Actualizar</button>
-                    <button type="button" [routerLink]="['/order-list']" routerLinkActive="router-link-active"  class="btn btn-primary">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Registrar</button>
+                    <a type="button" href="/order-list" class="btn btn-danger">Cancelar</a>
                 </div>
             </form>
         </div>

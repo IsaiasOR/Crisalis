@@ -2,6 +2,7 @@ package com.Bootcamp.Crisalis.model.dto;
 
 import com.Bootcamp.Crisalis.enums.Status;
 import com.Bootcamp.Crisalis.enums.TypeService;
+import com.Bootcamp.Crisalis.model.Order;
 import com.Bootcamp.Crisalis.model.Tax;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
@@ -35,8 +36,5 @@ public class ServiceDTO extends NeedDTO {
 
     @JsonProperty("TypeService")
     private TypeService typeService;
-
-    @JsonProperty("Taxes")
-    private Set<Tax> taxes;
 
 }

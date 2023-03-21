@@ -31,10 +31,10 @@ import { TaxListComponent } from './components/tax/tax-list/tax-list.component';
 import { UserListComponent } from './components/user/user-list/user-list.component';
 import { SecretComponent } from './components/secret/secret.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { OrderDetailsComponent } from './components/order/order-details/order-details.component';
 import { PersonDetailsComponent } from './components/person/person-details/person-details.component';
-import { ProductDetailsComponent } from './components/product/product-details/product-details.component';
 import { ServiceDetailsComponent } from './components/service/service-details/service-details.component';
+import { OrderDetailsAddComponent } from './components/order-details/order-details-add/order-details-add.component';
+import { OrderDetailsSingletonComponent } from './components/order-details/order-details-singleton/order-details-singleton.component';
 
 @NgModule({
   declarations: [
@@ -62,10 +62,10 @@ import { ServiceDetailsComponent } from './components/service/service-details/se
     TaxListComponent,
     UserListComponent,
     SecretComponent,
-    OrderDetailsComponent,
     PersonDetailsComponent,
-    ProductDetailsComponent,
     ServiceDetailsComponent,
+    OrderDetailsAddComponent,
+    OrderDetailsSingletonComponent,
   ],
   imports: [
     BrowserModule,

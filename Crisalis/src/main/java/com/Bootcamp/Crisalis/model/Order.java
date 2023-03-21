@@ -34,8 +34,8 @@ public class Order {
     @Column(name = "dateOrder", nullable = false)
     private String dateCreated;
 
-    @Column(name = "amount", nullable = false)
-    private BigDecimal amount;
+    @Column(name = "totalAmount", nullable = false)
+    private BigDecimal totalAmount;
 
     @Column(name = "description")
     private String description;
@@ -45,24 +45,11 @@ public class Order {
 
     @ManyToOne(
             fetch = FetchType.EAGER,
-            optional = false,
-            cascade = CascadeType.ALL
+            optional = false
     )
     @JoinColumn(name = "id_user")
     @ToString.Exclude
     private User user;
-
-    @OneToMany(
-            fetch = FetchType.EAGER
-    )
-    @ToString.Exclude
-    private Set<Product> products = new HashSet<>();
-
-    @OneToMany(
-            fetch = FetchType.EAGER
-    )
-    @ToString.Exclude
-    private Set<Service> services = new HashSet<>();
 
     @ManyToOne(
             fetch = FetchType.EAGER,
@@ -72,67 +59,31 @@ public class Order {
     @ToString.Exclude
     private Client client;
 
-    //@Transient
-    //private final static int TOP_DISCOUNT = 0;
-    //¿Garantia en años?
-    //@Transient
-    //private int quantity;
+    @OneToMany(
+            fetch = FetchType.EAGER
+    )
+    @ToString.Exclude
+    private Set<OrderDetails> orderDetails = new HashSet<>();
 
     public Order(OrderDTO orderDTO) {
         this.dateCreated = orderDTO.getDateCreated();
-        this.amount = orderDTO.getAmount();
+        this.totalAmount = orderDTO.getTotalAmount();
         this.description = orderDTO.getDescription();
         this.user = orderDTO.getUser();
-        this.products = orderDTO.getProducts();
-        this.services = orderDTO.getServices();
         this.client = orderDTO.getClient();
         this.status = orderDTO.getStatus();
+        this.orderDetails = orderDTO.getOrderDetails();
     }
 
     public OrderDTO toDTO() {
         return OrderDTO
                 .builder()
                 .dateCreated(this.dateCreated)
-                .amount(this.amount)
+                .totalAmount(this.totalAmount)
                 .description(this.description)
                 .user(this.user)
-                .products(this.products)
-                .services(this.services)
                 .client(this.client)
+                .orderDetails(this.orderDetails)
                 .build();
     }
-
-    public OrderItemDTO toOrderItemDTO() {
-        return OrderItemDTO
-                .builder()
-                .id(this.id)
-                .dateCreated(this.dateCreated)
-                .amount(this.amount)
-                .description(this.description)
-                .client(this.client.getDni())
-                .status(this.status)
-                .build();
-    }
-
-    public OrderDetailsDTO toOrderDetailsDTO() {
-        return OrderDetailsDTO
-                .builder()
-                .id(this.id)
-                .amount(this.amount)
-                .description(this.description)
-                .client(this.client.toCLientItemDTO())
-                .status(this.status)
-                .products(this.products.stream().map(Product::toItemDTO).collect(Collectors.toList()))
-                .services(this.services.stream().map(Service::toServiceItemDTO).collect(Collectors.toList()))
-                .user(this.user.toItemDTO())
-                .status(this.status)
-                .build();
-    }
-
-    /*
-    Métodos:
-    + aplicarIncrementoPrecioProducto(precio: double, anios: int): void
-    + aplicarDescuentoPrecioProducto(valor: double): void
-    + asignarServicioACliente(): void
-     */
 }

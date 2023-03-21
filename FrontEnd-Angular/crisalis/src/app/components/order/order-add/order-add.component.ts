@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵɵsetComponentScope } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { OrderService } from 'src/app/services/order/order.service';
 import { Router } from '@angular/router';
-import { ProductService } from 'src/app/services/product/product.service';
-import { ServiceService } from 'src/app/services/service/service.service';
 import { PersonService } from 'src/app/services/person/person.service';
 import { UserService } from 'src/app/services/user/user.service';
+import { OrderDetailsService } from 'src/app/services/order-details/order-details.service';
 
 @Component({
   selector: 'app-order-add',
@@ -13,41 +12,39 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./order-add.component.css']
 })
 
-export class OrderAddComponent implements OnInit{
+export class OrderAddComponent implements OnInit {
   formGroup: FormGroup;
-  listProducts: any;
-  listServices: any;
   listClients: any;
   listUsers: any;
+  listOrdersDetails: any;
 
   constructor(
     public form:FormBuilder,
-    private crudService:OrderService,
+    private orderService:OrderService,
     private router:Router,
-    private productService:ProductService,
-    private serviceService:ServiceService,
     private personService:PersonService,
-    private userService:UserService
+    private userService:UserService,
+    private orderDetailsService:OrderDetailsService
     ) {
 
     this.formGroup=this.form.group({
       Description:[''],
-      Products:[''],
-      Services:[''],
       Client:[''],
-      User:['']
+      User:[''],
+      OrderDetails:[]
     });
   }
 
   ngOnInit(): void {
-    this.productService.getProductComplete().subscribe(response => {
+    this.orderDetailsService.getOrderDetailsNoOrder().subscribe(response => {
       console.log(response);
-      this.listProducts=response;
-    });
-
-    this.serviceService.getServiceComplete().subscribe(response => {
-      console.log(response);
-      this.listServices=response;
+      this.listOrdersDetails=response;
+      this.formGroup=this.form.group({
+        Description:[''],
+        Client:[''],
+        User:[''],
+        OrderDetails:[this.listOrdersDetails]
+      });
     });
 
     this.personService.getPersonComplete().subscribe(response => {
@@ -63,9 +60,15 @@ export class OrderAddComponent implements OnInit{
 
   sendData():any {
     console.log(this.formGroup.value);
-
-    this.crudService.addOrder(this.formGroup.value).subscribe(response => {
+    
+    this.orderService.addOrder(this.formGroup.value).subscribe(response => {
       this.router.navigateByUrl('/order-list');
     });
+  }
+
+  deleteRegister(id:any) {
+    console.log(id);
+    this.orderDetailsService.deleteOrderDetails(id).subscribe();
+    location.reload();
   }
 }

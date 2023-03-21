@@ -39,7 +39,6 @@ public class Service extends Need {
                 .id(this.getId())
                 .name(this.getName())
                 .baseAmount(this.getBaseAmount())
-                .taxes(this.getTaxes())
                 .monthlyCost(this.monthlyCost)
                 .typeService(this.typeService)
                 .supportChange(this.supportChange)

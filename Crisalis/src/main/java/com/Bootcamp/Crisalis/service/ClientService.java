@@ -2,8 +2,6 @@ package com.Bootcamp.Crisalis.service;
 
 import com.Bootcamp.Crisalis.exception.custom.*;
 import com.Bootcamp.Crisalis.model.Client;
-import com.Bootcamp.Crisalis.model.Product;
-import com.Bootcamp.Crisalis.model.dto.BusinessDTO;
 import com.Bootcamp.Crisalis.model.dto.ClientDTO;
 import com.Bootcamp.Crisalis.model.dto.ClientItemDTO;
 import com.Bootcamp.Crisalis.repository.ClientRepository;
@@ -12,7 +10,6 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,16 +48,6 @@ public class ClientService {
         return Boolean.TRUE;
     }
 
-/*    public Client deleteClientByDni(Integer dni) {
-        if (checkClientDTO(ClientDTO
-                .builder()
-                .dni(dni)
-                .build())) {
-            return this.clientRepository.deleteByDni(dni);
-        }
-        throw new NotEliminatedException("Error in deleting client");
-    }
-*/
     public void deleteClientById(Integer id) {
         if (!this.clientRepository.existsById(id)) {
             throw new NotEliminatedException("Business doesn't exist");
